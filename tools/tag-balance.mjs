@@ -3,15 +3,19 @@
 // walks the raw markup with a stack. Void elements and <script>/<style>/<template> bodies are
 // skipped; optional end tags (p, li, dt, dd, option, tr, td, th, thead, tbody) are closed the way
 // the HTML parser closes them only where the spec allows it — anything else is a finding.
+// Also flags block elements nested inside <p> (the parser would close the <p> early).
 // Control: the same check run on a planted unclosed <div> must report it.
-//   node src/tools/tag-balance.mjs   -> audit/tag-balance.json (exit 1 on any finding or a failed control)
+// Ported from the friscoeyesource reference; ROOT fixed (tools/ sits at the project root here) and
+// $CEC_DIST honoured.
+//   node tools/tag-balance.mjs   -> audit/tag-balance.json (exit 1 on any finding or a failed control)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
-const DIST = path.join(ROOT, 'dist');
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const DIST = path.resolve(process.env.CEC_DIST || path.join(ROOT, 'dist'));
 const VOID = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr']);
 const OPTIONAL = new Set(['p', 'li', 'dt', 'dd', 'option', 'tr', 'td', 'th', 'thead', 'tbody']);
+const CLOSES_P = new Set(['address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hr', 'main', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'ul']);
 
 export function check(html) {
   const s = html.replace(/<!--[\s\S]*?-->/g, '').replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi, '<$1></$1>');
@@ -19,8 +23,10 @@ export function check(html) {
   for (const m of s.matchAll(/<(\/?)([a-zA-Z][a-zA-Z0-9-]*)\b[^>]*?(\/?)>/g)) {
     const close = m[1] === '/'; const tag = m[2].toLowerCase();
     if (VOID.has(tag) || (!close && m[3] === '/' && /^(svg|path|circle|rect|line|polyline|polygon|ellipse|use|stop)$/.test(tag))) continue;
-    if (!close) { stack.push({ tag, at: m.index }); continue; }
-    // implicit closes of optional-end-tag elements that sit above the element being closed
+    if (!close) {
+      if (CLOSES_P.has(tag) && stack.length && stack[stack.length - 1].tag === 'p') problems.push({ kind: 'block-in-p', tag, at: m.index });
+      stack.push({ tag, at: m.index }); continue;
+    }
     let i = stack.length - 1;
     while (i >= 0 && stack[i].tag !== tag && OPTIONAL.has(stack[i].tag)) i--;
     if (i >= 0 && stack[i].tag === tag) { stack.length = i; continue; }
@@ -33,13 +39,15 @@ export function check(html) {
 const files = [];
 (function walk(d, r) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const x = r ? r + '/' + e.name : e.name; if (e.isDirectory()) walk(path.join(d, e.name), x); else if (e.name.endsWith('.html')) files.push(x); } }(DIST, ''));
 const findings = [];
+const pagesWith = new Set();
 for (const f of files) {
   const html = fs.readFileSync(path.join(DIST, f), 'utf8');
-  for (const p of check(html)) findings.push({ file: f, ...p, context: html.slice(Math.max(0, p.at - 60), p.at + 60).replace(/\s+/g, ' ') });
+  for (const p of check(html)) { findings.push({ file: f, ...p, context: html.slice(Math.max(0, p.at - 60), p.at + 60).replace(/\s+/g, ' ') }); pagesWith.add(f); }
 }
 const control = check('<main><section><div class="a"><p>x</p></section></main>');
-const fired = control.some((p) => p.tag === 'div' || p.tag === 'section');
-fs.writeFileSync(path.join(ROOT, 'audit/tag-balance.json'), JSON.stringify({ schema: 'sunnydayz/tag-balance@1', generated: new Date().toISOString(), pages: files.length, findings, control: { input: 'unclosed <div> inside <section>', reported: control, fired } }, null, 1));
-console.log('pages', files.length, '· findings', findings.length, '· control', fired ? 'fired (' + control.map((p) => p.kind + ' ' + p.tag).join(', ') + ')' : 'DID NOT FIRE');
+const control2 = check('<p>a<div>b</div></p>');
+const fired = control.some((p) => p.tag === 'div' || p.tag === 'section') && control2.some((p) => p.kind === 'block-in-p');
+if (!process.env.CEC_DIST) fs.writeFileSync(path.join(ROOT, 'audit/tag-balance.json'), JSON.stringify({ schema: 'cec/tag-balance@1', generated: new Date().toISOString(), dist: DIST, pages: files.length, unbalancedPages: pagesWith.size, findings, control: { input: 'unclosed <div> inside <section>; <div> inside <p>', reported: [...control, ...control2], fired } }, null, 1));
+console.log('pages', files.length, '· unbalanced pages', pagesWith.size, '· findings', findings.length, '· control', fired ? 'fired (' + [...control, ...control2].map((p) => p.kind + ' ' + p.tag).join(', ') + ')' : 'DID NOT FIRE');
 for (const f of findings.slice(0, 12)) console.log('  ' + f.file + ' ' + f.kind + ' <' + f.tag + '> … ' + f.context);
 if (findings.length || !fired) process.exit(1);

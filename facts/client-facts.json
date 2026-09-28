@@ -1,19 +1,137 @@
 {
   "schema": "site-reforge/client-facts@1",
-  "note": "Declared facts. ONLY facts recorded here or present in audit/content-inventory.json may appear as claims on the rebuild. Everything else is a fabrication and sr-fabrication.mjs fails the gate.",
+  "note": "Declared facts for Clifton Eye Center. ONLY facts recorded here or present in audit/content-inventory.json may appear as claims on the rebuild. Written by tools/write-facts.mjs from the evidence; every entry names its source. Nothing here is supplied by the client or invented - it is what the LIVE SITE says, including places the extractor text capture did not reach (testimonial cards, icon-only footer links).",
+  "generatedBy": "tools/write-facts.mjs",
+  "generated": "2026-09-28",
   "legalName": "",
-  "brand": "",
-  "phone": [],
-  "email": [],
-  "addresses": [],
-  "hours": "",
+  "brand": "Clifton Eye Center",
+  "people": [
+    {
+      "name": "Dr. Deana Clifton, OD",
+      "role": "optometrist (the practice owner, per her bio)",
+      "source": "audit/raw/team-dr-deana-clifton-od.html h1.ecp-entry-title; /our-eye-doctors/ team card"
+    }
+  ],
+  "phone": [
+    {
+      "value": "318-550-5815",
+      "source": "audit/raw/index.html top bar, mobile header, sidebar location widget and footer NAP (tel:318-550-5815)"
+    }
+  ],
+  "fax": [],
+  "faxNote": "The source publishes no fax number (0 of 349 pages).",
+  "email": [
+    {
+      "value": "cliftoneyecenter@yahoo.com",
+      "source": "audit/raw/website-accessibility-policy.html (the only page that prints it)"
+    }
+  ],
+  "addresses": [
+    {
+      "value": "We're in Bossier City, 1000 Chinaberry Drive, Suite 302, Louisiana, 71111.",
+      "source": "audit/raw/index.html header top bar (strong.ecp-heading-tag)"
+    },
+    {
+      "value": "1000 Chinaberry Drive, Suite 302, Bossier City, LA 71111",
+      "source": "audit/raw/*.html sidebar location widget (div.ecp-post-address)"
+    },
+    {
+      "value": "Clifton Eye Center - Located at 1000 Chinaberry Drive, Suite 302, Bossier City, LA 71111",
+      "source": "audit/raw/index.html footer NAP line"
+    }
+  ],
+  "geo": null,
+  "geoNote": "The footer microdata latitude/longitude (42.859280, -73.820210) points to New York state, not Bossier City; it is not a fact about this practice and is not used.",
+  "hours": "Monday: 8:30 AM - 4:30 PM; Tuesday: 8:30 AM - 4:30 PM; Wednesday: 8:30 AM - 4:30 PM; Thursday: 8:30 AM - 4:30 PM; Friday: 8:30 AM - 4:30 PM; Saturday: Closed; Sunday: Closed",
+  "hoursSource": "audit/raw/*.html sidebar hours widget (li.ecp-post-hours-item), identical on /hours-location/ and the homepage",
   "licences": [],
   "certifications": [],
   "awards": [],
   "statistics": [],
-  "testimonials": [],
   "clients": [],
   "guarantees": [],
   "pricing": [],
-  "services": []
+  "services": [],
+  "testimonials": [
+    {
+      "quote": "I love Dr. Clifton and the staff, and they do a lot in the community.",
+      "name": "Jessica H.",
+      "rating": 5,
+      "post": "testimonial post 4726",
+      "source": "audit/raw/contact-us-testimonials.html (div.ecp-post.ecp-posttype-testimonial: .ecp-post-content / .ecp-post-attribute / count of .ecp-rating-star-full), live site 2026-09-28"
+    },
+    {
+      "quote": "When I saw Dr. Clifton she was so knowledgeable and helpful! As a medical assistant in a clinic currently, I know how much professionalism plays a big part in the medical field. The whole staff was professional and so nice! She showed she cared and didn't rush to get me out of the office like I had experienced before at other offices. They went over and beyond to help me find a good fit for frames. I definitely recommend Dr. Clifton's office to anyone ❤",
+      "name": "Heather T.",
+      "rating": 5,
+      "post": "testimonial post 4728",
+      "source": "audit/raw/contact-us-testimonials.html (div.ecp-post.ecp-posttype-testimonial: .ecp-post-content / .ecp-post-attribute / count of .ecp-rating-star-full), live site 2026-09-28"
+    },
+    {
+      "quote": "Great staff and Dr. Clifton is awesome. Our whole family goes to her for our eye care needs. She is great with my 10-years-old daughter!",
+      "name": "Andrea H.",
+      "rating": 5,
+      "post": "testimonial post 4730",
+      "source": "audit/raw/contact-us-testimonials.html (div.ecp-post.ecp-posttype-testimonial: .ecp-post-content / .ecp-post-attribute / count of .ecp-rating-star-full), live site 2026-09-28"
+    },
+    {
+      "quote": "Great staff and Dr. Clifton is awesome. Our whole family goes to her for our eye care needs. She is great with my 10-years-old daughter!...",
+      "name": "Andrea H.",
+      "rating": 5,
+      "post": "testimonial post 4730",
+      "source": "audit/raw/index.html (div.ecp-post.ecp-posttype-testimonial: .ecp-post-content / .ecp-post-attribute / count of .ecp-rating-star-full), live site 2026-09-28; the homepage prints a truncated excerpt ending \"...\""
+    },
+    {
+      "quote": "When I saw Dr. Clifton she was so knowledgeable and helpful! As a medical assistant in a clinic currently, I know how much professionalism plays a big part in the medical field. The whole staff was professional and so nice! She showed she cared and didn't rush to get me...",
+      "name": "Heather T.",
+      "rating": 5,
+      "post": "testimonial post 4728",
+      "source": "audit/raw/index.html (div.ecp-post.ecp-posttype-testimonial: .ecp-post-content / .ecp-post-attribute / count of .ecp-rating-star-full), live site 2026-09-28; the homepage prints a truncated excerpt ending \"...\""
+    },
+    {
+      "quote": "I love Dr. Clifton and the staff, and they do a lot in the community....",
+      "name": "Jessica H.",
+      "rating": 5,
+      "post": "testimonial post 4726",
+      "source": "audit/raw/index.html (div.ecp-post.ecp-posttype-testimonial: .ecp-post-content / .ecp-post-attribute / count of .ecp-rating-star-full), live site 2026-09-28; the homepage prints a truncated excerpt ending \"...\""
+    },
+    {
+      "quote": "I love Dr. Clifton and the staff, and they do a lot in the community.",
+      "name": "Jessica H.",
+      "rating": 5,
+      "post": "testimonial post 4726",
+      "source": "audit/raw/testimonial-4726-2.html (div.ecp-post.ecp-posttype-testimonial: .ecp-post-content / .ecp-post-attribute / count of .ecp-rating-star-full), live site 2026-09-28"
+    },
+    {
+      "quote": "When I saw Dr. Clifton she was so knowledgeable and helpful! As a medical assistant in a clinic currently, I know how much professionalism plays a big part in the medical field. The whole staff was professional and so nice! She showed she cared and didn't rush to get me out of the office like I had experienced before at other offices. They went over and beyond to help me find a good fit for frames. I definitely recommend Dr. Clifton's office to anyone ❤",
+      "name": "Heather T.",
+      "rating": 5,
+      "post": "testimonial post 4728",
+      "source": "audit/raw/testimonial-4728-2.html (div.ecp-post.ecp-posttype-testimonial: .ecp-post-content / .ecp-post-attribute / count of .ecp-rating-star-full), live site 2026-09-28"
+    },
+    {
+      "quote": "Great staff and Dr. Clifton is awesome. Our whole family goes to her for our eye care needs. She is great with my 10-years-old daughter!",
+      "name": "Andrea H.",
+      "rating": 5,
+      "post": "testimonial post 4730",
+      "source": "audit/raw/testimonial-4730-2.html (div.ecp-post.ecp-posttype-testimonial: .ecp-post-content / .ecp-post-attribute / count of .ecp-rating-star-full), live site 2026-09-28"
+    }
+  ],
+  "socialProfiles": [
+    {
+      "network": "facebook",
+      "label": "Visit us on facebook",
+      "url": "https://www.facebook.com/Clifton-Eye-Center-154894561271074/?ref=bookmarks",
+      "source": "aria-label + href of the icon-only footer link on every source page (audit/raw/*.html); the glyph was an inline <svg>"
+    }
+  ],
+  "sourcedClaimContexts": [
+    {
+      "page": "/contact-us/appointment-request-form/",
+      "sourceText": "Best Time to be Reached for Confirmation*",
+      "rebuildContext": "Best Time to be Reached for Confirmation * Hours",
+      "why": "Gravity Forms time-field label (not a claim: \"Best\" is part of the field name) followed by its required mark and the first sub-label \"Hours\", both source strings.",
+      "source": "audit/raw/contact-us-appointment-request-form.html (li#field_9_14: label.gfield_label, span.gfield_required, label.hour_label)"
+    }
+  ]
 }

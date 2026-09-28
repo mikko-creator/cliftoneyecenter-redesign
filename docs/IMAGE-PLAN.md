@@ -155,18 +155,20 @@ fresh leaf green #94bc4a accents, shallow depth of field, photorealistic, no tex
 
 ### 3a. Generated images (16)
 
+Placement below was revised on 2026-09-28 to match the winning design (canopy). `docs/DESIGN-SPEC.md` section 6 is the slot map the build follows; `src/content/image-plan.json` `usedFor` carries the same placements.
+
 | id | role | ratio | cutout | Text-prone (zoom review) | Main use |
 |---|---|---|---|---|---|
-| scene-exam-room | scene-backdrop | 21:9 | | | Full-bleed homepage hero backdrop the glass headline panel blurs over. /eye-care-services and /eye-exams headers. |
-| scene-optical-boutique | scene-backdrop | 21:9 | | **yes** (shelf frames) | /eyeglasses-contacts and /eyeglasses headers; the homepage designer band backdrop |
-| scene-greenery-window | scene-backdrop | 16:9 | | | Generic interior pages, blog, footer glass |
-| cut-eyeglasses | depth-cutout | 4:3 | yes | **yes** (temples, bridge, lenses) | Breaks out of the homepage hero frame; eyeglasses pages; 2 slot-fills |
-| cut-sunglasses | depth-cutout | 4:3 | yes | **yes** (lens corners, hinges) | Sunglasses pages; UV articles; 1 slot-fill |
-| cut-kids-glasses | depth-cutout | 4:3 | yes | **yes** (temples) | Pediatric service card; kids-optical |
-| cut-contact-lens | depth-cutout | 3:4 | yes | anatomy | Contact Lens Services card (the hand rises from inside the card); contact lens pages |
-| cut-phoropter | depth-cutout | 1:1 | yes | **HIGH** (dials, plates) | Comprehensive Eye Exams card; exam pages; 1 slot-fill |
-| cut-olive-sprig | depth-cutout | 9:16 | yes | | Brand-green accent crossing section boundaries (alt "") |
-| cut-lens-prism | depth-cutout | 1:1 | yes | | Floating layer over glass edges (alt ""). This is a glass cut-out, so white stays baked into its interior: use it only over light surfaces or with `multiply`. |
+| scene-exam-room | scene-backdrop | 21:9 | | | Title band backdrop for /eye-care-services/ and its service pages (not the library). |
+| scene-optical-boutique | scene-backdrop | 21:9 | | **yes** (shelf frames) | Title band backdrop for the eyewear-contacts family (blurred only; no longer the homepage designer band) |
+| scene-greenery-window | scene-backdrop | 16:9 | | | Homepage hero stage backdrop (blurred, under a veil); title bands for insurance, contact, hours, doctor pages and the blog index (no longer the footer) |
+| cut-eyeglasses | depth-cutout | 4:3 | yes | **yes** (temples, bridge, lenses) | Homepage hero cut-out (breaks the arch photo frame); eyeglasses title bands; 2 slot-fills |
+| cut-sunglasses | depth-cutout | 4:3 | yes | **yes** (lens corners, hinges) | Sunglasses title bands; 1 slot-fill |
+| cut-kids-glasses | depth-cutout | 4:3 | yes | **yes** (temples) | Title bands: pediatric-eye-exams, kids-optical (not the homepage card) |
+| cut-contact-lens | depth-cutout | 3:4 | yes | anatomy | Title bands: contact-lenses, contact-lens-exams, order-contacts-online (not the homepage card) |
+| cut-phoropter | depth-cutout | 1:1 | yes | **HIGH** (dials, plates) | Title bands: eye-exams and its children except pediatric (not the homepage card); 1 slot-fill |
+| cut-olive-sprig | depth-cutout | 9:16 | yes | | One per page, homepage only: crosses the Welcome/Services seam (alt ""); replaces every SVG leaf sprig |
+| cut-lens-prism | depth-cutout | 1:1 | yes | | Title bands: lens-treatments, eye-conditions, ocular-disease, emergency and LASIK pages, the /eye-care-services/ hub, the 13 library section indexes; the 404 sheet (alt ""). This is a glass cut-out, so white stays baked into its interior: use it only over light surfaces or with `multiply`. |
 | svc-eye-exam | section | 4:3 | | **yes** (phoropter dials) | /eye-care-services/eye-exams |
 | svc-contact-lens | section | 4:3 | | **yes** (lens-case L/R letters) + anatomy | /eye-care-services/contact-lens-exams, /eyeglasses-contacts/contact-lenses |
 | svc-pediatric-exam | section | 4:3 | | **yes** (trial-frame scales) | /eye-care-services/eye-exams/pediatric-eye-exams, kids-optical |
@@ -217,3 +219,90 @@ friscoeyesource build does) picks them up.
   - byte identity of the 19 `og:image` paths with their CDN twins;
   - the output pixel sizes of fal ultra (recorded in `audit/generated-images.json` after generation);
   - everything about image quality, which can only be checked after generation.
+
+## 5. Review log (fal generation and review, 2026-09-28)
+
+How each image was reviewed: an overview, then native-resolution crops (1:1, or nearest-neighbour enlarged only for
+viewing) of every text-prone and detail region: eyewear temples, hinges, bridge and lenses; instrument dials and
+plates; shelves, bottles and windows; hands, eyes and faces. Every cut-out was composited over a dark (`#1d2a17`), a
+light (`#f6faee`) and a mid-green (`#759b2a`) ground. Two scripted checks backed this up, each tested with a positive
+control first: `tmp/imgreview/bin/alpha-stats.mjs` (alpha bounding box, edge contact, detached specks) and
+`tmp/imgreview/bin/seams.mjs` (straight seams). Evidence for each image is under `tmp/imgreview/<id>/`; `r2`–`r7`
+subfolders hold the later runs.
+
+**Budget:** 45 of 45 generations used (runs: 16 + 10 + 8 + 3 + 3 + 3 + 2). birefnet cut-out calls are not counted as
+generations. Of the 45, 3 produced nothing usable: 2 were safety-checker black frames, and 1 image download failed
+(HTTP 500). A fourth, the run-6 sunglasses edit, was generated but its birefnet cut-out failed (HTTP 422) and it was
+not used. Every replaced or rejected file is kept in `assets/generated/rejected/` (55 files, none deleted).
+`audit/generated-images.json` records the finals (`images`, 15), every archived version (`rejected`), the drop
+(`dropped`), a resolved failure (`failuresResolved`) and a `review` summary.
+
+| id | verdict | final file | what was rejected, and why | evidence |
+|---|---|---|---|---|
+| scene-exam-room | accepted | `assets/generated/scene-exam-room.jpg` (3136x1344) | none. No text on the instrument, cabinets or radiator; no chart, faces or people. The seam check's hits at x=2400 and x=2521 are the window reveal and the window frame (viewed). | `tmp/imgreview/scene-exam-room/crop-instrument-*.png`, `crop-seamcheck-x2300-2600-native.png` |
+| scene-optical-boutique | accepted | `assets/generated/scene-optical-boutique.jpg` (3136x1344) | none. Shelf frames, bottles, mirror and a car outside the window: no emblem, wordmark or plate. Rendered sharper than the prompt's "very soft focus"; the spec blurs it (8px, opacity .5). | `tmp/imgreview/scene-optical-boutique/crop-*.png` |
+| scene-greenery-window | accepted | `assets/generated/scene-greenery-window.jpg` (2752x1536) | none. Seam check: 0 hits. | `tmp/imgreview/scene-greenery-window/crop-*.png`, `seams.json` |
+| cut-eyeglasses | fixed-then-accepted | `assets/generated/cut-eyeglasses.png` (1184x880, Kontext) | Run 1: pseudo-text "FAFTCCAM" on the inner left temple, "TEXLL" plus a swirl logo on the inner right temple, and gold F-shaped emblem hinge pieces. Run 2 (Kontext): the text was gone, but a cast shadow was still baked in, including inside both lenses. Run 3 (Kontext): accepted, with plain temples and round silver pins. | `tmp/imgreview/cut-eyeglasses/crop-*-hinge-*.png`, `r2/`, `r3/` |
+| cut-sunglasses | fixed-then-accepted (plus an alpha cleanup, see 5a) | `assets/generated/cut-sunglasses.png` (1184x880, Kontext) | Run 1: a backdrop leaf showed through the left lens. Run 2 (Kontext): the frame was recoloured honey-yellow and the rivets became arrow-shaped ornaments. Run 3: word-like pseudo-text on the far temple. Run 4 (Kontext): the tortoiseshell pattern was wiped. Run 5 (Kontext, from run 3): text-free, accepted. Run 6 (Kontext shadow removal): did not remove the shadow, and its cut-out failed, so it was not used. | `tmp/imgreview/cut-sunglasses/r3/crop-far-temple-x3.png`, `r5/crop-far-temple-x3.png`, `r5/after-matte-*.png` |
+| cut-kids-glasses | accepted | `assets/generated/cut-kids-glasses.png` (2368x1792) | none. Gold screws at 5x show no marks; plain temples; a clean edge over dark and green. | `tmp/imgreview/cut-kids-glasses/crop-*-screw-x5.png`, `compcrop-left-end.*.png` |
+| cut-contact-lens | fixed-then-accepted | `assets/generated/cut-contact-lens.png` (1792x2368) | Run 1: a thick glass lozenge (a dish or bead) on the side of the finger. Run 2: a solid clear gel cap (a bead). Run 3: an opaque white and cyan washer. Runs 4 and 5 (Kontext): a flat clear hoop. Run 6: the download failed (HTTP 500). Run 7: accepted, a thin clear dome with a pale blue rim on the fingertip pad, the skin ridges visible through it. | `tmp/imgreview/cut-contact-lens/r7/crop-lens-native.png`, `r7/comp.*.png`, `display-size/sheet.png` (run 5) |
+| cut-phoropter | fixed-then-accepted | `assets/generated/cut-phoropter.png` (1024x1024, Kontext) | Run 1: pseudo-text and numbers all round both dial rings ("BOLOSA", "UINT I PEF", "550 500"), a black plate reading "COOT", and a semi-transparent stand smear touching the bottom edge. Run 2 (Kontext): the text was gone, but the support pole was cut flat by the bottom edge (303 px of alpha on the edge). Run 3 (Kontext): the pole was removed, with 0 px of edge contact and 1 component; accepted. Knurled knobs only; a 2-3 px specular dot in the centre eyepiece is not a glyph (6x crop). | `tmp/imgreview/cut-phoropter/crop-*.png`, `r2/crop-*.png`, `r2/crop-centre-eyepiece-x6.png`, `r3/` |
+| cut-olive-sprig | accepted | `assets/generated/cut-olive-sprig.png` (1536x2752) | none. No fruit, no wilting, no fringe on the leaf edges or the stem end. | `tmp/imgreview/cut-olive-sprig/compcrop-*.png` |
+| cut-lens-prism | fixed-then-accepted | `assets/generated/cut-lens-prism.png` (1024x1024, Kontext) | Run 1: the cut-out kept the green caustic shadow as a detached 82,789 px blob plus 3 specks. Run 2 (Kontext): 1 component; accepted. White is baked into the glass interior plus a soft contact shadow under its edge, so use it over light surfaces only, as the plan already says. | `tmp/imgreview/cut-lens-prism/comp.dark.png`, `r2/comp.*.png` |
+| svc-eye-exam | fixed-then-accepted | `assets/generated/svc-eye-exam.jpg` (2368x1792) | Run 1: a circled "FF" logo on the instrument column, pseudo-numbers on the dials, the eye beside the eyepiece, and the hand on the knob was his own. Run 2: the man wore a white lab coat (reads as a clinician or staff), and the eye was visible beside a single eyepiece. Run 3: accepted, a man in a navy sweater with his eye to the eyepiece of a plain white refractor on an arm, no text. | `tmp/imgreview/svc-eye-exam/crop-emblem-x2.png`, `r3/crop-*.png` |
+| svc-contact-lens | **dropped** | none (runs archived in `rejected/`) | Run 1: eyes closed, the lens at the mouth, no mirror. Run 2: a second person holding the mirror, the lens a flat disc on the cheek, a smudge on the nose. Run 3: an egg-shaped "mirror", the lens a flat disc at the cheek. Run 4: the lens a bubble floating beside the mirror. Runs 5 and 6 (Kontext on run 4): all-black safety-checker frames. Run 7: no lens at all, and the hands merge. The plan alt could never be true, so no file ships and the slot stays empty (DESIGN-SPEC 6.3 rule 3 / 6.4). | `tmp/imgreview/svc-contact-lens/r2/`, `r3/`, `r4/`, `r7/crop-hands-native.png` |
+| svc-pediatric-exam | fixed-then-accepted (alt caveat) | `assets/generated/svc-pediatric-exam.jpg` (2368x1792) | Run 1: asymmetric gaze (one iris turned in, which reads as a depicted condition), and ordinary glasses. Run 2: a blurred woman clinician's head and shoulder in frame (the plan allows only sleeves and hands; she could read as Dr. Clifton). Run 3: accepted, one child alone, symmetric gaze, plain frame, no marks. **The frame is a round metal eyeglass frame, not a trial frame.** | `tmp/imgreview/svc-pediatric-exam/crop-glasses-eyes-native.png`, `r2/`, `r3/crop-glasses-eyes-native.png` |
+| svc-dry-eye | fixed-then-accepted | `assets/generated/svc-dry-eye.jpg` (1184x880, Kontext) | Run 1: no drop at all, a non-round pupil, spiky lashes. Run 2: pseudo-letters ("URP…") refracted inside the drop, and a keyhole-shaped pupil. Run 3 (Kontext): a clear drop and a round pupil; accepted. | `tmp/imgreview/svc-dry-eye/r2/crop-drop-x2.png`, `r3/crop-*.png` |
+| svc-eyewear-boutique | fixed-then-accepted | `assets/generated/svc-eyewear-boutique.jpg` (1184x880, Kontext) | Run 1: a teal glitch streak across the right lens. Run 2 (Kontext): removed; eyes symmetric, the hand anatomy right, the shelf frames blank. It shows exactly "Woman trying on glasses", so the `fillFor` alt stays. | `tmp/imgreview/svc-eyewear-boutique/crop-glasses-eyes-x2.png`, `r2/crop-*.png` |
+| tex-frosted-glass | accepted | `assets/generated/tex-frosted-glass.jpg` (2752x1536) | none. Seam check: 0 hits; the native crops of the edge and the texture are clean. | `tmp/imgreview/tex-frosted-glass/crop-*.png`, `seams.json` |
+
+Slot-fills: `fill-winter-sunglasses` reuses cut-sunglasses, `fill-computer-glasses` and `fill-senior-thought` reuse
+cut-eyeglasses, and `fill-clipart-010` reuses cut-phoropter. All four reuse targets are present. The `fillFor` on
+`svc-eyewear-boutique` is present.
+
+### 5a. Deviations and caveats
+
+- **cut-sunglasses alpha cleanup.** This deviates from the "regenerate or Kontext" rule. After the Kontext
+  shadow-removal edit failed (run 6) and the budget ran out, the temple's cast-shadow sliver, which birefnet kept at
+  alpha 253, was removed from the matte only. Alpha was set to 0 on 1,510 px (x >= 1040, y >= 395, luma > 150); **0
+  RGB pixels changed** and nothing was drawn. The script is `tmp/imgreview/bin/matte-clean-sunglasses.mjs`, and the
+  pre-cleanup file is `rejected/cut-sunglasses.r5.before-matte-clean.png`. The ffmpeg re-encode drops fal's C2PA
+  manifest; the build attaches the IPTC `trainedAlgorithmicMedia` XMP label on encode, as it does for every generated
+  image. A 2-px speck (alpha 61 and 142) at the temple tip is sub-pixel at display size.
+- **The plan alts no longer match three images.** Review edits may not change `alt`, so these are flagged for the
+  plan owner:
+  - `svc-pediatric-exam` (rendered alt) shows round metal glasses, not "a trial frame". A suggestion: "A smiling
+    child wearing round glasses in an exam chair".
+  - `cut-eyeglasses` is mint green, not "olive-green".
+  - `cut-sunglasses` is dark brown with only a thin tortoiseshell inner rim.
+
+  The two cut-out alts render as `alt=""`, but the build copies them into the XMP description.
+- **svc-eye-exam:** the instrument reads as a modern white refractor head, not a classic dial phoropter. The alt
+  "looking into a phoropter" holds only in that generic sense.
+- **Kontext outputs are 1184x880 or 1024x1024** (cut-eyeglasses, cut-sunglasses, cut-phoropter, cut-lens-prism,
+  svc-dry-eye, svc-eyewear-boutique). This is enough for the spec's slots (cut-outs up to 240 css px; feature panels
+  up to about 590 css px at 2x).
+- **Provenance strings:** Kontext outputs declare `compositeWithTrainedAlgorithmicMedia` (capital T) in C2PA, so a
+  case-sensitive `grep -c trainedAlgorithmicMedia` on the *source* files misses them. Gate G14 must count the shipped
+  files, which the build labels itself.
+- **Opaque lens interiors:** cut-eyeglasses, cut-kids-glasses and cut-sunglasses have alpha 255 inside the lenses
+  (birefnet), the same as the friscoeyesource cut-outs. Where cut-eyeglasses overlaps the hero arch photo, its lenses
+  show as white panes, not see-through.
+- **cut-contact-lens framing:** the finger leaves the frame at the lower-left corner (alpha on 585 px of the left edge
+  and 561 px of the bottom edge). Anchor that corner behind a panel edge, or fade it (mask-image), so no flat cut shows.
+- **Do not run `tools/fal-gen.mjs` without `--only`.** `svc-contact-lens` is still a plan entry with no file on disk,
+  so a bare run would regenerate it without review.
+
+## 6. Derived asset: favicon (BUILD-DECISIONS #2)
+
+The source site has no favicon, so one is derived from the practice's own logo file: a **crop, not a redraw**.
+
+| | |
+|---|---|
+| source | `assets/source/666ec49d-clifton_eye_center_medium-e1478229278850.jpg` (317x221, sha256 `7d005da3…8843a`, unchanged) |
+| crop | the eye mark only: `crop=269:101:22:14` (x 22–290, y 14–114). The eye's ink runs y 18–112 and x 31–287 at a threshold of 235. Rows 113–116 hold only faint JPEG noise (minimum luma 239–249), and the wordmark starts at y 118 (`tmp/imgreview/favicon/eyebox.mjs` row profile) |
+| square | padded on **white** (the logo is an opaque JPEG on #ffffff) to 305x305: `pad=305:305:18:102:color=white` |
+| outputs (ffmpeg lanczos, rgb24 PNG) | `assets/brand/favicon-32.png`, `favicon-180.png` (apple-touch-icon), `favicon-192.png`, `favicon-512.png` |
+| checks | the four corners are `#ffffff` at every size; no wordmark ink above or below the eye (the minimum luma of the margins is 255 at 512); viewed at 512 and at 32x8 |
+
+It is a new brand asset derived from the logo, so the practice can replace it with an official icon.

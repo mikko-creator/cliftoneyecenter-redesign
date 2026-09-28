@@ -22,13 +22,14 @@
     {
       "id": "scene-exam-room",
       "role": "scene-backdrop",
-      "input": { "aspect_ratio": "21:9" },
+      "input": {
+        "aspect_ratio": "21:9"
+      },
       "prompt": "wide view of a bright, modern optometry exam room with a large window of soft morning daylight, an empty padded exam chair beside a white refractor arm and a slit lamp on a pale table, warm white walls, light oak cabinetry, lush potted green plants on the windowsill, the whole room in very soft focus like a background plate, calm open negative space across the left half, no people, no screens, no eye chart, no posters, no signage",
       "alt": "",
       "usedFor": [
-        "home hero: full-bleed backdrop that the frosted-glass headline panel blurs over (source hero photo sits framed in front of it)",
-        "/eye-care-services and /eye-care-services/eye-exams page header backdrop",
-        "blur source for glass panels on service pages"
+        "interior title band backdrop (band--scene / band--photo stage, heavily blurred, never captioned) for /eye-care-services/ and every service-hub and service-detail page under it (NOT the your-eye-health library, which uses band--plain). See docs/DESIGN-SPEC.md section 6",
+        "blur source for the glass title panel on those pages"
       ],
       "textRisk": false,
       "reviewFocus": "no readable text on cabinets or walls; no chart letters; no faces"
@@ -36,13 +37,15 @@
     {
       "id": "scene-optical-boutique",
       "role": "scene-backdrop",
-      "input": { "aspect_ratio": "21:9" },
+      "input": {
+        "aspect_ratio": "21:9"
+      },
       "prompt": "wide view of a bright, airy optical boutique interior, long white and pale oak wall shelves holding rows of assorted eyeglass frames that read only as soft out-of-focus shapes, a round mirror on a light wooden counter, trailing green plants and a tall fiddle-leaf fig, large windows with soft daylight, the whole room in very soft focus like a background plate, open negative space in the centre, no people, no signage, no price tags, no posters",
       "alt": "",
       "usedFor": [
-        "/eyeglasses-contacts and /eyeglasses-contacts/eyeglasses page header backdrop behind a glass title panel",
-        "/eyeglasses-contacts/eyeglasses/sunglasses, /kids-optical and /designer-frames header backdrop (only as blurred background; never beside a brand name)",
-        "home 'Our Designer Optical' band backdrop behind the four kept brand-campaign cards"
+        "interior title band backdrop (heavily blurred, never captioned) for the eyewear-contacts family: /eyeglasses-contacts/**, /order-contacts-online/ and /promotions/",
+        "on brand-named pages (/designer-frames/, /transitions-lenses/**, /promotions/, /contact-lenses/our-featured-brands/) only as the blurred band backdrop, never as a visible image beside a brand name",
+        "NOT used on the home 'Our Designer Optical' band any more: that band is solid #759b2a so the white title keeps its contrast (DESIGN-SPEC section 3.11)"
       ],
       "textRisk": true,
       "reviewFocus": "shelf frames: no emblems or wordmarks even out of focus; no shop sign; no faces"
@@ -50,13 +53,15 @@
     {
       "id": "scene-greenery-window",
       "role": "scene-backdrop",
-      "input": { "aspect_ratio": "16:9" },
+      "input": {
+        "aspect_ratio": "16:9"
+      },
       "prompt": "soft-focus close view of sunlit green houseplant leaves in front of a bright window, dappled daylight, creamy round bokeh highlights, the glow of a sheer white curtain, pale airy tones, abstract and calm, large empty areas of soft light, no objects, no people",
       "alt": "",
       "usedFor": [
-        "generic interior-page backdrop behind glass panels: /insurance, /hours-location, /our-eye-doctors, /contact-us/*, /order-contacts-online",
-        "blog index and article header backdrop",
-        "footer band backdrop behind the frosted footer panel"
+        "home hero stage backdrop: object-fit cover inside the rounded hero stage, blur(6px), under a light veil, so the recipe-A headline glass and quick-action dock frost real imagery (DESIGN-SPEC section 3.3)",
+        "interior title band backdrop (heavily blurred) for /insurance/**, /contact-us/**, /hours-location/, /location/*, /our-eye-doctors/, /team/*, /whats-new/",
+        "NOT the footer any more: the footer is a full-bleed lime field (DESIGN-SPEC section 3.13)"
       ],
       "textRisk": false,
       "reviewFocus": "no hard seams or banding across the frame"
@@ -65,12 +70,18 @@
       "id": "cut-eyeglasses",
       "cutout": true,
       "role": "depth-cutout",
-      "input": { "aspect_ratio": "4:3", "output_format": "png" },
-      "prompt": "a single pair of modern rectangular eyeglasses with a matte olive-green acetate front and slim crystal-clear temples, three-quarter front view, temples open, clear lenses with one gentle soft highlight, the frame completely plain and unmarked with nothing printed on the temples, the inside of the arms or the bridge, the entire object in crisp sharp focus from front to back, isolated on a plain seamless pure white background, high-end commercial product photography",
-      "alt": "Olive-green rectangular eyeglasses",
+      "input": {
+        "aspect_ratio": "4:3",
+        "output_format": "png"
+      },
+      "model": "fal-ai/flux-pro/kontext",
+      "editFrom": "assets/generated/rejected/cut-eyeglasses.r2-edit.raw.jpg",
+      "rejectReason": "review 2026-09-28 round 2: text removed (temples now plain, tmp/imgreview/cut-eyeglasses/r2/crop-*-x3.png), but the grey cast shadow is still baked in, including through both lenses; birefnet kept the lens interiors opaque (alpha 255 at both lens centres), so over the hero photo the lenses would read as white panes with shadow streaks (tmp/imgreview/cut-eyeglasses/r2/comp.dark.png)",
+      "prompt": "Remove the grey shadow that the glasses cast on the white surface completely, including every part of the shadow seen through both clear lenses, so the background everywhere around the glasses and everything seen through the lenses is plain, even, pure white. Keep the glasses exactly the same.",
+      "alt": "Mint-green rectangular eyeglasses",
       "usedFor": [
-        "home hero: breaks out of the glass hero frame and overlaps the quick-action row below",
-        "/eyeglasses-contacts/eyeglasses and /eyeglasses-contacts/eyeglasses/prescription-eyeglasses section protrusion",
+        "home hero (alt \"\", decorative): hangs off the arch photo's lower-right corner and crosses the hero seam at 860px and wider; hangs off the photo's lower-left corner at phone widths (DESIGN-SPEC section 4.1)",
+        "interior title band cut-out (protrudes below the band) on /eyeglasses-contacts/, /eyeglasses-contacts/eyeglasses/ and its eyeglass-basics, prescription-eyeglasses, specialty-eyewear and eyeglass-guide pages, unless the page names a brand (DESIGN-SPEC section 6.3)",
         "stand-in (via slot-fill entries) for two article images that 404 on the live site"
       ],
       "textRisk": true,
@@ -80,12 +91,17 @@
       "id": "cut-sunglasses",
       "cutout": true,
       "role": "depth-cutout",
-      "input": { "aspect_ratio": "4:3", "output_format": "png" },
-      "prompt": "a single pair of classic tortoiseshell acetate sunglasses with smooth grey-green gradient lenses, three-quarter view, temples open, the lenses uniform and clean with no etching, no emblem and no reflection of objects, no metal plaque at the hinges, the frame completely plain and unmarked, the entire object in crisp sharp focus from front to back, isolated on a plain seamless pure white background, high-end commercial product photography",
-      "alt": "Tortoiseshell sunglasses with grey-green lenses",
+      "input": {
+        "aspect_ratio": "4:3",
+        "output_format": "png"
+      },
+      "model": "fal-ai/flux-pro/kontext",
+      "editFrom": "assets/generated/rejected/cut-sunglasses.r3.raw.jpg",
+      "rejectReason": "FINAL (review 2026-09-28): the shipped file is this Kontext edit of the round-3 generation (the pseudo-text on the far temple removed), cut out by birefnet, then a deterministic alpha-only cleanup of the temple's cast-shadow sliver (tmp/imgreview/bin/matte-clean-sunglasses.mjs; audit/generated-images.json postProcess). Rejected on the way: r1 a backdrop leaf inside the left lens; r2 the Kontext edit recoloured the frame honey-yellow and made the rivets arrow-shaped ornaments; r3 word-like pseudo-text on the far temple; r4 the tortoiseshell wiped; r6 a Kontext shadow edit did not remove the shadow and its cut-out failed (birefnet HTTP 422). The final frame is dark brown with only a thin tortoiseshell inner rim",
+      "prompt": "Remove the white letters printed on the far temple arm so it is plain tortoiseshell. Keep everything else exactly the same.",
+      "alt": "Dark brown sunglasses with grey-green lenses",
       "usedFor": [
-        "/eyeglasses-contacts/eyeglasses/sunglasses and its sub-pages: protrudes from the page-header glass panel into the first content section",
-        "UV and summer articles (topic imagery)",
+        "interior title band cut-out on /eyeglasses-contacts/eyeglasses/sunglasses/ and its sub-pages: protrudes from the title band into the first content sheet",
         "stand-in (via slot-fill) for the 404 image on /women-and-diabetes-world-diabetes-day-2017"
       ],
       "textRisk": true,
@@ -95,12 +111,15 @@
       "id": "cut-kids-glasses",
       "cutout": true,
       "role": "depth-cutout",
-      "input": { "aspect_ratio": "4:3", "output_format": "png" },
+      "input": {
+        "aspect_ratio": "4:3",
+        "output_format": "png"
+      },
       "prompt": "a single pair of small, flexible children's eyeglasses with a rounded frame in bright leaf green and soft sky-blue temple tips, front three-quarter view, temples open, clear lenses, the frame completely plain and unmarked, the entire object in crisp sharp focus from front to back, isolated on a plain seamless pure white background, high-end commercial product photography",
       "alt": "Children's leaf-green eyeglasses",
       "usedFor": [
-        "home 'Pediatric Eye Care' service card: perches on the card's top edge and overlaps the section heading",
-        "/eye-care-services/eye-exams/pediatric-eye-exams and /eyeglasses-contacts/eyeglasses/kids-optical section protrusion"
+        "interior title band cut-out on /eye-care-services/eye-exams/pediatric-eye-exams/ and /eyeglasses-contacts/eyeglasses/kids-optical/",
+        "NOT on the home service cards: those keep the four source tile photos breaking out of the card tops (DESIGN-SPEC section 3.6)"
       ],
       "textRisk": true,
       "reviewFocus": "zoom temples and bridge for pseudo-text; check the frame reads as a child's size"
@@ -109,12 +128,16 @@
       "id": "cut-contact-lens",
       "cutout": true,
       "role": "depth-cutout",
-      "input": { "aspect_ratio": "3:4", "output_format": "png" },
-      "prompt": "macro photograph of a single soft contact lens balanced concave side up on the tip of an index finger, the lens an ultra-thin, flexible, almost invisible transparent dome just the size of the fingertip pad, with a paper-thin even rim, a faint pale blue handling tint and one crisp highlight, only the fingertip and part of one clean hand with short natural nails entering from the bottom edge of the frame, hand and lens in crisp sharp focus, isolated on a plain seamless pure white background, high-end commercial product photography",
+      "input": {
+        "aspect_ratio": "3:4",
+        "output_format": "png"
+      },
+      "rejectReason": "FINAL (review 2026-09-28): round-7 fresh generation accepted, a thin clear dome with a pale blue rim on the fingertip pad. Rejected on the way: r1 a thick glass lozenge (dish or bead); r2 a solid clear gel cap (bead); r3 an opaque white and cyan washer; r4 and r5 (Kontext) a flat clear hoop; r6 lost to a fal download error (HTTP 500). The finger is cut by the frame's left and bottom edges (the lower-left corner)",
+      "prompt": "close-up macro photograph of a thin soft contact lens shaped like a shallow clear dome, resting concave side up on the tip of an index finger, the finger rising straight up from the bottom edge of the frame, seen from a low side angle so the delicate curved rim and the gentle curve of the lens are visible, faint pale blue edge tint, one soft highlight on the curved surface, the lens exactly as wide as the fingertip, clean skin with a short natural nail, only the finger and the lens in frame, the entire subject in crisp sharp focus, isolated on a plain seamless pure white background, high-end commercial product photography",
       "alt": "Soft contact lens balanced on a fingertip",
       "usedFor": [
-        "home 'Contact Lens Services' service card: the hand rises from inside the card and the lens breaks above its top edge",
-        "/eyeglasses-contacts/contact-lenses, /eye-care-services/contact-lens-exams and /order-contacts-online section protrusion (the cut-out's flat bottom edge is anchored to a frame edge)"
+        "interior title band cut-out on /eyeglasses-contacts/contact-lenses/**, /eye-care-services/contact-lens-exams/** and /order-contacts-online/ (the cut-out's flat bottom edge is anchored to the title panel's bottom edge), unless the page names a brand",
+        "NOT on the home service cards (DESIGN-SPEC section 3.6)"
       ],
       "textRisk": false,
       "anatomyRisk": true,
@@ -124,12 +147,18 @@
       "id": "cut-phoropter",
       "cutout": true,
       "role": "depth-cutout",
-      "input": { "aspect_ratio": "1:1", "output_format": "png" },
-      "prompt": "a modern optometry phoropter refractor head, straight front view, symmetric, satin white and graphite housing with two round eyepiece windows and smooth knurled knobs, every dial, scale, top plate and knob completely blank and smooth, the entire instrument in crisp sharp focus, isolated on a plain seamless pure white background, high-end commercial product photography",
+      "input": {
+        "aspect_ratio": "1:1",
+        "output_format": "png"
+      },
+      "model": "fal-ai/flux-pro/kontext",
+      "editFrom": "assets/generated/rejected/cut-phoropter.r2-edit.raw.jpg",
+      "rejectReason": "review 2026-09-28 round 2: all dial, plate and label text removed (tmp/imgreview/cut-phoropter/r2/crop-*.png), but the white support pole, its round base and a grey arm are still below the instrument and are cut flat by the bottom edge of the frame (303 px of alpha on the bottom edge, plus one detached 64 px speck), which would show as a hard cut where the cut-out crosses into the first sheet",
+      "prompt": "Remove the white pole, the round base and the grey arm below the instrument, so the instrument ends at the bottom of its black lower housing and plain white background fills the whole area below it. Keep the instrument exactly the same.",
       "alt": "Phoropter eye exam instrument",
       "usedFor": [
-        "home 'Comprehensive Eye Exams' service card: overlaps the card frame and the section boundary",
-        "/eye-care-services/eye-exams and /eye-care-services/eye-exams/advanced-technology section protrusion",
+        "interior title band cut-out on /eye-care-services/eye-exams/ and its children except pediatric-eye-exams (advanced-technology, what-to-expect)",
+        "NOT on the home service cards: the source Comprehensive Eye Exams tile already shows a phoropter (DESIGN-SPEC section 3.6)",
         "stand-in (via slot-fill) for the soft-404 image on /why-do-we-need-glasses"
       ],
       "textRisk": true,
@@ -139,12 +168,15 @@
       "id": "cut-olive-sprig",
       "cutout": true,
       "role": "depth-cutout",
-      "input": { "aspect_ratio": "9:16", "output_format": "png" },
+      "input": {
+        "aspect_ratio": "9:16",
+        "output_format": "png"
+      },
       "prompt": "a single fresh olive branch sprig with slender olive-green and silvery-green leaves arranged gracefully along a thin stem, lying on a gentle diagonal, soft natural daylight, the entire sprig in crisp sharp focus, isolated on a plain seamless pure white background, botanical studio photography",
       "alt": "",
       "usedFor": [
-        "brand nod to the green of the logo: a decorative layer that crosses section boundaries (welcome section into 'Our Most Popular Services', testimonials into #HeretoHelp)",
-        "corner accent on the footer glass panel"
+        "home only, ONE instance: a decorative layer that crosses the Welcome -> 'Our Most Popular Services' seam at 561px and wider (hidden below). It replaces every inline-SVG leaf sprig and leaf-silhouette shade in the canopy lab (judges' leaf-overuse must-fix, DESIGN-SPEC section 7)",
+        "never more than one per page; not in the footer, not beside #HeretoHelp"
       ],
       "textRisk": false,
       "reviewFocus": "no fruit clusters that read as grapes; leaves not wilted; clean cut-out edge"
@@ -153,12 +185,19 @@
       "id": "cut-lens-prism",
       "cutout": true,
       "role": "depth-cutout",
-      "input": { "aspect_ratio": "1:1", "output_format": "png" },
-      "prompt": "a single round clear optical glass lens floating at a gentle tilt, a narrow beam of soft daylight passing through it and bending into a delicate spectrum with a fresh green glow at its centre, faint soft caustic highlights, polished bevelled edge, the entire lens in crisp sharp focus, isolated on a plain seamless pure white background, high-end commercial product photography",
+      "input": {
+        "aspect_ratio": "1:1",
+        "output_format": "png"
+      },
+      "model": "fal-ai/flux-pro/kontext",
+      "editFrom": "assets/generated/raw/cut-lens-prism.jpg",
+      "rejectReason": "review 2026-09-28: the cut-out kept the green caustic shadow below the lens as a detached 82,789 px blob plus 3 specks (5 alpha components; tmp/imgreview/cut-lens-prism/comp.dark.png)",
+      "prompt": "Remove the green shadow and the patch of green light on the surface below the lens, and make the whole background a plain, even, pure white. Keep the lens exactly the same.",
       "alt": "",
       "usedFor": [
-        "decorative depth layer floating half over a glass panel edge (lens-treatments, anti-reflective and UV pages, home welcome section, home '#HeretoHelp' question block)",
-        "404 page accent"
+        "interior title band cut-out (floats half over the title panel's lower edge) on /eyeglasses-contacts/eyeglasses/lens-treatments/**, /eye-care-services/ (hub), /eye-care-services/eye-conditions/**, /eye-care-services/management-of-ocular-diseases/**, /eye-care-services/eye-emergencies-pinkred-eyes/, /eye-care-services/lasik-refractive-surgery-co-management/ and the 13 your-eye-health section index pages",
+        "404 page: floats over the top-right edge of the 404 sheet",
+        "NOT on the home page: #HeretoHelp uses the CSS green-iris illustration instead (DESIGN-SPEC section 3.9)"
       ],
       "textRisk": false,
       "reviewFocus": "CUT-OUT OF GLASS: birefnet keeps the transparent interior with the white background baked in; use only over light surfaces or with mix-blend-mode: multiply; check the edge matte"
@@ -166,8 +205,11 @@
     {
       "id": "svc-eye-exam",
       "role": "section",
-      "input": { "aspect_ratio": "4:3" },
-      "prompt": "a relaxed middle-aged man, an illustrative model, seated in a bright exam chair and looking into a satin white phoropter, his face partly hidden behind the instrument, the eye doctor visible only as a white-coat sleeve and one hand gently turning a knob, large window with soft daylight and green plants in the soft-focus background, calm and friendly, every dial and scale on the instrument plain and blank",
+      "input": {
+        "aspect_ratio": "4:3"
+      },
+      "rejectReason": "review 2026-09-28 round 2: the man wears a white lab coat, so he reads as a clinician (and could be read as practice staff); the instrument is a single eyepiece on a post plus a slit-lamp-like housing, not a phoropter, and his eye is visible beside the eyepiece, so the alt was still not true (tmp/imgreview/svc-eye-exam/r2/)",
+      "prompt": "a relaxed middle-aged man, an illustrative model, wearing a casual navy blue knit sweater, seated in an exam chair and seen in side profile, a large white optometry phoropter (a refractor with a wide mask of lens wheels and two round eyepieces) mounted on an arm directly in front of his face, his eyes pressed to its eyepieces and hidden behind the instrument, only his ear, cheek, short beard and short grey hair visible, the instrument's housing plain white and unmarked, every wheel a smooth blank white disc, no other people, a bright exam room with a large window of soft daylight and green plants in the soft-focus background, calm and friendly",
       "alt": "A man looking into a phoropter during an eye exam",
       "usedFor": [
         "/eye-care-services/eye-exams feature panel (glass caption card overlaps the image edge)",
@@ -179,8 +221,11 @@
     {
       "id": "svc-contact-lens",
       "role": "section",
-      "input": { "aspect_ratio": "4:3" },
-      "prompt": "a smiling young woman, an illustrative model, at a bright white counter putting in a soft contact lens, looking into a small round hand mirror, the lens a thin transparent dome on her index fingertip, a plain white contact lens case with smooth blank caps lying open beside her, window daylight, green plants softly blurred behind",
+      "input": {
+        "aspect_ratio": "4:3"
+      },
+      "rejectReason": "DROPPED (review 2026-09-28): no file ships and the slot stays empty (DESIGN-SPEC 6.3 rule 3 / 6.4). Seven attempts never showed one person putting a lens in with a hand mirror: r1 eyes closed, lens at the mouth, no mirror; r2 a second person holding the mirror, lens a flat disc on the cheek, smudge on the nose; r3 an egg-shaped 'mirror', lens a flat disc at the cheek; r4 the lens a bubble floating beside the mirror; r5 and r6 (Kontext on r4) all-black safety-checker frames; r7 no lens at all, merged hands. Budget exhausted. DO NOT run tools/fal-gen.mjs without --only: this entry has no file on disk, so a bare run would regenerate it unreviewed",
+      "prompt": "a young woman, an illustrative model, the only person in the picture, seen in side profile from her right, sitting at a bright white table in soft window daylight, holding a small round hand mirror with a thin white rim in her left hand in front of her face and looking into it, her right hand raised to her right eye with the index finger extended, a tiny, thin, clear, bowl-shaped soft contact lens sitting on the very tip of that index finger just in front of her open eye, a gentle smile, green plants softly blurred behind",
       "alt": "A young woman putting in a soft contact lens with a hand mirror",
       "usedFor": [
         "/eye-care-services/contact-lens-exams feature panel",
@@ -193,9 +238,12 @@
     {
       "id": "svc-pediatric-exam",
       "role": "section",
-      "input": { "aspect_ratio": "4:3" },
-      "prompt": "a cheerful girl about seven years old, an illustrative model, sitting in an exam chair and wearing a small round optometric trial frame, smiling, the eye doctor visible only as a white-coat sleeve and two hands adjusting the frame, a bright friendly exam room with soft daylight and green plants, the trial frame plain with no printed scales",
-      "alt": "A smiling child wearing a trial frame during an eye exam",
+      "input": {
+        "aspect_ratio": "4:3"
+      },
+      "rejectReason": "review 2026-09-28 round 2: gaze now symmetric, but the clinician appears as a blurred woman's head and shoulder with glasses in the foreground (the plan allows only a sleeve and hands, and a woman eye doctor on this page could be read as Dr. Clifton); the frame is an ordinary round metal frame, not a trial frame (tmp/imgreview/svc-pediatric-exam/r2/)",
+      "prompt": "a cheerful smiling girl about seven years old, an illustrative model, the only person in the picture, sitting in a pale grey exam chair and looking straight at the camera with both eyes, wearing an optometric trial frame, a lightweight adjustable test frame of thin plain silver metal with round clear test lenses clipped in front of each eye, her hands resting in her lap out of frame, a bright friendly exam room with soft daylight and green plants softly blurred behind, the trial frame plain with no printed scales, numbers or markings",
+      "alt": "A smiling child wearing round glasses in an exam chair",
       "usedFor": [
         "/eye-care-services/eye-exams/pediatric-eye-exams feature panel",
         "/eyeglasses-contacts/eyeglasses/kids-optical section image"
@@ -206,8 +254,13 @@
     {
       "id": "svc-dry-eye",
       "role": "section",
-      "input": { "aspect_ratio": "4:3" },
-      "prompt": "close-up of the eye area of a calm adult, an illustrative model, head tilted slightly back, a single clear eye drop falling from above the top edge of the frame toward the open eye, only the eye, brow and a softly lit cheek in frame, fresh bright daylight, cool clear tones with soft green bokeh",
+      "input": {
+        "aspect_ratio": "4:3"
+      },
+      "model": "fal-ai/flux-pro/kontext",
+      "editFrom": "assets/generated/rejected/svc-dry-eye.r2.raw.jpg",
+      "rejectReason": "review 2026-09-28 round 2: the drop now falls toward the eye, but pseudo-letters ('URP...') are refracted inside the drop, and the pupil is keyhole-shaped, not round (tmp/imgreview/svc-dry-eye/r2/crop-drop-x2.png, crop-eye-native.png)",
+      "prompt": "Replace the letters and shapes inside the falling water drop with a clear, smooth refraction of the soft green background, and make the pupil of the eye a perfectly round black circle. Keep everything else exactly the same.",
       "alt": "A single eye drop falling toward an open eye",
       "usedFor": [
         "/eye-care-services/eye-conditions/dry-eye-disease-and-treatment feature panel",
@@ -220,8 +273,13 @@
     {
       "id": "svc-eyewear-boutique",
       "role": "section",
-      "input": { "aspect_ratio": "4:3" },
-      "prompt": "a smiling woman in her thirties, an illustrative model, trying on a pair of eyeglasses in front of a round mirror in a bright optical boutique, adjusting the frame with one hand, rows of eyeglass frames softly blurred on pale wood shelves behind her, green plants, window daylight, every frame plain and unmarked",
+      "input": {
+        "aspect_ratio": "4:3"
+      },
+      "model": "fal-ai/flux-pro/kontext",
+      "editFrom": "assets/generated/raw/svc-eyewear-boutique.jpg",
+      "rejectReason": "review 2026-09-28: a teal-blue glitch streak across the right lens, half covering the iris (tmp/imgreview/svc-eyewear-boutique/crop-glasses-eyes-x2.png); everything else clean",
+      "prompt": "Remove the small teal-blue reflection streak from the right lens of her glasses so both lenses are equally clear and both eyes are fully visible. Keep everything else exactly the same.",
       "alt": "Woman trying on glasses",
       "fillFor": "https://da4e1j5r7gw87.cloudfront.net/wp-content/uploads/images/1280x853/xAfrican-Woman-Trying-on-Glasses-1280x853-300x200.jpg.pagespeed.ic.wLXI3xJUkn.jpg",
       "usedFor": [
@@ -235,7 +293,9 @@
     {
       "id": "tex-frosted-glass",
       "role": "texture",
-      "input": { "aspect_ratio": "16:9" },
+      "input": {
+        "aspect_ratio": "16:9"
+      },
       "prompt": "abstract macro texture of frosted glass with soft rippled light caustics in pale olive and fresh leaf green over bright white, a gentle diagonal light gradient, fine even grain, no objects, calm and minimal, seamless even surface with no hard edges",
       "alt": "",
       "usedFor": [

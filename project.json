@@ -4,7 +4,7 @@
   "targetUrl": "https://www.cliftoneyecenter.com/",
   "origin": "https://www.cliftoneyecenter.com",
   "createdAt": "2026-09-28T00:16:29.130Z",
-  "updatedAt": "2026-09-28T00:27:36.239Z",
+  "updatedAt": "2026-09-28T07:17:29.676Z",
   "config": {
     "maxPages": 300,
     "concurrency": 2,
@@ -107,19 +107,19 @@
       "note": ""
     },
     "decontaminate": {
-      "status": "pending",
-      "at": null,
-      "note": ""
+      "status": "done",
+      "at": "2026-09-28T07:17:28.376Z",
+      "note": "CLEAN (0 traces)"
     },
     "parity": {
-      "status": "pending",
-      "at": null,
-      "note": ""
+      "status": "fail",
+      "at": "2026-09-28T07:17:29.676Z",
+      "note": "DRIFT — 613 findings"
     },
     "fabrication": {
-      "status": "pending",
-      "at": null,
-      "note": ""
+      "status": "done",
+      "at": "2026-09-28T07:17:26.961Z",
+      "note": "SOURCED — 0 findings"
     },
     "pixeldiff": {
       "status": "pending",
@@ -145,6 +145,11 @@
       "status": "pending",
       "at": null,
       "note": ""
+    },
+    "presetMatch": {
+      "status": "partial",
+      "at": "2026-09-28T06:34:20.625Z",
+      "note": "24 matched, 1109 undecided, 455 unmeasurable"
     }
   },
   "notes": []

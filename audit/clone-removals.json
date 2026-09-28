@@ -1,0 +1,167 @@
+{
+  "schema": "site-reforge/clone-removals@1",
+  "declaredAt": "2026-09-28T07:09:57.096Z",
+  "note": "Deliberate removals, each a decision with a reason: platform runtime, former-vendor claims, controls with no backend, or statements that would be false on a static site. Editorial copy is never removed. Ledger ids refer to docs/DESIGN-SPEC.md 7.4.",
+  "elements": [
+    {
+      "selector": "footer #voice_search",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "Voice/site search form (347 files): posts to WordPress /?s= which a static build does not serve."
+    },
+    {
+      "selector": "div.ecp-secondary .widget_search, main .ecp-search",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "count": 6,
+      "reason": "WordPress search forms (sidebar on 337 pages, 5 in-main modules, the /category/our-doctors/ prompt): no search backend in a static build."
+    },
+    {
+      "selector": ".ecp-global-footer .ecp-powered-by",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "Vendor credit \"Powered by\" + EyeCarePro logo."
+    },
+    {
+      "selector": "#ecp-footer-login-link",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "Login link to the platform WordPress admin (cliftoneyecenter2.ecpbuilder.com/wp-admin)."
+    },
+    {
+      "selector": "a.ecp-menu-mobile-focus-trap",
+      "decision": "REPLACE",
+      "ledger": "L11",
+      "reason": "\"Return to top of menu\" focus-trap link: replaced by a JS focus trap in the drawer."
+    },
+    {
+      "selector": "GTM-P6GSK34 (script + noscript iframe)",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "Google Tag Manager container of the former agency: the rebuild would report visitors to their account."
+    },
+    {
+      "selector": "footer [itemtype*=data-vocabulary.org/MedicalClinic]",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "Footer microdata with coordinates 42.859280, -73.820210 (New York state, not Bossier City). The NAP text itself is kept."
+    },
+    {
+      "selector": "div.ecp-posts-wrapper-team (empty)",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "count": 2,
+      "reason": "Empty team-list modules that render nothing on the source."
+    },
+    {
+      "selector": "div.ecp-secondary h3:empty",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "The empty h3 above \"Insurance Plans\" in the sidebar."
+    },
+    {
+      "selector": "span[itemprop=ratingValue]",
+      "decision": "REMOVE",
+      "ledger": "L14",
+      "count": 9,
+      "reason": "Hidden (display:none) schema.org rating value \"5\"; the visible star count is kept."
+    },
+    {
+      "selector": "GF honeypot li.gform_validation_container + Akismet block",
+      "decision": "REMOVE",
+      "ledger": "L23",
+      "reason": "Anti-spam plumbing of the WordPress form backend (2 pages); the field labels \"Email\"/\"Phone\" would pose as duplicate real fields."
+    },
+    {
+      "selector": "EyeCarePro-Icons icon font",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "Platform icon font; the rebuild draws its own inline SVG sprite."
+    },
+    {
+      "selector": "review-quote.png (EyeCarePro public.css background)",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "Platform CSS image (403 on the source)."
+    }
+  ],
+  "strings": [
+    {
+      "value": "This field is for validation purposes and should be left unchanged.",
+      "decision": "REMOVE",
+      "ledger": "L23",
+      "reason": "Gravity Forms honeypot instruction (2 pages): anti-spam plumbing for a backend this static build does not carry."
+    },
+    {
+      "value": "Powered by",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "Footer credit linking to the former platform vendor (EyeCarePro)."
+    },
+    {
+      "value": "Login",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "Footer link to the platform WordPress admin. No such backend exists in the rebuild."
+    },
+    {
+      "value": "Ask Here, Voice Search",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "Label of the removed footer voice search form (346 pages + /template/footer/)."
+    },
+    {
+      "value": "Speak Field",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "Visually hidden label of the removed voice search input."
+    },
+    {
+      "value": "Return to top of menu",
+      "decision": "REPLACE",
+      "ledger": "L11",
+      "reason": "Mobile-menu focus-trap link (348 files); the drawer traps focus in JS instead."
+    },
+    {
+      "value": "Search:",
+      "decision": "REMOVE",
+      "ledger": "L11",
+      "reason": "Label of the removed search widget."
+    }
+  ],
+  "vendorClauses": {
+    "decision": "REMOVED",
+    "scope": "sentences naming EyeCarePro (the practice's former website agency), removed at sentence level; no replacement text authored",
+    "count": 6,
+    "removed": [
+      "Due to the possibility of human error or advances in scientific knowledge, EyeCarePro, and/or any commercial partners, their staff nor any other party involved in providing web pages, services or database information accessible within this website, warrant that the information contained therein is in every respect accurate or complete and are not responsible nor liable for any errors or omissions that may be found in such information or for the results obtained from the use of such information.",
+      "EyeCarePro and any of its affiliated companies do not endorse any of the products or treatments described, mentioned or discussed in any of the web pages, services or database information accessible within this website.",
+      "EyeCarePro authorizes you to view and download a single copy of the Material on the web site solely for your personal, non-commercial use.",
+      "EyeCarePro does not permanently store nor use, transmit (other than for its intended use), record, or otherwise make any use of this health information.",
+      "The basic graphical template and parts of this website have been created by a Service provided by EyeCarePro and/or any affiliated companies.",
+      "The material contained in this website, including but not limited to text, graphics, video, audio, trademarks and logos, includes that which is owned or controlled by EyeCarePro and that which is owned or controlled by third parties."
+    ],
+    "caveat": "Those sentences disclaimed on the AGENCY'S behalf (/disclaimer/). The client is left with no endorsement/warranty clause of its own; writing one is for the client's counsel, not this build."
+  },
+  "images": {
+    "vendorAssets": 2,
+    "platformUi": 21,
+    "decided": [
+      {
+        "match": "/thanksgiving%20-%20basket%20slide\\.jpg|thanksgiving - basket slide\\.jpg/i",
+        "why": "A holiday (event) picture on /october-is/ that 404s on the live site (the page already shows it broken). A generated stand-in would depict an event, so the <img> is removed (BUILD-DECISIONS #8, IMAGE-PLAN 2a)."
+      }
+    ],
+    "altsBlanked": {
+      "count": 37,
+      "ledger": "L12",
+      "why": "file-name or upload-hash alt text (\"dry eyes droplet 250x376.jpg\", \"clipart 010\") describes nothing; it becomes alt=\"\". Readable alts are kept verbatim."
+    }
+  },
+  "prosePlatformNames": [
+    "living-with-low-vision/index.html"
+  ],
+  "prosePlatformNamesWhy": {
+    "living-with-low-vision/index.html": "Source copy cites a third-party PDF at www.preventblindness.org/sites/default/files/... (an outbound link to another organisation's Drupal site). The path matches sr-decontaminate's drupal-marker pattern although it is not a trace of this site's platform. The link is kept as the source prints it; the file is still covered by the build's own platform grep (docs/BUILD-NOTES.md)."
+  }
+}

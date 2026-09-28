@@ -1,0 +1,12 @@
+{
+  "schema": "site-reforge/decontamination@1",
+  "generated": "2026-09-28T07:17:28.374Z",
+  "target": "C:\\Users\\Dell\\cliftoneyecenter-reforge\\dist",
+  "filesFound": 359,
+  "filesScanned": 358,
+  "filesSkipped": 0,
+  "counts": {},
+  "clean": true,
+  "verdict": "CLEAN",
+  "findings": []
+}

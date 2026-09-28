@@ -255,6 +255,24 @@
       "target": "https://www.eyecarepro.net/sites/all/themes/ECP/images/review-quote.png",
       "reason": "refused: HTTP 403",
       "at": "2026-09-28T00:26:49.158Z"
+    },
+    {
+      "stage": "home:leftover",
+      "target": "/",
+      "reason": "source text not rendered: \"Eye Disease Treatment- We are qualified to provide you with the best in care for many eye diseases such as glaucoma and \"",
+      "at": "2026-09-28T03:36:05.389Z"
+    },
+    {
+      "stage": "home:leftover",
+      "target": "/",
+      "reason": "source text not rendered: \"#HappyPatients\"",
+      "at": "2026-09-28T03:36:05.389Z"
+    },
+    {
+      "stage": "home:leftover",
+      "target": "/",
+      "reason": "source text not rendered: \"#HeretoHelp\"",
+      "at": "2026-09-28T03:36:05.389Z"
     }
   ]
 }

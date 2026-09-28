@@ -1,0 +1,12 @@
+{
+  "schema": "site-reforge/fabrication-report@1",
+  "generated": "2026-09-28T07:17:26.959Z",
+  "rebuildDir": "C:\\Users\\Dell\\cliftoneyecenter-reforge\\dist",
+  "filesScanned": 350,
+  "claimsChecked": 660,
+  "sourceCorpusChars": 1535543,
+  "declaredFactsChars": 6188,
+  "counts": {},
+  "verdict": "SOURCED",
+  "findings": []
+}

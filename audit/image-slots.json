@@ -1,0 +1,1054 @@
+{
+  "schema": "cec/image-slots@1",
+  "generated": "2026-09-28T07:09:57.096Z",
+  "note": "Every generated-image slot the build resolved (DESIGN-SPEC 6.3), rendered or not, with the reason.",
+  "slots": [
+    {
+      "page": "/",
+      "slot": "home",
+      "image": "scene-greenery-window",
+      "rendered": true
+    },
+    {
+      "page": "/",
+      "slot": "home",
+      "image": "cut-eyeglasses",
+      "rendered": true
+    },
+    {
+      "page": "/",
+      "slot": "home",
+      "image": "cut-olive-sprig",
+      "rendered": true
+    },
+    {
+      "page": "/404-page-not-found/",
+      "slot": "404 sheet",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/contact-us/",
+      "slot": "band scene",
+      "image": "scene-greenery-window",
+      "rendered": true
+    },
+    {
+      "page": "/contact-us/appointment-request-form/",
+      "slot": "band scene",
+      "image": "scene-greenery-window",
+      "rendered": true
+    },
+    {
+      "page": "/contact-us/contact-form/",
+      "slot": "band scene",
+      "image": "scene-greenery-window",
+      "rendered": true
+    },
+    {
+      "page": "/contact-us/patient-forms/",
+      "slot": "band scene",
+      "image": "scene-greenery-window",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/contact-lens-exams/",
+      "slot": "svc feature",
+      "image": "svc-contact-lens",
+      "rendered": false,
+      "why": "declared drop (audit/generated-images.json): no acceptable result within the 45-generation budget; slot left empty"
+    },
+    {
+      "page": "/eye-care-services/contact-lens-exams/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/contact-lens-exams/",
+      "slot": "band cut-out",
+      "image": "cut-contact-lens",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/contact-lens-exams/hard-to-fit/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/contact-lens-exams/hard-to-fit/",
+      "slot": "band cut-out",
+      "image": "cut-contact-lens",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/eye-conditions/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/eye-conditions/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/eye-conditions/astigmatism-diagnosis-treatment/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/eye-conditions/astigmatism-diagnosis-treatment/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/eye-conditions/dry-eye-disease-and-treatment/",
+      "slot": "svc feature",
+      "image": "svc-dry-eye",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/eye-conditions/dry-eye-disease-and-treatment/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/eye-conditions/dry-eye-disease-and-treatment/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/eye-conditions/presbyopia-diagnosis-and-treatment/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/eye-conditions/presbyopia-diagnosis-and-treatment/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/eye-emergencies-pinkred-eyes/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/eye-emergencies-pinkred-eyes/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/eye-exams/",
+      "slot": "svc feature",
+      "image": "svc-eye-exam",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/eye-exams/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/eye-exams/",
+      "slot": "band cut-out",
+      "image": "cut-phoropter",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/eye-exams/advanced-technology/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/eye-exams/advanced-technology/",
+      "slot": "band cut-out",
+      "image": "cut-phoropter",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/eye-exams/pediatric-eye-exams/",
+      "slot": "svc feature",
+      "image": "svc-pediatric-exam",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/eye-exams/pediatric-eye-exams/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/eye-exams/pediatric-eye-exams/",
+      "slot": "band cut-out",
+      "image": "cut-kids-glasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/eye-exams/what-to-expect/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/eye-exams/what-to-expect/",
+      "slot": "band cut-out",
+      "image": "cut-phoropter",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/lasik-refractive-surgery-co-management/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/lasik-refractive-surgery-co-management/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/management-of-ocular-diseases/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/management-of-ocular-diseases/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/management-of-ocular-diseases/cataract-surgery-co-management/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/management-of-ocular-diseases/cataract-surgery-co-management/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/management-of-ocular-diseases/glaucoma-testing-treatment/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/management-of-ocular-diseases/glaucoma-testing-treatment/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/management-of-ocular-diseases/treating-diabetic-retinopathy/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/management-of-ocular-diseases/treating-diabetic-retinopathy/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/management-of-ocular-diseases/treating-macular-degeneration/",
+      "slot": "band scene",
+      "image": "scene-exam-room",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/management-of-ocular-diseases/treating-macular-degeneration/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/childrens-vision/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/computer-eyestrain/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/eye-conditions-info/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/eye-diseases/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/eye-diseases/cataracts/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/eye-diseases/diabetes-and-eyesight/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/eye-diseases/macular-degeneration/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/eye-exams/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/eye-exams/common-tests/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/vision-over-40/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/vision-over-60/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eye-care-services/your-eye-health/vision-surgery/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/",
+      "slot": "svc feature",
+      "image": "svc-contact-lens",
+      "rendered": false,
+      "why": "excluded: brand logo image \"Acuvue.png\" in the main region (IMAGE-PLAN 3c)"
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/",
+      "slot": "band cut-out",
+      "image": "cut-contact-lens",
+      "rendered": false,
+      "why": "excluded: brand logo image \"Acuvue.png\" in the main region (IMAGE-PLAN 3c)"
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/bifocal-and-multifocal-contact-lenses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/bifocal-and-multifocal-contact-lenses/",
+      "slot": "band cut-out",
+      "image": "cut-contact-lens",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/contact-lenses-for-the-hard-to-fit-patient/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/contact-lenses-for-the-hard-to-fit-patient/",
+      "slot": "band cut-out",
+      "image": "cut-contact-lens",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/disposable-contacts/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/disposable-contacts/",
+      "slot": "band cut-out",
+      "image": "cut-contact-lens",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/eye-exams-for-contact-lenses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/eye-exams-for-contact-lenses/",
+      "slot": "band cut-out",
+      "image": "cut-contact-lens",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/gas-permeable-gp-contact-lenses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/gas-permeable-gp-contact-lenses/",
+      "slot": "band cut-out",
+      "image": "cut-contact-lens",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/our-featured-brands/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": false,
+      "why": "excluded: brand logo image \"Acuvue.png\" in the main region (IMAGE-PLAN 3c)"
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/our-featured-brands/",
+      "slot": "band cut-out",
+      "image": "cut-contact-lens",
+      "rendered": false,
+      "why": "excluded: brand logo image \"Acuvue.png\" in the main region (IMAGE-PLAN 3c)"
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/toric-contact-lenses-for-astigmatism/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/contact-lenses/toric-contact-lenses-for-astigmatism/",
+      "slot": "band cut-out",
+      "image": "cut-contact-lens",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/",
+      "slot": "svc feature",
+      "image": "svc-eyewear-boutique",
+      "rendered": false,
+      "why": "excluded: brand name \"Transitions\" in main text"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": false,
+      "why": "excluded: brand name \"Transitions\" in main text"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/eyeglass-basics/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/eyeglass-basics/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/eyeglass-basics/eyeglass-frames/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/eyeglass-basics/eyeglass-frames/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/eyeglass-basics/lens-options-for-eyeglasses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/eyeglass-basics/lens-options-for-eyeglasses/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/eyeglass-basics/womens-eyeglass-frames/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/eyeglass-basics/womens-eyeglass-frames/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/eyeglass-basics/womens-eyeglass-frames/",
+      "slot": "slot-fill (stand-in for a source image that 404s)",
+      "image": "svc-eyewear-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/eyeglass-guide/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/eyeglass-guide/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/kids-optical/",
+      "slot": "svc feature",
+      "image": "svc-pediatric-exam",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/kids-optical/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/kids-optical/",
+      "slot": "band cut-out",
+      "image": "cut-kids-glasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/lens-treatments/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/lens-treatments/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/lens-treatments/anti-reflective/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/lens-treatments/anti-reflective/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/lens-treatments/scratch-resistant/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/lens-treatments/scratch-resistant/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/lens-treatments/uv-protection/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/lens-treatments/uv-protection/",
+      "slot": "band cut-out",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/bifocal-lenses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/bifocal-lenses/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/caring-for-lenses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/caring-for-lenses/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/eyeglass-frame-materials/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/eyeglass-frame-materials/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/frame-maintenance/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/frame-maintenance/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/high-index-and-aspheric-lenses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/high-index-and-aspheric-lenses/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/polycarbonate-lenses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/polycarbonate-lenses/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/specialty-eyewear/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/specialty-eyewear/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/specialty-eyewear/contacts-glasses-that-enhance-performance/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/specialty-eyewear/contacts-glasses-that-enhance-performance/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/specialty-eyewear/safety-and-sports-glasses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/specialty-eyewear/safety-and-sports-glasses/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/specialty-eyewear/scuba-masks-and-swim-goggles/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/specialty-eyewear/scuba-masks-and-swim-goggles/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/specialty-eyewear/shooting-glasses-and-hunting-eyewear/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/specialty-eyewear/shooting-glasses-and-hunting-eyewear/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/specialty-eyewear/specialty-eyewear-overview/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/specialty-eyewear/specialty-eyewear-overview/",
+      "slot": "band cut-out",
+      "image": "cut-eyeglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/sunglasses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/sunglasses/",
+      "slot": "band cut-out",
+      "image": "cut-sunglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/sunglasses/nonprescription-sunglasses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/sunglasses/nonprescription-sunglasses/",
+      "slot": "band cut-out",
+      "image": "cut-sunglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/sunglasses/performance-and-sport-sunglasses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/sunglasses/performance-and-sport-sunglasses/",
+      "slot": "band cut-out",
+      "image": "cut-sunglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/sunglasses/prescription-sunglass-treatments/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/sunglasses/prescription-sunglass-treatments/",
+      "slot": "band cut-out",
+      "image": "cut-sunglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/sunglasses/prescription-sunglasses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/sunglasses/prescription-sunglasses/",
+      "slot": "band cut-out",
+      "image": "cut-sunglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/sunglasses/sunglasses-for-kids/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/sunglasses/sunglasses-for-kids/",
+      "slot": "band cut-out",
+      "image": "cut-sunglasses",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/transitions-lenses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": false,
+      "why": "excluded: brand name \"Transitions\" in main text"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/transitions-lenses/are-transitions-right-for-you/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": false,
+      "why": "excluded: brand name \"Transitions\" in main text"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/transitions-lenses/original-transitions-lenses/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": false,
+      "why": "excluded: brand name \"Transitions\" in main text"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/transitions-lenses/transition-solfx-sunwear-products/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": false,
+      "why": "excluded: brand name \"Transitions\" in main text"
+    },
+    {
+      "page": "/eyeglasses-contacts/eyeglasses/transitions-lenses/transitions-xtractive/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": false,
+      "why": "excluded: brand name \"Transitions\" in main text"
+    },
+    {
+      "page": "/insurance/carecredit/",
+      "slot": "band scene",
+      "image": "scene-greenery-window",
+      "rendered": true
+    },
+    {
+      "page": "/insurance/faqs-of-vision-insurance-plans/",
+      "slot": "band scene",
+      "image": "scene-greenery-window",
+      "rendered": false,
+      "why": "excluded: brand name \"Medicare\" in main text"
+    },
+    {
+      "page": "/insurance/whats-in-your-vision-insurance-plan/",
+      "slot": "band scene",
+      "image": "scene-greenery-window",
+      "rendered": true
+    },
+    {
+      "page": "/location/clifton-eye-center/",
+      "slot": "band scene",
+      "image": "scene-greenery-window",
+      "rendered": true
+    },
+    {
+      "page": "/order-contacts-online/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": true
+    },
+    {
+      "page": "/order-contacts-online/",
+      "slot": "band cut-out",
+      "image": "cut-contact-lens",
+      "rendered": true,
+      "file": "trimmed copy"
+    },
+    {
+      "page": "/promotions/",
+      "slot": "band scene",
+      "image": "scene-optical-boutique",
+      "rendered": false,
+      "why": "excluded: brand name \"Alcon\" in main text"
+    },
+    {
+      "page": "/refocus-on-the-digital-age-with-computer-glasses/",
+      "slot": "slot-fill (stand-in for a source image that 404s)",
+      "image": "cut-eyeglasses",
+      "rendered": true
+    },
+    {
+      "page": "/treating-vision-problems-lowers-risk-of-falling-in-seniors/",
+      "slot": "slot-fill (stand-in for a source image that 404s)",
+      "image": "cut-eyeglasses",
+      "rendered": true
+    },
+    {
+      "page": "/whats-new/",
+      "slot": "band scene",
+      "image": "scene-greenery-window",
+      "rendered": false,
+      "why": "excluded: \"Deana\" in main text"
+    },
+    {
+      "page": "/why-do-we-need-glasses/",
+      "slot": "slot-fill (stand-in for a source image that 404s)",
+      "image": "cut-phoropter",
+      "rendered": true
+    },
+    {
+      "page": "/women-and-diabetes-world-diabetes-day-2017/",
+      "slot": "slot-fill (stand-in for a source image that 404s)",
+      "image": "cut-sunglasses",
+      "rendered": true
+    },
+    {
+      "page": "/eye-care-services/",
+      "slot": "hub section image (image-plan usedFor: the \"eye exams\" section)",
+      "image": "svc-eye-exam",
+      "rendered": false,
+      "why": "not placed: the hub has no eye-exam prose section; its services are the 7 source index cards, each with its source thumbnail (the \"Comprehensive Eye Exams\" card already shows a phoropter), and a generated duplicate beside a source photo is redundant (DESIGN-SPEC 3.6 rationale). The image renders as the feature on /eye-care-services/eye-exams/."
+    },
+    {
+      "page": "/eye-care-services/",
+      "slot": "hub section image (image-plan usedFor: the \"optical\" section)",
+      "image": "svc-eyewear-boutique",
+      "rendered": false,
+      "why": "not placed: /eye-care-services/ has no optical section in the source (its 7 index cards are exams, contact lens exams, conditions, disease management, emergencies, LASIK co-management and Your Eye Health). The image renders as the stand-in on /eyeglasses-contacts/eyeglasses/eyeglass-basics/womens-eyeglass-frames/; its feature slot on /eyeglasses-contacts/eyeglasses/ is excluded by the DESIGN-SPEC 6.3 brand rule (\"Transitions\" in the main text)."
+    },
+    {
+      "page": "(site-wide)",
+      "slot": "texture layer at 6%: the home hero statement and every interior .sheet.is-flat (DESIGN-SPEC 6.4)",
+      "image": "tex-frosted-glass",
+      "rendered": true
+    },
+    {
+      "page": "/404-page-not-found/",
+      "slot": "404 sheet",
+      "image": "cut-lens-prism",
+      "rendered": true,
+      "file": "trimmed copy"
+    }
+  ]
+}

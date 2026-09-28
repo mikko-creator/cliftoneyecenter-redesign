@@ -1,0 +1,92 @@
+{
+  "schema": "cec/chrome@1",
+  "note": "Site chrome for the Clifton Eye Center rebuild, read from the raw header, top bar, sidebar and footer of audit/raw/index.html and audit/raw/1-eye-allergies-2016.html (identical on all 346 chrome-bearing pages: SITE-ARCHITECTURE section 1). Every visible string is the source's own; tools/write-facts.mjs and the build's chrome check re-verify each one against audit/raw. Links are own-origin paths; the build makes them page-relative. `changes` lists every departure from the source markup with its ledger id (DESIGN-SPEC 7.4).",
+  "origin": "https://www.cliftoneyecenter.com",
+  "brandName": "Clifton Eye Center",
+  "logo": { "srcPattern": "clifton_eye_center_medium-e1478229278850", "alt": "Clifton Eye Center logo", "altMobile": "Clifton Eye Center", "homeLabel": "Clifton Eye Center home" },
+  "phone": "318-550-5815",
+  "address": { "street": "1000 Chinaberry Drive, Suite 302", "locality": "Bossier City", "region": "LA", "postalCode": "71111" },
+  "addressLines": ["1000 Chinaberry Drive, Suite 302", "Bossier City, LA 71111"],
+  "mapQuery": "Clifton Eye Center, 1000 Chinaberry Drive, Suite 302, Bossier City, LA 71111",
+  "mapsLinkLabel": "Open in Google Maps",
+  "skip": "Skip to main content",
+  "topbar": {
+    "address": { "label": "We're in Bossier City, 1000 Chinaberry Drive, Suite 302, Louisiana, 71111.", "href": "/eye-care-services/" },
+    "appointment": { "label": "Make an Appointment", "href": "/contact-us/appointment-request-form/", "sourceHref": "", "change": "L01" },
+    "call": { "label": "Call Us: 318-550-5815", "href": "tel:318-550-5815", "sourceHref": "tel: 318-550-5815", "change": "L17" }
+  },
+  "mobileHeader": {
+    "appointment": { "label": "Make an appointment", "href": "/contact-us/appointment-request-form/" },
+    "call": { "label": "Call", "href": "tel:318-550-5815" },
+    "menuOpen": "Open Menu",
+    "menuClose": "Close Menu",
+    "menuToggle": "Toggle mobile menu"
+  },
+  "nav": [
+    { "label": "Hours & Location", "href": "/hours-location/" },
+    { "label": "Our Eye Doctor", "href": "/our-eye-doctors/" },
+    { "label": "Eye Care Services", "href": "/eye-care-services/" },
+    { "label": "Eyeglasses & Contacts", "href": "/eyeglasses-contacts/" },
+    { "label": "Insurance", "href": "/insurance/" }
+  ],
+  "quickActions": [
+    { "label": "Email Us", "href": "/contact-us/contact-form/", "newTab": false, "icon": "mail" },
+    { "label": "Schedule An Appointment", "href": "/contact-us/appointment-request-form/", "newTab": true, "icon": "calendar" },
+    { "label": "Patient Forms", "href": "/contact-us/patient-forms/", "newTab": false, "icon": "forms" },
+    { "label": "Order Contacts Online", "href": "/order-contacts-online/", "newTab": true, "icon": "cart" }
+  ],
+  "hours": [
+    ["Monday", "8:30 AM - 4:30 PM"],
+    ["Tuesday", "8:30 AM - 4:30 PM"],
+    ["Wednesday", "8:30 AM - 4:30 PM"],
+    ["Thursday", "8:30 AM - 4:30 PM"],
+    ["Friday", "8:30 AM - 4:30 PM"],
+    ["Saturday", "Closed"],
+    ["Sunday", "Closed"]
+  ],
+  "sidebar": {
+    "location": { "title": "Clifton Eye Center", "href": "/location/clifton-eye-center/", "phoneLabel": "Phone:" },
+    "insurance": {
+      "title": "Insurance Plans",
+      "paras": ["A vision insurance policy is not the same as health insurance.", "Regular health insurance plans protect you against financial losses due to unexpected eye injuries or disease. Vision insurance, on the other hand, is a wellness benefit designed to provide routine eye care prescription eyewear and other vision-related services at a reduced cost."],
+      "sourceNote": "One <p> in the source with a <br clear=\"all\"> between the two sentences; rendered as the same two lines."
+    }
+  },
+  "footer": {
+    "columns": [
+      { "title": "Important Links", "links": [
+        { "label": "Home", "href": "/" },
+        { "label": "Contact Us", "href": "/contact-us/" },
+        { "label": "What’s New", "href": "/whats-new/" },
+        { "label": "Disclaimer", "href": "/disclaimer/" },
+        { "label": "Privacy Policy", "href": "/privacy-policy/" },
+        { "label": "Return Policies", "href": "/return-policies/" }
+      ] },
+      { "title": "Quick Links", "links": [
+        { "label": "Hours & Location", "href": "/hours-location/" },
+        { "label": "Our Eye Doctor", "href": "/our-eye-doctors/" },
+        { "label": "Eye Care Services", "href": "/eye-care-services/" },
+        { "label": "Eyeglasses & Contacts", "href": "/eyeglasses-contacts/" },
+        { "label": "Insurance", "href": "/insurance/" }
+      ] }
+    ],
+    "nap": { "name": "Clifton Eye Center", "located": " - Located at ", "street": "1000 Chinaberry Drive, Suite 302", "sep": ", ", "locality": "Bossier City", "region": "LA", "postalCode": "71111", "phoneLabel": "Phone:" },
+    "social": [
+      { "network": "facebook", "label": "Visit us on facebook", "href": "https://www.facebook.com/Clifton-Eye-Center-154894561271074/?ref=bookmarks" }
+    ],
+    "copyright": "© 2026",
+    "util": [
+      { "label": "Accessibility", "href": "/website-accessibility-policy/" },
+      { "label": "Sitemap", "href": "/sitemap.xml", "sourceHref": "/sitemap/", "change": "L10" },
+      { "label": "Privacy", "href": "/privacy-policy/" },
+      { "label": "Disclaimer", "href": "/disclaimer/" }
+    ]
+  },
+  "notice": { "before": "This form is not connected yet — please call ", "after": "", "decision": "BUILD-DECISIONS #4 (the only authored UI sentence; shown on a prevented valid submit)" },
+  "changes": [
+    { "id": "L01", "what": "top-bar Make an Appointment: dead <span href=\"\"> -> link to /contact-us/appointment-request-form/" },
+    { "id": "L10", "what": "footer Sitemap /sitemap/ (404) -> /sitemap.xml" },
+    { "id": "L11", "what": "removed: footer voice search, sidebar search, Powered by + EyeCarePro logo, Login, Return to top of menu, GTM, footer microdata, empty sidebar h3" },
+    { "id": "L17", "what": "tel: 318-550-5815 (space) -> tel:318-550-5815" }
+  ]
+}

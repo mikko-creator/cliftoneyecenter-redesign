@@ -1,0 +1,61 @@
+{
+  "schema": "cec/redirects@1",
+  "generated": "2026-09-28T07:09:57.096Z",
+  "note": "Emitted as dist/_redirects and dist/.htaccess.",
+  "redirects": [
+    {
+      "from": "/eye-care-services/dry-eye-disease-and-treatment/",
+      "to": "/eye-care-services/eye-conditions/dry-eye-disease-and-treatment/",
+      "status": 301,
+      "why": "source 301 (live site)"
+    },
+    {
+      "from": "/eye-care-services/pediatric-eye-exams/",
+      "to": "/eye-care-services/eye-exams/pediatric-eye-exams/",
+      "status": 301,
+      "why": "source 301 (live site)"
+    },
+    {
+      "from": "/eyeglasses-contacts/designer-frames/",
+      "to": "/eyeglasses-contacts/eyeglasses/designer-frames/",
+      "status": 301,
+      "why": "source 301 (live site)"
+    },
+    {
+      "from": "/eyeglasses/designer-frames/",
+      "to": "/eyeglasses-contacts/eyeglasses/designer-frames/",
+      "status": 301,
+      "why": "source 301 (live site)"
+    },
+    {
+      "from": "/your-eye-health/eye-conditions/",
+      "to": "/eye-care-services/eye-conditions/",
+      "status": 301,
+      "why": "source 301 (live site)"
+    },
+    {
+      "from": "/your-eye-health/eye-diseases/",
+      "to": "/eye-care-services/your-eye-health/eye-diseases/",
+      "status": 301,
+      "why": "source 301 (live site)"
+    },
+    {
+      "from": "/your-eye-health/eye-diseases/cataracts/",
+      "to": "/eye-care-services/your-eye-health/eye-diseases/cataracts/",
+      "status": 301,
+      "why": "source links here and 404s; content lives at the target"
+    },
+    {
+      "from": "/your-eye-health/eye-diseases/macular-degeneration/",
+      "to": "/eye-care-services/your-eye-health/eye-diseases/macular-degeneration/",
+      "status": 301,
+      "why": "source links here and 404s; content lives at the target"
+    },
+    {
+      "from": "/your-eye-health/protecting-your-eyes/",
+      "to": "/eye-care-services/your-eye-health/protecting-your-eyes/",
+      "status": 301,
+      "why": "source 301 (live site)"
+    }
+  ]
+}

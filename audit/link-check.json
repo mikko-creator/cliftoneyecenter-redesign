@@ -1,0 +1,39 @@
+{
+ "schema": "cec/link-check@1",
+ "generated": "2026-09-28T07:17:13.302Z",
+ "dist": "C:\\Users\\Dell\\cliftoneyecenter-reforge\\dist",
+ "filesChecked": 354,
+ "localRefs": 20328,
+ "externalRefsSkipped": 2881,
+ "broken": 0,
+ "byKind": {},
+ "control": {
+  "planted": "<a href=\"nope/index.html\">x</a><a href=\"/abs/\">y</a><a href=\"#missing-id\">z</a><img src=\"img/nothing.webp\" alt=\"\">",
+  "reported": [
+   {
+    "kind": "missing",
+    "attr": "href",
+    "value": "nope/index.html",
+    "resolved": "ctl/nope/index.html"
+   },
+   {
+    "kind": "root-absolute",
+    "attr": "href",
+    "value": "/abs/"
+   },
+   {
+    "kind": "dead-fragment",
+    "attr": "href",
+    "value": "#missing-id"
+   },
+   {
+    "kind": "missing",
+    "attr": "src",
+    "value": "img/nothing.webp",
+    "resolved": "ctl/img/nothing.webp"
+   }
+  ],
+  "fired": true
+ },
+ "findings": []
+}

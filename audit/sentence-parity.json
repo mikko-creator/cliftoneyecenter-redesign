@@ -1,0 +1,1524 @@
+{
+ "schema": "cec/sentence-parity@1",
+ "generated": "2026-09-28T07:17:12.373Z",
+ "dist": "C:\\Users\\Dell\\cliftoneyecenter-reforge\\dist",
+ "method": "every distinct >=5-word sentence of each source page (raw HTML split at block elements) must appear verbatim (normalised quotes/dashes/whitespace) in the rebuilt page text; misses are classified as source chrome (header/nav/footer/sidebar widget area), declared removal, or lost",
+ "totals": {
+  "pages": 349,
+  "sentences": 13966,
+  "found": 13595,
+  "sourceChromeOnly": 363,
+  "declaredRemovals": 8,
+  "lost": 0,
+  "foundWhitespaceInsensitiveOnly": 3
+ },
+ "control": {
+  "page": "https://www.cliftoneyecenter.com/",
+  "sentence": "free shipping option on select annual and semi-annual supply promotions",
+  "fired": true
+ },
+ "lost": [],
+ "whitespaceOnly": [
+  {
+   "url": "https://www.cliftoneyecenter.com/",
+   "sentence": "eye disease treatment- we are qualified to provide you with the best in care for many eye diseases such as glaucoma and cataract care."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/sunglasses/prescription-sunglass-treatments",
+   "sentence": "it's always handy to have a second pair of eyeglasses -why not choose a second pair that makes a real difference in the comfort and clarity of vision while doing the things you love most!"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/resolve-to-prevent-glaucoma-2016",
+   "sentence": "a comprehensive eye ex am can determine your risk of developing glaucoma; if you have been diagnosed with glaucoma and have concerns about your treatment, it is best to speak openly with your doctor."
+  }
+ ],
+ "declared": [
+  {
+   "url": "https://www.cliftoneyecenter.com/contact-us/appointment-request-form",
+   "sentence": "this field is for validation purposes and should be left unchanged."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/contact-us/contact-form",
+   "sentence": "this field is for validation purposes and should be left unchanged."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/disclaimer",
+   "sentence": "the basic graphical template and parts of this website have been created by a service provided by eyecarepro and/or any affiliated companies."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/disclaimer",
+   "sentence": "eyecarepro and any of its affiliated companies do not endorse any of the products or treatments described, mentioned or discussed in any of the web pages, services or database information accessible within this website."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/disclaimer",
+   "sentence": "due to the possibility of human error or advances in scientific knowledge, eyecarepro, and/or any commercial partners, their staff nor any other party involved in providing web pages, services or database information accessible within this website, warrant that the information contained therein is in every respect accurate or complete and are not responsible nor liable for any errors or omissions that may be found in such information or for the results obtained from the use of such information."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/disclaimer",
+   "sentence": "the material contained in this website, including but not limited to text, graphics, video, audio, trademarks and logos, includes that which is owned or controlled by eyecarepro and that which is owned or controlled by third parties."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/disclaimer",
+   "sentence": "eyecarepro authorizes you to view and download a single copy of the material on the web site solely for your personal, non-commercial use."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/disclaimer",
+   "sentence": "eyecarepro does not permanently store nor use, transmit (other than for its intended use), record, or otherwise make any use of this health information."
+  }
+ ],
+ "sourceChrome": [
+  {
+   "url": "https://www.cliftoneyecenter.com/",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/1-eye-allergies-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/10-eye-healthy-foods-to-eat-this-year-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/10-steps-to-prevent-vision-loss",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/10-tips-to-protect-your-vision",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/10-tips-to-teach-children-about-eye-safety-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/12-tips-for-optimal-eye-health-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/404-page-not-found",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/404-page-not-found",
+   "sentence": "8:30 am - 4:30 pm"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/404-page-not-found",
+   "sentence": "a vision insurance policy is not the same as health insurance."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/404-page-not-found",
+   "sentence": "regular health insurance plans protect you against financial losses due to unexpected eye injuries or disease."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/404-page-not-found",
+   "sentence": "vision insurance, on the other hand, is a wellness benefit designed to provide routine eye care prescription eyewear and other vision-related services at a reduced cost."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/5-ways-to-ensure-healthy-vision",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/6-common-eye-myths-debunked",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/6-crazy-holiday-eye-injuries-to-avoid-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/6-things-you-need-to-know-about-cataracts",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/6-things-you-should-know-about-uv-radiation-and-your-eyes",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/6-ways-to-prevent-amd-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/7-eye-symptoms-you-should-not-ignore-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/7-facts-you-should-know-about-glaucoma",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/7-things-you-should-know-about-eyelid-twitches",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/8-tips-to-beat-winter-dry-eyes",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/8-tips-to-relieve-winter-dry-eyes-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/9-tips-for-coping-with-eye-allergy-season",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/a-look-behind-sleeping-eyes",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/age-related-macular-degeneration-and-your-central-vision",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/aging-eyes-driving-safety-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/all-about-night-blindness-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/amd-awareness-could-save-your-vision-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/an-active-and-eye-safe-lifestyle-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/april-is-womens-eye-health-and-safety-month-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/are-nerf-guns-a-dangerous-holiday-present-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/are-you-ignoring-your-dry-eyes-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/are-your-eyes-sensitive-to-light-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/be-on-the-lookout-for-vision-problems-this-summer-break",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/bifocal-and-multifocal-contact-lenses-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/can-you-really-go-blind-from-looking-at-a-solar-eclipse",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/cataract-awareness-and-prevention-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/cataract-awareness-month-2016-2",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/cataract-awareness-month-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/category/our-doctors",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/category/uncategorized",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/comfortable-vision-for-back-to-school-reading",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/contact-lenses-halloween-beware-take-care-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/contact-us",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/contact-us/appointment-request-form",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/contact-us/contact-form",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/contact-us/patient-forms",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/contact-us/testimonials",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/cutting-edge-eye-dentification-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/cutting-edge-glaucoma-technology",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/dealing-with-your-tweens-and-teens-eyesight",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/decorative-lenses-could-cost-you-your-vision",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/diabetes-and-your-eyes",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/disclaimer",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/do-you-know-the-facts-about-diabetic-eye-disease",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/does-chlorine-hurt-your-eyes",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/dry-eye-syndrome-causes-and-cures-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/enjoying-life-during-eye-allergy-season",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/exercise-and-your-eye-health-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-am-home-for-the-holidays-7-eye-tips-for-college-students",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/contact-lens-exams",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/contact-lens-exams/hard-to-fit",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/eye-conditions",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/eye-conditions/astigmatism-diagnosis-treatment",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/eye-conditions/dry-eye-disease-and-treatment",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/eye-conditions/presbyopia-diagnosis-and-treatment",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/eye-emergencies-pinkred-eyes",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/eye-exams",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/eye-exams/advanced-technology",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/eye-exams/pediatric-eye-exams",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/eye-exams/what-to-expect",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/lasik-refractive-surgery-co-management",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/management-of-ocular-diseases",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/management-of-ocular-diseases/cataract-surgery-co-management",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/management-of-ocular-diseases/glaucoma-testing-treatment",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/management-of-ocular-diseases/treating-diabetic-retinopathy",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/management-of-ocular-diseases/treating-macular-degeneration",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/childrens-vision",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/childrens-vision/are-contact-lenses-a-good-choice-for-kids",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/childrens-vision/childrens-vision-faqs",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/childrens-vision/controlling-nearsightedness-in-children",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/childrens-vision/vision-therapy-for-children",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/childrens-vision/your-infants-visual-development",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/computer-eyestrain",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/computer-eyestrain/blue-lighthigh-energy-visible-hev-light-and-your-eyes",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/computer-eyestrain/children-and-computer-vision-syndrome",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/computer-eyestrain/computer-glasses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/computer-eyestrain/worker-productivity-and-computer-vision-syndrome",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/contact-lens-basics",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/amblyopia-lazy-eye",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/astigmatism",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/blepharitis",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/cmv-retinitis",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/corneal-transplant",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/dry-eye-syndrome",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/eye-allergies",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/eye-floaters-and-spots",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/farsighted-hyperopia",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/glaucoma",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/keratoconus",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/nearsighted-myopia",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/ocular-hypertension",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/photophobia",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/pingueculae-pterygia",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/pink-eye-conjunctivitis",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/presbyopia",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/ptosis",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/retinal-detachment",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/retinitis-pigmentosa",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/styes",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/uveitis",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/cataracts",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/cataracts/cataract-surgery-treatment",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/cataracts/causes-of-cataracts",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/cataracts/common-questions-about-presbyopia-correcting-iols",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/cataracts/more-about-cataracts",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/cataracts/signs-symptoms",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/diabetes-and-eyesight",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/diabetes-and-eyesight/causes-of-diabetic-retinopathy",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/diabetes-and-eyesight/overview-of-diabetic-retinopathy",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/diabetes-and-eyesight/signs-and-symptoms-of-diabetic-retinopathy",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/diabetes-and-eyesight/treatment-for-diabetic-retinopathy",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/glaucoma",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/macular-degeneration",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/macular-degeneration/forms-of-macular-degeneration",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/macular-degeneration/overview",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/macular-degeneration/symptoms-risk-factors-of-macular-degeneration",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/macular-degeneration/treatment-of-macular-degeneration",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/autorefractor",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/eye-dilation",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/glaucoma-test",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/ophthalmoscope",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/optomap",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/peripheral-vision-test",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/phoropter",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/puffer-test",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/retinoscope",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/slit-lamp-exam",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/snellen-chart",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/vision-screening",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/vision-testing",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/eye-exams-for-children",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/eye-exams-for-contact-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/medications",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/preparing-for-an-eye-exam",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/visiting-your-eye-care-professional",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/what-to-ask",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/what-to-expect",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/why-are-eye-exams-important",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/your-comprehensive-eye-exam",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/glossary-of-eye-care-terms",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/healthy-sight",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/how-the-eye-works",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/protecting-your-eyes",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-40",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-40/dry-eye-after-menopause",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-40/how-progressive-lenses-work",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-40/multifocal-eyeglass-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-40/occupational-bifocal-and-trifocals",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-40/reading-glasses-after-40",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-60",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-60/age-your-vision-changes-solutions",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-60/seven-tips-for-optimal-vision",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-60/suggestions-for-age-related-vision-loss",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/corneal-inlays-and-onlays",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/corneal-transplant",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/corrective-eye-surgery-basics",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/lasik",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/lasik-criteria-for-success",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/lasik-risks-and-complications",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/prk",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/surgery-for-presbyopia",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-health-for-college-students-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-health-for-women-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eye-safe-toys-and-gifts-for-this-holiday-season",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses/bifocal-and-multifocal-contact-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses/contact-lenses-for-the-hard-to-fit-patient",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses/disposable-contacts",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses/eye-exams-for-contact-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses/gas-permeable-gp-contact-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses/our-featured-brands",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses/toric-contact-lenses-for-astigmatism",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/designer-frames",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/eyeglass-basics",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/eyeglass-basics/eyeglass-frames",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/eyeglass-basics/lens-options-for-eyeglasses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/eyeglass-basics/womens-eyeglass-frames",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/eyeglass-guide",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/kids-optical",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/lens-treatments",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/lens-treatments/anti-reflective",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/lens-treatments/scratch-resistant",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/lens-treatments/uv-protection",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/prescription-eyeglasses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/bifocal-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/caring-for-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/eyeglass-frame-materials",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/frame-maintenance",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/high-index-and-aspheric-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/polycarbonate-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/specialty-eyewear",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/specialty-eyewear/contacts-glasses-that-enhance-performance",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/specialty-eyewear/safety-and-sports-glasses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/specialty-eyewear/scuba-masks-and-swim-goggles",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/specialty-eyewear/shooting-glasses-and-hunting-eyewear",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/specialty-eyewear/specialty-eyewear-overview",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/sunglasses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/sunglasses/nonprescription-sunglasses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/sunglasses/performance-and-sport-sunglasses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/sunglasses/prescription-sunglass-treatments",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/sunglasses/prescription-sunglasses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/sunglasses/sunglasses-for-kids",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/transitions-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/transitions-lenses/are-transitions-right-for-you",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/transitions-lenses/original-transitions-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/transitions-lenses/transition-solfx-sunwear-products",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/transitions-lenses/transitions-xtractive",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/eyelid-twitches-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/fall-eye-allergies-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/first-aid-for-eye-injuries",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/fun-holiday-gifts-that-are-good-for-childrens-vision",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/got-a-shiner-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/guidelines-for-picking-the-right-pair-of-shades",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/halloween-eye-safety-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/have-an-eye-safe-halloween-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/healthy-aging-for-the-eyes-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/help-my-child-does-not-want-to-wear-glasses-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/holiday-season-shopping-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/hope-in-sight-for-low-vision",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/hours-location",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/how-contact-lenses-can-be-a-danger-to-your-eyes-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/how-do-we-see",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/how-pregnancy-affects-vision",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/how-to-encourage-young-kids-to-wear-their-first-pair-of-glasses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/how-to-find-the-right-pair-of-glasses-for-your-child-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/how-to-guide-for-buying-sunglasses-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/how-to-keep-your-glasses-from-fogging-up-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/how-to-prevent-diabetic-vision-loss",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/how-to-prevent-dry-eyes-during-air-travel",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/how-uv-damages-your-eyes-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/how-your-eyes-convey-emotion",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/hydrogen-peroxide-contact-lens-solution-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/infant-eyesight-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/innovations-in-color-blindness-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/inside-a-life-with-color-vision-deficiency-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/insurance",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/insurance/carecredit",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/insurance/faqs-of-vision-insurance-plans",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/insurance/whats-in-your-vision-insurance-plan",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/is-screen-time-dangerous-for-kids-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/is-your-babys-eyesight-developing-normally",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/is-your-teen-ready-for-contacts-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/its-time-to-be-serious-about-home-eye-safety",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/june-is-cataract-awareness-month",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/keeping-an-eye-on-cataracts",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/keeping-your-contact-lenses-clean",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/know-how-and-when-to-treat-an-eye-infection",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/living-with-low-vision",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/location/clifton-eye-center",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/location/clifton-eye-center",
+   "sentence": "a vision insurance policy is not the same as health insurance."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/location/clifton-eye-center",
+   "sentence": "regular health insurance plans protect you against financial losses due to unexpected eye injuries or disease."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/location/clifton-eye-center",
+   "sentence": "vision insurance, on the other hand, is a wellness benefit designed to provide routine eye care prescription eyewear and other vision-related services at a reduced cost."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/mental-health-and-vision-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/new-study-shows-how-your-eyes-shed-light-on-your-health",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/new-years-resolutions-for-an-eye-healthy-2014",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/november-is-diabetes-awareness-month-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/october-is",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/ocular-migraines-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/order-contacts-online",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/our-eye-doctors",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/parkinsons-awareness-month-and-your-vision-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/pink-stinging-eyes",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/pink-stinging-eyes-it-could-be-pink-eye",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/poolside-eye-safety-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/prevent-age-related-macular-degeneration-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/privacy-policy",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/progressive-myopia-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/promotions",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/protect-childrens-eyes-during-sports",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/protecting-your-eyes-from-the-desk-job",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/protective-sports-eyewear-is-a-serious-matter",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/refocus-on-the-digital-age-with-computer-glasses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/request-your-next-appointment-online",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/resolve-to-prevent-glaucoma-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/return-policies",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/rubbing-your-eyes-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/school-and-vision-2-important-partners-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/should-you-be-worried-about-eye-floaters",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/signs-that-your-child-has-a-vision-problem-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/sjogren-awareness-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/smart-hygiene-habits-to-care-for-your-contact-lenses-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/smoking-and-vision-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/sneak-thief-of-sight-january-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/snow-blindness-winter-vacation-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/solar-eclipse-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/sports-eye-injuries-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/sports-vision-deconstructed-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/summer-heat-wave-and-your-eyes-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/sunwear-for-a-bright-future-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/tag/all-about-vision",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/tag/eye-emergencies",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/tag/gsp-eye-emergencies",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/talk-about-blue-light-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/team/dr-deana-clifton-od",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/technology-in-the-classroom-and-the-eyes",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/template/header",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/template/inner-header",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/testimonial/4726-2",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/testimonial/4728-2",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/testimonial/4730-2",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/the-dangers-of-an-online-eye-test-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/the-great-glasses-play-day-2013",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/the-right-way-to-clean-your-glasses-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/the-sneak-thief-of-sight-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/the-staff",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/this-halloween-be-wary-of-costume-contact-lenses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/top-4-eyecare-tips-for-summer-vacation-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/top-5-tips-for-managing-eye-allergies-this-spring-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/treating-vision-problems-lowers-risk-of-falling-in-seniors",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/trouble-seeing-the-fine-print-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/ultraviolet-light-and-your-eyes-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/under-pressure-are-you-at-risk-for-glaucoma",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/understanding-eye-color-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/understanding-the-eye-chart",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/uv-safety-awareness-month-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/website-accessibility-policy",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/welcome-to-our-new-website",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/what-is-a-stye-anyway-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/what-women-need-to-know-about-eye-health",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/what-you-need-to-know-about-firework-eye-safety",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/what-you-need-to-know-about-glaucoma-the-sneak-thief-of-sight-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/what-you-need-to-know-to-help-world-blindness-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/what-you-should-know-about-diabetes-and-your-vision",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/whats-in-your-household-cleaning-supplies-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/whats-new",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/whats-new",
+   "sentence": "monday: 8:30 am - 4:30 pm"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/whats-new",
+   "sentence": "tuesday: 8:30 am - 4:30 pm"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/whats-new",
+   "sentence": "wednesday: 8:30 am - 4:30 pm"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/whats-new",
+   "sentence": "thursday: 8:30 am - 4:30 pm"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/whats-new",
+   "sentence": "friday: 8:30 am - 4:30 pm"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/whats-new",
+   "sentence": "a vision insurance policy is not the same as health insurance."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/whats-new",
+   "sentence": "regular health insurance plans protect you against financial losses due to unexpected eye injuries or disease."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/whats-new",
+   "sentence": "vision insurance, on the other hand, is a wellness benefit designed to provide routine eye care prescription eyewear and other vision-related services at a reduced cost."
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/when-20-20-vision-isnt-enough-for-your-child-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/why-do-we-need-glasses",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/women-and-diabetes-world-diabetes-day-2017",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/women-eye-health-5-tips-for-optimal-vision-for-life-2018",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/womens-health-and-your-vision-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/workplace-eye-wellness-the-dangers-of-blue-light-2016",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/world-braille-day-2019",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/world-sight-day-challenge-no-more-avoidable-blindness",
+   "sentence": "return to top of menu"
+  },
+  {
+   "url": "https://www.cliftoneyecenter.com/your-childs-hidden-vision-problem-2017",
+   "sentence": "return to top of menu"
+  }
+ ],
+ "sourceChromeCount": 363
+}

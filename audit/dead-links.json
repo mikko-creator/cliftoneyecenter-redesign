@@ -1,0 +1,70 @@
+{
+  "schema": "site-reforge/dead-links@1",
+  "generated": "2026-09-28T07:09:57.096Z",
+  "note": "Internal targets the SOURCE links to but no page serves (404 on the live site, not an alias). The anchor is unwrapped; the link text is kept. Re-pointed targets (live 301 aliases and 404s whose content exists elsewhere) are listed under moved.",
+  "targets": [
+    {
+      "path": "/eyeglasses-contacts/prescription-eyeglasses/consider-a-second-pair-of-glasses/",
+      "references": 1
+    },
+    {
+      "path": "/your-eye-health/eye-diseases/cataracts/cataracts-video/",
+      "references": 1
+    },
+    {
+      "path": "/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-glare/",
+      "references": 2
+    },
+    {
+      "path": "/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-uv-rays/",
+      "references": 2
+    }
+  ],
+  "moved": [
+    {
+      "from": "/eye-care-services/dry-eye-disease-and-treatment/",
+      "to": "/eye-care-services/eye-conditions/dry-eye-disease-and-treatment/",
+      "references": 6
+    },
+    {
+      "from": "/eye-care-services/pediatric-eye-exams/",
+      "to": "/eye-care-services/eye-exams/pediatric-eye-exams/",
+      "references": 2
+    },
+    {
+      "from": "/eyeglasses-contacts/designer-frames/",
+      "to": "/eyeglasses-contacts/eyeglasses/designer-frames/",
+      "references": 1
+    },
+    {
+      "from": "/eyeglasses/designer-frames/",
+      "to": "/eyeglasses-contacts/eyeglasses/designer-frames/",
+      "references": 8
+    },
+    {
+      "from": "/your-eye-health/eye-conditions/",
+      "to": "/eye-care-services/eye-conditions/",
+      "references": 1
+    },
+    {
+      "from": "/your-eye-health/eye-diseases/",
+      "to": "/eye-care-services/your-eye-health/eye-diseases/",
+      "references": 1
+    },
+    {
+      "from": "/your-eye-health/eye-diseases/cataracts/",
+      "to": "/eye-care-services/your-eye-health/eye-diseases/cataracts/",
+      "references": 1
+    },
+    {
+      "from": "/your-eye-health/eye-diseases/macular-degeneration/",
+      "to": "/eye-care-services/your-eye-health/eye-diseases/macular-degeneration/",
+      "references": 1
+    },
+    {
+      "from": "/your-eye-health/protecting-your-eyes/",
+      "to": "/eye-care-services/your-eye-health/protecting-your-eyes/",
+      "references": 2
+    }
+  ]
+}
