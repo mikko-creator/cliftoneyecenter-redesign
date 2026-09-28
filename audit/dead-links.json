@@ -1,6 +1,6 @@
 {
   "schema": "site-reforge/dead-links@1",
-  "generated": "2026-09-28T11:14:48.085Z",
+  "generated": "2026-09-28T18:00:56.495Z",
   "note": "Internal targets the SOURCE links to but no page serves (404 on the live site, not an alias). The anchor is unwrapped; the link text is kept. Re-pointed targets (live 301 aliases and 404s whose content exists elsewhere) are listed under moved.",
   "targets": [
     {

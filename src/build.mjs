@@ -334,8 +334,11 @@ const SVC = {
 };
 /* Band photos whose subject is not centred get a crop focus (site.css .band__visual--{focus}); the file is never
    edited. Glasses-Contacts-hero (1600 x 463, /eyeglasses-contacts/ and /contact-lenses/): both faces sit at 20-54%
-   of the width with a flat grey field on the right, and the centred crop put a face under the title glass (VIA-02). */
-const BAND_FOCUS = { 'glasses-contacts-hero.jpg': 'left' };
+   of the width with a flat grey field on the right, and the centred crop put a face under the title glass (VIA-02).
+   Glasses-hero-1 (1600 x 463, /eyeglasses-contacts/eyeglasses/) is the mirror case (QA r2 R2-VIA-04): the woman stands
+   at 57-86% of the width beside a flat grey field on the left; centred, the frame cut her face at 390 and her hair
+   at 1440. */
+const BAND_FOCUS = { 'glasses-contacts-hero.jpg': 'left', 'glasses-hero-1.jpg': 'right' };
 /* band variant + backdrop per family (COMPONENTS C.1, DESIGN-SPEC 6.2) */
 const PHOTO_PAGES = new Set(['/eye-care-services/', '/eyeglasses-contacts/', '/eyeglasses-contacts/eyeglasses/', '/eyeglasses-contacts/contact-lenses/', '/eyeglasses-contacts/eyeglasses/designer-frames/', '/insurance/', '/hours-location/', '/our-eye-doctors/']);
 function bandPlan(family, p) {
@@ -604,6 +607,25 @@ function buildPage(page, opts = {}) {
     if (!headingUsed && sec.heading) bodyParts.push(sectionTitle(sec.heading, sec.attrs));
   }
   if (svcFig) bodyParts.unshift(sheet('', '', svcFig));
+  /* QA r2 VIB-R2-04: a prose chunk holding only pictures (the source's right-floated post picture in a <p> right before
+     the first <h2>, or the svc feature photo above a source lead photo) became a glass sheet of its own, cut off from
+     the text it stood beside: 22 sheets site-wide, a 300px plate alone in an 868px sheet. The picture joins the sheet
+     that follows it (at its start, before its heading: source order, and a plate floats beside that text from 900px);
+     if the next part is not a sheet (a component follows), it joins the sheet before it; with neither (only on
+     /template/header/: a logo after a CTA band), the picture stands in the column on its own, without a sheet (a plate
+     or photo carries its own paper frame and shadow). */
+  const PROSE_SHEET = /^(<section class="sheet glass glass--light is-flat"(?: data-reveal="up")?>\n<div class="prose">\n)([\s\S]*)(\n<\/div>\n<\/section>)$/;
+  const picturesOnly = (inner) => /<figure\b/i.test(inner) && !inner.replace(/<figure\b[\s\S]*?<\/figure>/gi, '').replace(/<[^>]+>/g, '').replace(/&nbsp;|\s/g, '');
+  for (let i = 0; i < bodyParts.length; i++) {
+    const m = PROSE_SHEET.exec(bodyParts[i]);
+    if (!m || !picturesOnly(m[2])) continue;
+    const next = PROSE_SHEET.exec(bodyParts[i + 1] || ''), prev = i > 0 ? PROSE_SHEET.exec(bodyParts[i - 1]) : null;
+    if (next) bodyParts[i + 1] = next[1] + m[2] + next[2] + next[3];
+    else if (prev) bodyParts[i - 1] = prev[1] + prev[2] + m[2] + prev[3];
+    else { bodyParts[i] = m[2].trim(); stats.pictureSheetsUnwrapped = (stats.pictureSheetsUnwrapped || 0) + 1; continue; }
+    bodyParts.splice(i, 1); i--;
+    stats.pictureSheetsMerged = (stats.pictureSheetsMerged || 0) + 1;
+  }
 
   /* CS-06: a source ROW background photo that the title band does not use (the band takes the first non-mobile
      background and the mobile variant) is a kept image too (image-inventory KEEP). It renders, as-is and never
@@ -775,8 +797,16 @@ function buildPage(page, opts = {}) {
      "summary_large_image" of the first build had no reason on record. */
   const ogType = ((s.openGraph && s.openGraph['og:type']) || '').trim() || 'website';
   const twitterCard = ((s.twitter && s.twitter['twitter:card']) || '').trim() || 'summary';
+  /* QA r2 (content-seo F3): every source page carries twitter:title (345 non-empty), and on 74 it is the SEO <title>,
+     not og:title; the rebuild dropped the tag, so X/Twitter fell back to og:title. It is emitted verbatim when the
+     source has one, except where the page title was repaired and the source twitter:title is that same broken value
+     (the archive pages titled after the first post they list): there the tag is omitted (og:title is the fallback). */
+  const srcTwitterTitle = ((s.twitter && s.twitter['twitter:title']) || '').trim();
+  const srcTitle = (s.title || page.title || '').trim();
+  const twitterTitle = srcTwitterTitle && !(title !== srcTitle && srcTwitterTitle === srcTitle) ? srcTwitterTitle : '';
+  if (twitterTitle) stats.twitterTitles = (stats.twitterTitles || 0) + 1;
   const headHtml = T.head({
-    depth, title, description, robots, canonical, ogTitle, ogType, twitterCard, ogImage: ORIGIN + '/img/' + ogRel, lang: s.lang || page.lang,
+    depth, title, description, robots, canonical, ogTitle, ogType, twitterCard, twitterTitle, ogImage: ORIGIN + '/img/' + ogRel, lang: s.lang || page.lang,
     jsonLd: jsonLd({ pageUrl: canonical, chrome, origin: ORIGIN, logoUrl: ORIGIN + '/img/' + logoRec.rel, trail: trailAbs }),
     lcp, favicon: FAVICON, styles: LINKED_STYLES,
   });
@@ -793,6 +823,18 @@ function buildPage(page, opts = {}) {
     }
     return open + parts.join('') + close;
   });
+  /* QA r2 R2-VIA-08: a heading line may not START with an em dash ("PLENTY OF CHOICE" / "—EYEGLASSES": the dash is a
+     break opportunity before and after). In every heading of <main> (the band h1 included) the word before a dash
+     and the dash stay together in span.nobr; the break after the dash stays. Characters are unchanged. */
+  html = html.replace(/(<main\b[^>]*>)([\s\S]*?)(<\/main>)/, (m, open, inner, close) => open + inner.replace(/<(h[1-6])(\s[^>]*)?>([\s\S]*?)<\/\1>/gi, (hm, tag, attrs, hin) => {
+    const parts = hin.split(/(<[^>]*>)/);
+    let changed = false;
+    for (let i = 0; i < parts.length; i += 2) {
+      if (!/—|&mdash;|&#8212;|&#x2014;/i.test(parts[i]) || parts[i - 1] === '<span class="nobr">') continue;
+      parts[i] = parts[i].replace(/([^\s<>]+? ?)(—|&mdash;|&#8212;|&#x2014;)/gi, (run) => { changed = true; stats.dashesKeptWithWord = (stats.dashesKeptWithWord || 0) + 1; return '<span class="nobr">' + run + '</span>'; });
+    }
+    return changed ? '<' + tag + (attrs || '') + '>' + parts.join('') + '</' + tag + '>' : hm;
+  }) + close);
   /* VIB-01 (COMPONENTS F.7): a host serves dist/404.html at the failing request's own path, at ANY depth
      (/some-old-post/ keeps its URL), so a page-relative URL in that one file resolved under the missing path:
      no CSS, no fonts, broken images, and a "home page" link to /some-old-post/index.html. Every URL in 404.html
@@ -954,7 +996,10 @@ for (const pg of siteInv.pages || []) {
 for (const [from, to] of MOVED) if (!redirects.has(from) && willExist.has(to)) redirects.set(from, { to, why: 'source links here and 404s; content lives at the target' });
 const rLines = [...redirects].sort((a, b) => (a[0] < b[0] ? -1 : 1)).map(([f, r]) => ['/' + f + '/', '/' + r.to + '/', r.why]);
 fs.writeFileSync(path.join(DIST, '_redirects'), '# Carried-forward redirects (see audit/redirects.json)\n' + rLines.flatMap(([f, t]) => [f + '  ' + t + '  301', f.replace(/\/$/, '') + '  ' + t + '  301']).join('\n') + '\n');
-fs.writeFileSync(path.join(DIST, '.htaccess'), '# Carried-forward redirects (see audit/redirects.json)\n' + rLines.map(([f, t]) => 'RedirectMatch 301 ^' + f.replace(/\/$/, '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '/?$ ' + t).join('\n') + '\n');
+/* QA r2 (content-seo F4): Apache serves its own bare error page unless told otherwise, so dist/404.html (root-relative
+   URLs, COMPONENTS F.7) was never used there. ErrorDocument points every 404 at it; Netlify and Cloudflare Pages serve
+   a root 404.html by convention, so _redirects needs no line. */
+fs.writeFileSync(path.join(DIST, '.htaccess'), '# 404 page (dist/404.html; its URLs are root-relative, COMPONENTS F.7)\nErrorDocument 404 /404.html\n\n# Carried-forward redirects (see audit/redirects.json)\n' + rLines.map(([f, t]) => 'RedirectMatch 301 ^' + f.replace(/\/$/, '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '/?$ ' + t).join('\n') + '\n');
 stats.redirects = rLines.length;
 
 /* ---------- 6. reports ---------- */

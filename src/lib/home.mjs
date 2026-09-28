@@ -197,10 +197,13 @@ export function buildHome(ctx) {
     return '<h3 class="offer-h">' + esc(textOf(b.html)) + '</h3>';
   }).filter(Boolean).join('\n');
   const sprig = generated('cut-olive-sprig', 'the Welcome/Services seam');
+  /* QA r2 RA2-02 (gate G10): the 10 blurred colour orbs carry no data-depth: moving 42px-blurred layers under the glass
+     every scroll frame kept the home at p95 33ms at 4x CPU even with compositor-driven parallax; still, they cost
+     nothing per frame. The depth comes from the protruding photos, cut-outs, sprig, smiles and iris, which keep it. */
   const welcome = [
     '<section class="welcome" aria-labelledby="welcome-h">',
     '<div class="deco" aria-hidden="true">',
-    '<span class="orb orb--lime welcome__orb-a" data-depth="0.05"></span><span class="orb orb--teal welcome__orb-b" data-depth="0.03"></span><span class="orb orb--sun welcome__orb-c" data-depth="0.06"></span>',
+    '<span class="orb orb--lime welcome__orb-a"></span><span class="orb orb--teal welcome__orb-b"></span><span class="orb orb--sun welcome__orb-c"></span>',
     '</div>',
     sprig ? img(sprig, '', ' loading="lazy" decoding="async" data-depth="-0.08" data-depth-max="24" data-rot="12"').replace('<img ', '<img class="sprig" ') : '',
     '<div class="wrap">',
@@ -289,7 +292,7 @@ export function buildHome(ctx) {
   const reviews = [
     '<section class="reviews">',
     '<div class="deco" aria-hidden="true">',
-    '<span class="orb orb--lime reviews__orb-a" data-depth="0.05"></span><span class="orb orb--teal reviews__orb-b" data-depth="0.07"></span><span class="orb orb--mint reviews__orb-c" data-depth="0.03"></span>',
+    '<span class="orb orb--lime reviews__orb-a"></span><span class="orb orb--teal reviews__orb-b"></span><span class="orb orb--mint reviews__orb-c"></span>',
     '</div>',
     '<div class="wrap">',
     smiles.length ? '<div class="smiles" aria-hidden="true">\n' + smiles.join('\n') + '\n</div>' : '',
@@ -328,7 +331,7 @@ export function buildHome(ctx) {
   });
   const help = [
     '<section class="help" aria-labelledby="help-h">',
-    '<div class="deco" aria-hidden="true"><span class="orb orb--lime help__orb-a" data-depth="0.05"></span><span class="orb orb--sun help__orb-b" data-depth="0.03"></span></div>',
+    '<div class="deco" aria-hidden="true"><span class="orb orb--lime help__orb-a"></span><span class="orb orb--sun help__orb-b"></span></div>',
     '<div class="wrap help__grid">',
     '<div class="help__side" data-reveal="left">',
     '<h2 class="section-title tag-title help__tag" id="help-h">' + hashTitle(helpTag) + '</h2>',
@@ -392,7 +395,7 @@ export function buildHome(ctx) {
   const sosHref = sosBtn ? H(attr(openTag(sosBtn), 'href')) : null;       /* L17: "tel: 318-..." loses its space */
   const visit = [
     '<section class="visit">',
-    '<div class="deco" aria-hidden="true"><span class="orb orb--lime visit__orb-a" data-depth="0.04"></span><span class="orb orb--teal visit__orb-b" data-depth="0.06"></span></div>',
+    '<div class="deco" aria-hidden="true"><span class="orb orb--lime visit__orb-a"></span><span class="orb orb--teal visit__orb-b"></span></div>',
     '<div class="wrap visit__grid" data-stagger>',
     mapSrc ? '<div class="map" data-reveal="up"><iframe class="map__frame" src="' + esc(mapSrc) + '" title="Google map" loading="lazy"></iframe></div>' : '',
     '<div class="nap glass glass--image" data-reveal="up">',

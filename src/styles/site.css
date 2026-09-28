@@ -85,7 +85,11 @@ section { position: relative; }
   background: var(--rim-light);
   -webkit-mask: linear-gradient(var(--mask) 0 0) content-box, linear-gradient(var(--mask) 0 0); -webkit-mask-composite: xor;
           mask: linear-gradient(var(--mask) 0 0) content-box exclude, linear-gradient(var(--mask) 0 0); }
-.glass::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 0; opacity: 0;
+/* QA r2 VIB-R2-03: the sheen sits at z-index -1. Every .glass is its own stacking context (isolation: isolate), so it
+   still paints over the glass's own background, but now UNDER the glass's in-flow text: at z-index 0 it washed a bare
+   text node (the form notice "This form is not connected yet ...") to 4.0-4.6:1 while focused. Element children were
+   already above it (.glass > * z-index 2), so nothing else changes. */
+.glass::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1; opacity: 0;
   background: radial-gradient(420px circle at var(--mx, 30%) var(--my, 0%), var(--spec-hi), var(--spec-lo) 60%); }
 .glass:is(:hover, :focus-visible, :focus-within)::after { opacity: 1; }
 .glass > * { position: relative; z-index: 2; }
@@ -216,8 +220,12 @@ section { position: relative; }
   .mainnav__link { font-size: .9375rem; padding-inline: 10px; }
   .mainnav__link::after { left: 10px; right: 10px; }
 }
+/* QA r2 VHR2-01: the bar reserves the plate width + 16px, which leaves 3 x 44 + 2 x 8 = 148px for the round buttons
+   only from 340px up (the 16px spare absorbs up to 16px of overflow); at 320 the content box was 120px and
+   justify-content: flex-end pushed the buttons 12px under the plate. Below 340px the plate box narrows with the
+   viewport (112px at 340 -> 92px at 320) so the buttons keep an 8px gap to the plate; the scrolled scale is unchanged. */
 @media (max-width: 1023px) {
-  .site-header { --plate-left: 14px; --plate-box: 112px; --plate-pad: 10px; --plate-scale: .76; top: 8px; margin-top: 8px; }
+  .site-header { --plate-left: 14px; --plate-box: clamp(92px, 100vw - 228px, 112px); --plate-pad: 10px; --plate-scale: .76; top: 8px; margin-top: 8px; }
   .site-header__bar { height: 56px; border-radius: 22px; padding-right: 6px; }
   .site-header .logo-plate { padding: 8px var(--plate-pad) 9px; }
   .mainnav { display: none; }
@@ -415,9 +423,13 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 }
 /* VH-02: below 440px "COMPREHENSIVE" (an unbreakable 132px word) plus the chip is wider than the card, and the chip
    left the card (11px at 390, 46px at 320). The chip takes its own line at the card's right; the label spans the
-   card and, at 320, breaks inside the word only as a last resort (body overflow-wrap). */
+   card. QA r2 VHR2-02: "COMPREHENSIVE" (133.7px at 14.5px) still did not fit the 115px / 125px label at 320 / 340
+   and broke inside the word with no hyphen. The foot is an inline-size container and the label's size follows it
+   (10.4cqi: the word is ~96% of the label width), capped at --fs-sm, so a word never splits; from ~366px it is
+   --fs-sm as before. */
 @media (max-width: 439px) {
-  .svc__foot { flex-direction: column; align-items: stretch; }
+  .svc__foot { flex-direction: column; align-items: stretch; container-type: inline-size; }
+  .svc__name { font-size: min(var(--fs-sm), 10.4cqi); }
   .svc__go { align-self: flex-end; }
 }
 
@@ -447,7 +459,16 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
   .rev-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 4px; overscroll-behavior-x: contain; touch-action: pan-x pan-y;
     padding: 8px 4px 28px; margin: -8px -4px -28px; scrollbar-width: none; }
   .rev-track::-webkit-scrollbar { display: none; }
-  .rev-slide { flex: 0 0 min(86%, 420px); scroll-snap-align: start; }
+  /* QA r2 VHR2-05 (a recorded change to spec 5.6 "min(86%, 420px)"): capped at 420px, a tablet track (700-1023px)
+     showed the first card plus ~60% of the second, so no track height fitted both (143px of stage under the first
+     card at 768). Capped at 640px, at most ~44% of the next card is in view below 1024, it still peeks, and the track
+     follows the one card being read (site.js fit); the quote sets ~50-60 characters a line at 640px. */
+  .rev-slide { flex: 0 0 min(86%, 640px); scroll-snap-align: start; }
+  /* QA r2 VHR2-05: the track was as tall as its TALLEST card (458px at 390), so under the first card (296px) the stage
+     sat empty for 180-244px before the buttons. site.js sets the track's height to the card in view (plus the track's
+     padding) on load, on every slide change and on resize; overflow-y is clipped so a taller neighbour's peeking
+     edge ends at the track instead of pushing the buttons down. Without JS the height stays auto (nothing clipped). */
+  .rev-track { overflow-y: hidden; }
   .rev-nav { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
   .rev-nav__btn--prev .ico { scale: -1 1; }
   .rev-nav__btn[aria-disabled="true"] { opacity: .45; cursor: default; }
@@ -591,6 +612,10 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 .hours dd { margin: 0 0 0 auto; color: var(--ink-700); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
 .nap { container: nap / inline-size; }
 @container nap (max-width: 340px) { .hours__row { padding-inline: 8px; column-gap: 8px; } }
+/* QA r2 VHR2-04: at 320 the card's content box is 224px and "Wednesday:" + 8px + "8:30 AM - 4:30 PM" need 215.4px
+   against the row's 206px, so the value dropped under its day (a 60px row among 36px rows). Below a 232px content box
+   the list reaches 8px into the card's side padding: every row is 16px wider, so each value sits level with its day. */
+@container nap (max-width: 235px) { .hours { margin-inline: -8px; } }
 .hours__row.is-today { background: var(--gc1-bg); box-shadow: inset 0 0 0 1px var(--g4-50); }
 .hours__row.is-today :is(dt, dd) { color: var(--green-900); }
 .sos { display: flex; flex-direction: column; gap: 14px; padding: clamp(22px, 2.4vw, 30px); border-radius: var(--r-lg); }
@@ -604,18 +629,34 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 /* 720-1239px and below 720px: the cards overlap the panel's bottom by 120px / 48px (spec 3.12), which is exactly the
    tray: the panel grows by it and the embed keeps its 360px / 280px (VH-04, VIB-02). The emergency card starts on
    the same line as the NAP card (was -60px): with a tray, a staggered start would leave an empty strip of panel. */
+/* QA r2 VHR2-03: the emergency card is start-aligned (align-self: start), not stretched to the NAP card's height:
+   stretched, its button (margin-top: auto) dropped to the bottom and left a 41-116px dark band above it at 768-1239.
+   It still covers the tray under it (the card is far taller than the 120px tray).
+   QA r2 VIB-R2-01: a visit block WITHOUT an emergency card (/hours-location/, /location/clifton-eye-center/) left
+   the tray right of the half-width NAP card as an empty 375-500 x 120px stone slab. There the NAP card spans the
+   block (24px in from each side, like the two cards on the home), so it covers the whole tray, and it lays its
+   content out in two columns: contact lines left, the hours list right. The grid's last row is 1fr, so the hours
+   list (spanning every row) never stretches the rows of the left column. */
 @container visit (min-width: 720px) {
   .visit__grid { --map-tray: 120px; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
   .visit__grid > .map { grid-column: 1 / 13; min-height: calc(360px + var(--map-tray)); }
   .visit__grid > .nap { grid-column: 1 / 7; margin: -140px 0 0 24px; }   /* 120px over the map panel, net of the 20px gap */
-  .visit__grid > .sos { grid-column: 7 / 13; margin: -140px 24px 0 0; }
+  .visit__grid > .sos { grid-column: 7 / 13; margin: -140px 24px 0 0; align-self: start; }
+}
+@container visit (min-width: 720px) and (max-width: 1239.98px) {
+  .visit__grid:not(:has(> .sos)) > .nap { grid-column: 1 / 13; margin: -140px 24px 0; display: grid; align-content: start;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: repeat(5, auto) 1fr; column-gap: clamp(28px, 4vw, 56px); }
+  .visit__grid:not(:has(> .sos)) > .nap > * { grid-column: 1; }
+  .visit__grid:not(:has(> .sos)) > .nap > .hours { grid-column: 2; grid-row: 1 / -1; margin-top: 0; }
+  .visit__grid:not(:has(> .sos)) > .nap > .nap__sub:has(+ .hours) { grid-column: 2; grid-row: 1; }
+  .visit__grid:not(:has(> .sos)) > .nap > .nap__sub:has(+ .hours) + .hours { grid-row: 2 / -1; }
 }
 /* from 1240px the cards overlap the map's right edge, mid-height: the embed's bottom strip is already clear */
 @container visit (min-width: 1240px) {
   .visit__grid { --map-tray: 0px; }
   .visit__grid > .map { grid-column: 1 / 8; grid-row: 1 / 3; min-height: 520px; }
   .visit__grid > .nap { grid-column: 7 / 10; grid-row: 1; margin: 56px 0 0 -24px; }
-  .visit__grid > .sos { grid-column: 10 / 13; grid-row: 1 / 3; margin: 150px 0 0 12px; }
+  .visit__grid > .sos { grid-column: 10 / 13; grid-row: 1 / 3; margin: 150px 0 0 12px; align-self: stretch; }
 }
 @container visit (max-width: 719.98px) {
   .visit__grid { --map-tray: 48px; }
@@ -680,7 +721,7 @@ main > .rail { margin-top: var(--s-6); }
    the first keeps .section-title, the ones after it are the smaller sub-title, levels as in the source */
 .page-main > .section-head { display: grid; gap: 6px; margin: var(--s-4) 0 calc(-1 * var(--s-3)); }
 .section-head > .section-title { margin: 0; scroll-margin-top: 110px; }
-.section-title--sub { font-family: var(--ff-display); font-weight: 600; font-size: var(--fs-h3); line-height: var(--lh-h3); letter-spacing: 0; color: var(--slate-700); }
+.section-title--sub { font-family: var(--ff-display); font-weight: 600; font-size: var(--fs-h3); line-height: var(--lh-h3); letter-spacing: 0; color: var(--slate-700); text-wrap: balance; }   /* QA r2 R2-VIA-09: balanced like .section-title ("... IN Bossier" / "City" at 390) */
 /* keeps a run of letter-spaced capitals ("E Y E W E A R .") on one line: breaks fall only between the source's
    dot-separated words (VIA-05); also keeps a phone number whole inside a button label (VIB-04) */
 .nobr { white-space: nowrap; }
@@ -708,6 +749,9 @@ main > .rail { margin-top: var(--s-6); }
    grey text field on the right) is cropped from the left, so the faces stay in frame and clear of the 48px title
    glass overlap; the build sets the modifier per file (src/build.mjs BAND_FOCUS). The file is unchanged. */
 .band__visual--left img { object-position: 10% 40%; }
+/* QA r2 R2-VIA-04: the mirror case, glasses-hero-1 (/eyeglasses-contacts/eyeglasses/): the woman stands at 57-86% of
+   the width beside a flat grey field; centred, the frame cut her face (390) and hair (1440). Cropped from the right. */
+.band__visual--right img { object-position: 90% 40%; }
 /* the build ships band cut-outs TRIMMED to their opaque box (src/build.mjs trimmedGen), so the box is the
    object: a compact object (prism, phoropter, contact lens, about 1:1) crosses the band edge by the spec 4.2
    offset; a wide flat one (.band__cut--wide: eyeglasses 3.1:1, kids 3.0:1, sunglasses 2.4:1) is wider and
@@ -739,7 +783,10 @@ main > .rail { margin-top: var(--s-6); }
    sit flush on the stage's bottom-right corner, never rotated, shadowed or moved (a lifted edge would show);
    below 1024 the band keeps room under the full-width title panel so the finger is not hidden behind it */
 .band__stage > .band__cut--rise { right: 0; bottom: 0; width: clamp(104px, 11vw, 170px); rotate: none; scale: -1 1; filter: none; z-index: 1; }
-@media (max-width: 1023px) { .band:has(.band__cut--rise) .band__grid { padding-bottom: 64px; } }
+/* QA r2 R2-VIA-03: 64px of grid padding plus the band's own bottom padding (28-40px) left 92-104px under the title
+   panel, but the rising finger is 1.02 x its width tall (106-115px): the panel covered the contact lens on the
+   fingertip (92 x 11-14px at 390-768). The clearance is now the cut's height + 12px, net of the band's padding. */
+@media (max-width: 1023px) { .band:has(.band__cut--rise) .band__grid { padding-bottom: calc(1.022 * clamp(104px, 11vw, 170px) + 12px - clamp(28px, 4vw, 56px)); } }
 .crumbs { margin: 0 0 14px; }
 .crumbs__list { display: flex; flex-wrap: wrap; align-items: center; gap: 0 6px; margin: 0; padding: 0; list-style: none; font-size: var(--fs-sm); line-height: 1.3; }
 .crumbs__item { display: inline-flex; align-items: center; gap: 6px; }
@@ -781,6 +828,14 @@ a.crumbs__link:is(:hover, :focus-visible) { color: var(--green-800); text-decora
 
 /* ---------- 19. sheets and long-form prose (C.4, D) ---------- */
 .sheet { min-width: 0; padding: clamp(22px, 1rem + 2vw, 44px); border-radius: var(--r-xl); }
+/* QA r2 R2-VIA-06: on a solo page (no aside, the 980px column) a text-only sheet around a 51ch measure left 38-44% of
+   its glass empty at 1024-1440 (VIA-01 brought the measure from 66ch to 51ch). From 900px such a sheet is as wide as
+   its measure plus its padding and keeps the column's left edge (shared with the section titles, CTA bands, docks
+   and cards); a sheet holding a picture, table, embed, logo wall or form keeps the full column width. */
+@media (min-width: 900px) {
+  .is-solo .page-main > .sheet:not(:has(figure, img, iframe, table, .table-scroll, .embed, .logo-grid, .pay-row, .qr-plate, form)) {
+    justify-self: start; width: 100%; max-width: calc(var(--measure) + 2 * clamp(22px, 1rem + 2vw, 44px)); }
+}
 .prose { display: flow-root; font-size: var(--fs-base); line-height: 1.7; color: var(--ink-700); overflow-wrap: anywhere; }
 .prose > * { max-width: var(--measure); margin-block: 0; }
 .prose > * + * { margin-top: .9em; }
@@ -837,6 +892,14 @@ a.crumbs__link:is(:hover, :focus-visible) { color: var(--green-800); text-decora
    image's box (no inline padding, no baseline gap) and shows the focus ring around it */
 .fig .fig__media > a:not([class]) { display: block; padding: 0; border-radius: inherit; }
 .fig .fig__media > a > img { display: block; }
+/* QA r2 RA2-01 / CG2-01: the link's box is exactly fig__media's box, whose overflow: hidden (the rounded clip of the
+   plate, photo and brand roles) cut away the whole 3px ring drawn 2px outside it: a keyboard user saw no focus at all.
+   A media box holding a link does not clip; the image is rounded itself (inherited through the link). */
+.fig .fig__media:has(> a) { overflow: visible; }
+.fig .fig__media > a > img { border-radius: inherit; }
+/* QA r2 R2-VIA-07: the linked plate had no hover state. Like the linked logo chip (spec 5.5), it gains --e-2 on hover
+   and keyboard focus (the -6px lift is in motion.css, with its :focus-within partner). */
+.fig--plate:has(> .fig__media > a):is(:hover, :focus-within) { box-shadow: var(--e-2); }
 .fig figcaption { margin-top: 10px; font-size: var(--fs-sm); line-height: 1.5; color: var(--ink-600); }
 .fig--photo { --bo: clamp(8px, 2.4vw, 36px); position: relative; z-index: 3; width: fit-content; max-width: calc(100% + var(--bo)) !important; }
 .fig--photo .fig__media { border-radius: 22px; overflow: hidden; background: var(--paper); box-shadow: var(--e-pop); }
@@ -859,6 +922,9 @@ a.crumbs__link:is(:hover, :focus-visible) { color: var(--green-800); text-decora
   /* VIA-06: a plate that ENDS its prose block has no text to wrap around it (spec 3.16 floats a plate so text wraps);
      floated, it sat alone in the sheet's right corner beside 570-670px of blank. It stays in flow, as below 900px. */
   .prose > .fig--plate:last-child { float: none; margin: 0; max-width: min(100%, var(--measure)) !important; }
+  /* QA r2 VIB-R2-04: a post picture now opens the sheet of the text it stood beside; floated there, the heading or
+     paragraph beside it starts at the sheet's top with it, not 1.6em lower */
+  .prose > .fig--plate:first-child:not(:last-child) + * { margin-top: 0; }
   .prose > * + .fig--plate:last-child { margin-top: .9em; }
   .prose > :is(h2, h3, h4, h5, h6) + .fig--plate:last-child { margin-top: .55em; }
 }
@@ -872,8 +938,12 @@ a.crumbs__link:is(:hover, :focus-visible) { color: var(--green-800); text-decora
 .index-card { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 22px 22px 20px; border-radius: var(--r-lg); }
 /* VIA-09: the frame fits its image and the image is never drawn wider than its file (spec 6.4/6.5): the one
    250 x 167 thumbnail was stretched to 309-312px (1.25x) by width: 100%. 325px files render as before. */
-.index-card > .index-card__thumb { display: block; width: fit-content; max-width: min(100%, 325px); margin: -54px 0 4px; border-radius: 16px; overflow: hidden; background: var(--paper); box-shadow: var(--e-pop); }
-.index-card__thumb img { width: auto; max-width: 100%; height: auto; }
+/* QA r2 R2-VIA-05: fit-content made the one 250px thumbnail's frame 39px shorter than its row neighbours' (768), so
+   its title and summary started 39px higher. Every thumbnail file is 3:2 (325 x 217 or 250 x 167), so the frame is one
+   3:2 slot as wide as the card allows (max 325px); the image sits centred in it at no more than its file size, on the
+   frame's paper (a mat around the 250px file), and titles line up across a row. */
+.index-card > .index-card__thumb { display: grid; place-items: center; width: 100%; max-width: min(100%, 325px); aspect-ratio: 325 / 217; margin: -54px 0 4px; border-radius: 16px; overflow: hidden; background: var(--paper); box-shadow: var(--e-pop); }
+.index-card__thumb img { width: auto; max-width: 100%; height: auto; border-radius: 10px; }
 .index-card > .index-card__title { position: static; margin: 0; font-size: var(--fs-h4); font-weight: 800; line-height: var(--lh-h4); }
 .index-card__link { color: var(--ink-900); text-decoration: none; }
 .index-card__link::after, .post-card__link::after { content: ""; position: absolute; inset: 0; z-index: 3; border-radius: inherit; }
@@ -925,13 +995,18 @@ a.crumbs__link:is(:hover, :focus-visible) { color: var(--green-800); text-decora
    one at 64% (thin wordmarks 3-6px tall). Logos now render at intrinsic size (spec 3.21 "shown at intrinsic size";
    its 70px cap is dropped, a recorded change), and the column minimum is 161px = 133 + the chip's 2 x 14px padding,
    so a 133px logo is never scaled down on a grid. Never upscaled: width/height auto, capped at 100%. */
-.logo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 161px), 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
-.logo-chip { display: grid; place-items: center; align-content: center; gap: 8px; min-height: 104px; padding: 14px; border-radius: 18px; background: var(--paper); box-shadow: var(--e-1); text-align: center; }
+.logo-grid { --logo-col: 161px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--logo-col)), 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.logo-chip { display: grid; place-items: center; align-content: center; gap: 8px; min-height: 104px; padding: var(--logo-pad, 14px); border-radius: 18px; background: var(--paper); box-shadow: var(--e-1); text-align: center; }
+/* QA r2 R2-VIA-01: the 161px minimum needs a 334px grid for two columns, so from 324 to 365px every wall collapsed to
+   one column (the 31 designer logos stacked 4,638px tall at 360, +2,290px of page). Below 400px the minimum is 140px
+   (round 1's) and the chip padding 12px: two columns from 324px, and at 360 a 158px chip draws a 133px logo at its
+   full size (134px of room). From 366 to 399px the grid was already two columns and stays so. */
+@media (max-width: 399px) { .logo-grid { --logo-col: 140px; --logo-pad: 12px; } }
 /* the attributes reserve the box (no shift on lazy load); contain keeps a narrow-column logo undistorted */
 .logo-chip img { max-width: 100%; height: auto; object-fit: contain; }
 .logo-chip__name { font-size: var(--fs-sm); font-weight: 700; line-height: 1.3; color: var(--ink-900); }
 .logo-chip--link { padding: 0; }
-.logo-chip__link { display: grid; place-items: center; width: 100%; height: 100%; min-height: 104px; padding: 14px; border-radius: inherit; }
+.logo-chip__link { display: grid; place-items: center; width: 100%; height: 100%; min-height: 104px; padding: var(--logo-pad, 14px); border-radius: inherit; }
 .logo-chip--link:is(:hover, :focus-within) { box-shadow: var(--e-2); }
 .pay-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
 .pay-row__item img { max-width: none; }   /* intrinsic 51 x 32, from the attributes */

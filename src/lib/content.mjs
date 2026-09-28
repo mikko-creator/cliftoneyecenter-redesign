@@ -32,6 +32,8 @@ const SELF_DROP = /<(input|meta|link|source|track)\b[^>]*\/?>/gi;
 const BLOCK_LEVEL = new Set(['ul','ol','li','h1','h2','h3','h4','h5','h6','table','thead','tbody','tfoot','tr','td','th','blockquote','figure','figcaption','hr','iframe','img','form','section','div','dl','dt','dd','pre','address']);
 const VOID_LEVEL = new Set(['hr','img','br','input','source']);
 const VOID_TAGS = new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);
+/* link types an external <a> keeps from the source (QA r2 F2); anything else (WordPress "attachment wp-att-N") is dropped */
+const REL_KEEP = new Set(['nofollow', 'noopener', 'noreferrer', 'sponsored', 'ugc']);
 const DIAGRAM = /diagram|astigmatism|cataract|glaucoma|macular|anatomy|chart|\buv\b|cross.?section|before.and.after|latisse|myopia|hyperopia|presbyopia|\bamd\b|focal|lenses\.png/i;
 
 const SOCIAL_HOSTS = [
@@ -219,7 +221,17 @@ export function createContent(ctx) {
         const href = pdf || localHref(rawHref, depth);
         if (!href) return '';
         out.push('href="' + esc(href) + '"');
-        if (/^https?:/i.test(href)) out.push('rel="noopener"', 'target="_blank"');
+        /* QA r2 (content-seo F2): an external link keeps its SOURCE rel and target (COMPONENTS: "External links keep
+           their source attributes and add rel=noopener when they open a new tab"). Every one was rewritten to
+           rel="noopener" target="_blank": 14 nofollow and 40 noreferrer were dropped, and 13 links that open in the
+           same tab on the source were made to open a new one. Link types kept: nofollow noopener noreferrer sponsored ugc. */
+        if (/^https?:/i.test(href)) {
+          const target = decodeEntities(pick('target') || '').trim();
+          const rel = [...new Set(decodeEntities(pick('rel') || '').toLowerCase().split(/\s+/).filter((t) => REL_KEEP.has(t)))];
+          if (target.toLowerCase() === '_blank' && !rel.includes('noopener')) rel.push('noopener');
+          if (rel.length) out.push('rel="' + esc(rel.join(' ')) + '"');
+          if (target) out.push('target="' + esc(target) + '"');
+        }
         const ariaLabel = decodeEntities(pick('aria-label') || '').trim();
         if (ariaLabel) out.push('aria-label="' + esc(ariaLabel) + '"');
       } else if (tag === 'img') {
@@ -766,7 +778,7 @@ export function createContent(ctx) {
     for (const el of findElements(h, /<(div)\b[^>]*class="ecp-badges\b[^"]*"[^>]*>/gi).reverse()) {
       const items = [...el.html.matchAll(/<a\b([^>]*class="ecp-badge\b[^"]*"[^>]*)>([\s\S]*?)<\/a>/gi)].map((m) => ({
         label: plain((/<div class="ecp-badge-title">([\s\S]*?)<\/div>/i.exec(m[2]) || [])[1] || attrOf(m[1], 'aria-label') || ''),
-        href: decodeEntities(attrOf(m[1], 'href') || ''), newTab: /target=["']_blank/i.test(m[1]),
+        href: decodeEntities(attrOf(m[1], 'href') || ''), newTab: /target=["']_blank/i.test(m[1]), rel: decodeEntities(attrOf(m[1], 'rel') || ''),
       }));
       h = h.slice(0, el.start) + add('badges', items) + h.slice(el.end);
       bump('badgeRowsInMain');
@@ -784,7 +796,7 @@ export function createContent(ctx) {
        appointment form only in the top bar (L01); inside main there are none (B24 = 0). */
     h = h.replace(/(?:<div class="ecp-button-wrapper[^"]*">\s*)?<a\b([^>]*class="ecp-button\b[^"]*"[^>]*)>\s*<span class="ecp-button-label">([\s\S]*?)<\/span>\s*<\/a>(?:\s*<\/div>)?/gi, (m, attrs, label) => {
       bump('ctaButtons');
-      return add('button', { label: plain(label), href: decodeEntities(attrOf(attrs, 'href') || ''), newTab: /target=["']_blank/i.test(attrs) });
+      return add('button', { label: plain(label), href: decodeEntities(attrOf(attrs, 'href') || ''), newTab: /target=["']_blank/i.test(attrs), rel: decodeEntities(attrOf(attrs, 'rel') || '') });   /* rel kept (QA r2 F2) */
     });
 
     /* heading accordions: the heading keeps its level; the collapsible wrapper goes (the next

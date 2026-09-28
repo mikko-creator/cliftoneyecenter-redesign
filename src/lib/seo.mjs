@@ -84,6 +84,7 @@ export function pageTitle(s, page, h1Text, slug, log, fallbackLabel) {
    to the whole main-column text is gone: it always spanned blocks. */
 const DESC_BLOCK = /<(p|li|td|th|dd|blockquote|figcaption)\b[^>]*>([\s\S]*?)<\/\1>/gi;
 const NESTED_BLOCK = /<(p|ul|ol|li|table|div|h[1-6]|blockquote|figure|section|dl)\b/i;
+const INLINE_TAG = /<\/?(?:a|span|strong|b|em|i|u|sup|sub|small|cite|code|abbr|mark|q|s|time|font)\b[^>]*>/gi;
 const NOT_A_SENTENCE_END = /^(?:\d+|[A-Z]|Dr|Mr|Mrs|Ms|St|Jr|Sr|vs|etc|e\.g|i\.e|No|Inc|Co)$/;
 function cutDescription(text, max = 155) {
   if (text.length <= max) return text;
@@ -102,7 +103,9 @@ export function deriveDescription(sections) {
     for (const m of String(sec.body || '').matchAll(DESC_BLOCK)) {
       if (NESTED_BLOCK.test(m[2])) continue;                 /* a list item holding a list spans blocks */
       if (/^\s*<(strong|b)\b[^>]*>[\s\S]*<\/\1>\s*$/i.test(m[2]) && !/<\/(strong|b)>[\s\S]*<(strong|b)\b/i.test(m[2])) continue;   /* an all-bold lead is a pseudo-heading, not a sentence */
-      const text = decodeEntities(m[2].replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+      /* QA r2 (content-seo F1): an INLINE tag adds no space (the page renders "'Eye Injury Prevention Month'", the
+         description read "' Eye Injury Prevention Month '"); a line break or any other tag still separates words */
+      const text = decodeEntities(m[2].replace(INLINE_TAG, '').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
       if (text.length >= 60) return cutDescription(text);
     }
   }

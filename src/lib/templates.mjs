@@ -33,6 +33,13 @@ export function icon(name) {
   if (!SYMBOLS[name]) throw new Error('icon not in the sprite: ' + name);
   return '<svg class="ico" aria-hidden="true" focusable="false"><use href="#i-' + name + '"/></svg>';
 }
+/* QA r2 (content-seo F2): a new-tab link keeps the SOURCE link types (nofollow, noreferrer ...) plus noopener */
+const REL_KEEP = new Set(['nofollow', 'noopener', 'noreferrer', 'sponsored', 'ugc']);
+function relOf(src) {
+  const rel = [...new Set(String(src || '').toLowerCase().split(/\s+/).filter((t) => REL_KEEP.has(t)))];
+  if (!rel.includes('noopener')) rel.push('noopener');
+  return rel.join(' ');
+}
 const QUOTE_PATH = 'M9.6 6C6.5 7 4.6 9.6 4.6 13v5h6v-6H7.7c.2-2 1.3-3.3 3-4zM19 6c-3.1 1-5 3.6-5 7v5h6v-6h-2.9c.2-2 1.3-3.3 3-4z';   /* tmp/lab/canopy/index.html line 294 */
 
 /* the head motion script: tmp/lab/neighborhood/index.html line 9, __labReady renamed __siteReady (COMPONENTS A.1),
@@ -51,7 +58,7 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
   const upOf = (depth) => (depth ? '../'.repeat(depth) : '');
   const tel = 'tel:' + chrome.phone;
 
-  function head({ depth, title, description, robots, canonical, ogTitle, ogType, twitterCard, ogImage, lang, jsonLd, lcp, favicon, styles }) {
+  function head({ depth, title, description, robots, canonical, ogTitle, ogType, twitterCard, twitterTitle, ogImage, lang, jsonLd, lcp, favicon, styles }) {
     const u = (p) => esc(upOf(depth) + p);
     return [
       '<!doctype html>',
@@ -71,6 +78,7 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
       '<meta property="og:url" content="' + esc(canonical) + '">',
       ogImage ? '<meta property="og:image" content="' + esc(ogImage) + '">' : '',
       '<meta name="twitter:card" content="' + esc(twitterCard || 'summary') + '">',   /* the source's "summary" (CS-08) */
+      twitterTitle ? '<meta name="twitter:title" content="' + esc(twitterTitle) + '">' : '',   /* the source page's own twitter:title (QA r2 F3): 74 pages differ from og:title */
       ogImage ? '<meta name="twitter:image" content="' + esc(ogImage) + '">' : '',
       favicon ? '<link rel="icon" href="' + u(favicon.icon) + '" sizes="32x32" type="image/png">' : '',
       favicon && favicon.icon192 ? '<link rel="icon" href="' + u(favicon.icon192) + '" sizes="192x192" type="image/png">' : '',
@@ -165,7 +173,8 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
     const n = f.nap;
     const col = (c, id) => '<nav class="footer__col" aria-labelledby="' + id + '">\n<p class="footer__h" id="' + id + '">' + esc(c.title) + '</p>\n<ul class="footer__list">' + c.links.map((l) => '<li><a href="' + esc(H(l.href, depth)) + '">' + esc(l.label) + '</a></li>').join('') + '</ul>\n</nav>';
     const legal = f.util.map((l) => '<li><a href="' + esc(/\.xml$/.test(l.href) ? upOf(depth) + l.href.replace(/^\//, '') : H(l.href, depth)) + '">' + esc(l.label) + '</a></li>').join('');
-    const social = f.social.map((s) => '<a class="social" href="' + esc(s.href) + '" aria-label="' + esc(s.label) + '" target="_blank" rel="noopener">' + icon('fb') + '</a>').join('');
+    /* rel as the source (QA r2 F2: "nofollow noopener" on all 347 source pages), noopener at least */
+    const social = f.social.map((s) => '<a class="social" href="' + esc(s.href) + '" aria-label="' + esc(s.label) + '" target="_blank" rel="' + esc(s.rel || 'noopener') + '">' + icon('fb') + '</a>').join('');
     return [
       '<footer class="site-footer">',
       '<div class="wrap">',
@@ -197,7 +206,7 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
       const primary = /Schedule An Appointment/i.test(q.label);
       const href = H(q.href, depth);
       const ic = DOCK_ICONS[q.label] || 'arrow';
-      return '<a class="dock__tile' + (primary ? ' dock__tile--primary glass glass--leaf-deep' : ' glass glass--light') + '"' + (href ? ' href="' + esc(href) + '"' : '') + (q.newTab ? ' target="_blank" rel="noopener"' : '') + (variant === 'row' ? ' data-reveal="up"' : '') + '>'
+      return '<a class="dock__tile' + (primary ? ' dock__tile--primary glass glass--leaf-deep' : ' glass glass--light') + '"' + (href ? ' href="' + esc(href) + '"' : '') + (q.newTab ? ' target="_blank" rel="' + esc(relOf(q.rel)) + '"' : '') + (variant === 'row' ? ' data-reveal="up"' : '') + '>'
         + '<span class="dock__icon">' + icon(ic) + '</span><span class="dock__label">' + esc(q.label) + '</span></a>';
     }).join('\n');
     if (variant === 'row') return '<div class="dock dock--row" data-stagger>\n' + tiles + '\n</div>';
@@ -334,7 +343,7 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
       const ext = /^https?:/i.test(href || '');
       /* a phone number in a label never splits across lines ("318-550-" / "5815" at 390: VIB-04); text unchanged */
       const label = esc(b.label).replace(/\d{3}-\d{3}-\d{4}/g, '<span class="nobr">$&</span>');
-      return href ? '<a class="btn btn--invert" href="' + esc(href) + '"' + (ext || b.newTab ? ' target="_blank" rel="noopener"' : '') + '>' + label + icon('arrow') + '</a>' : '<span class="btn btn--invert">' + label + '</span>';
+      return href ? '<a class="btn btn--invert" href="' + esc(href) + '"' + (ext || b.newTab ? ' target="_blank" rel="' + esc(relOf(b.rel)) + '"' : '') + '>' + label + icon('arrow') + '</a>' : '<span class="btn btn--invert">' + label + '</span>';
     }).join('\n');
     return '<div class="cta-band glass glass--leaf-deep">\n<span class="cta-band__rings" aria-hidden="true"></span>\n<p class="cta-band__actions">\n' + links + '\n</p>\n</div>';
   }

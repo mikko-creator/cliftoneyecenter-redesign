@@ -3,9 +3,10 @@
 Written by the build agent, 2026-09-28; sections 4 (items 17-27), 5, 6, 7 and 8 rewritten by the
 integration agent the same day, after the first full visual review; section 9 (and the items it marks in 3, 4,
 5, 6 and 8) added by the QA round 1 fixer, the same day, for the 40 confirmed findings of
-`tmp/qa/round1-confirmed.json`. This file says what the pipeline does, which decisions it applies, and the
-evidence for each definition-of-done item. Every number in section 5 was produced by a command run on the
-final `dist/` (aggregate `538444d2...`, 663 files); the command is named beside it.
+`tmp/qa/round1-confirmed.json`; section 10 (and the items it marks in 4, 5, 6 and 7) added by the QA round 2 fixer,
+2026-09-29, for the 26 confirmed round-2 findings. This file says what the pipeline does, which decisions it applies,
+and the evidence for each definition-of-done item. Every number in section 5 was produced by a command run on the
+final `dist/` (aggregate `ec2f3712...`, 663 files); the command is named beside it.
 
 ## 1. Run it
 
@@ -23,7 +24,8 @@ build-derived generated assets (the 6% texture and the trimmed cut-outs, section
 printed and written to `audit/build-report.json` and `audit/failures.json` (stage `build:*`).
 
 Output: `dist/<path>/index.html` for all 349 crawled pages (home = `dist/index.html`), `dist/404.html`,
-`dist/sitemap.xml`, `dist/robots.txt`, `dist/_redirects` + `dist/.htaccess` (9 carried-forward 301s),
+`dist/sitemap.xml`, `dist/robots.txt`, `dist/_redirects` + `dist/.htaccess` (9 carried-forward 301s; the `.htaccess`
+also sends every 404 to `/404.html`, QA r2),
 `dist/styles/` (the design CSS), `dist/scripts/` (`site.js`), `dist/fonts/` (8 woff2 + `fonts.css` + 2
 OFL texts), `dist/img/` (WebP; generated images under `img/generated/`), `dist/docs/` (the 2 patient
 PDFs), `dist/favicon-32.png` + `dist/apple-touch-icon.png`. Every internal URL is page-relative
@@ -72,7 +74,7 @@ Reports written by the canonical build (not by `CEC_DIST` builds): `audit/build-
 | G-1 | 5 broken content images get their planned stand-in (`fillFor`, 4 slot-fills + `svc-eyewear-boutique`); the thanksgiving basket on `/october-is/` is a declared removal. |
 | H-1 | `home.mjs` is loaded dynamically; the pipeline builds the HOME CONTRACT `ctx` (section 4). |
 | 2.1 new markers | `div.ecp-heading` -> h2 (13); heading accordions -> their heading (builder pages) or the payment accordion (visit pages); testimonial cards, child-page listings (29 lists, 169 items), archive title lists (4 lists, 22 items), post summaries (151 + home), quick-action badges in main (9 rows), `ecp-button` CTAs (13, grouped into CTA bands), location modules (visit blocks on `/hours-location/` and `/location/clifton-eye-center/`), team card, doc cards: each lifted out of the raw markup as data and rendered with its COMPONENTS markup. WOW classes go with every class attribute. |
-| 2.4 og:image | The page's own source share image when it maps to a shipped local file (the 19 dead `/clipart/` paths map to their CDN twin by file name); else the logo. Always an absolute `https://www.cliftoneyecenter.com/img/...` of a file that ships. |
+| 2.4 og:image | The page's own source share image when it maps to a shipped local file (the 19 dead `/clipart/` paths map to their CDN twin by file name); else the logo. Always an absolute `https://www.cliftoneyecenter.com/img/...` of a file that ships. **QA r2 (F3):** `twitter:title` is the source page's own, verbatim (341 pages; 74 differ from og:title); omitted on the 4 archives whose title was repaired, where the source value is that same wrong post title (og:title is the fallback). |
 | 2.8 alts | File-name, upload-hash or %20-garbled alts (37 inventory entries, for example "dry eyes droplet 250x376.jpg", "clipart 010", "daisy 20glasses") become `alt=""`; readable alts are kept verbatim; nothing is authored (L12). Index-card thumbnails are `alt=""` (COMPONENTS H.3). **QA CS-05:** the alt is the page's OWN source alt (`content.mjs` sanitize): an `<img>` with no alt on its page gets `alt=""`, never the alt the same file carries on another page (4 pages changed, `altsNotBorrowedFromOtherPages` 4; the women's-health post no longer says "after eye surgery for cataracts"). |
 | 2.8 clone-removals | Rows rewritten for this site (2 honeypot pages, the voice search, sidebar search, focus-trap link, GTM, microdata, empty team modules, rating value, icon font, review-quote.png) with ledger ids. |
 
@@ -115,7 +117,10 @@ Reports written by the canonical build (not by `CEC_DIST` builds): `audit/build-
    none (the home, `/404-page-not-found/` and 404.html, the two tag archives, `/category/uncategorized/`,
    `/contact-us/testimonials/`, `/location/clifton-eye-center/`, the 3 `/testimonial/*` singles and 2
    `/template/*` artefacts: their text is all components or all-bold leads). `desc-check`: 0 of the derived
-   descriptions span source blocks (was 14, 9 indexable).
+   descriptions span source blocks (was 14, 9 indexable). **QA r2 (F1):** an inline tag (`a`, `strong`, `em`,
+   `span` ...) adds no space when the block is flattened, a line break or other tag still does: `/october-is/` read
+   "October is ' Eye Injury Prevention Month ' in the USA" (the source links sit flush inside the quotes); it now
+   reads as the page renders. 1 of the 349 descriptions changed (`tmp/qa/fixer-r2/after/desc-diff.log`).
 7. **Heading-only runs** ("SEE BETTER / DESIGNER EYEWEAR / LIVE BETTER") are merged in source order into
    the next section with body (first heading h2, the rest h3). The reference merged each one after the
    next section's h2, which reordered them.
@@ -153,6 +158,9 @@ Reports written by the canonical build (not by `CEC_DIST` builds): `audit/build-
     Consequence: 404.html works at the site root at any depth, but not from a subpath deploy (the rest of
     `dist/` still does). `tools/link-check.mjs` checks this exception: in `404.html` a root-relative reference is
     resolved against the dist root and a page-relative one is a finding (`page-relative-in-404`, own control).
+    **QA r2 (F4):** Apache never served the file (its own bare error page answers unless told otherwise):
+    `dist/.htaccess` now starts with `ErrorDocument 404 /404.html`. Netlify and Cloudflare Pages serve a root
+    `404.html` by convention, so `_redirects` needs no line.
 16. **Source claim kept verbatim**: the appointment form's field description "Details are stored securely
     and not sent by email." is source copy. It is only true once the form is wired to a backend that
     honours it (a launch item).
@@ -229,53 +237,61 @@ Added by the integration review (each one was found on a screenshot or by a meas
 
 ## 5. Definition of done: evidence
 
-Final run 2026-09-28 by the QA round 1 fixer (section 9), on the canonical `dist/` built by `node src/build.mjs`
-(`tmp/qa/fixer-r1/resume/regression/01-build.log`) with every source file as it stands now. `dist/` aggregate sha256
-`538444d253cc52e139c1753687d712b92fdb482115f27d74b3068176198920be` (663 files: the 662 of the previous run plus the
-now-placed Frames-Chanel-Pink-sm). Every check below ran on that tree; logs in `tmp/qa/fixer-r1/resume/regression/`. Rows 3a and 8 were not
-re-run in this pass (their tools read nothing the fixes changed in a way they measure, but that is unverified).
+Final run 2026-09-29 by the QA round 2 fixer (section 10), on the canonical `dist/` built by `node src/build.mjs`
+(`tmp/qa/fixer-r2/regression/01-build.log`) with every source file as it stands now. `dist/` aggregate sha256
+`ec2f3712db54e76df616b8cfb47b92cec8f385754828657cc7c56e93cb2af139` (663 files, the same file list as round 1). Every
+check below ran on that tree; logs in `tmp/qa/fixer-r2/regression/`. Rows 3a and 8 were not re-run in this pass
+(their tools read nothing the round-2 fixes changed in a way they measure, but that is unverified).
 
 | # | check | command | result |
 |---|---|---|---|
-| 1 | build | `node src/build.mjs` | **exit 0**, **0 build failures**; 349/349 page files + `dist/404.html`. 271 source images kept, 292 image files shipped, **18 generated files shipped, 18 carrying the `trainedAlgorithmicMedia` XMP**. Generated slots: **143 rendered, 17 skipped, each with its reason** in `audit/image-slots.json`. CSS integrity: 0 `var()` left undefined, 0 animation names without `@keyframes`. (`01-build.log`) |
-| 2 | reproducible | `CEC_DIST=tmp/repro/a` and `tmp/repro/b` builds, then `node tmp/orch/hashdir.mjs tmp/repro/a tmp/repro/b dist --control` | 663 files each; aggregate `538444d2...` for a, b and `dist/`: **IDENTICAL**; control fired (one byte appended to `index.html` changes the aggregate and names the file). A cold-cache rebuild was not run (unverified). (`02-hash.log`) |
-| 3a | sr-parity readings | `node <skill>/sr-parity.mjs --project .` | **not re-run in this pass**; the previous run (aggregate `5e6550b0...`) read 361/39/213, DRIFT, with the home's 4 service labels as a `section-lost` major: they are h3 headings again (QA VH-03), so that reading should no longer fire (unverified). |
+| 1 | build | `node src/build.mjs` | **exit 0**, **0 build failures**; 349/349 page files + `dist/404.html`. 271 source images kept, 292 image files shipped, **18 generated files shipped, 18 carrying the `trainedAlgorithmicMedia` XMP**. Generated slots: **143 rendered, 17 skipped, each with its reason** in `audit/image-slots.json`. CSS integrity: 0 `var()` left undefined, 0 animation names without `@keyframes` (the round-2 scroll-driven keyframes included). (`01-build.log`) |
+| 2 | reproducible | `CEC_DIST=tmp/repro/a` and `tmp/repro/b` builds, then `node tmp/orch/hashdir.mjs tmp/repro/a tmp/repro/b dist --control` | 663 files each; aggregate `ec2f3712...` for a, b and `dist/`: **IDENTICAL**; control fired (one byte appended to `index.html` changes the aggregate and names the file). A cold-cache rebuild was not run (unverified). (`02-hash.log`) |
+| 3a | sr-parity readings | `node <skill>/sr-parity.mjs --project .` | **not re-run** since the round-1 note (unverified). |
 | 3b | sentence parity | `node tools/sentence-parity.mjs` | 13,966 source sentences: **13,595 found**, 363 source chrome only, 8 declared removals, **0 lost**; 3 found only whitespace-insensitively. Control fired. (`03-sentence-parity.log`) |
 | 4 | tag balance | `node tools/tag-balance.mjs` | 350 pages, **0 unbalanced**, 0 findings; control fired (6 planted kinds). (`04-tag-balance.log`) |
 | 5 | fabrication | `sr-fabrication --project . --strict` (facts not regenerated: no fact source changed) | **SOURCED**, 350 files, 660 claims, **0 blocker / 0 major**, exit 0. (`06-fabrication.log`) |
-| 6 | decontamination | `sr-decontaminate --project . --dir dist --strict` | **CLEAN**, 358 files, 0/0/0, exit 0 (1 declared prose file, section 4 item 13). The per-term grep over every file of the previous run was not repeated. (`07-decontaminate.log`) |
-| 7 | links | `node tools/link-check.mjs` | 354 html/css files, **20,333** local refs, 2,882 external skipped, **0 broken**, 0 root-absolute outside `404.html`, 0 page-relative inside it; 4 + 3 planted controls fired (the 404 exception has its own). (`05-link-check.log`) |
-| 8 | noindex | from the build (`01-build.log`) and `dist/sitemap.xml` | 220 noindex pages + `dist/404.html`; sitemap **129** URLs. The raw-head re-parse of the previous run was not repeated. |
+| 6 | decontamination | `sr-decontaminate --project . --dir dist --strict` | **CLEAN**, 358 files, 0/0/0, exit 0 (1 declared prose file, section 4 item 13). (`07-decontaminate.log`) |
+| 7 | links | `node tools/link-check.mjs` | 354 html/css files, **20,333** local refs, 2,882 external skipped, **0 broken**; planted controls fired (the 404 exception has its own). (`05-link-check.log`) |
+| 8 | noindex | from the build (`01-build.log`) and `dist/sitemap.xml` | 220 noindex pages + `dist/404.html`; sitemap **129** URLs (build summary). The raw-head re-parse was not repeated. |
 | 9 | JS errors | `node tools/serve.mjs --root dist --port 8791 --no-open`; `MSYS_NO_PATHCONV=1 node tools/jserrors.mjs --base http://127.0.0.1:8791 --paths ...` | **12 pages, 0 errors** (home, services hub, dry-eye, glaucoma, designer frames, contact lenses, contact form, appointment form, what's new, a blog post, hours & location, 404.html). Control: a `data:` page calling an undefined function reports its ReferenceError and exits 1. (`10-jserrors.log`, `10-jserrors-control.log`) |
-| 10 | overflow | `MSYS_NO_PATHCONV=1 node tmp/gallery/overflow-sample.mjs --base http://127.0.0.1:8791/ --paths ... --widths 320,390,768,1024,1440` | home + 6 families (services hub, service detail, library, eyewear, blog post, form) + hours & location + 404.html: **90 combinations** (9 pages x 5 widths x normal/reduced motion), scrollWidth === innerWidth on all 12 samples each, 0 offenders. (`08-overflow-*.log`) |
+| 10 | overflow | `MSYS_NO_PATHCONV=1 node tmp/gallery/overflow-sample.mjs --base http://127.0.0.1:8791/ --paths ... --widths 320,390,768,1024,1440` | home + 6 families (services hub, service detail, library, eyewear, blog post, form) + hours & location + 404.html, plus the 6 pages whose layout round 2 changed (eyeglasses hub, insurance, location, the dry-eye post with a merged picture, the eyeglass guide, hard-to-fit): **150 combinations** (15 pages x 5 widths x normal/reduced motion), scrollWidth === innerWidth on all 12 samples each, **0 offenders** (the 14 non-home pages on tree `b0264de7...`, which differs from the final tree only by the `.rev-slide` width rule of the home carousel; the home re-run on the final tree: 10/10, `08-overflow-home-final.log`) (`08-overflow-a.log`, `-b.log`, `-c.log`) |
 | 11 | behaviour gates (G6/G7 and more) | `node tmp/gallery/verify.mjs --base http://127.0.0.1:8791/` | **12/12 PASS**: IO-driven reveals, all released after a scroll-through; hover lifts a revealed service card -10px (frame -8px); keyboard focus gives the same lift without rotation; reduced motion at 390 and 1440 leaves 0 hidden content, 0 running animations, no parallax; phone fold; glass budget 10; drawer trap; form submit paths; 0 JS errors. (`09-verify-g6g7.log`) |
-| 12 | ledger | `sr-plan --project . --check` | **exit 0**, 1,588 rows, COMPLETE (section 8). (`11-sr-plan-check.log`) |
+| 12 | ledger | `sr-plan --project . --check` | **exit 0**, 1,588 rows, COMPLETE (section 8; no rule text needed a change in round 2). (`11-sr-plan-check.log`) |
+| 13 | frame time (G10) | `node tmp/qa/fixer-r2-ra/perf.mjs http://127.0.0.1:8791 <width> 7 blank,privacy,home` | on the final tree: home p95 **16.8 ms at 390 on 5/5 runs** (0.8% of frames over 17.5ms) and **at 1440 on 6/7** (2.7%; the miss read 33.3); blank and privacy 16.8 on every run. Before: 33-50 ms (section 10, RA2-02). (`tmp/qa/fixer-r2-ra/perf-390-finaltree.log`, `perf-1440-finaltree.log`) |
 
 Also run on the final tree: **markup contract audit** (`node tmp/orch/markup-audit.mjs`, stdout in
-`tmp/qa/fixer-r1/resume/regression/12-markup-audit.log`; a planted `style` attribute fails it): 350 pages, 0 `style`
-attributes, 0 duplicate ids, exactly one `h1` per page, every `<img>` with width/height/alt, all 339 iframes
-inside `div.embed`/`div.map`, JSON-LD parses everywhere, 0 source class tokens. It now **exits 1 on two
-expected departures** its lists predate (section 9): `rootAbs: 404.html` (the F.7 exception, QA VIB-01) and
-`dataStray: data-show-if` x2 on the contact form (the new show-if hook, QA CS-04). The audit script belongs to
-the orchestrator (`tmp/orch/`) and was not edited.
+`tmp/qa/fixer-r2/regression/12-markup-audit.log`): 350 pages, 0 `style` attributes, 0 duplicate ids, exactly one
+`h1` per page, every `<img>` with width/height/alt, all 339 iframes inside `div.embed`/`div.map`, JSON-LD parses
+everywhere, 0 source class tokens. It **exits 1 on the same two expected departures** as in round 1 (section 9):
+`rootAbs: 404.html` (the F.7 exception) and `dataStray: data-show-if` x2 on the contact form. The audit script
+belongs to the orchestrator (`tmp/orch/`) and was not edited.
 
 ## 6. Open items (not fixable by this pipeline alone, or not yet verified)
 
 - **G13 Safari/WebKit** (glass, the prefixed path, fallbacks, `overflow: clip`, individual transforms,
   `:has()` in the cut-out and rail rules) cannot run on this machine; an Apple device is needed.
-- **G10 frame-time profile** at 4x CPU throttle (QA round 1, `tmp/qa/fixer-r1/resume/ra02-perf2.log`):
-  `/privacy-policy/` p50 16.7 / p95 16.8 ms (3 runs) now that `--scroll` is written on the progress bar (RA-02).
-  The **home still misses G10**: p50 33.4 / p95 50-67 ms at 4x, the same with the `--scroll` write suppressed,
-  so the remaining cost is elsewhere (parallax layers under 10 blurred glass surfaces, the hero scale); not
-  attributed or fixed in this pass.
+- **G10 frame-time profile** at 4x CPU throttle: **addressed in QA round 2 (RA2-02, section 10)**. The home now
+  reads p95 16.8 ms on 12 of 12 runs at 390 and 19 of 21 at 1440 (three batches; the misses read 33.3), against
+  33-50 ms before; `/privacy-policy/` and a blank page read 16.8 on every run of the same batches. The machine is
+  shared (49 chrome.exe of other agents, 5-30% background CPU), so single batches drift; every comparison was
+  made inside one interleaved batch (`tmp/qa/fixer-r2-ra/perf.mjs`).
+- **QA tools that freeze parallax** by forcing `--py: 0` no longer freeze it where scroll-driven animations exist
+  (Chrome): the layers move by CSS animation (section 10, RA2-02). Freeze with reduced-motion emulation,
+  `[data-depth] { animation: none }`, or a viewport taller than 2400px (the rest pose).
 - **G6-G8**: the gallery behaviour gates (reveals, hover lift on a revealed card, focus parity, reduced motion)
-  pass 12/12 on the QA round 1 build (section 5 row 11); the full hover/focus comparator
+  pass 12/12 on the QA round 2 build (section 5 row 11); the full hover/focus comparator
   (`tmp/gallery/hover-focus.mjs`) was not re-run.
+- **Scroll-driven parallax** (RA2-02) is Chrome-verified only: Safari 26+ also has `animation-timeline`, older
+  Safari and Firefox fall back to the rAF path; neither was run here (see G13). The rest pose for viewports
+  taller than 2400px, reduced motion and the +/- `data-depth-max` bounds were checked in Chrome (section 10).
+- **Contrast over moving layers** was re-measured for the promo title only (CG2-02). The other layers move within
+  the same bounds as before (and the orbs no longer move), so the earlier readings over them are expected to
+  hold; that is unverified (not re-run).
 - **Contact-form phone masks** (`(999) 999-9999` on the source's two phone inputs, a jQuery plugin) are not
   carried; the show-if rules are (QA CS-04). The inputs are `type=tel` with `autocomplete=tel`.
-- **Visit block without an emergency card** (`/hours-location/`, `/location/clifton-eye-center/`): from 720px
-  the map panel's 120px tray beside the NAP card is an empty stone strip (the price of keeping Google's logo,
-  attribution and controls uncovered, QA VH-04/VIB-02). A design refinement, not a defect.
+- ~~Visit block without an emergency card: an empty stone strip beside the NAP card~~ **fixed in QA round 2
+  (VIB-R2-01, section 10)**: the NAP card spans the block there and covers the whole tray.
 - The markup contract audit's hook list and root-absolute rule predate `data-show-if` and the 404.html
   exception (section 5).
 - **Contrast with the texture** was re-probed on 3 pages (home, privacy policy, library root) at 1440 and
@@ -422,3 +438,74 @@ COMPONENTS.md (which this pass does not own, so the change is recorded here).
 | CG-02 | from 561 to 859px the Welcome section ends 68px lower, so the sprig clears the closing link at every parallax pose | spec 3.7 / 3.10 spacing |
 | CG-03 | parallax layers re-measure on any page-height change (`<details>` toggle, ResizeObserver on body) | none |
 | CG-04 | the stuck header bar and plate get one short, tight shadow instead of `--gb-shadow` + `--e-2` | **spec** 3.2 "the glass gains --e-2" |
+
+## 10. QA round 2 fixes (2026-09-29)
+
+The 26 confirmed round-2 findings, each fixed in its owning source file, rebuilt, and re-measured with the lens's own
+repro script (copied under `tmp/qa/fixer-r2*/`, so no lens folder was written). The five findings past the 21 spelled
+out in the orchestrator's task text (it was cut off inside CG2-01) were taken from the round-2 attacker and refuter
+evidence: CG2-02 (`tmp/qa/contrast-glass-r2-refuter/promo.mjs`) and the four content-seo items F1-F4
+(`tmp/qa/content-seo-r2/evidence-snippets.txt`, refuter checks in `tmp/qa/content-seo-r2-refuter/`). A build of the
+unchanged sources reproduced the round-1 `dist/` exactly (`538444d2...`), so every later difference is attributable
+to these edits. Markers as in section 9: **spec** changes a DESIGN-SPEC value; **contract** extends or departs from
+COMPONENTS.md.
+
+| finding | change (file) | before -> after (evidence) | recorded change |
+|---|---|---|---|
+| VHR2-01 | below 340px the logo plate box narrows with the viewport (112px at 340 -> 92px at 320), so the 3 round buttons keep 8px to the plate (`site.css`) | 320: plate over the calendar button by 12px -> clear by 8px (`tmp/qa/fixer-r2-vh/probe2.after.log`; `crops/header.320.after.x3.png` viewed) | spec 3.2 plate size below 340px |
+| VHR2-02 | below 440px `.svc__foot` is an inline-size container and `.svc__name` is `min(--fs-sm, 10.4cqi)` | "COMPREHENSI/VE" at 320, "COMPREHENSIV/E" at 340 -> 0 mid-word breaks over 18 widths, chip inside the card (`svc-breaks.log`; `crops/svc.320.after.png` viewed) | spec 3.6 caption size below ~366px |
+| VHR2-03 | the emergency card is start-aligned from 720px (stretched again from 1240) | paragraph-to-button gap 41-116px at 768-1239 -> 14px at every width (`probe2.after.log`; `crops/visit.1100.after.png` viewed) | none (the VH-04 geometry stays) |
+| VHR2-04 | in a NAP card narrower than 232px the hours list reaches 8px into the card padding | 320: Wednesday row 60px, its value under the day -> all 7 rows 36px and level (`probe2.after.json` B.hours) | spec 3.12 |
+| VHR2-05 | below 1024px `site.js` sizes the reviews track to the cards at least half in view (+ its padding) on load, slide change, resize and card reflow; `overflow-y` clipped; the height eases (`motion.css`); a slide is `min(86%, 640px)` (was 420px), so below 1024 at most ~44% of the next card peeks and one card sets the height (capped at 420px, a tablet showed ~60% of a second card and no height fitted both) | void under the first card 112-244px (142-145 at 720-900) -> 28-29px (the track padding) at every carousel width 320-1023; card-to-buttons 18-19px on every slide; height auto again from 1024 (`probe2.final2.log`, `carousel-run.after.log`, `carousel-run.final.log`; `crops/reviews.390.after.png`, `reviews.768.final.png` viewed) | **spec** 5.6 track height, slide cap 420 -> 640px; contract: runtime behaviour of `[data-carousel-track]` |
+| R2-VIA-01 | below 400px the logo grid's column minimum is 140px and the chip padding 12px (`--logo-col`, `--logo-pad`) | 360/365: one 328px column, wall 4,638px, page 8,297px -> 2 columns (158/160.5px), logos 133 x 110 (full size), wall 2,324px, page 5,983px (`tmp/qa/fixer-r2-via/logo360.after.log`) | spec 3.21 column minimum below 400px |
+| R2-VIA-03 | below 1024px a band with the rising fingertip keeps `1.022 x cut width + 12px` (net of the band padding) under the title panel | overlap 92 x 11-14px, 6/12 top points under the panel -> 0 and 0/12 at 320-1024 on both repro pages (`riseoverlap.after.log`) | spec 3.14 |
+| R2-VIA-04 | `glasses-hero-1.jpg` gets `band__visual--right` (`object-position: 90% 40%`; `build.mjs` BAND_FOCUS) | visible x 22-78% (1440) / 25-75% (390) -> 40-96% / 45-95%; the subject (57-86%) inside at 320-1440 (`egband.after.log`; `crops/egband.1440-390.png` viewed) | none (the file is unchanged) |
+| R2-VIA-05 | the index-card thumbnail frame is one 3:2 slot as wide as the card allows (max 325px), the image centred in it at no more than its file size (a paper mat round the 250px file) | title offset 150 against 161-191 in one row -> equal in every row (160/161 at 1440, 188 at 768, 190 at 390) (`cardrow.after.log`) | spec 6.4/6.5 frame (the image rule is unchanged) |
+| R2-VIA-06 | from 900px a text-only sheet on a solo page is its measure + padding wide, at the column's left edge (a sheet with a picture, table, embed, logo wall or form keeps the full width) | text sheets 33-44% empty -> 0-4% (`sheetfill.after.log`; `crops/after.insurance.1440.p0.png`, `p1.png` viewed). The two plan-name lists on `/insurance/` (1 and 7 short names) stay 62-89% empty: their content is that short | **spec** 3.15 solo sheet width |
+| R2-VIA-07 | a linked plate lifts -6px and gains `--e-2` on hover and keyboard focus (`site.css`, `motion.css`) | no hover change -> figure `translateY(-6px)`, shadow e-1 -> e-2 under a real CDP hover (`plate-hover.after.log`) | none (spec 5.5 linked-chip pattern) |
+| R2-VIA-08 | in every heading of `<main>` the word before an em dash and the dash sit in `span.nobr` (`build.mjs`; 1 heading site-wide) | "PLENTY OF CHOICE" / "—EYEGLASSES" -> "PLENTY OF CHOICE—" / "EYEGLASSES"; no line starts with the dash at 320-1440 (`eg-h1.after.log`) | contract: `span.nobr` use extended |
+| R2-VIA-09 | `.section-title--sub` is `text-wrap: balance` | "... IN Bossier" / "City" -> "DESIGNER EYEWEAR" / "IN Bossier City" at 320-414 (`df-hlines.after.log`) | none |
+| VIB-R2-01 | 720-1239px, a visit block with no emergency card: the NAP card spans the block (24px in) and lays out in two columns (contact lines left, hours right; a grid whose last row is 1fr) | uncovered tray 375-500 x 120px -> 24px side margins only; Google's strip never covered (`tmp/qa/fixer-r2-vib/tray.after.log`; `shots/map.after_hours.1024.cards.png`, `map.after_loc.1440.cards.png` viewed) | **spec** 3.12 interior variant |
+| VIB-R2-02 | `site.js`: while a pointer is down on a submit control (until its click, 1.5s at most) the field focusout check waits; the submit handler checks every field and focuses the first invalid one | 8/8 invalid runs lost the click -> 8/8: 1 click, 1 submit, focus on the invalid field; 8/8 valid controls show the notice (`lostclick.after.log`) | none (spec 3.20 as written) |
+| VIB-R2-03 | `.glass::after` (the sheen) at `z-index: -1`: every `.glass` isolates, so it still paints over the glass fill, but under its in-flow text | focused notice glyphs 4.04-4.58 -> 12.6-12.7 at 1440/1024/768/390 (blurred control 12.3-12.4) (`segcontrast.after.log`; `notice/notice.1440.focused.full.png` viewed) | none |
+| VIB-R2-04 | a prose chunk holding only pictures joins the next sheet (at its start: source order), else the previous one; with neither it stands in the column without a sheet (`build.mjs`; 23 merged incl. 404.html, 1 unwrapped on `/template/header/`); from 900px the heading or paragraph beside a plate that opens its sheet starts level with it (`site.css`) | 22 image-only sheets -> 0 (the scan's 3 `/testimonial/*` hits are its known false positives; its control fires) (`tmp/qa/fixer-r2/after/image-only-sheets.log`; `tmp/qa/fixer-r2-vib/crops/merged.dryeye.1440.top.png` viewed: the cactus plate floats beside its heading and text, as in the source) | contract: C.4 (no picture-only sheet) |
+| RA2-01, CG2-01 | a `fig__media` holding a link does not clip (`overflow: visible`); the image is rounded itself | focus ring: 0 changed pixels -> 8,630/17,438 (1440), 8,632/17,446 (390), 13,036/26,274 (`/template/header/`) ring-band pixels, equal to the refuter's no-clip control (`tmp/qa/fixer-r2-cg/focus.after.summary.log`; focused crop viewed) | none |
+| RA2-02 | see below | home p95 33-50 ms -> 16.8 ms at 4x CPU (390: 12/12 runs; 1440: 19/21, median 16.8) | **spec** 5.3 / 5.4 (below) |
+| RA2-03 | `site.js`: when the layout turns desktop with focus in the open drawer, focus moves to the primary-nav link with the same href (else the first nav link, else the logo) | focus on `<body>`, the next Tab restarted at the skip link -> focus on the matching `a.mainnav__link`, Tab continues through the nav, on both repro paths (`tmp/qa/fixer-r2-ra/drawer-resize.after.log`) | contract: section 1 drawer behaviour |
+| CG2-02 | the promo photo only rises from its rest pose (JS path `min(--py, 0)`; scroll-driven path `cec-depth-up`) | 768: ring over the title's glyph tops, rendered 1.10, nominal 2.9 -> over every in-view pose with the title below the header: rendered >= 4.27, nominal >= 3.84 (the rest-pose shadow; the title is large text, 3:1) at 390, 768 (x900, x1024), 1024, 1440 (`tmp/qa/fixer-r2-cg/promo.after.log`; crop viewed) | spec 5.3 promo depth one-way |
+| F1 (content-seo) | derived descriptions: an inline tag adds no space (`seo.mjs`) | see section 4 item 6 | none |
+| F2 (content-seo) | an external link keeps its source `rel` (nofollow, noopener, noreferrer, sponsored, ugc) and `target`, plus `noopener` on a new tab (`content.mjs`); CTA buttons and quick-action tiles carry their source rel (`content.mjs` extractors, `templates.mjs` `relOf`); the footer Facebook link is `rel="nofollow noopener"` as on all 347 source pages (`chrome.json`) | nofollow lost 14 -> 0, noreferrer lost 40 -> 0, target added 13 -> 0 (the 1 row left is the check's own false positive: `/glossary-of-eye-care-terms/` has two anchors to one URL, one with and one without target, both reproduced exactly); Facebook `nofollow noopener` 351/351 (`tmp/qa/fixer-r2/after/rel-check.log`) | COMPONENTS as written ("keep their source attributes") |
+| F3 (content-seo) | `twitter:title` from the source page (`build.mjs`, `templates.mjs` head) | 0 pages -> 341, every one verbatim (control fires) (`after/tw-verbatim.log`) | contract: COMPONENTS A.1 head |
+| F4 (content-seo) | `ErrorDocument 404 /404.html` in `.htaccess` (`build.mjs`) | 0 -> 1 line (`after/htaccess.log`) | section 4 item 15 |
+
+**RA2-02 (gate G10): what was measured and what changed.** Harness `tmp/qa/fixer-r2-ra/perf.mjs` (the runtime-a11y
+r2 method: rAF deltas over a 6,000px synthesized scroll gesture at 4x CPU; variants injected; round-robin interleaved
+with a blank page and `/privacy-policy/` as the noise floor; 3-7 reps). Attribution on the round-1 build: at 390 the
+cost was the per-frame custom-property writes (suppressing `--py`/`--pr`/`--hp` alone gave p95 16.8; promoting every
+layer to its own compositor layer still left 8% of frames over 17.5ms; the inherited `--hp` alone restyled the whole
+hero); at 1440 it was those writes plus the orbs' `cec-morph` keyframes, which animated `border-radius` on
+42px-blurred elements (a main-thread repaint every frame). Changes:
+
+1. Where `animation-timeline: view()` is supported, the scroll-linked movement is CSS scroll-driven animations run by
+   the compositor (`motion.css` `@supports` block: `cec-depth`, `cec-depth-up` and `cec-rot` on `view()`; the hero
+   photo and sun on a named `--hero` view timeline over `exit-crossing`). `site.js` copies each layer's
+   `data-depth`, `data-depth-max` and `data-rot` into `--d`/`--max`/`--rot` once and writes nothing per frame. The
+   bounds are the JS path's: every layer stays within +/- `data-depth-max` (checked on every layer over a full sweep
+   at 1440 and 390, 0 violations), the sprig within +/- 12deg, the promo photo never below rest, the hero photo
+   1.06 -> 1; reduced motion and a viewport taller than 2400px leave every layer at rest
+   (`tmp/qa/fixer-r2-ra/layers-move.log`). Elsewhere the rAF path runs unchanged. A layer's excursion is linear
+   across its pass through the viewport between its clamped end poses, so it is never larger than the JS path's.
+2. `cec-morph` animates `transform` only (rotate + scale); the border-radius steps are gone.
+3. The 10 colour orbs carry no `data-depth` (`home.mjs`): 42px-blurred layers moving under the glass kept 1440 at
+   p95 33ms even on the compositor. The depth comes from the protruding photos, cut-outs, sprig, smiles and iris.
+4. The ambient drifts (blobs, orbs, hero beams, from 700px) pause while the page scrolls: `site.js` sets
+   `html.is-scrolling` from the first scroll event until 200ms after the last (the class changes twice per scroll,
+   never per frame). Contract: a new runtime class for COMPONENTS section 1.
+
+Result: at 390 the home reads p95 16.8 on 7/7 runs (the build before the last two CSS rules) and on 5/5 on the final
+tree (0.8-1.9% of frames over 17.5ms; was p95 33-50, 27-43%); at 1440 on 13/14 runs over two batches before and 6/7
+on the final tree (1.5-2.7%; was p95 50, 80.6%); privacy and blank read 16.8 on every run of the same batches
+(`perf-390-final.log`, `perf-1440-final.log`, `perf-1440-smiles.log`, `perf-390-finaltree.log`,
+`perf-1440-finaltree.log`). The two 1440 misses (33.3, 2 of 21 runs) fell in batches where privacy held 16.8, so the
+median meets G10 but the margin at 1440 is thin on this shared machine (49 chrome.exe of other agents); a re-profile
+on a quiet machine is the check that would settle it.

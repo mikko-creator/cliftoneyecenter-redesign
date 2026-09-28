@@ -904,9 +904,34 @@
   @media (max-width: 859px) { .js-motion .hero__copy[data-reveal="left"] { translate: 0 34px; } }
   /* slides clipped by the snap track would reveal mid-swipe: below 1024px they are never hidden */
   @media (max-width: 1023px) { .js-motion .rev-slide[data-reveal] { opacity: 1; translate: none; } }
+  /* QA r2 VHR2-05: the carousel track follows the card in view (site.js); the height change eases */
+  @media (max-width: 1023px) { .rev-track { transition: height .45s var(--ease-out); } }
 
   /* ---- scroll-linked layers (5.3): --py / --pr / --hp written by one rAF-throttled handler ---- */
   [data-depth] { translate: 0 calc(var(--py, 0) * 1px); }
+  /* QA r2 CG2-02: the promo photo sits 5px above the promo title (its white ring touches the title at rest), so a
+     downward parallax pose (up to +18px while the card is below the viewport centre) laid the ring over the title's
+     glyph tops and its drop shadow under the first line (768: 2.9:1, 1.1:1 where the ring covered ink). The photo
+     only ever rises from its rest pose (pops further out of the card), never sinks toward the text. */
+  .promo__img[data-depth] { translate: 0 calc(min(var(--py, 0), 0) * 1px); }
+  /* QA r2 RA2-02 (gate G10, p95 <= 16.7ms at 4x CPU): the home's scroll frames cost 33-50ms because every frame site.js
+     wrote --py / --pr on up to 20 layers and the inherited --hp on the whole hero (style recalc + repaint of blurred
+     orbs and the hero photo on the main thread). Where the browser has scroll-driven animations, the same movement is
+     a view() / named view timeline run by the compositor: site.js only copies each layer's data-depth, data-depth-max
+     and data-rot into --d / --max / --rot once, and writes nothing per frame. Same bounds as the JS path: a layer moves
+     linearly across its pass through the viewport (cover range) and never beyond +/- data-depth-max (the collision
+     fixes of VH-01, CG-02 and CG-03 were sized for those bounds); the sprig rotates within +/- data-rot; the promo
+     photo only rises (CG2-02); a viewport taller than 2400px shows the rest pose. Elsewhere the JS path above runs. */
+  @supports (animation-timeline: view()) {
+    [data-depth] { --k: 1; animation: cec-depth linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+    [data-depth][data-rot] { animation: cec-depth linear both, cec-rot linear both; animation-timeline: view(), view(); animation-range: cover 0% cover 100%, cover 0% cover 100%; }
+    .promo__img[data-depth] { animation-name: cec-depth-up; }
+    [data-hero] { view-timeline: --hero block; }
+    .hero__photo img { animation: cec-hero-img linear both; animation-timeline: --hero; animation-range: exit-crossing 0% exit-crossing 100%; }
+    .hero__sun { animation: cec-hero-sun linear both; animation-timeline: --hero; animation-range: exit-crossing 0% exit-crossing 100%; }
+    @media (max-width: 699px) { [data-depth] { --k: .55; } }
+    @media (min-height: 2401px) { [data-depth], [data-depth][data-rot], .promo__img[data-depth], .hero__photo img, .hero__sun { animation: none; } }
+  }
   [data-rot] { rotate: calc(var(--pr, 0) * 1deg); }
   .hero__photo img { scale: calc(1.06 - var(--hp, 0) * .06); translate: 0 calc(var(--hp, 0) * 20px); }
   .hero__sun { translate: calc(var(--hp, 0) * -40px) calc(var(--hp, 0) * 60px); }
@@ -922,6 +947,11 @@
     .blob--leaf { animation: cec-drift-b 60s ease-in-out infinite alternate-reverse; }
     .orb { animation: cec-morph 24s ease-in-out infinite alternate; }
     .hero__beams { animation: cec-beams 18s ease-in-out infinite alternate; }
+    /* QA r2 RA2-02 (G10): the 18-60s drifts pause while the page is being scrolled (site.js sets html.is-scrolling from
+       the first scroll event until 200ms after the last) and resume where they stopped. Moving under the glass, they
+       made every blurred surface above them redraw on each scroll frame: 1440 at 4x CPU p95 33ms, 16.8ms with them
+       still. A slow drift held for the length of a scroll is not visible. */
+    .is-scrolling :is(.blob, .orb, .hero__beams) { animation-play-state: paused; }
   }
 
   /* ---- chrome ---- */
@@ -1002,6 +1032,9 @@
   .logo-chip--link:focus-within { transform: translateY(-6px); }
   .fig--photo { transition: rotate .6s var(--ease-out); }
   .fig--photo:focus-within { rotate: 0deg; }
+  /* QA r2 R2-VIA-07: a linked plate (the EyeGlass Guide tool link) lifts like a linked logo chip (spec 5.5) */
+  .fig--plate:has(> .fig__media > a) { transition: transform var(--t-base) var(--ease-spring), box-shadow var(--t-base); }
+  .fig--plate:has(> .fig__media > a):focus-within { transform: translateY(-6px); }
 
   @media (hover: hover) {
     .btn:hover { transform: translateY(-2px); }
@@ -1030,6 +1063,7 @@
     .index-card:hover .index-card__thumb { transform: translateY(-6px); }
     .logo-chip--link:hover { transform: translateY(-6px); }
     .fig--photo:hover { rotate: 0deg; }
+    .fig--plate:has(> .fig__media > a):hover { transform: translateY(-6px); }
   }
   .qa__item[open] .qa__q:focus-visible .qa__icon { transform: rotate(180deg); }
 }
@@ -1037,11 +1071,26 @@
 @keyframes cec-draw { to { stroke-dashoffset: 0; } }
 @keyframes cec-drift-a { to { transform: translate3d(-6vw, 4vw, 0) scale(1.08); } }
 @keyframes cec-drift-b { to { transform: translate3d(7vw, -3vw, 0) scale(.94); } }
+/* QA r2 RA2-02: transform only. The border-radius steps repainted and re-blurred every 42px-blurred orb on the main
+   thread every frame (1440 at 4x CPU: p95 33ms with the parallax writes already gone, 16.8ms without the radius);
+   under that blur the shape change was not visible, the slow turn and swell are kept (compositor). */
 @keyframes cec-morph {
-  50%  { border-radius: 58% 42% 38% 62% / 55% 60% 40% 45%; transform: rotate(8deg) scale(1.04); }
-  100% { border-radius: 38% 62% 50% 50% / 40% 45% 55% 60%; transform: rotate(-6deg) scale(.97); }
+  50%  { transform: rotate(8deg) scale(1.04); }
+  100% { transform: rotate(-6deg) scale(.97); }
 }
 @keyframes cec-beams { to { transform: translate3d(-40px, 16px, 0); } }
+/* scroll-driven layers (RA2-02): see the @supports (animation-timeline: view()) block */
+@keyframes cec-depth {
+  from { translate: 0 clamp(-1px * var(--max, 42), -1 * var(--d, 0) * var(--k, 1) * (50vh + 50%), 1px * var(--max, 42)); }
+  to { translate: 0 clamp(-1px * var(--max, 42), var(--d, 0) * var(--k, 1) * (50vh + 50%), 1px * var(--max, 42)); }
+}
+@keyframes cec-depth-up {
+  from { translate: 0 0; }
+  to { translate: 0 clamp(-1px * var(--max, 42), var(--d, 0) * var(--k, 1) * (50vh + 50%), 0px); }
+}
+@keyframes cec-rot { from { rotate: calc(-1deg * var(--rot, 0)); } to { rotate: calc(1deg * var(--rot, 0)); } }
+@keyframes cec-hero-img { from { scale: 1.06; translate: 0 0; } to { scale: 1; translate: 0 20px; } }
+@keyframes cec-hero-sun { from { translate: 0 0; } to { translate: -40px 60px; } }
 @keyframes cec-qa-in { from { opacity: 0; transform: translateY(-6px); } }
 
 /* reduced motion (5.7): nothing hidden, nothing moving; colour, underline and shadow states remain */

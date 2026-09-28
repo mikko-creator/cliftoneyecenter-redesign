@@ -61,8 +61,17 @@
   var header = d.querySelector('[data-header]');
   var hero = d.querySelector('[data-hero]');
   var layers = [];
+  /* QA r2 RA2-02 (G10): where CSS scroll-driven animations exist, motion.css moves the layers and the hero on the
+     compositor; this file only hands each layer its factors once (--d, --max, --rot) and writes nothing per frame.
+     Without them (no animation-timeline support) the rAF path below runs as before. */
+  var sda = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()'));
+  if (sda) $$('[data-depth]').forEach(function (el) {
+    el.style.setProperty('--d', el.getAttribute('data-depth') || '0');
+    el.style.setProperty('--max', el.getAttribute('data-depth-max') || '42');
+    if (el.hasAttribute('data-rot')) el.style.setProperty('--rot', el.getAttribute('data-rot'));
+  });
   function measure() {
-    if (!motionOK) { layers = []; return; }
+    if (!motionOK || sda) { layers = []; return; }
     var y = window.scrollY || 0;
     var els = $$('[data-depth]');
     els.forEach(function (el) { setVar(el, '--py', '0'); });   /* translate reset while measuring (all writes, then all reads) */
@@ -109,9 +118,17 @@
     var max = Math.max(1, html.scrollHeight - vh);
     if (bar) setVar(bar, '--scroll', Math.min(1, y / max).toFixed(4));
     if (header) header.classList.toggle('is-scrolled', y > 40);
-    if (motionOK) parallax(y, vh);
+    if (motionOK && !sda) parallax(y, vh);
   }
-  function requestTick() { if (!ticking) { ticking = true; window.requestAnimationFrame(onScroll); } }
+  /* QA r2 RA2-02 (G10): html.is-scrolling from the first scroll event until 200ms after the last; motion.css pauses
+     the slow ambient drifts under the glass meanwhile. The class changes twice per scroll, never per frame. */
+  var scrolling = false, scrollIdle = 0;
+  function markScrolling() {
+    if (!scrolling) { scrolling = true; html.classList.add('is-scrolling'); }
+    clearTimeout(scrollIdle);
+    scrollIdle = setTimeout(function () { scrolling = false; html.classList.remove('is-scrolling'); }, 200);
+  }
+  function requestTick() { markScrolling(); if (!ticking) { ticking = true; window.requestAnimationFrame(onScroll); } }
   function remeasure() { measure(); onScroll(); }
   on(window, 'scroll', requestTick, { passive: true });
   on(window, 'resize', function () { remeasure(); stickyFit(); }, { passive: true });
@@ -205,7 +222,19 @@
     if (e.shiftKey && (d.activeElement === first || !drawer.contains(d.activeElement))) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && (d.activeElement === last || !drawer.contains(d.activeElement))) { e.preventDefault(); first.focus(); }
   });
-  onMQ(desk, function () { if (desk.matches) closeDrawer(false); });
+  /* QA r2 RA2-03: when the layout turns desktop with the drawer open, the drawer closes without focusing the menu
+     button (now hidden). If focus was inside the drawer it moves to the visible equivalent: the primary-nav link with
+     the same href, else the first primary-nav link, else the logo; never left on <body> at the end of the page. */
+  onMQ(desk, function () {
+    if (!desk.matches || !drawer || drawer.hidden) return;
+    var from = drawer.contains(d.activeElement) ? d.activeElement : null;
+    closeDrawer(false);
+    if (!from) return;
+    var href = from.getAttribute && from.getAttribute('href');
+    var links = $$('.mainnav__link[href]');
+    var to = (href && links.filter(function (a) { return a.getAttribute('href') === href; })[0]) || links[0] || d.querySelector('.site-header .logo-plate');
+    if (to) to.focus();
+  });
 
   /* ---------- dormant nav disclosure (DESIGN-SPEC 3.2 pattern; the source menu is flat, so nothing binds today) ---------- */
   $$('.mainnav__item > button[aria-expanded][aria-controls]').forEach(function (btn) {
@@ -270,14 +299,37 @@
       prev.hidden = next.hidden = desk.matches;
       if (desk.matches) track.removeAttribute('tabindex'); else track.setAttribute('tabindex', '0');
       ends();
+      fit();
     }
     function go(dir) { track.scrollBy({ left: dir * step(), behavior: reduce.matches ? 'auto' : 'smooth' }); }
     on(prev, 'click', function () { if (prev.getAttribute('aria-disabled') !== 'true') go(-1); });
     on(next, 'click', function () { if (next.getAttribute('aria-disabled') !== 'true') go(1); });
+    /* QA r2 VHR2-05: below 1024px the track is as tall as the cards in view (plus its own padding), not as its tallest
+       card, so the buttons sit right under what is being read (site.css clips the track's overflow-y). A card counts
+       when at least half of it is inside the track: the thin peek of the next card on a phone (~14%) does not, the
+       second card beside the first on a tablet (~60%) does, so its text is never cut. From 1024px (a static grid) the
+       height is auto again. */
+    function fit() {
+      if (desk.matches) { track.style.height = ''; return; }
+      var tr = track.getBoundingClientRect(), h = 0;
+      Array.prototype.forEach.call(track.children, function (s) {
+        var r = s.getBoundingClientRect();
+        var seen = Math.min(r.right, tr.right) - Math.max(r.left, tr.left);
+        if (r.width && seen >= r.width / 2) h = Math.max(h, r.height);
+      });
+      if (!h) return;
+      var cs = getComputedStyle(track);
+      if (cs.boxSizing === 'border-box') h += parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+      var v = Math.ceil(h) + 'px';
+      if (track.style.height !== v) track.style.height = v;
+    }
     var raf = 0;
-    on(track, 'scroll', function () { if (!raf) raf = window.requestAnimationFrame(function () { raf = 0; ends(); }); }, { passive: true });
+    on(track, 'scroll', function () { if (!raf) raf = window.requestAnimationFrame(function () { raf = 0; ends(); fit(); }); }, { passive: true });
     onMQ(desk, mode);
-    on(window, 'resize', ends, { passive: true });
+    on(window, 'resize', function () { ends(); fit(); }, { passive: true });
+    on(window, 'load', fit);
+    if (d.fonts && d.fonts.ready) d.fonts.ready.then(fit);
+    if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { fit(); }); Array.prototype.forEach.call(track.children, function (s) { ro.observe(s); }); }
     mode();
   });
 
@@ -332,10 +384,19 @@
       sync();
     });
     var fields = $$('.field', form);
+    /* QA r2 VIB-R2-02: pressing Submit with a pointer moves focus off the last field; its focusout check inserted the
+       error line above the button, the button moved down 68-95px before mouseup, and the click landed on the form:
+       no submit, focus left on the button. While a pointer is down on a submit control (from pointerdown until its
+       click, or 1.5s at most) the focusout check waits; the submit handler checks every field and focuses the first
+       invalid one (spec 3.20). Keyboard Tab still checks the field it leaves. */
+    var submitPress = 0;
+    on(form, 'pointerdown', function (e) { if (e.target.closest && e.target.closest('button[type="submit"], input[type="submit"], button:not([type])')) submitPress = Date.now(); });
+    on(form, 'click', function () { submitPress = 0; });
     fields.forEach(function (field) {
       var touched = false;
       on(field, 'focusout', function (e) {
         if (field.contains(e.relatedTarget)) return;               /* still inside a group: wait */
+        if (submitPress && Date.now() - submitPress < 1500) return;   /* a Submit press: the submit handler checks */
         if (touched || field.classList.contains('is-invalid')) check(field, true);
       });
       on(field, 'input', function () { touched = true; if (field.classList.contains('is-invalid')) check(field, true); });

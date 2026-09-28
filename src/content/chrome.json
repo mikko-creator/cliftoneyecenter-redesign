@@ -72,7 +72,7 @@
     ],
     "nap": { "name": "Clifton Eye Center", "located": " - Located at ", "street": "1000 Chinaberry Drive, Suite 302", "sep": ", ", "locality": "Bossier City", "region": "LA", "postalCode": "71111", "phoneLabel": "Phone:" },
     "social": [
-      { "network": "facebook", "label": "Visit us on facebook", "href": "https://www.facebook.com/Clifton-Eye-Center-154894561271074/?ref=bookmarks" }
+      { "network": "facebook", "label": "Visit us on facebook", "href": "https://www.facebook.com/Clifton-Eye-Center-154894561271074/?ref=bookmarks", "rel": "nofollow noopener" }
     ],
     "copyright": "© 2026",
     "util": [
