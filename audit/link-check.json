@@ -1,10 +1,10 @@
 {
  "schema": "cec/link-check@1",
- "generated": "2026-09-28T07:17:13.302Z",
+ "generated": "2026-09-28T11:15:08.884Z",
  "dist": "C:\\Users\\Dell\\cliftoneyecenter-reforge\\dist",
  "filesChecked": 354,
- "localRefs": 20328,
- "externalRefsSkipped": 2881,
+ "localRefs": 20333,
+ "externalRefsSkipped": 2882,
  "broken": 0,
  "byKind": {},
  "control": {
@@ -31,6 +31,20 @@
     "attr": "src",
     "value": "img/nothing.webp",
     "resolved": "ctl/img/nothing.webp"
+   }
+  ],
+  "planted404": "<a href=\"/\">home</a><a href=\"/styles/site.css\">css</a><link href=\"/styles/nope.css\"><a href=\"index.html\">rel</a>",
+  "reported404": [
+   {
+    "kind": "missing",
+    "attr": "href",
+    "value": "/styles/nope.css",
+    "resolved": "styles/nope.css"
+   },
+   {
+    "kind": "page-relative-in-404",
+    "attr": "href",
+    "value": "index.html"
    }
   ],
   "fired": true

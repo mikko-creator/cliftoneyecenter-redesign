@@ -51,7 +51,7 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
   const upOf = (depth) => (depth ? '../'.repeat(depth) : '');
   const tel = 'tel:' + chrome.phone;
 
-  function head({ depth, title, description, robots, canonical, ogTitle, ogImage, lang, jsonLd, lcp, favicon, styles }) {
+  function head({ depth, title, description, robots, canonical, ogTitle, ogType, twitterCard, ogImage, lang, jsonLd, lcp, favicon, styles }) {
     const u = (p) => esc(upOf(depth) + p);
     return [
       '<!doctype html>',
@@ -64,13 +64,13 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
       robots ? '<meta name="robots" content="' + esc(robots) + '">' : '',
       '<link rel="canonical" href="' + esc(canonical) + '">',
       '<meta name="theme-color" content="#759b2a">',
-      '<meta property="og:type" content="website">',
+      '<meta property="og:type" content="' + esc(ogType || 'website') + '">',   /* the source page's own (CS-07) */
       '<meta property="og:site_name" content="' + esc(chrome.brandName) + '">',
       '<meta property="og:title" content="' + esc(ogTitle || title) + '">',
       description ? '<meta property="og:description" content="' + esc(description) + '">' : '',
       '<meta property="og:url" content="' + esc(canonical) + '">',
       ogImage ? '<meta property="og:image" content="' + esc(ogImage) + '">' : '',
-      '<meta name="twitter:card" content="' + (ogImage ? 'summary_large_image' : 'summary') + '">',
+      '<meta name="twitter:card" content="' + esc(twitterCard || 'summary') + '">',   /* the source's "summary" (CS-08) */
       ogImage ? '<meta name="twitter:image" content="' + esc(ogImage) + '">' : '',
       favicon ? '<link rel="icon" href="' + u(favicon.icon) + '" sizes="32x32" type="image/png">' : '',
       favicon && favicon.icon192 ? '<link rel="icon" href="' + u(favicon.icon192) + '" sizes="192x192" type="image/png">' : '',
@@ -118,8 +118,9 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
       return '<li class="mainnav__item"><a class="mainnav__link' + (st.section ? ' is-section' : '') + '" href="' + esc(H(it.href, depth)) + '"' + (st.cur ? ' aria-current="page"' : '') + '>' + esc(it.label) + '</a></li>';
     }).join('');
     const m = chrome.mobileHeader;
+    /* a div: the banner landmark is the <header class="masthead"> around the top bar and this bar (page(), RA-06) */
     return [
-      '<header class="site-header" data-header>',
+      '<div class="site-header" data-header>',
       '<div class="wrap">',
       '<div class="site-header__bar">',
       '<span class="site-header__glass glass glass--image" aria-hidden="true"></span>',
@@ -136,7 +137,7 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
       '</div>',
       '</div>',
       '</div>',
-      '</header>',
+      '</div>',
     ].join('\n');
   }
 
@@ -200,7 +201,7 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
         + '<span class="dock__icon">' + icon(ic) + '</span><span class="dock__label">' + esc(q.label) + '</span></a>';
     }).join('\n');
     if (variant === 'row') return '<div class="dock dock--row" data-stagger>\n' + tiles + '\n</div>';
-    return '<nav class="dock dock--aside" aria-label="Quick links">\n' + tiles + '\n</nav>';
+    return '<nav class="dock dock--aside" aria-label="Quick actions">\n' + tiles + '\n</nav>';   /* not "Quick links": the footer nav is "Quick Links" (RA-07) */
   }
 
   /* G.9 dl.hours: rows in source order, data-day 1..6 then 0 */
@@ -245,7 +246,7 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
     }).join('') + '</ol>\n</nav>';
   }
 
-  function band({ depth, variant, scene, photo, photoMobile, cut, trail, h1, date }) {
+  function band({ depth, variant, scene, photo, photoMobile, cut, trail, h1, date, focus, named }) {
     const v = variant === 'scene' && !scene ? 'plain' : variant;
     /* a "rise" cut-out (flat-cut edges) lives inside the clipped stage, flush on its bottom-right corner,
        with no parallax (a lifted cut edge would show); every other cut-out crosses the band edge from the grid */
@@ -257,11 +258,11 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
         ? '<div class="band__stage" aria-hidden="true"><span class="band__veil"></span>' + rise + '</div>'
         : '<div class="band__stage" aria-hidden="true"><span class="band__rings"></span>' + rise + '</div>';
     const visual = v === 'photo' && photo
-      ? '<figure class="band__visual" data-reveal="blur"><picture>' + (photoMobile ? '<source media="(max-width: 767px)" srcset="' + esc(photoMobile.url) + '" width="' + photoMobile.w + '" height="' + photoMobile.h + '">' : '') + '<img src="' + esc(photo.url) + '" alt="" width="' + photo.w + '" height="' + photo.h + '" fetchpriority="high" decoding="async"></picture></figure>'
+      ? '<figure class="band__visual' + (focus ? ' band__visual--' + focus : '') + '" data-reveal="blur"><picture>' + (photoMobile ? '<source media="(max-width: 767px)" srcset="' + esc(photoMobile.url) + '" width="' + photoMobile.w + '" height="' + photoMobile.h + '">' : '') + '<img src="' + esc(photo.url) + '" alt="" width="' + photo.w + '" height="' + photo.h + '" fetchpriority="high" decoding="async"></picture></figure>'
       : '';
     const datePill = date ? '<p class="date-pill">' + icon('clock') + '<time' + (isoDate(date) ? ' datetime="' + isoDate(date) + '"' : '') + '>' + esc(date) + '</time></p>' : '';
     return [
-      '<section class="band band--' + v + '" aria-labelledby="page-title">',
+      '<section class="band band--' + v + '"' + (named === false ? '' : ' aria-labelledby="page-title"') + '>',
       stage,
       '<div class="wrap band__grid">',
       '<div class="band__title glass glass--image" data-reveal="up">',
@@ -331,7 +332,9 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
     const links = buttons.map((b) => {
       const href = H(b.href, depth);
       const ext = /^https?:/i.test(href || '');
-      return href ? '<a class="btn btn--invert" href="' + esc(href) + '"' + (ext || b.newTab ? ' target="_blank" rel="noopener"' : '') + '>' + esc(b.label) + icon('arrow') + '</a>' : '<span class="btn btn--invert">' + esc(b.label) + '</span>';
+      /* a phone number in a label never splits across lines ("318-550-" / "5815" at 390: VIB-04); text unchanged */
+      const label = esc(b.label).replace(/\d{3}-\d{3}-\d{4}/g, '<span class="nobr">$&</span>');
+      return href ? '<a class="btn btn--invert" href="' + esc(href) + '"' + (ext || b.newTab ? ' target="_blank" rel="noopener"' : '') + '>' + label + icon('arrow') + '</a>' : '<span class="btn btn--invert">' + label + '</span>';
     }).join('\n');
     return '<div class="cta-band glass glass--leaf-deep">\n<span class="cta-band__rings" aria-hidden="true"></span>\n<p class="cta-band__actions">\n' + links + '\n</p>\n</div>';
   }
@@ -399,8 +402,12 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
       '<div class="progress" aria-hidden="true"><span></span></div>',
       '<a class="skip" href="#main">' + esc(chrome.skip) + '</a>',
       '<div class="page">',
+      /* one banner landmark holding the top bar and the header bar (RA-06: the top bar's address, appointment and
+         Call links sat outside every landmark); site.css .masthead { display: contents } keeps the bar sticky */
+      '<header class="masthead">',
       topbar(depth),
       header(depth, curPath),
+      '</header>',
       pageInner,
       footer(depth),
       '</div>',

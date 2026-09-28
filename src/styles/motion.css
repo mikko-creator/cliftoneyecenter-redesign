@@ -898,6 +898,9 @@
     transition: opacity var(--t-slow) var(--ease-out), translate var(--t-reveal) var(--ease-out), scale 1s var(--ease-out), filter var(--t-reveal) var(--ease-out);
     transition-delay: calc(var(--i, 0) * var(--stagger)); }
   .js-motion [data-reveal="settle"].is-in { transition: scale 1.2s var(--ease-out); }
+  /* RA-04 (WCAG 2.4.7): keyboard focus inside a block whose entrance has not played shows it at once, never at
+     opacity 0; site.js also marks it .is-in on focusin, so it stays shown when focus moves on */
+  .js-motion [data-reveal]:focus-within { opacity: 1; translate: none; scale: none; filter: none; transition: none; }
   @media (max-width: 859px) { .js-motion .hero__copy[data-reveal="left"] { translate: 0 34px; } }
   /* slides clipped by the snap track would reveal mid-swipe: below 1024px they are never hidden */
   @media (max-width: 1023px) { .js-motion .rev-slide[data-reveal] { opacity: 1; translate: none; } }

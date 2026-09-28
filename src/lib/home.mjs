@@ -121,7 +121,9 @@ export function buildHome(ctx) {
     '<span class="hero__photo-in" data-reveal="settle">' + img(heroPhoto, '', ' fetchpriority="high" decoding="async"') + '</span>',
     '</figure>',
     heroCut ? img(heroCut, '', ' decoding="async" data-depth="-0.07" data-depth-max="32"').replace('<img ', '<img class="hero__cut" ') : '',
-    '<nav class="dock" aria-label="Quick links" data-stagger>', dockHtml, '</nav>',
+    /* "Quick actions" (a COMPONENTS H.2 non-visible label): "Quick links" read the same as the footer's
+       "Quick Links" nav, two landmarks with one name (RA-07) */
+    '<nav class="dock" aria-label="Quick actions" data-stagger>', dockHtml, '</nav>',
     '</div>',
     '</section>',
   ].filter(Boolean).join('\n');
@@ -207,7 +209,8 @@ export function buildHome(ctx) {
     '<div class="welcome__side">',
     '<article class="promo glass glass--light is-solid" data-reveal="up">',
     promoImg ? '<figure class="promo__img pop" data-depth="-0.04" data-depth-max="20"><span class="promo__img-in" data-reveal="blur">' + img(promoImg, '', ' loading="lazy" decoding="async"') + '</span></figure>' : '',
-    promoTitle ? '<h3 class="promo__title">' + esc(promoTitle) + '</h3>' : '',
+    /* h2 (source h4; L06 made it h3, which still skipped a level after the h1: RA-05) */
+    promoTitle ? '<h2 class="promo__title">' + esc(promoTitle) + '</h2>' : '',
     promoParas.join('\n'),
     '</article>',
     newsHtml,
@@ -234,7 +237,9 @@ export function buildHome(ctx) {
     const im = sourceImg(attr(imTag, 'src'));
     const name = textOf((firstByClass(it.html, 'ecp-gallery-item-caption') || { html: '' }).html);
     const href = H(attr(a, 'href'));
-    const body = '<span class="svc__frame">' + img(im, '', ' loading="lazy" decoding="async"') + '</span><span class="svc__foot"><span class="svc__name">' + esc(name) + '</span><span class="svc__go">' + icon('arrow') + '</span></span>';
+    /* the source captions are <h2>s under the row's own title: here h3 under the section's h2 (VH-03), inside the
+       card link (one link per card); div.svc__foot because a heading may not sit in a <span> */
+    const body = '<span class="svc__frame">' + img(im, '', ' loading="lazy" decoding="async"') + '</span><div class="svc__foot"><h3 class="svc__name">' + esc(name) + '</h3><span class="svc__go">' + icon('arrow') + '</span></div>';
     return '<li data-reveal="rise">\n' + (href ? '<a class="svc glass glass--light is-solid" href="' + esc(href) + '" data-tilt="7">' + body + '</a>' : '<span class="svc glass glass--light is-solid">' + body + '</span>') + '\n</li>';
   });
   const services = [
@@ -291,7 +296,8 @@ export function buildHome(ctx) {
     '<h2 class="section-title section-title--center tag-title" id="rev-h" data-reveal="up">' + hashTitle(revTag) + '</h2>',
     '<div class="reviews__stage">',
     '<section class="rev-carousel" aria-roledescription="carousel" aria-labelledby="rev-h" data-carousel>',
-    '<div class="rev-track" tabindex="0" data-carousel-track>', slides.join('\n'), '</div>',
+    /* named by the existing #HappyPatients heading (no new copy); site.js keeps tabindex only below 1024px (RA-09) */
+    '<div class="rev-track" role="group" aria-labelledby="rev-h" tabindex="0" data-carousel-track>', slides.join('\n'), '</div>',
     '<div class="rev-nav">',
     '<button class="round-btn rev-nav__btn rev-nav__btn--prev" type="button" data-carousel-prev hidden>' + icon('chev') + '<span class="sr">Previous slide</span></button>',
     '<button class="round-btn rev-nav__btn rev-nav__btn--next" type="button" data-carousel-next hidden>' + icon('chev') + '<span class="sr">Next slide</span></button>',
@@ -398,7 +404,7 @@ export function buildHome(ctx) {
     '<div class="sos glass glass--dark is-solid" data-reveal="up">',
     '<div class="sos__head"><span class="icon-tile">' + icon('case') + '</span><h3 class="sos__h">' + esc(sosH) + '</h3></div>',
     sosParas.join('\n'),
-    sosBtn && sosHref ? '<a class="btn btn--alert" href="' + esc(sosHref) + '">' + icon('phone') + esc(textOf(sosBtn)) + '</a>' : '',
+    sosBtn && sosHref ? '<a class="btn btn--alert" href="' + esc(sosHref) + '">' + icon('phone') + esc(textOf(sosBtn)).replace(/\d{3}-\d{3}-\d{4}/g, '<span class="nobr">$&</span>') + '</a>' : '',
     '</div>',
     '</div>',
     '</section>',

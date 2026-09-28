@@ -1,6 +1,6 @@
 {
   "schema": "site-reforge/seo-repairs@1",
-  "generated": "2026-09-28T07:09:57.096Z",
+  "generated": "2026-09-28T11:14:48.085Z",
   "note": "Head-level fields: source values carried forward; repairs only from the page own content or a declared decision.",
   "titles": [
     {
@@ -79,7 +79,7 @@
       "to": "https://www.cliftoneyecenter.com/tag/gsp-eye-emergencies/"
     }
   ],
-  "descriptionsDerived": 167,
+  "descriptionsDerived": 156,
   "robotsChanges": [
     {
       "page": "/testimonial/4726-2/",

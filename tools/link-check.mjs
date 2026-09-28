@@ -6,6 +6,9 @@
 // directory or subpath), its ?query and #fragment are dropped, and the target must be an existing
 // file (a directory resolves to its index.html). Root-absolute references ("/x") are findings on
 // their own: they break a subpath deploy.
+// Exception (COMPONENTS F.7, QA VIB-01): dist/404.html is served by the host at the failing request's own path,
+// at any depth, so in THAT file every local reference must be root-relative: "/x" is resolved against the dist
+// root, and a page-relative reference is a finding (kind page-relative-in-404).
 // Same-page fragments (href="#id") must name an element id on that page.
 // Positive controls: a planted missing file, a planted root-absolute href and a planted dead
 // fragment must each be reported; the run exits 1 if any control does not fire.
@@ -48,6 +51,7 @@ const idsOf = (html) => new Set([...html.matchAll(/\sid\s*=\s*"([^"]+)"/gi)].map
 
 function checkFile(rel, text, exists) {
   const problems = [];
+  const rootOnly = rel === '404.html';   /* F.7: served at any depth */
   let local = 0, external = 0;
   const isHtml = /\.html?$/i.test(rel);
   const refs = isHtml ? refsOfHtml(text) : refsOfCss(text);
@@ -62,12 +66,13 @@ function checkFile(rel, text, exists) {
       continue;
     }
     local++;
-    if (v.startsWith('/')) { problems.push({ kind: 'root-absolute', attr: r.attr, value: v }); continue; }
+    if (rootOnly && isHtml && !v.startsWith('/')) { problems.push({ kind: 'page-relative-in-404', attr: r.attr, value: v }); continue; }
+    if (v.startsWith('/') && !(rootOnly && isHtml)) { problems.push({ kind: 'root-absolute', attr: r.attr, value: v }); continue; }
     const clean = decodeURIComponent(v.split('#')[0].split('?')[0]);
     if (!clean) continue;
-    const target = path.posix.normalize(path.posix.join(path.posix.dirname(rel), clean));
+    const target = v.startsWith('/') ? path.posix.normalize(clean.replace(/^\/+/, '') || '.') : path.posix.normalize(path.posix.join(path.posix.dirname(rel), clean));
     if (target.startsWith('..')) { problems.push({ kind: 'escapes-root', attr: r.attr, value: v }); continue; }
-    const candidates = clean.endsWith('/') ? [target.replace(/\/?$/, '/index.html')] : [target, target + '/index.html'];
+    const candidates = clean.endsWith('/') ? [(target === '.' ? '' : target.replace(/\/?$/, '/')) + 'index.html'] : [target, target + '/index.html'];
     if (!candidates.some((c) => exists(c))) problems.push({ kind: 'missing', attr: r.attr, value: v, resolved: target });
   }
   return { problems, local, external };
@@ -89,10 +94,14 @@ for (const rel of files) {
 /* positive controls, in memory */
 const ctlHtml = '<a href="nope/index.html">x</a><a href="/abs/">y</a><a href="#missing-id">z</a><img src="img/nothing.webp" alt="">';
 const ctl = checkFile('ctl/index.html', ctlHtml, exists).problems;
-const fired = ctl.some((p) => p.kind === 'missing' && p.value === 'nope/index.html') && ctl.some((p) => p.kind === 'root-absolute') && ctl.some((p) => p.kind === 'dead-fragment') && ctl.some((p) => p.kind === 'missing' && p.attr === 'src');
+/* the 404 exception: a root-relative link that resolves passes; a missing one and a page-relative one are reported */
+const ctl404Html = '<a href="/">home</a><a href="/styles/site.css">css</a><link href="/styles/nope.css"><a href="index.html">rel</a>';
+const ctl404 = checkFile('404.html', ctl404Html, exists).problems;
+const fired404 = !ctl404.some((p) => p.value === '/' || p.value === '/styles/site.css') && ctl404.some((p) => p.kind === 'missing' && p.value === '/styles/nope.css') && ctl404.some((p) => p.kind === 'page-relative-in-404' && p.value === 'index.html');
+const fired = fired404 && ctl.some((p) => p.kind === 'missing' && p.value === 'nope/index.html') && ctl.some((p) => p.kind === 'root-absolute') && ctl.some((p) => p.kind === 'dead-fragment') && ctl.some((p) => p.kind === 'missing' && p.attr === 'src');
 
 const byKind = broken.reduce((a, b) => { a[b.kind] = (a[b.kind] || 0) + 1; return a; }, {});
-const out = { schema: 'cec/link-check@1', generated: new Date().toISOString(), dist: DIST, filesChecked: checked, localRefs: local, externalRefsSkipped: external, broken: broken.length, byKind, control: { planted: ctlHtml, reported: ctl, fired }, findings: broken.slice(0, 2000) };
+const out = { schema: 'cec/link-check@1', generated: new Date().toISOString(), dist: DIST, filesChecked: checked, localRefs: local, externalRefsSkipped: external, broken: broken.length, byKind, control: { planted: ctlHtml, reported: ctl, planted404: ctl404Html, reported404: ctl404, fired }, findings: broken.slice(0, 2000) };
 if (!process.env.CEC_DIST) fs.writeFileSync(path.join(ROOT, 'audit/link-check.json'), JSON.stringify(out, null, 1));
 console.log('files', checked, '· local refs', local, '· external skipped', external, '· broken', broken.length, JSON.stringify(byKind), '· control', fired ? 'fired' : 'DID NOT FIRE');
 for (const b of broken.slice(0, 15)) console.log('  ' + b.file + '  ' + b.kind + ' ' + b.attr + '=' + b.value);

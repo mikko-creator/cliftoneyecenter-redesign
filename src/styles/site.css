@@ -152,11 +152,15 @@ section { position: relative; }
 .round-btn--menu:is(:hover, :focus-visible) { color: var(--paper); background: var(--green-800); }
 
 /* ---------- 5. top bar (3.1) ---------- */
+/* RA-06: the top bar and the header bar sit in one <header class="masthead"> (the banner landmark), so the address,
+   "Make an Appointment" and the Call pill are inside a landmark. display: contents: the wrapper draws no box, so
+   the header bar stays sticky against the page, not against a wrapper as short as the two bars. */
+.masthead { display: contents; }
 .topbar { position: relative; z-index: 5; color: var(--green-950); background: var(--topbar-bg); }
 .topbar::after { content: ""; position: absolute; inset: auto 0 0 0; height: 1px; background: var(--sh-12); }
 .topbar__in { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 56px; padding-block: 6px; }
 .topbar__addr { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--green-950); font-size: var(--fs-sm); line-height: 1.35; text-decoration: none; }
-.topbar__addr strong { font-weight: 700; }
+.topbar__addr strong { font-weight: 700; text-wrap: balance; }   /* VH-09: at 1024 the address needs 2 lines; balanced, never a lone "71111." */
 .topbar__addr:is(:hover, :focus-visible) { color: var(--green-950); }
 .topbar__addr:is(:hover, :focus-visible) strong { text-decoration: underline; text-underline-offset: .2em; }
 .topbar__actions { display: flex; gap: 10px; flex: none; }
@@ -179,11 +183,15 @@ section { position: relative; }
 .site-header__bar { position: relative; display: flex; align-items: center; justify-content: flex-end; gap: 16px; height: 72px; border-radius: 28px;
   padding: 0 12px 0 calc(var(--plate-left) + var(--plate-box) + 2 * var(--plate-pad) + 16px); }
 .site-header .site-header__glass { position: absolute; inset: 0; z-index: 0; border-radius: inherit; background: var(--header-glass-bg); }
-.site-header.is-scrolled .site-header__glass { box-shadow: var(--gb-shadow), var(--e-2); }
+/* CG-04 (a recorded change to spec 3.2 "the glass gains --e-2"): stuck over the page, the stacked --gb-shadow +
+   --e-2 drop shadows (reaching ~40px down at up to .28 alpha) darkened whatever text scrolled just under the bar:
+   green-700 links read 4.13-4.34 at +0..+3px at 1024/1440 (6.2 at rest). The stuck bar and plate get one short,
+   tight shadow instead (it ends ~8px below the edge), so reading surfaces keep their contrast. */
+.site-header.is-scrolled .site-header__glass { box-shadow: inset 0 1px 0 rgb(255 255 255 / .90), 0 0 0 1px rgb(68 102 0 / .10), 0 1px 2px rgb(var(--shade) / .12), 0 4px 10px -6px rgb(var(--shade) / .30); }
 .site-header__bar > .mainnav, .site-header__bar > .mobile-actions { position: relative; z-index: 1; }
 .site-header .logo-plate { position: absolute; z-index: 2; top: 0; left: var(--plate-left); display: block; padding: 10px var(--plate-pad) 12px;
   background: var(--paper); border-radius: 0 0 20px 20px; box-shadow: var(--e-2); transform-origin: 0 0; }
-.site-header.is-scrolled .logo-plate { scale: var(--plate-scale); }
+.site-header.is-scrolled .logo-plate { scale: var(--plate-scale); box-shadow: 0 1px 2px rgb(var(--shade) / .12), 0 4px 10px -6px rgb(var(--shade) / .30); }   /* CG-04 */
 .logo__box { display: block; width: var(--plate-box, 140px); aspect-ratio: 3 / 2; overflow: hidden; }
 /* the JPEG's uneven white margin trimmed in CSS (BRAND-SYSTEM 2); the file is never edited */
 .logo__box img { width: 110.07%; max-width: none; height: auto; margin: -5.56% 0 0 -5.56%; }
@@ -292,9 +300,19 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 .dock--row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 14px; }
 
 @media (min-width: 860px) and (max-width: 1099px) { .hero__copy { margin-right: -96px; } }
+/* VH-01 (G5, face never covered): from 860 to 1279px the photo is at its 420-486px height floor while the dock's
+   4th tile reaches under it, and the tile's top edge crossed the woman's chin by 28-30px. The photo (and the
+   eyeglasses that cross its bottom edge) sit 46px higher here, so the tile top clears the chin line by 16px or
+   more; the photo still breaks the stage bottom and the section (recorded change to spec 3.3 margin-bottom). */
+@media (min-width: 860px) and (max-width: 1279px) {
+  .hero__photo { margin-bottom: -34px; }
+  .hero__cut { margin-bottom: -82px; }
+}
 @media (max-width: 859px) {
   .hero { padding-top: 12px; }
-  .hero__grid { --cut: 96px; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto; padding: 22px 16px 0; }
+  /* padding-top 36px (was 22): the hanging logo plate (bottom at y 156) touched the statement glass (top 154);
+     now a 12px gap separates the two frames (VH-07) */
+  .hero__grid { --cut: 96px; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto; padding: 36px 16px 0; }
   .hero__copy { grid-column: 1; grid-row: 1; margin: 0; padding: 22px 24px; }
   .hero__photo { grid-column: 1; grid-row: 2; width: 82%; justify-self: end; align-self: start; height: clamp(300px, 78vw, 420px); margin: -32px 0 0; }
   .hero__cut { grid-column: 1; grid-row: 2; justify-self: start; align-self: end; width: clamp(197px, 57vw, 254px); margin: 0 0 -14px -4px; }
@@ -351,9 +369,15 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 .offer-list li::marker { color: var(--green-600); }
 .welcome__main > .closing { margin: 0; font-weight: 600; color: var(--ink-900); }
 .closing a { font-weight: 800; }
-.sprig { position: absolute; z-index: 6; left: clamp(8px, 4vw, 70px); bottom: -150px; width: clamp(90px, 9vw, 130px); height: auto; pointer-events: none;
+/* left: from about 1440px the services band stops growing (--wrap-wide) and moves inward, so the sprig follows its
+   left edge (band edge + 38px, the 1440 composition) and keeps crossing the band's top edge at 1920 (VH-06) */
+.sprig { position: absolute; z-index: 6; left: max(clamp(8px, 4vw, 70px), calc((100% - var(--wrap-wide)) / 2 + 38px)); bottom: -150px; width: clamp(90px, 9vw, 130px); height: auto; pointer-events: none;
   aspect-ratio: 900 / 2752; object-fit: cover; object-position: 50.3% 50%;
   transform-origin: 50% 100%; filter: drop-shadow(var(--sprig-shadow)); }
+/* CG-02: from 561 to 859px (the sprig shows; one-column layout) the Welcome copy card spans the full width, so the
+   sprig (125px above the seam at rest, up to 24px higher with parallax, rotating 12deg) reached into the closing
+   line's link. The section ends 68px further below the card (132px, was 64px): the sprig clears the text at every pose. */
+@media (min-width: 561px) and (max-width: 859px) { .welcome { padding-bottom: 132px; } }
 @media (max-width: 859px) {
   .welcome__grid { grid-template-columns: minmax(0, 1fr); }
   .promo { margin-top: 76px; }
@@ -373,7 +397,8 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 .svc > .svc__frame { z-index: 3; display: block; margin: -56px -4px 16px; aspect-ratio: 4 / 4.7; border-radius: 22px; overflow: hidden; background: var(--paper); box-shadow: var(--e-pop); }
 .svc__frame img { width: 100%; height: 100%; object-fit: cover; }
 .svc__foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding: 4px 6px 2px; }
-.svc__name { font-size: var(--fs-sm); font-weight: 800; letter-spacing: .04em; line-height: 1.35; color: var(--ink-900); }
+/* h3.svc__name (VH-03: the source captions are headings; h3 under the section's h2), styled as the former span */
+.svc__name { margin: 0; font-family: var(--ff-body); font-size: var(--fs-sm); font-weight: 800; letter-spacing: .04em; line-height: 1.35; color: var(--ink-900); }
 .svc__go { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; color: var(--green-800); background: var(--c1-btn-bg); border: 1px solid var(--g4-50); }
 .svc__go .ico { width: 20px; height: 20px; }
 .svc:is(:hover, :focus-visible) { color: var(--ink-900); box-shadow: var(--e-4); }
@@ -387,6 +412,13 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
   .svc > .svc__frame { margin: -40px -2px 12px; border-radius: 18px; }
   .svc__go { width: 32px; height: 32px; }
   .svc__foot { padding-inline: 2px; gap: 6px; }
+}
+/* VH-02: below 440px "COMPREHENSIVE" (an unbreakable 132px word) plus the chip is wider than the card, and the chip
+   left the card (11px at 390, 46px at 320). The chip takes its own line at the card's right; the label spans the
+   card and, at 320, breaks inside the word only as a last resort (body overflow-wrap). */
+@media (max-width: 439px) {
+  .svc__foot { flex-direction: column; align-items: stretch; }
+  .svc__go { align-self: flex-end; }
 }
 
 /* ---------- 11. home: reviews (3.8, 5.6) ---------- */
@@ -470,9 +502,11 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 @media (min-width: 1100px) { .help { padding-bottom: 176px; } }
 @media (max-width: 1023px) {
   .help__grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .help__side { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: -40px; }
+  /* flex-wrap (RA-01): below about 390px "#HeretoHelp" (220px min-content) + 20px + the 104px iris + 12px is wider
+     than the column, and the iris pushed the page 40px wide at 320; it now drops under the title, still at the right */
+  .help__side { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: -40px; }
   .help__tag { margin-bottom: 56px; }   /* only the iris crosses the panel's top edge; the title stays above it */
-  .help__iris { width: 104px; flex: none; margin: 0 12px 0 0; }
+  .help__iris { width: 104px; flex: none; margin: 0 12px 0 auto; }
   .help__iris .iris { box-shadow: 0 0 0 5px var(--paper), 0 0 0 6px var(--green-500), var(--e-2); outline-offset: 12px; }
   .qa { padding-top: 80px; }   /* 40px under the iris + 40px clearance to the heading (G5; spec 3.9 said 64) */
 }
@@ -530,7 +564,11 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 .page-main > .visit > .wrap { width: 100%; }
 .visit__grid { display: grid; gap: 20px; }
 .map { position: relative; z-index: 1; min-height: 280px; border-radius: var(--r-lg); overflow: hidden; background: var(--stone); box-shadow: var(--e-2); }
-.map__frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+/* --map-tray (VH-04, VIB-02): where the NAP / emergency cards overlap the map panel's bottom, the embed stops at the
+   cards' top edge and the panel continues under them as a tray. The embed's own bottom strip (Google logo,
+   Street View thumbnail, "Keyboard shortcuts / Map data / Terms", the camera control) is never covered; the cards
+   still sit over the map panel. Only the visit block sets it (the aside map has no overlap). */
+.map__frame { position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - var(--map-tray, 0px)); border: 0; }
 .map__link { margin: 0; }
 .map__link a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 800; }
 .visit :is(.nap, .sos) { z-index: 2; }   /* both cards overlap the map (P2 over the embed) */
@@ -542,11 +580,17 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 .nap__addr, .nap__phone { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 10px; font-size: var(--fs-sm); color: var(--ink-700); }
 .nap__addr .ico, .nap__phone .ico { margin-top: .12em; color: var(--green-700); }
 .nap__phone strong { color: var(--ink-900); }
-.nap__phone a { font-weight: 800; color: var(--green-800); }
+/* RA-08 (G11): the tel link stands on its own line; inline padding grows its hit box to 44px tall without moving a line */
+.nap__phone a { font-weight: 800; color: var(--green-800); padding-block: 12px; }
 .hours { display: grid; gap: 2px; margin: 16px 0 0; font-size: var(--fs-sm); }
-.hours__row { display: flex; justify-content: space-between; gap: 12px; padding: 6px 12px; border-radius: 12px; }
+/* VH-05: a value never breaks ("8:30 AM - 4:30" / "PM" in the 3-column NAP at 1280). The value is one unbreakable
+   run; in a narrow card the row tightens (container query below), and if it still cannot fit (320px) the whole
+   value moves under its day name instead of splitting. */
+.hours__row { display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: 12px; padding: 6px 12px; border-radius: 12px; }
 .hours dt { font-weight: 700; color: var(--ink-900); }
-.hours dd { margin: 0; color: var(--ink-700); font-variant-numeric: tabular-nums; text-align: right; }
+.hours dd { margin: 0 0 0 auto; color: var(--ink-700); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.nap { container: nap / inline-size; }
+@container nap (max-width: 340px) { .hours__row { padding-inline: 8px; column-gap: 8px; } }
 .hours__row.is-today { background: var(--gc1-bg); box-shadow: inset 0 0 0 1px var(--g4-50); }
 .hours__row.is-today :is(dt, dd) { color: var(--green-900); }
 .sos { display: flex; flex-direction: column; gap: 14px; padding: clamp(22px, 2.4vw, 30px); border-radius: var(--r-lg); }
@@ -557,18 +601,27 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 .sos p { margin: 0; font-size: var(--fs-sm); color: var(--green-200); }
 .sos strong { color: var(--paper); }
 .sos .btn { align-self: flex-start; margin-top: auto; }
+/* 720-1239px and below 720px: the cards overlap the panel's bottom by 120px / 48px (spec 3.12), which is exactly the
+   tray: the panel grows by it and the embed keeps its 360px / 280px (VH-04, VIB-02). The emergency card starts on
+   the same line as the NAP card (was -60px): with a tray, a staggered start would leave an empty strip of panel. */
 @container visit (min-width: 720px) {
-  .visit__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
-  .visit__grid > .map { grid-column: 1 / 13; min-height: 360px; }
-  .visit__grid > .nap { grid-column: 1 / 7; margin: -140px 0 0 24px; }   /* 120px over the map, net of the 20px gap */
-  .visit__grid > .sos { grid-column: 7 / 13; margin: -60px 24px 0 0; }
+  .visit__grid { --map-tray: 120px; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
+  .visit__grid > .map { grid-column: 1 / 13; min-height: calc(360px + var(--map-tray)); }
+  .visit__grid > .nap { grid-column: 1 / 7; margin: -140px 0 0 24px; }   /* 120px over the map panel, net of the 20px gap */
+  .visit__grid > .sos { grid-column: 7 / 13; margin: -140px 24px 0 0; }
 }
+/* from 1240px the cards overlap the map's right edge, mid-height: the embed's bottom strip is already clear */
 @container visit (min-width: 1240px) {
+  .visit__grid { --map-tray: 0px; }
   .visit__grid > .map { grid-column: 1 / 8; grid-row: 1 / 3; min-height: 520px; }
   .visit__grid > .nap { grid-column: 7 / 10; grid-row: 1; margin: 56px 0 0 -24px; }
   .visit__grid > .sos { grid-column: 10 / 13; grid-row: 1 / 3; margin: 150px 0 0 12px; }
 }
-@container visit (max-width: 719.98px) { .visit__grid > .nap { margin: -68px 12px 0; } }   /* 48px over the map, net of the gap */
+@container visit (max-width: 719.98px) {
+  .visit__grid { --map-tray: 48px; }
+  .visit__grid > .map { min-height: calc(280px + var(--map-tray)); }
+  .visit__grid > .nap { margin: -68px 12px 0; }   /* 48px over the map panel, net of the gap */
+}
 
 /* ---------- 15. footer (3.13): the page ends on the lime field ---------- */
 .site-footer { position: relative; padding: clamp(56px, 6vw, 90px) 0 clamp(28px, 3vw, 40px); background: var(--footer-field); }
@@ -577,7 +630,7 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 .logo-plate--footer .logo__box { width: 140px; }
 .footer__nap { margin: 18px 0 16px; max-width: 38ch; font-size: var(--fs-sm); color: var(--green-200); }
 .footer__nap strong { color: var(--paper); }
-.footer__nap a { color: var(--paper); font-weight: 700; }
+.footer__nap a { color: var(--paper); font-weight: 700; padding-block: 12px; }   /* 44px hit box, no layout change (RA-08) */
 .social { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; color: var(--green-950); background: var(--green-400); }
 .social .ico { fill: currentColor; stroke: none; width: 22px; height: 22px; }
 .social:is(:hover, :focus-visible) { color: var(--green-950); background: var(--green-300); }
@@ -593,7 +646,7 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 .footer__legal a:is(:hover, :focus-visible) { color: var(--paper); text-decoration: underline; }
 @media (min-width: 960px) { .footer__panel { grid-template-columns: 1.3fr 1fr 1fr; } }
 @media (min-width: 600px) and (max-width: 959px) { .footer__panel { grid-template-columns: 1fr 1fr; } .footer__brand { grid-column: 1 / -1; } }
-@media (max-width: 767px) { .footer__list a, .footer__legal a { min-height: 44px; } }
+@media (max-width: 767px) { .footer__list a, .footer__legal a { min-height: 44px; } .footer__list a { min-width: 44px; } }   /* "Home" was 39px wide (RA-08, G11) */
 
 /* ---------- 16. interior frame (C.1): the band spans full width, the aside sits beside the column ---------- */
 .page-grid, .page-body { padding-bottom: var(--s-8); }
@@ -623,6 +676,17 @@ main > .rail { margin-top: var(--s-6); }
 /* interior composed-section heading (a heading whose content is a logo grid, dock row or cards): it sits
    closer to what it introduces than to what precedes it */
 .page-main > .section-title { margin: var(--s-4) 0 calc(-1 * var(--s-3)); scroll-margin-top: 110px; }
+/* a run of source headings with no prose between them (VIA-04: "SEE BETTER / DESIGNER EYEWEAR / LIVE BETTER"):
+   the first keeps .section-title, the ones after it are the smaller sub-title, levels as in the source */
+.page-main > .section-head { display: grid; gap: 6px; margin: var(--s-4) 0 calc(-1 * var(--s-3)); }
+.section-head > .section-title { margin: 0; scroll-margin-top: 110px; }
+.section-title--sub { font-family: var(--ff-display); font-weight: 600; font-size: var(--fs-h3); line-height: var(--lh-h3); letter-spacing: 0; color: var(--slate-700); }
+/* keeps a run of letter-spaced capitals ("E Y E W E A R .") on one line: breaks fall only between the source's
+   dot-separated words (VIA-05); also keeps a phone number whole inside a button label (VIB-04) */
+.nobr { white-space: nowrap; }
+/* inside a flex button the span would be its own flex item ("Give Us a / Call" beside the number): display: contents
+   keeps the label one text run, so it wraps only between "Call" and the number, which stays whole (VIB-04) */
+.btn .nobr { display: contents; }
 
 /* ---------- 17. interior title band and breadcrumbs (C.2, 3.14) ---------- */
 .band { z-index: 3; min-height: 220px; padding-block: clamp(28px, 4vw, 56px) clamp(28px, 4vw, 56px); display: grid; align-items: center; }
@@ -640,6 +704,10 @@ main > .rail { margin-top: var(--s-6); }
 .band__visual { position: relative; z-index: 1; margin: -32px 12px 0; border-radius: var(--r-lg); overflow: hidden; background: var(--paper); box-shadow: var(--e-arch); }
 /* the source header photos are 2:1 to 4.8:1 banners: a floor keeps the frame substantial on phones (spec: max 320px) */
 .band__visual img { width: 100%; height: clamp(180px, 22vw, 320px); object-fit: cover; object-position: 50% 40%; }
+/* VIA-02: a banner whose people stand in its left half (glasses-contacts-hero: faces at 20-54% of the width, a flat
+   grey text field on the right) is cropped from the left, so the faces stay in frame and clear of the 48px title
+   glass overlap; the build sets the modifier per file (src/build.mjs BAND_FOCUS). The file is unchanged. */
+.band__visual--left img { object-position: 10% 40%; }
 /* the build ships band cut-outs TRIMMED to their opaque box (src/build.mjs trimmedGen), so the box is the
    object: a compact object (prism, phoropter, contact lens, about 1:1) crosses the band edge by the spec 4.2
    offset; a wide flat one (.band__cut--wide: eyeglasses 3.1:1, kids 3.0:1, sunglasses 2.4:1) is wider and
@@ -679,7 +747,7 @@ main > .rail { margin-top: var(--s-6); }
 a.crumbs__link:is(:hover, :focus-visible) { color: var(--green-800); text-decoration: underline; text-underline-offset: .2em; }
 .crumbs__sep { color: var(--green-600); }
 .crumbs__current { color: var(--ink-900); font-weight: 700; }
-@media (max-width: 767px) { .crumbs__link, .crumbs__current { min-height: 44px; display: inline-flex; align-items: center; } }
+@media (max-width: 767px) { .crumbs__link, .crumbs__current { min-height: 44px; display: inline-flex; align-items: center; } a.crumbs__link { min-width: 44px; } }   /* "Home" was 40px wide (RA-08) */
 
 /* ---------- 18. section rail (B.17) and aside (B.15) ---------- */
 .rail { border-radius: var(--r-lg); }
@@ -729,6 +797,9 @@ a.crumbs__link:is(:hover, :focus-visible) { color: var(--green-800); text-decora
 .prose li > :is(ul, ol) { margin-top: .45em; }
 .prose a { color: var(--green-700); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
 .prose a:is(:hover, :focus-visible) { color: var(--green-800); }
+/* RA-08 (G11: inline prose links 24px or more): a running-text link's box was its 20-22px line; 3px of inline
+   padding makes the hit box 26-28px tall without moving a line (inline padding never changes line height) */
+:is(.prose, .welcome__main, .promo, .news__excerpt, .qa__a, .sos, .field__help, .form__intro, .form__notice) a:not([class]) { padding-block: 3px; }
 .prose :is(strong, b) { font-weight: 700; color: var(--ink-900); }
 .prose :is(p, li, td, th, a) > img { display: inline-block; vertical-align: middle; }
 .prose blockquote { margin-inline: 0; padding: 14px 20px; border-left: 4px solid var(--green-600); border-radius: 0 14px 14px 0; background: var(--gc1-bg); font-style: italic; color: var(--ink-700); }
@@ -757,10 +828,15 @@ a.crumbs__link:is(:hover, :focus-visible) { color: var(--green-800); text-decora
 .embed--map { aspect-ratio: 4 / 3; background: var(--stone); }
 .embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-/* figures (D.3): the CSS reads only the role class */
-.fig { margin: 0; }
+/* figures (D.3): the CSS reads only the role class. No margin here (VIA-03): `.fig { margin: 0 }` has the same
+   specificity as `.prose > * + *` and came later, so a figure after a paragraph sat on its descenders (-1 to 2px);
+   the base `figure { margin: 0 }` already zeroes figures outside prose. */
 .fig__media { display: block; }
 .fig img { display: block; max-width: 100%; height: auto; }
+/* CS-02: a source image link (the EyeGlass Guide logo -> the tool) keeps its <a> inside fig__media: the link is the
+   image's box (no inline padding, no baseline gap) and shows the focus ring around it */
+.fig .fig__media > a:not([class]) { display: block; padding: 0; border-radius: inherit; }
+.fig .fig__media > a > img { display: block; }
 .fig figcaption { margin-top: 10px; font-size: var(--fs-sm); line-height: 1.5; color: var(--ink-600); }
 .fig--photo { --bo: clamp(8px, 2.4vw, 36px); position: relative; z-index: 3; width: fit-content; max-width: calc(100% + var(--bo)) !important; }
 .fig--photo .fig__media { border-radius: 22px; overflow: hidden; background: var(--paper); box-shadow: var(--e-pop); }
@@ -778,7 +854,14 @@ a.crumbs__link:is(:hover, :focus-visible) { color: var(--green-800); text-decora
 .fig--diagram { width: fit-content; padding: 14px; border-radius: 18px; background: var(--paper); box-shadow: var(--e-1); }
 .fig--brand { width: fit-content; }
 .fig--brand .fig__media { border-radius: 12px; overflow: hidden; }
-@media (min-width: 900px) { .prose > .fig--plate { float: right; clear: right; max-width: 44% !important; margin: .3em 0 1em 1.6em; } }
+@media (min-width: 900px) {
+  .prose > .fig--plate { float: right; clear: right; max-width: 44% !important; margin: .3em 0 1em 1.6em; }
+  /* VIA-06: a plate that ENDS its prose block has no text to wrap around it (spec 3.16 floats a plate so text wraps);
+     floated, it sat alone in the sheet's right corner beside 570-670px of blank. It stays in flow, as below 900px. */
+  .prose > .fig--plate:last-child { float: none; margin: 0; max-width: min(100%, var(--measure)) !important; }
+  .prose > * + .fig--plate:last-child { margin-top: .9em; }
+  .prose > :is(h2, h3, h4, h5, h6) + .fig--plate:last-child { margin-top: .55em; }
+}
 .fig-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 16px; align-items: start; }
 .fig-grid[data-count="2"] { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
 .fig-grid > .fig { width: auto; max-width: 100% !important; margin: 0; rotate: none; float: none; }
@@ -787,8 +870,10 @@ a.crumbs__link:is(:hover, :focus-visible) { color: var(--green-800); text-decora
 .index-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; }
 .index-cards:has(.index-card__thumb) { padding-top: 32px; row-gap: 52px; }
 .index-card { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 22px 22px 20px; border-radius: var(--r-lg); }
-.index-card > .index-card__thumb { display: block; width: 100%; max-width: 325px; margin: -54px 0 4px; border-radius: 16px; overflow: hidden; background: var(--paper); box-shadow: var(--e-pop); }
-.index-card__thumb img { width: 100%; height: auto; }
+/* VIA-09: the frame fits its image and the image is never drawn wider than its file (spec 6.4/6.5): the one
+   250 x 167 thumbnail was stretched to 309-312px (1.25x) by width: 100%. 325px files render as before. */
+.index-card > .index-card__thumb { display: block; width: fit-content; max-width: min(100%, 325px); margin: -54px 0 4px; border-radius: 16px; overflow: hidden; background: var(--paper); box-shadow: var(--e-pop); }
+.index-card__thumb img { width: auto; max-width: 100%; height: auto; }
 .index-card > .index-card__title { position: static; margin: 0; font-size: var(--fs-h4); font-weight: 800; line-height: var(--lh-h4); }
 .index-card__link { color: var(--ink-900); text-decoration: none; }
 .index-card__link::after, .post-card__link::after { content: ""; position: absolute; inset: 0; z-index: 3; border-radius: inherit; }
@@ -802,7 +887,10 @@ a.crumbs__link:is(:hover, :focus-visible) { color: var(--green-800); text-decora
 .index-card:is(:hover, :focus-within) .index-card__go { background: var(--green-700); color: var(--paper); border-color: var(--green-700); }
 
 .post-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; }
-.post-card { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 24px; border-radius: var(--r-lg); content-visibility: auto; contain-intrinsic-size: auto 316px; }   /* 316 = the measured typical card body (a 36px jump per card at 280) */
+/* No content-visibility (VIB-05, a recorded change to spec 3.18): one intrinsic estimate cannot match a grid row whose
+   height is its tallest card (median 469px in 3 columns), so /whats-new/ grew by up to 4,300px while scrolling and
+   End / the scrollbar landed short. The 151 cards now lay out once; the document height is stable. */
+.post-card { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 24px; border-radius: var(--r-lg); }
 .post-card > .date-pill { order: -1; margin: 0; }
 .post-card > .post-card__title { position: static; margin: 0; font-family: var(--ff-body); font-size: var(--fs-h4); font-weight: 800; line-height: var(--lh-h4); }
 .post-card__link { color: var(--ink-900); text-decoration: none; }
@@ -833,10 +921,14 @@ a.crumbs__link:is(:hover, :focus-visible) { color: var(--green-800); text-decora
 .doc-card__link:is(:hover, :focus-visible) .doc-card__label { text-decoration: underline; text-underline-offset: .2em; }
 
 /* ---------- 21. logo grids, payment row, QR plate (B.21) ---------- */
-.logo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+/* VIA-07: the logo files are 133 x 110 and the source drew them at that size; the former 70px height cap drew every
+   one at 64% (thin wordmarks 3-6px tall). Logos now render at intrinsic size (spec 3.21 "shown at intrinsic size";
+   its 70px cap is dropped, a recorded change), and the column minimum is 161px = 133 + the chip's 2 x 14px padding,
+   so a 133px logo is never scaled down on a grid. Never upscaled: width/height auto, capped at 100%. */
+.logo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 161px), 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
 .logo-chip { display: grid; place-items: center; align-content: center; gap: 8px; min-height: 104px; padding: 14px; border-radius: 18px; background: var(--paper); box-shadow: var(--e-1); text-align: center; }
-/* the attributes reserve the box (no shift on lazy load); contain keeps the capped logo undistorted, never upscaled */
-.logo-chip img { max-width: 100%; max-height: 70px; object-fit: contain; }
+/* the attributes reserve the box (no shift on lazy load); contain keeps a narrow-column logo undistorted */
+.logo-chip img { max-width: 100%; height: auto; object-fit: contain; }
 .logo-chip__name { font-size: var(--fs-sm); font-weight: 700; line-height: 1.3; color: var(--ink-900); }
 .logo-chip--link { padding: 0; }
 .logo-chip__link { display: grid; place-items: center; width: 100%; height: 100%; min-height: 104px; padding: 14px; border-radius: inherit; }

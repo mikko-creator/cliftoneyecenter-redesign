@@ -75,21 +75,38 @@ export function pageTitle(s, page, h1Text, slug, log, fallbackLabel) {
   return out;
 }
 
-/* No meta description at source: take the page's own opening prose, ~155 chars, cut on a word. */
-export function deriveDescription(sections, bodyText) {
-  let text = '';
-  for (const sec of sections) {
-    const t = String(sec.body || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-    if (t.length >= 60) { text = t; break; }
+/* No meta description at source: take the page's own opening prose, ~155 chars.
+   CS-03 (QA round 1): the text comes from ONE source block (the first p / li / td / th / dd / blockquote /
+   figcaption of 60+ characters; headings and all-bold lead lines never), so a heading is never glued to the paragraph after it and
+   separate blocks are never run together. A block longer than 155 characters is cut at its last sentence end
+   (a list number "1." or an abbreviation is not one) or else on a word, with an ellipsis. No qualifying block:
+   no description (COMPONENTS A.1: an optional tag is omitted rather than emitted badly). The former fallback
+   to the whole main-column text is gone: it always spanned blocks. */
+const DESC_BLOCK = /<(p|li|td|th|dd|blockquote|figcaption)\b[^>]*>([\s\S]*?)<\/\1>/gi;
+const NESTED_BLOCK = /<(p|ul|ol|li|table|div|h[1-6]|blockquote|figure|section|dl)\b/i;
+const NOT_A_SENTENCE_END = /^(?:\d+|[A-Z]|Dr|Mr|Mrs|Ms|St|Jr|Sr|vs|etc|e\.g|i\.e|No|Inc|Co)$/;
+function cutDescription(text, max = 155) {
+  if (text.length <= max) return text;
+  let best = -1;
+  for (const m of text.slice(0, max).matchAll(/[.!?](?=["”’)]?\s)/g)) {
+    const before = text.slice(0, m.index).split(/\s/).pop().replace(/^["“(]/, '');
+    if (NOT_A_SENTENCE_END.test(before)) continue;
+    if (m.index + 1 > 80) best = m.index + 1;
   }
-  if (!text) text = String(bodyText || '').replace(/\s+/g, ' ').trim();
-  text = decodeEntities(text).replace(/\s+/g, ' ').trim();
-  if (text.length < 40) return '';
-  if (text.length <= 155) return text;
-  const cut = text.slice(0, 155);
-  const stop = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
-  if (stop > 80) return cut.slice(0, stop + 1).trim();
-  return cut.slice(0, cut.lastIndexOf(' ')).trim() + '…';
+  if (best > 0) return text.slice(0, best).replace(/\s+$/, '');
+  const cut = text.slice(0, max);
+  return cut.slice(0, cut.lastIndexOf(' ')).replace(/[\s,;:–—-]+$/, '') + '…';
+}
+export function deriveDescription(sections) {
+  for (const sec of sections) {
+    for (const m of String(sec.body || '').matchAll(DESC_BLOCK)) {
+      if (NESTED_BLOCK.test(m[2])) continue;                 /* a list item holding a list spans blocks */
+      if (/^\s*<(strong|b)\b[^>]*>[\s\S]*<\/\1>\s*$/i.test(m[2]) && !/<\/(strong|b)>[\s\S]*<(strong|b)\b/i.test(m[2])) continue;   /* an all-bold lead is a pseudo-heading, not a sentence */
+      const text = decodeEntities(m[2].replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+      if (text.length >= 60) return cutDescription(text);
+    }
+  }
+  return '';
 }
 
 /* Canonical must name a page this build serves; only the homepage is the homepage; trailing slash.

@@ -43,6 +43,15 @@
     /* fail-safe ONLY if the observer never delivered an entry (a working observer always delivers one) */
     setTimeout(function () { if (!delivered) reveals.forEach(reveal); }, 3000);
     on(window, 'beforeprint', function () { reveals.forEach(reveal); });
+    /* keyboard focus inside a block whose entrance has not played reveals it (and every revealing ancestor) now;
+       motion.css shows a :focus-within host at once, this keeps it shown after focus moves on (RA-04) */
+    on(d, 'focusin', function (e) {
+      for (var el = e.target; el && el.closest; el = el.parentElement) {
+        el = el.closest('[data-reveal]');
+        if (!el) break;
+        reveal(el); io.unobserve(el);
+      }
+    });
   } else {
     html.classList.remove('js-motion');
     reveals.forEach(release);
@@ -56,7 +65,7 @@
     if (!motionOK) { layers = []; return; }
     var y = window.scrollY || 0;
     var els = $$('[data-depth]');
-    els.forEach(function (el) { el.style.setProperty('--py', '0'); });   /* translate reset while measuring (all writes, then all reads) */
+    els.forEach(function (el) { setVar(el, '--py', '0'); });   /* translate reset while measuring (all writes, then all reads) */
     layers = els.map(function (el) {
       var r = el.getBoundingClientRect();
       return { el: el, top: r.top + y, h: r.height,
@@ -64,6 +73,13 @@
         max: parseFloat(el.getAttribute('data-depth-max')) || 42,
         rot: parseFloat(el.getAttribute('data-rot') || '0') || 0 };
     });
+  }
+  /* a custom property is written only when its value changes: an unchanged write still costs a style pass */
+  function setVar(el, name, v) {
+    var k = '_' + name;
+    if (el[k] === v) return;
+    el[k] = v;
+    el.style.setProperty(name, v);
   }
   function parallax(y, vh) {
     var k = window.innerWidth < 700 ? 0.55 : 1;
@@ -73,21 +89,25 @@
       if (L.top - y > vh * 1.6 || L.top + L.h - y < -vh * 1.6) continue;   /* skip layers far away */
       var centre = L.top + L.h / 2 - y - vh / 2;
       var py = rest ? 0 : Math.max(-L.max, Math.min(L.max, -centre * L.d * k));
-      L.el.style.setProperty('--py', py.toFixed(1));
-      if (L.rot) L.el.style.setProperty('--pr', (rest ? 0 : Math.max(-1, Math.min(1, centre / vh)) * -L.rot).toFixed(2));
+      setVar(L.el, '--py', py.toFixed(1));
+      if (L.rot) setVar(L.el, '--pr', (rest ? 0 : Math.max(-1, Math.min(1, centre / vh)) * -L.rot).toFixed(2));
     }
     if (hero) {
       var r = hero.getBoundingClientRect();
       var p = rest ? 0 : Math.min(1, Math.max(0, -r.top / Math.max(1, r.height)));
-      hero.style.setProperty('--hp', p.toFixed(3));
+      setVar(hero, '--hp', p.toFixed(3));
     }
   }
+  /* --scroll is written on the progress bar's own span, its only consumer (site.css .progress span). Written on
+     <html>, the inherited property restyled the whole document every scroll frame: p95 183-267ms at 4x CPU on
+     /privacy-policy/ against 16.8ms on the span (RA-02, gate G10). */
+  var bar = d.querySelector('.progress span');
   var ticking = false;
   function onScroll() {
     ticking = false;
     var y = window.scrollY || 0, vh = window.innerHeight;
     var max = Math.max(1, html.scrollHeight - vh);
-    html.style.setProperty('--scroll', Math.min(1, y / max).toFixed(4));
+    if (bar) setVar(bar, '--scroll', Math.min(1, y / max).toFixed(4));
     if (header) header.classList.toggle('is-scrolled', y > 40);
     if (motionOK) parallax(y, vh);
   }
@@ -97,8 +117,16 @@
   on(window, 'resize', function () { remeasure(); stickyFit(); }, { passive: true });
   on(window, 'load', remeasure);
   if (d.fonts && d.fonts.ready) d.fonts.ready.then(remeasure);
-  onMQ(reduce, function () { motionOK = !reduce.matches; if (!motionOK) $$('[data-depth]').forEach(function (el) { el.style.removeProperty('--py'); el.style.removeProperty('--pr'); }); remeasure(); });
+  onMQ(reduce, function () { motionOK = !reduce.matches; if (!motionOK) $$('[data-depth]').forEach(function (el) { el.style.removeProperty('--py'); el.style.removeProperty('--pr'); el['_--py'] = el['_--pr'] = undefined; }); remeasure(); });
   remeasure();
+  /* CG-03: the layers were measured on load, fonts.ready and resize only, so opening the Q&A answers (a taller help
+     grid, its side column re-centred) left the iris's stored position stale and --py clamped at -16 while the
+     "#HeretoHelp" heading was on screen: the ring touched the "p" descender. Any change of the page's height
+     (an accordion, a rail, a late layout) re-measures, once per frame. */
+  var relayout = 0;
+  function remeasureSoon() { if (!relayout) relayout = window.requestAnimationFrame(function () { relayout = 0; remeasure(); }); }
+  on(d, 'toggle', remeasureSoon, true);                              /* <details> toggle does not bubble: capture */
+  if ('ResizeObserver' in window) new ResizeObserver(remeasureSoon).observe(d.body);
 
   /* ---------- pointer: glass specular follows fine pointers; card tilt after the reveal is released ---------- */
   if (fine.matches && motionOK) {
@@ -237,7 +265,12 @@
       prev.setAttribute('aria-disabled', atStart ? 'true' : 'false');
       next.setAttribute('aria-disabled', atEnd ? 'true' : 'false');
     }
-    function mode() { prev.hidden = next.hidden = desk.matches; ends(); }
+    /* the track is a Tab stop only while it scrolls (below 1024px); from 1024px it is a static grid (RA-09) */
+    function mode() {
+      prev.hidden = next.hidden = desk.matches;
+      if (desk.matches) track.removeAttribute('tabindex'); else track.setAttribute('tabindex', '0');
+      ends();
+    }
     function go(dir) { track.scrollBy({ left: dir * step(), behavior: reduce.matches ? 'auto' : 'smooth' }); }
     on(prev, 'click', function () { if (prev.getAttribute('aria-disabled') !== 'true') go(-1); });
     on(next, 'click', function () { if (next.getAttribute('aria-disabled') !== 'true') go(1); });
@@ -279,6 +312,25 @@
       }
       return !bad;
     }
+    /* conditional fields (CS-04): the source's Gravity Forms show-if rules, carried as data-show-if="{name}={value}".
+       A field shows only while that choice is made; hidden, its controls are disabled (never validated, never
+       sent). Without JS every field stays visible. */
+    $$('[data-show-if]', form).forEach(function (field) {
+      var rule = field.getAttribute('data-show-if'), at = rule.indexOf('=');
+      var name = rule.slice(0, at), value = rule.slice(at + 1);
+      function sync() {
+        var shown = $$('input, select, textarea', form).some(function (c) {
+          if (c.name !== name) return false;
+          return (c.type === 'radio' || c.type === 'checkbox') ? c.checked && c.value === value : c.value === value;
+        });
+        if (field.hidden === !shown) return;
+        field.hidden = !shown;
+        controlsOf(field).forEach(function (c) { c.disabled = !shown; });
+        if (!shown) check(field, false);
+      }
+      on(form, 'change', sync);
+      sync();
+    });
     var fields = $$('.field', form);
     fields.forEach(function (field) {
       var touched = false;

@@ -161,6 +161,13 @@ export function createContent(ctx) {
       const chunk = html.slice(last, m.index);
       last = tagRe.lastIndex;
       const closing = !!m[1], tag = m[2].toLowerCase();
+      /* CS-02: a link around nothing but image(s) (the EyeGlass Guide logo -> the tool) is ONE block unit. The
+         image is block-level here, so the text-less run holding the opening <a> was flushed and dropped, and the
+         image lost its link. The whole <a><img></a> now passes through; wrapContentFigures puts it in a figure. */
+      if (depth === 0 && !closing && tag === 'a') {
+        const linked = /^(?:\s*<img\b[^>]*>)+\s*<\/a>/i.exec(html.slice(last));
+        if (linked) { buf += chunk; flush(); out += m[0] + linked[0].trim(); last = tagRe.lastIndex = last + linked[0].length; bump('linkedImagesKept'); continue; }
+      }
       const isBlock = BLOCK_LEVEL.has(tag), isVoid = VOID_LEVEL.has(tag);
       if (depth > 0) { out += chunk + m[0]; }
       else if (isBlock) { buf += chunk; flush(); out += m[0]; }
@@ -220,8 +227,14 @@ export function createContent(ctx) {
         const mapped = mapImage(rawSrc, imgBase);
         if (!mapped) { fail('build:img', rawSrc, 'no mapping for image referenced in content'); return ''; }
         if (mapped.drop) { bump('imagesDroppedByDecision'); if (mapped.why) (stats.decidedImageDrops = stats.decidedImageDrops || []).push({ src: rawSrc, why: mapped.why }); return ''; }
-        const altAttr = decodeEntities(pick('alt') || '');
-        const alt = mapped.kind === 'generated' ? mapped.alt : (mapped.altOverride !== undefined && mapped.altOverride !== null ? mapped.altOverride : (altAttr || mapped.alt || ''));
+        /* CS-05: the alt is this page's OWN source alt. An <img> with no alt (or an empty one) on this page gets
+           alt="", never the alt the same file carries on another page (the women's-health post announced the
+           cataract page's "...after eye surgery for cataracts"). A file-name / upload-hash alt on this page is
+           blanked by the same rule as the image-level one (L12, build.mjs garbageAlt). */
+        const altAttr = decodeEntities(pick('alt') || '').trim();
+        const ownAlt = altAttr && !(ctx.garbageAlt && ctx.garbageAlt(altAttr, rawSrc)) ? altAttr : '';
+        if (!altAttr && mapped.kind !== 'generated' && mapped.alt) bump('altsNotBorrowedFromOtherPages');
+        const alt = mapped.kind === 'generated' ? mapped.alt : ownAlt;
         out.push('src="' + esc(imgUrl(mapped.file, depth)) + '"', 'alt="' + esc(alt) + '"');
         if (mapped.w && mapped.h) out.push('width="' + mapped.w + '"', 'height="' + mapped.h + '"');
         out.push('loading="lazy"', 'decoding="async"');
@@ -443,6 +456,19 @@ export function createContent(ctx) {
     const token = /<(\/?)([a-zA-Z][a-zA-Z0-9]*)(?:\s[^>]*?)?(\/?)>/g;
     while ((m = token.exec(html))) {
       const tag = m[2].toLowerCase();
+      /* CS-02: a top-level link around one image becomes the figure, the link kept inside fig__media */
+      if (tag === 'a' && depth === 0 && !m[1]) {
+        const la = /^\s*(<img\b[^>]*>)\s*<\/a>/i.exec(html.slice(token.lastIndex));
+        if (la) {
+          const role = imgRole(la[1]);
+          bump('figuresWrapped'); bump('linkedFigures');
+          stats.figureRoles[role] = (stats.figureRoles[role] || 0) + 1;
+          const inner = m[0] + la[1] + '</a>';
+          out += html.slice(last, m.index) + (role === 'qr' ? '<figure class="qr-plate">' + inner + '</figure>' : '<figure class="fig fig--' + role + '"><span class="fig__media">' + inner + '</span></figure>');
+          last = token.lastIndex = token.lastIndex + la[0].length;
+          continue;
+        }
+      }
       if (tag === 'img') {
         if (depth === 0) {
           const role = imgRole(m[0]);

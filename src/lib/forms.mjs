@@ -81,9 +81,31 @@ export function parseGravityForm(wrapperHtml) {
   return { id, fields, submit: submit ? decodeEntities(attrOf(submit[0], 'value') || '') : '' };
 }
 
+/* CS-04: the source form's Gravity Forms conditional logic (window['gf_form_conditional_logic'][N], a script in
+   the RAW page: data, not runtime) -> { gfId: { field: gfId of the controlling field, value } }. Only what this site
+   uses is carried: actionType "show", one rule, operator "is" (contact form: Email shows when "Should we reply?"
+   is "Email", Phone when it is "Call"). Anything else is returned in `unsupported` and the build fails closed. */
+export function parseConditionalLogic(raw, formId) {
+  const num = String(formId || '').replace(/^gform_/, '');
+  const at = String(raw).indexOf("gf_form_conditional_logic'][" + num + ']');
+  const out = { rules: {}, unsupported: [] };
+  if (at < 0) return out;
+  const block = String(raw).slice(at, at + 20000);
+  const logic = /logic:\s*\{([\s\S]*?)\},\s*dependents:/.exec(block);
+  if (!logic) { out.unsupported.push('conditional logic present but not parseable'); return out; }
+  for (const m of logic[1].matchAll(/(\d+):\s*(\{"field":[\s\S]*?"section":[^}]*\})/g)) {
+    let rule;
+    try { rule = JSON.parse(m[2]).field; } catch { out.unsupported.push('field ' + m[1] + ': unparseable rule'); continue; }
+    const r = rule && rule.rules || [];
+    if (!rule || rule.actionType !== 'show' || r.length !== 1 || r[0].operator !== 'is') { out.unsupported.push('field ' + m[1] + ': ' + JSON.stringify(rule).slice(0, 160)); continue; }
+    out.rules[m[1]] = { field: String(r[0].fieldId), value: String(r[0].value) };
+  }
+  return out;
+}
+
 /* COMPONENTS E.1/E.2. `localHref(href)` relativises links inside descriptions; `icon(name)` gives
    the sprite reference; `notice` is chrome.notice; `phone` the practice phone. */
-export function renderForm(form, { localHref, icon, notice, phone }) {
+export function renderForm(form, { localHref, icon, notice, phone, conditional }) {
   const fid = String(form.id || '').replace(/^gform_/, '');
   const out = [];
   const req = '<span class="field__req" aria-hidden="true">*</span>';
@@ -100,9 +122,12 @@ export function renderForm(form, { localHref, icon, notice, phone }) {
     const help = f.description ? '<p class="field__help" id="' + id + '-help">' + fixLinks(f.description) + '</p>\n' : '';
     const describedby = f.description ? ' aria-describedby="' + id + '-help"' : '';
     const r = f.required ? ' required aria-required="true"' : '';
+    /* CS-04: a field the source shows only for one choice carries data-show-if="{controlling name}={value}" (site.js) */
+    const cond = conditional && conditional[f.gfId];
+    const showIf = cond ? ' data-show-if="' + esc('f' + fid + '-' + cond.field + '=' + cond.value) + '"' : '';
     if (f.kind === 'radio' || f.kind === 'checkbox') {
-      out.push('<fieldset class="field field--choice"' + describedby + '>\n<legend class="field__label">' + esc(f.label) + (f.required ? req : '') + '</legend>\n'
-        + f.options.map((o, i) => '<div class="choice"><input class="choice__input" type="' + f.kind + '" id="' + id + '-' + i + '" name="' + id + '" value="' + esc(o.value) + '"' + (f.required && f.kind === 'radio' ? ' required aria-required="true"' : '') + '><label class="choice__label" for="' + id + '-' + i + '">' + esc(o.label) + '</label></div>').join('\n')
+      out.push('<fieldset class="field field--choice"' + describedby + showIf + '>\n<legend class="field__label">' + esc(f.label) + (f.required ? req : '') + '</legend>\n'
+        + f.options.map((o, i) => '<div class="choice"><input class="choice__input" type="' + f.kind + '" id="' + id + '-' + i + '" name="' + id + '" value="' + esc(o.value) + '"' + (f.required && f.kind === 'radio' ? ' required' : '') /* COMPONENTS E.2: aria-required is not valid on role radio (VIB-07) */ + '><label class="choice__label" for="' + id + '-' + i + '">' + esc(o.label) + '</label></div>').join('\n')
         + '\n' + help + errP(id) + '\n</fieldset>');
       continue;
     }
@@ -124,7 +149,7 @@ export function renderForm(form, { localHref, icon, notice, phone }) {
           subs.push('<div class="field__sub"><select class="field__control" id="' + sid + '" name="' + sid + '"' + r + '>' + f.ampm.options.map((o) => '<option value="' + esc(o.value) + '">' + esc(o.label) + '</option>').join('') + '</select><label class="field__sublabel" for="' + sid + '">' + esc(f.ampm.sub) + '</label></div>');
         }
       }
-      out.push('<fieldset class="field field--group"' + describedby + '>\n<legend class="field__label">' + esc(f.label) + (f.required ? req : '') + '</legend>\n<div class="field__row">\n' + subs.join('\n') + '\n</div>\n' + help + errP(id) + '\n</fieldset>');
+      out.push('<fieldset class="field field--group"' + describedby + showIf + '>\n<legend class="field__label">' + esc(f.label) + (f.required ? req : '') + '</legend>\n<div class="field__row">\n' + subs.join('\n') + '\n</div>\n' + help + errP(id) + '\n</fieldset>');
       continue;
     }
     const auto = f.kind === 'email' ? ' autocomplete="email"' : f.kind === 'tel' ? ' autocomplete="tel"' : '';
@@ -133,7 +158,7 @@ export function renderForm(form, { localHref, icon, notice, phone }) {
     const control = f.kind === 'textarea'
       ? '<textarea class="field__control" id="' + id + '" name="' + id + '" rows="6"' + r + describedby + '></textarea>'
       : '<input class="field__control" type="' + f.kind + '" id="' + id + '" name="' + id + '"' + r + auto + ph + describedby + '>';
-    out.push('<div class="field' + (f.kind === 'textarea' ? ' field--wide' : '') + '">\n' + label + '\n' + control + '\n' + help + errP(id) + '\n</div>');
+    out.push('<div class="field' + (f.kind === 'textarea' ? ' field--wide' : '') + '"' + showIf + '>\n' + label + '\n' + control + '\n' + help + errP(id) + '\n</div>');
   }
   return [
     '<form class="form" method="post" aria-labelledby="page-title" data-form>',

@@ -309,7 +309,10 @@
   --fs-tag:     clamp(2.25rem, 1.5rem + 3vw, 4.25rem);
   --lh-body: 1.65; --lh-lead: 1.55; --lh-h4: 1.3; --lh-h3: 1.25; --lh-h2: 1.15; --lh-h1: 1.08; --lh-display: 1.02;
   --ls-display: -0.02em; --ls-h1: -0.015em; --ls-h2: -0.01em;
-  --measure: 66ch;
+  /* VIA-01 (must-fix #12, "about 66 characters per line"): 1ch is the width of "0", about 1.3 average Nunito Sans
+     characters, so the former 66ch set 77-94 characters per line (median 85-89). 51ch sets the median full line at
+     about 66 characters. A recorded change to the spec value `--measure: 66ch`. */
+  --measure: 51ch;
   --measure-narrow: 52ch;
 
   /* --- space, layout, radii (DESIGN-SPEC 2.4, 2.5) ------------------------------------------------- */

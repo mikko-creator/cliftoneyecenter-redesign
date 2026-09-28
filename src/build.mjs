@@ -21,7 +21,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { esc, up, depthOf, ownPath, readJSON, walk, plain, decodeEntities } from './lib/util.mjs';
 import { createContent, TOKEN_RE } from './lib/content.mjs';
-import { parseGravityForm, renderForm } from './lib/forms.mjs';
+import { parseGravityForm, renderForm, parseConditionalLogic } from './lib/forms.mjs';
 import { MOVED, sourceRobots, mergeRobots, pageTitle, deriveDescription, canonicalSlugFor, jsonLd } from './lib/seo.mjs';
 import { createTemplates, icon, isoDate } from './lib/templates.mjs';
 import { createImages } from './lib/images.mjs';
@@ -235,7 +235,7 @@ const LINKED_STYLES = ['tokens.css', 'brand.css', 'site.css', 'motion.css'].filt
   if (!fs.existsSync(abs)) return f === 'site.css';   /* site.css is always linked; its absence is a build failure */
   return !LAYERED[f] || LAYERED[f].test(fs.readFileSync(abs, 'utf8'));
 });
-const C = createContent({ origin: ORIGIN, imageMap, willExist, moved: MOVED, fail, stats, imgUrl, mapQuery: chrome.mapQuery, pdfFor });
+const C = createContent({ origin: ORIGIN, imageMap, willExist, moved: MOVED, fail, stats, imgUrl, mapQuery: chrome.mapQuery, pdfFor, garbageAlt });
 const T = createTemplates({ chrome, localHref: C.localHref, imgUrl, logo: logoRec });
 const MAP_SRC = 'https://www.google.com/maps?q=' + encodeURIComponent(chrome.mapQuery) + '&output=embed';
 
@@ -332,6 +332,10 @@ const SVC = {
   '/eye-care-services/eye-conditions/dry-eye-disease-and-treatment/': 'svc-dry-eye',
   '/eyeglasses-contacts/eyeglasses/': 'svc-eyewear-boutique',
 };
+/* Band photos whose subject is not centred get a crop focus (site.css .band__visual--{focus}); the file is never
+   edited. Glasses-Contacts-hero (1600 x 463, /eyeglasses-contacts/ and /contact-lenses/): both faces sit at 20-54%
+   of the width with a flat grey field on the right, and the centred crop put a face under the title glass (VIA-02). */
+const BAND_FOCUS = { 'glasses-contacts-hero.jpg': 'left' };
 /* band variant + backdrop per family (COMPONENTS C.1, DESIGN-SPEC 6.2) */
 const PHOTO_PAGES = new Set(['/eye-care-services/', '/eyeglasses-contacts/', '/eyeglasses-contacts/eyeglasses/', '/eyeglasses-contacts/contact-lenses/', '/eyeglasses-contacts/eyeglasses/designer-frames/', '/insurance/', '/hours-location/', '/our-eye-doctors/']);
 function bandPlan(family, p) {
@@ -381,7 +385,9 @@ function renderComp(comp, ctx) {
   switch (comp.kind) {
     case 'form':
       hit('L23');
-      return '<section class="sheet sheet--form glass glass--light" aria-labelledby="page-title">\n' + renderForm(d, { localHref: (h) => C.localHref(h, depth), icon, notice: chrome.notice, phone: chrome.phone }) + '\n</section>';
+      /* the sheet is not named: the <form> inside carries aria-labelledby="page-title" (PORT-NOTES F-3) and the band
+         region is also named by the h1, so a named sheet made a third landmark with the same name (RA-07) */
+      return '<section class="sheet sheet--form glass glass--light">\n' + renderForm(d, { localHref: (h) => C.localHref(h, depth), icon, notice: chrome.notice, phone: chrome.phone, conditional: d.conditional }) + '\n</section>';
     case 'testimonials': {
       const card = (c) => T.reviewCard(c, c.html.replace(/<p\b[^>]*>/gi, '<p>').trim() || '<p>' + esc(c.text) + '</p>');
       if (/^\/testimonial\//.test(p)) return '<section class="sheet glass glass--light is-flat" data-reveal="up">\n' + d.map(card).join('\n') + '\n</section>';
@@ -467,6 +473,14 @@ function buildPage(page, opts = {}) {
   const region = C.mainRegion(raw);
   const composeVisit = p === '/hours-location/' || /^\/location\//.test(p);
   const prep = C.prepare(region.html, { parseForm: parseGravityForm, composeVisit, docCards: p === '/contact-us/patient-forms/', composeTeam: p === '/our-eye-doctors/' });
+  /* CS-04: the form's show-if rules come from the RAW page (the parser reads the script-stripped main, F-2) */
+  for (const c of prep.comps) {
+    if (c.kind !== 'form' || !c.data) continue;
+    const cl = parseConditionalLogic(raw, c.data.id);
+    c.data.conditional = cl.rules;
+    stats.formShowIfRules = (stats.formShowIfRules || 0) + Object.keys(cl.rules).length;
+    for (const u of cl.unsupported) fail('build:form', p, 'source conditional logic not carried: ' + u);
+  }
   let clean = C.sanitize(prep.html, depth, page.url);
   clean = clean.replace(/<(h[1-6])(?:\s[^>]*)?>((?:\s|<img\b[^>]*>|<br>|<a\b[^>]*>|<\/a>)*)<\/\1>/gi, (m, tag, inner) => {
     if (!/<img\b/i.test(inner) || inner.replace(/<[^>]+>/g, '').trim()) return m;
@@ -540,6 +554,28 @@ function buildPage(page, opts = {}) {
      index cards) gets the interior composed-section heading h2.section-title (COMPONENTS B, "interior
      composed sections use the plain left-aligned h2.section-title"), not a sheet holding only a heading */
   const sectionTitle = (headingHtml, headingAttrs) => { stats.sectionTitles = (stats.sectionTitles || 0) + 1; return '<h2 class="section-title"' + headId(headingAttrs) + '>' + headingHtml + '</h2>'; };
+  /* VIA-04 (item 23 extended): a prose chunk that holds ONLY headings (plus a source <hr> rule) before a composed
+     component was still a sheet: "<hr><h3>Our Contact Lens Services:</h3>" before the index cards, and the
+     designer-frames runs "SEE BETTER / DESIGNER EYEWEAR / LIVE BETTER" and "O U R . F U L L ... / DESIGNER
+     EYEWEAR IN Bossier City" before the dock row and the logo wall. It renders as the plain section title: one
+     heading keeps its source level with class section-title; a run is div.section-head (first heading
+     .section-title, the rest .section-title--sub), every heading at its source level, in source order. The rule
+     is dropped (a thematic break above a title, no text). */
+  const HEADS_RE = /<(h[2-6])((?:\s[^>]*)?)>([\s\S]*?)<\/\1>/gi;
+  const headingsOnly = (chunk) => {
+    if (!/<h[2-6]\b/i.test(chunk)) return null;
+    const bare = chunk.replace(HEADS_RE, '').replace(/<hr\s*\/?>/gi, '');
+    if (bare.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, '').trim() || /<(img|iframe|table|figure|ul|ol|dl|blockquote)\b/i.test(bare)) return null;
+    return [...chunk.matchAll(HEADS_RE)].map((m) => ({ tag: m[1].toLowerCase(), attrs: m[2] || '', html: m[3] }));
+  };
+  const sectionHead = (heads, hadRule) => {
+    stats.sectionTitles = (stats.sectionTitles || 0) + 1;
+    if (hadRule) stats.headingRunRulesDropped = (stats.headingRunRulesDropped || 0) + 1;
+    const el = (x, cls) => '<' + x.tag + ' class="' + cls + '"' + headId(x.attrs) + '>' + x.html + '</' + x.tag + '>';
+    if (heads.length === 1) return el(heads[0], 'section-title');
+    stats.sectionHeads = (stats.sectionHeads || 0) + 1;
+    return '<div class="section-head">\n' + heads.map((x, i) => el(x, i ? 'section-title--sub' : 'section-title')).join('\n') + '\n</div>';
+  };
   for (const sec of sections) {
     let body = C.finishSection(sec.body || '');
     body = alternatePhotos(body, photoCounter);
@@ -555,6 +591,13 @@ function buildPage(page, opts = {}) {
       const hasText = chunk.replace(/<[^>]+>/g, '').trim() || /<(img|iframe|table)\b/i.test(chunk);
       if (!hasText && (headingUsed || !sec.heading)) continue;
       if (!hasText) { bodyParts.push(sectionTitle(sec.heading, sec.attrs)); headingUsed = true; continue; }
+      const heads = headingsOnly(chunk);
+      if (heads) {
+        const all = (!headingUsed && sec.heading ? [{ tag: 'h2', attrs: sec.attrs, html: sec.heading }] : []).concat(heads);
+        bodyParts.push(sectionHead(all, /<hr\b/i.test(chunk)));
+        headingUsed = true;
+        continue;
+      }
       bodyParts.push(sheet(headingUsed ? '' : sec.heading, headingUsed ? '' : sec.attrs, chunk));
       headingUsed = true;
     }
@@ -562,17 +605,51 @@ function buildPage(page, opts = {}) {
   }
   if (svcFig) bodyParts.unshift(sheet('', '', svcFig));
 
+  /* CS-06: a source ROW background photo that the title band does not use (the band takes the first non-mobile
+     background and the mobile variant) is a kept image too (image-inventory KEEP). It renders, as-is and never
+     cropped, as a figure at the top of the section its source row held, found by that row's first heading
+     (/designer-frames/: Frames-Chanel-Pink-sm behind "#TELLITLIKEITIS"). A brand-campaign file gets fig--brand
+     (IMAGE-PLAN: keep exactly as-is), anything else fig--photo; alt="" (it was a background). The build fails if
+     the row's heading is not found on the rebuilt page, so the image can never go silently missing again. */
+  if (PHOTO_PAGES.has(p)) {
+    const rowBgs = [...raw.matchAll(/data-background-image-src=["']([^"']+)["']/g)].map((m) => ({ file: fileOf(decodeEntities(m[1])), at: m.index }));
+    const bandMain = rowBgs.find((b) => !/mobile/i.test(b.file)), bandMob = rowBgs.find((b) => /mobile/i.test(b.file));
+    for (const bg of rowBgs.filter((b) => b !== bandMain && b !== bandMob)) {
+      const rec = byBase.get(bg.file);
+      if (!rec) { fail('build:asset', p, 'row background photo not in the image map: ' + bg.file); continue; }
+      const after = raw.slice(bg.at, bg.at + 20000).replace(/<(script|style)\b[\s\S]*?<\/\1>/gi, ' ');
+      const hm = /<(h[1-6])\b[^>]*>([\s\S]*?)<\/\1>|<span class="ecp-heading-text">([\s\S]*?)<\/span>/i.exec(after);
+      const rowHeading = hm ? plain(hm[2] !== undefined ? hm[2] : hm[3]) : '';
+      const role = rec.cls === 'brand-campaign-image' ? 'brand' : 'photo';
+      const fig = '<figure class="fig fig--' + role + '"><span class="fig__media"><img src="' + esc(imgUrl(rec.file, depth)) + '" alt="" width="' + rec.w + '" height="' + rec.h + '" loading="lazy" decoding="async"></span></figure>';
+      const at = rowHeading ? bodyParts.findIndex((part) => { const h = /<(h[2-6])\b[^>]*>([\s\S]*?)<\/\1>/i.exec(part); return h && plain(h[2]) === rowHeading; }) : -1;
+      if (at < 0) { fail('build:asset', p, 'row background photo ' + bg.file + ': its source row heading "' + rowHeading + '" is not on the rebuilt page'); continue; }
+      bodyParts[at] = bodyParts[at].replace(/(<(h[2-6])\b[^>]*>[\s\S]*?<\/\2>)/i, '$1' + fig);
+      (stats.rowPhotosPlaced = stats.rowPhotosPlaced || []).push(p + ': ' + bg.file + ' in "' + rowHeading + '"');
+    }
+  }
+
   let bodyHtml = bodyParts.join('\n');
   /* any token that was not at a paragraph boundary (inside a list item etc.) */
   bodyHtml = bodyHtml.replace(TOKEN_RE, (m, n) => renderComp(prep.comps[Number(n)], { depth, family, p }));
   TOKEN_RE.lastIndex = 0;
+  /* VIA-05: a heading set in letter-spaced capitals ("O U R . F U L L . E Y E W E A R . C O L L E C T I O N", the
+     source's own spacing) broke inside a word at 390 ("E Y E W" / "E A R"): every letter space is a break
+     opportunity. Each spaced word (with its trailing " .") is kept whole in span.nobr; the text is unchanged and
+     lines break only between the dot-separated words. */
+  bodyHtml = bodyHtml.replace(/<(h[1-6])(\s[^>]*)?>([\s\S]*?)<\/\1>/gi, (m, tag, attrs, inner) => {
+    const out = inner.replace(/(^|>)([^<]+)/g, (mm, pre, text) => pre + text.replace(/(?<![A-Za-z0-9] ?)(?:[A-Z0-9] ){2,}[A-Z0-9](?: \.)?(?![A-Za-z0-9])/g, (run) => { stats.spacedCapsKeptWhole = (stats.spacedCapsKeptWhole || 0) + 1; return '<span class="nobr">' + run + '</span>'; }));
+    return out === inner ? m : '<' + tag + (attrs || '') + '>' + out + '</' + tag + '>';
+  });
 
   /* ---- band ---- */
   const bp = bandPlan(family, p);
   let bandHtml = '', lcp = null;
   const trail = (prep.trail || []).map((seg) => ({ text: seg.text, href: seg.href }));
   if (!isHome) {
-    const bandArgs = { depth, variant: bp.variant, trail: trail.length ? trail : null, h1: h1.text, date: family === 'blog-post' ? prep.postDate : null };
+    /* RA-07: on a form page the <form> is named by the h1 (PORT-NOTES F-3), so the band is not also a region named by
+       it (two landmarks with one name); every other band keeps aria-labelledby="page-title" (COMPONENTS C.2) */
+    const bandArgs = { depth, variant: bp.variant, trail: trail.length ? trail : null, h1: h1.text, date: family === 'blog-post' ? prep.postDate : null, named: !prep.comps.some((c) => c.kind === 'form') };
     if (bp.variant === 'scene') bandArgs.scene = useGen(bp.scene, 'band scene');
     if (bp.variant === 'photo') {
       const bgs = [...raw.matchAll(/data-background-image-src=["']([^"']+)["']/g)].map((m) => fileOf(decodeEntities(m[1])));
@@ -582,6 +659,7 @@ function buildPage(page, opts = {}) {
       if (!recMain) { fail('build:asset', p, 'band photo not found for ' + main); bandArgs.variant = 'plain'; }
       else {
         bandArgs.photo = { url: imgUrl(recMain.file, depth), w: recMain.w, h: recMain.h };
+        bandArgs.focus = BAND_FOCUS[main.toLowerCase()] || null;
         lcp = bandArgs.photo.url;
         const recMob = mob && byBase.get(mob);
         if (recMob) bandArgs.photoMobile = { url: imgUrl(recMob.file, depth), w: recMob.w, h: recMob.h };
@@ -663,12 +741,14 @@ function buildPage(page, opts = {}) {
   const fallbackLabel = h1.why === 'BUILD-DECISIONS #3' ? h1.text + ' - ' + chrome.brandName : '';
   const title = pageTitle(s, page, h1.text, slug, seoLog, fallbackLabel);
   let description = (s.metaDescription || '').trim();
-  if (!description) {
-    /* fallback: the text of the rendered main column (never page.bodyText, which on the 23 R-1 pages holds the menus and sidebar) */
-    const mainText = plain(String(mainHtml || bodyHtml || '').replace(/<(svg|script|nav)\b[\s\S]*?<\/\1>/gi, ' ').replace(/<h1\b[\s\S]*?<\/h1>/gi, ' ').replace(/<p class="date-pill">[\s\S]*?<\/p>/gi, ' '));
-    description = deriveDescription(sections.map((x) => ({ body: String(x.body || '').replace(TOKEN_RE, ' ') })), mainText);
+  /* CS-01: the home page gets NO derived description: the source home has none (and an empty og:description),
+     and its opening blocks are hero fragments and a promo, not a sentence. Every other page without one derives
+     it from ONE source block of its own prose (seo.mjs deriveDescription, CS-03), or omits it. */
+  if (!description && !isHome) {
+    description = deriveDescription(sections.map((x) => ({ body: String(x.body || '').replace(TOKEN_RE, ' ') })));
     TOKEN_RE.lastIndex = 0;
     if (description) seoLog.descriptions++;
+    else seoLog.descriptionsOmitted = (seoLog.descriptionsOmitted || 0) + 1;
   }
   const rob = sourceRobots(raw);
   const art = artefacts.get(p);
@@ -690,13 +770,44 @@ function buildPage(page, opts = {}) {
     if (seg.href) { const own = ownPath(seg.href, ORIGIN); if (own !== null && (own === '' || willExist.has(own))) abs = ORIGIN + '/' + (own ? own + '/' : ''); }
     return { text: seg.text, abs: i === trail.length - 1 ? canonical : abs };
   }) : null;
+  /* og:type and twitter:card follow the source page (CS-07, CS-08): og:type "article" on the 152 posts and
+     "website" elsewhere; twitter:card "summary" on all 349 (seo-inventory). The fixed "website" /
+     "summary_large_image" of the first build had no reason on record. */
+  const ogType = ((s.openGraph && s.openGraph['og:type']) || '').trim() || 'website';
+  const twitterCard = ((s.twitter && s.twitter['twitter:card']) || '').trim() || 'summary';
   const headHtml = T.head({
-    depth, title, description, robots, canonical, ogTitle, ogImage: ORIGIN + '/img/' + ogRel, lang: s.lang || page.lang,
+    depth, title, description, robots, canonical, ogTitle, ogType, twitterCard, ogImage: ORIGIN + '/img/' + ogRel, lang: s.lang || page.lang,
     jsonLd: jsonLd({ pageUrl: canonical, chrome, origin: ORIGIN, logoUrl: ORIGIN + '/img/' + logoRec.rel, trail: trailAbs }),
     lcp, favicon: FAVICON, styles: LINKED_STYLES,
   });
   const bodyClass = isHome ? 't-home' : opts.as404 || p === '/404-page-not-found/' ? 't-page t-platform-artefact t-404 is-solo' : 't-page t-' + family + ' ' + (hasAside ? 'has-aside' : 'is-solo');
-  const html = T.page({ depth, curPath: opts.as404 ? '' : p, headHtml, bodyClass, mainHtml, asideHtml: hasAside ? T.aside(depth, MAP_SRC) : '', isHome });
+  let html = T.page({ depth, curPath: opts.as404 ? '' : p, headHtml, bodyClass, mainHtml, asideHtml: hasAside ? T.aside(depth, MAP_SRC) : '', isHome });
+  /* a phone number in running text never splits at its hyphens ("318-550-" / "5815": VIB-04's defect, seen in
+     the home Welcome copy at 1440 once the measure came down to ~66 characters, VIA-01). Text nodes of <main>
+     only; the characters are unchanged, the number is wrapped in span.nobr (buttons already carry one). */
+  html = html.replace(/(<main\b[^>]*>)([\s\S]*?)(<\/main>)/, (m, open, inner, close) => {
+    const parts = inner.split(/(<[^>]*>)/);   /* odd indexes are tags, even indexes text: attributes are never touched */
+    for (let i = 0; i < parts.length; i += 2) {
+      if (!/\d{3}-\d{3}-\d{4}/.test(parts[i]) || parts[i - 1] === '<span class="nobr">') continue;
+      parts[i] = parts[i].replace(/(?<![\d-])\d{3}-\d{3}-\d{4}(?![\d-])/g, (n) => { stats.phoneNumbersKeptWhole = (stats.phoneNumbersKeptWhole || 0) + 1; return '<span class="nobr">' + n + '</span>'; });
+    }
+    return open + parts.join('') + close;
+  });
+  /* VIB-01 (COMPONENTS F.7): a host serves dist/404.html at the failing request's own path, at ANY depth
+     (/some-old-post/ keeps its URL), so a page-relative URL in that one file resolved under the missing path:
+     no CSS, no fonts, broken images, and a "home page" link to /some-old-post/index.html. Every URL in 404.html
+     is root-relative instead (/styles/site.css, /img/..., /); "x/index.html" becomes "/x/". The one exception
+     to the page-relative rule: 404.html works at the site root at any depth, not from a subpath deploy. */
+  if (opts.as404) {
+    const rootRel = (v) => {
+      if (!v || /^(?:[a-z][a-z0-9+.-]*:|#|\/)/i.test(v)) return v;
+      const cut = v.indexOf('#'), pathPart = cut < 0 ? v : v.slice(0, cut), hash = cut < 0 ? '' : v.slice(cut);
+      return ('/' + pathPart.replace(/^\.\//, '')).replace(/(^|\/)index\.html$/, '$1') + hash;
+    };
+    html = html.replace(/(\s(?:href|src|poster))="([^"]*)"/g, (m, a, v) => a + '="' + rootRel(v) + '"')
+      .replace(/(\s(?:srcset|imagesrcset))="([^"]*)"/g, (m, a, v) => a + '="' + v.split(',').map((part) => { const t = part.trim().split(/\s+/); t[0] = rootRel(t[0]); return t.join(' '); }).join(', ') + '"');
+    stats.notFoundRootRelative = (html.match(/\s(?:href|src|srcset)="\//g) || []).length;
+  }
   const out = opts.as404 ? path.join(DIST, '404.html') : (slug ? path.join(DIST, slug, 'index.html') : path.join(DIST, 'index.html'));
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, html);
