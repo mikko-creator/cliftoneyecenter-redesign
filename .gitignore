@@ -1,0 +1,10 @@
+/tmp/
+/audit/raw/
+/audit/rendered/
+/audit/capture/
+/audit/css/
+/audit/screens/
+/preview/
+/.claude/
+*.zip
+*.log

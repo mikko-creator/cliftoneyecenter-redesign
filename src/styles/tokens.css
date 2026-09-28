@@ -1,0 +1,119 @@
+/* tokens.css — derived by sr-tokens.mjs from computed (browser capture).
+   Every value below traces to audit/design-baseline.json. Change values HERE,
+   never at a call site: one source, or the system is not a system. */
+:root {
+  /* --- colour ------------------------------------------------------ */
+  --c-1: #ffffff;
+  --c-2: #759b2a;
+  --c-3: #757575;
+  --c-4: #000000;
+  --c-5: #94bc4a;
+  --c-6: #464451;
+  --c-7: #2d2d2d;
+
+  /* --- type -------------------------------------------------------- */
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-display: Arial;
+  --fs-1: 9.756px;
+  --fs-2: 10px;
+  --fs-3: 10.5px;
+  --fs-4: 11px;
+  --fs-5: 11.382px;
+  --fs-6: 12px;
+  --fs-7: 12.6px;
+  --fs-8: 13px;
+  --fs-9: 13.3333px;
+  --fs-10: 14px;
+  --fs-11: 15px;
+  --fs-12: 15.4px;
+  --fs-13: 16px;
+  --fs-14: 16.8px;
+  --fs-15: 17px;
+  --fs-16: 17.5px;
+  --fs-17: 18px;
+  --fs-18: 20px;
+  --fs-19: 21px;
+  --fs-20: 22px;
+  --fs-21: 24px;
+  --fs-22: 24.5px;
+  --fs-23: 26px;
+  --fs-24: 26.25px;
+  --fs-25: 28px;
+  --fs-26: 29.75px;
+  --fs-27: 30px;
+  --fs-28: 31.5px;
+  --fs-29: 32px;
+  --fs-30: 34px;
+  --fs-31: 35px;
+  --fs-32: 36px;
+  --fs-33: 38px;
+  --fs-34: 40px;
+  --fs-35: 42px;
+  --fs-36: 50px;
+  --fs-37: 60px;
+
+  /* --- space ------------------------------------------------------- */
+  --sp-1: 2px;
+  --sp-2: 3px;
+  --sp-3: 4px;
+  --sp-4: 5px;
+  --sp-5: 6px;
+  --sp-6: 6.66667px;
+  --sp-7: 7px;
+  --sp-8: 8px;
+  --sp-9: 8.4px;
+  --sp-10: 10px;
+  --sp-11: 10.5px;
+  --sp-12: 11.9px;
+  --sp-13: 12px;
+  --sp-14: 13.6px;
+  --sp-15: 14px;
+  --sp-16: 15px;
+  --sp-17: 16px;
+  --sp-18: 19.6875px;
+  --sp-19: 20px;
+  --sp-20: 30px;
+  --sp-21: 40px;
+  --sp-22: 50px;
+  --sp-23: 60px;
+  --sp-24: 70px;
+  --sp-25: 80px;
+  --sp-26: 100px;
+  --sp-27: 130px;
+  --sp-28: 140px;
+  --sp-29: 150px;
+  --sp-30: 175px;
+  --sp-31: 250px;
+  --sp-32: 300px;
+
+  /* --- shape ------------------------------------------------------- */
+  --radius-1: 10px;
+  --radius-2: 5px;
+  --radius-3: 50%;
+  --radius-4: 100px;
+  --shadow-1: rgb(174, 174, 174) 0px 0px 10px 0px;
+  --shadow-2: rgb(138, 134, 134) 0px 0px 10px 0px;
+  --shadow-3: rgb(119, 119, 119) 0px 0px 10px 0px;
+
+  /* --- layout ------------------------------------------------------ */
+  --container: 100%;
+  --bp-1: 1px;
+  --bp-2: 321px;
+  --bp-3: 480px;
+  --bp-4: 600px;
+  --bp-5: 640px;
+  --bp-6: 641px;
+  --bp-7: 700px;
+  --bp-8: 761px;
+  --bp-9: 768px;
+  --bp-10: 769px;
+  --bp-11: 790px;
+  --bp-12: 800px;
+  --bp-13: 900px;
+  --bp-14: 992px;
+  --bp-15: 993px;
+  --bp-16: 1024px;
+  --bp-17: 1100px;
+  --bp-18: 1200px;
+  --bp-19: 1201px;
+}

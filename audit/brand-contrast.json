@@ -1,0 +1,2042 @@
+{
+  "schema": "site-reforge/brand-contrast@1",
+  "generated": "2026-09-28T00:46:43.435Z",
+  "method": "WCAG 2.x relative luminance; glass = fill composited over the stated worst-case backdrop; gradients judged at every stop",
+  "tokens": {
+    "green-50": "#f8faf2",
+    "green-100": "#eef4e2",
+    "green-200": "#ddeac5",
+    "green-300": "#bdd58f",
+    "green-400": "#94bc4a",
+    "green-500": "#759b2a",
+    "green-600": "#53760d",
+    "green-700": "#446600",
+    "green-800": "#314900",
+    "green-900": "#233500",
+    "green-950": "#141f00",
+    "ink-950": "#232229",
+    "ink-900": "#313039",
+    "ink-700": "#464451",
+    "ink-600": "#5c5a66",
+    "ink-500": "#6b6974",
+    "ink-300": "#acabb1",
+    "ink-200": "#d1d0d4",
+    "ink-100": "#e9e9ea",
+    "ink-50": "#f6f6f6",
+    "slate-700": "#36565e",
+    "slate-900": "#1d2e33",
+    "alert": "#941221",
+    "alert-50": "#f8eeef",
+    "paper": "#ffffff",
+    "ground": "#fafcf6",
+    "stone": "#efefef",
+    "field-lime": "#cfe1ae",
+    "field-teal": "#dfe4e5",
+    "focus": "#446600",
+    "focus-on-dark": "#d4e4b7",
+    "focus-on-band": "#141f00"
+  },
+  "glass": {
+    "glass-image": {
+      "stops": [
+        [
+          "#ffffff",
+          0.84
+        ],
+        [
+          "#ffffff",
+          0.76
+        ]
+      ],
+      "worst": "#000000",
+      "why": "a black region of the photo (darkest possible pixel) under the whole panel",
+      "compositeStops": [
+        "#d6d6d6",
+        "#c2c2c2"
+      ],
+      "fallback": "#f0f0f0"
+    },
+    "glass-light": {
+      "stops": [
+        [
+          "#ffffff",
+          0.7
+        ],
+        [
+          "#ffffff",
+          0.56
+        ]
+      ],
+      "worst": "#cfe1ae",
+      "why": "the deepest light-field pool (--field-lime) under the whole panel; photos never sit behind it (use glass-image there)",
+      "compositeStops": [
+        "#f1f6e7",
+        "#eaf2db"
+      ],
+      "fallback": "#fafcf7"
+    },
+    "glass-leaf": {
+      "stops": [
+        [
+          "#f8faf2",
+          0.9
+        ],
+        [
+          "#eef4e2",
+          0.86
+        ]
+      ],
+      "worst": "#000000",
+      "why": "black under the whole chip (it may sit on a photo)",
+      "compositeStops": [
+        "#dfe1da",
+        "#cdd2c2"
+      ],
+      "fallback": "#f8faf2"
+    },
+    "glass-leaf-deep": {
+      "stops": [
+        [
+          "#446600",
+          0.9
+        ],
+        [
+          "#314900",
+          0.92
+        ]
+      ],
+      "worst": "#ffffff",
+      "why": "pure white under the whole panel (lightest possible backdrop for white text)",
+      "compositeStops": [
+        "#577519",
+        "#415814"
+      ],
+      "fallback": "#446600"
+    },
+    "glass-dark": {
+      "stops": [
+        [
+          "#141f00",
+          0.86
+        ],
+        [
+          "#232229",
+          0.9
+        ]
+      ],
+      "worst": "#ffffff",
+      "why": "pure white under the whole panel (lightest possible backdrop for light text)",
+      "compositeStops": [
+        "#353e24",
+        "#39383e"
+      ],
+      "fallback": "#141f00"
+    },
+    "pill-on-band": {
+      "stops": [
+        [
+          "#ffffff",
+          0.9
+        ],
+        [
+          "#ffffff",
+          0.82
+        ]
+      ],
+      "worst": "#759b2a",
+      "why": "the solid #759b2a band itself (a known flat colour, nothing else can be behind the pill)",
+      "compositeStops": [
+        "#f1f5ea",
+        "#e6edd9"
+      ],
+      "fallback": "#ffffff"
+    }
+  },
+  "rows": [
+    {
+      "group": "source",
+      "use": "top bar callout + buttons (14px, white on #759b2a)",
+      "fg": "#ffffff",
+      "fgHex": "#ffffff",
+      "kind": "source-body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "#759b2a",
+        "bgHex": "#759b2a",
+        "ratio": 3.24
+      },
+      "per": [
+        {
+          "bg": "#759b2a",
+          "bgHex": "#759b2a",
+          "ratio": 3.24
+        }
+      ],
+      "pass": false
+    },
+    {
+      "group": "source",
+      "use": "\"Our Designer Optical\" band title (34px, white on #759b2a)",
+      "fg": "#ffffff",
+      "fgHex": "#ffffff",
+      "kind": "source-large",
+      "threshold": 3,
+      "worst": {
+        "bg": "#759b2a",
+        "bgHex": "#759b2a",
+        "ratio": 3.24
+      },
+      "per": [
+        {
+          "bg": "#759b2a",
+          "bgHex": "#759b2a",
+          "ratio": 3.24
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "source",
+      "use": "footer links (14px, white on #94bc4a)",
+      "fg": "#ffffff",
+      "fgHex": "#ffffff",
+      "kind": "source-body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "#94bc4a",
+        "bgHex": "#94bc4a",
+        "ratio": 2.2
+      },
+      "per": [
+        {
+          "bg": "#94bc4a",
+          "bgHex": "#94bc4a",
+          "ratio": 2.2
+        }
+      ],
+      "pass": false
+    },
+    {
+      "group": "source",
+      "use": "footer headings (24px, white on #94bc4a)",
+      "fg": "#ffffff",
+      "fgHex": "#ffffff",
+      "kind": "source-large",
+      "threshold": 3,
+      "worst": {
+        "bg": "#94bc4a",
+        "bgHex": "#94bc4a",
+        "ratio": 2.2
+      },
+      "per": [
+        {
+          "bg": "#94bc4a",
+          "bgHex": "#94bc4a",
+          "ratio": 2.2
+        }
+      ],
+      "pass": false
+    },
+    {
+      "group": "source",
+      "use": "main nav links (18px bold, #759b2a on white)",
+      "fg": "#759b2a",
+      "fgHex": "#759b2a",
+      "kind": "source-body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "#ffffff",
+        "bgHex": "#ffffff",
+        "ratio": 3.24
+      },
+      "per": [
+        {
+          "bg": "#ffffff",
+          "bgHex": "#ffffff",
+          "ratio": 3.24
+        }
+      ],
+      "pass": false
+    },
+    {
+      "group": "source",
+      "use": "body copy (#464451 on white)",
+      "fg": "#464451",
+      "fgHex": "#464451",
+      "kind": "source-body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "#ffffff",
+        "bgHex": "#ffffff",
+        "ratio": 9.52
+      },
+      "per": [
+        {
+          "bg": "#ffffff",
+          "bgHex": "#ffffff",
+          "ratio": 9.52
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "source",
+      "use": "section headings (#36565e on white, 32-40px)",
+      "fg": "#36565e",
+      "fgHex": "#36565e",
+      "kind": "source-large",
+      "threshold": 3,
+      "worst": {
+        "bg": "#ffffff",
+        "bgHex": "#ffffff",
+        "ratio": 7.93
+      },
+      "per": [
+        {
+          "bg": "#ffffff",
+          "bgHex": "#ffffff",
+          "ratio": 7.93
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "source",
+      "use": "location band text (#464451 on #b7b7b7)",
+      "fg": "#464451",
+      "fgHex": "#464451",
+      "kind": "source-body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "#b7b7b7",
+        "bgHex": "#b7b7b7",
+        "ratio": 4.75
+      },
+      "per": [
+        {
+          "bg": "#b7b7b7",
+          "bgHex": "#b7b7b7",
+          "ratio": 4.75
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "source",
+      "use": "location band headings (#1d2e33 on #b7b7b7, 22px)",
+      "fg": "#1d2e33",
+      "fgHex": "#1d2e33",
+      "kind": "source-body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "#b7b7b7",
+        "bgHex": "#b7b7b7",
+        "ratio": 7.02
+      },
+      "per": [
+        {
+          "bg": "#b7b7b7",
+          "bgHex": "#b7b7b7",
+          "ratio": 7.02
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "source",
+      "use": "reviews band text (white on #757575)",
+      "fg": "#ffffff",
+      "fgHex": "#ffffff",
+      "kind": "source-body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "#757575",
+        "bgHex": "#757575",
+        "ratio": 4.61
+      },
+      "per": [
+        {
+          "bg": "#757575",
+          "bgHex": "#757575",
+          "ratio": 4.61
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "source",
+      "use": "review stars (#94bc4a on #757575)",
+      "fg": "#94bc4a",
+      "fgHex": "#94bc4a",
+      "kind": "source-ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "#757575",
+        "bgHex": "#757575",
+        "ratio": 2.1
+      },
+      "per": [
+        {
+          "bg": "#757575",
+          "bgHex": "#757575",
+          "ratio": 2.1
+        }
+      ],
+      "pass": false
+    },
+    {
+      "group": "source",
+      "use": "legal bar links (13px, #757575 on white)",
+      "fg": "#757575",
+      "fgHex": "#757575",
+      "kind": "source-body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "#ffffff",
+        "bgHex": "#ffffff",
+        "ratio": 4.61
+      },
+      "per": [
+        {
+          "bg": "#ffffff",
+          "bgHex": "#ffffff",
+          "ratio": 4.61
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "source",
+      "use": "promo heading (17.5px, #60af28 on white)",
+      "fg": "#60af28",
+      "fgHex": "#60af28",
+      "kind": "source-body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "#ffffff",
+        "bgHex": "#ffffff",
+        "ratio": 2.74
+      },
+      "per": [
+        {
+          "bg": "#ffffff",
+          "bgHex": "#ffffff",
+          "ratio": 2.74
+        }
+      ],
+      "pass": false
+    },
+    {
+      "group": "source",
+      "use": "emergency heading (28-30px, #941221 on white)",
+      "fg": "#941221",
+      "fgHex": "#941221",
+      "kind": "source-large",
+      "threshold": 3,
+      "worst": {
+        "bg": "#ffffff",
+        "bgHex": "#ffffff",
+        "ratio": 8.87
+      },
+      "per": [
+        {
+          "bg": "#ffffff",
+          "bgHex": "#ffffff",
+          "ratio": 8.87
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "body text",
+      "fg": "ink-700",
+      "fgHex": "#464451",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "stone",
+        "bgHex": "#efefef",
+        "ratio": 8.28
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 9.52
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 9.21
+        },
+        {
+          "bg": "stone",
+          "bgHex": "#efefef",
+          "ratio": 8.28
+        },
+        {
+          "bg": "green-50",
+          "bgHex": "#f8faf2",
+          "ratio": 9.04
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "strong text, h3-h6",
+      "fg": "ink-900",
+      "fgHex": "#313039",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "green-50",
+        "bgHex": "#f8faf2",
+        "ratio": 12.37
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 13.02
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 12.6
+        },
+        {
+          "bg": "green-50",
+          "bgHex": "#f8faf2",
+          "ratio": 12.37
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "secondary text",
+      "fg": "ink-600",
+      "fgHex": "#5c5a66",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "stone",
+        "bgHex": "#efefef",
+        "ratio": 5.87
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 6.75
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 6.53
+        },
+        {
+          "bg": "stone",
+          "bgHex": "#efefef",
+          "ratio": 5.87
+        },
+        {
+          "bg": "green-50",
+          "bgHex": "#f8faf2",
+          "ratio": 6.42
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "muted text: dates, captions, legal bar",
+      "fg": "ink-500",
+      "fgHex": "#6b6974",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "stone",
+        "bgHex": "#efefef",
+        "ratio": 4.69
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 5.39
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 5.21
+        },
+        {
+          "bg": "stone",
+          "bgHex": "#efefef",
+          "ratio": 4.69
+        },
+        {
+          "bg": "green-50",
+          "bgHex": "#f8faf2",
+          "ratio": 5.12
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "section headings (slate)",
+      "fg": "slate-700",
+      "fgHex": "#36565e",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "green-50",
+        "bgHex": "#f8faf2",
+        "ratio": 7.53
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 7.93
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 7.67
+        },
+        {
+          "bg": "green-50",
+          "bgHex": "#f8faf2",
+          "ratio": 7.53
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "display headings, hero (deep slate)",
+      "fg": "slate-900",
+      "fgHex": "#1d2e33",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "green-50",
+        "bgHex": "#f8faf2",
+        "ratio": 13.38
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 14.09
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 13.63
+        },
+        {
+          "bg": "green-50",
+          "bgHex": "#f8faf2",
+          "ratio": 13.38
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "links, eyebrows, nav text (deep green)",
+      "fg": "green-700",
+      "fgHex": "#446600",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "stone",
+        "bgHex": "#efefef",
+        "ratio": 5.8
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 6.67
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 6.46
+        },
+        {
+          "bg": "stone",
+          "bgHex": "#efefef",
+          "ratio": 5.8
+        },
+        {
+          "bg": "green-50",
+          "bgHex": "#f8faf2",
+          "ratio": 6.34
+        },
+        {
+          "bg": "green-100",
+          "bgHex": "#eef4e2",
+          "ratio": 5.94
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "link hover / current nav item",
+      "fg": "green-800",
+      "fgHex": "#314900",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "green-100",
+        "bgHex": "#eef4e2",
+        "ratio": 8.96
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 10.08
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 9.75
+        },
+        {
+          "bg": "green-50",
+          "bgHex": "#f8faf2",
+          "ratio": 9.57
+        },
+        {
+          "bg": "green-100",
+          "bgHex": "#eef4e2",
+          "ratio": 8.96
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "emergency heading and required-field marks",
+      "fg": "alert",
+      "fgHex": "#941221",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "alert-50",
+        "bgHex": "#f8eeef",
+        "ratio": 7.8
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 8.87
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 8.58
+        },
+        {
+          "bg": "alert-50",
+          "bgHex": "#f8eeef",
+          "ratio": 7.8
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "white on primary button (rest; gradient green-600 -> green-700, every stop)",
+      "fg": "#ffffff",
+      "fgHex": "#ffffff",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "green-600",
+        "bgHex": "#53760d",
+        "ratio": 5.3
+      },
+      "per": [
+        {
+          "bg": "green-600",
+          "bgHex": "#53760d",
+          "ratio": 5.3
+        },
+        {
+          "bg": "green-700",
+          "bgHex": "#446600",
+          "ratio": 6.67
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "top-bar pill buttons: green-800 on white glass pill over the #759b2a band",
+      "fg": "green-800",
+      "fgHex": "#314900",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "pill-on-band[stop 2]",
+        "bgHex": "#e6edd9",
+        "ratio": 8.39
+      },
+      "per": [
+        {
+          "bg": "pill-on-band[stop 1]",
+          "bgHex": "#f1f5ea",
+          "ratio": 9.11
+        },
+        {
+          "bg": "pill-on-band[stop 2]",
+          "bgHex": "#e6edd9",
+          "ratio": 8.39
+        },
+        {
+          "bg": "fallback:pill-on-band",
+          "bgHex": "#ffffff",
+          "ratio": 10.08
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "top-bar callout: deep green text directly on the #759b2a band",
+      "fg": "green-950",
+      "fgHex": "#141f00",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "green-500",
+        "bgHex": "#759b2a",
+        "ratio": 5.29
+      },
+      "per": [
+        {
+          "bg": "green-500",
+          "bgHex": "#759b2a",
+          "ratio": 5.29
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "white on primary button (hover)",
+      "fg": "#ffffff",
+      "fgHex": "#ffffff",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "green-800",
+        "bgHex": "#314900",
+        "ratio": 10.08
+      },
+      "per": [
+        {
+          "bg": "green-800",
+          "bgHex": "#314900",
+          "ratio": 10.08
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "white on the brand band #759b2a: LARGE text only (>=24px or >=18.66px bold)",
+      "fg": "#ffffff",
+      "fgHex": "#ffffff",
+      "kind": "large",
+      "threshold": 3,
+      "worst": {
+        "bg": "green-500",
+        "bgHex": "#759b2a",
+        "ratio": 3.24
+      },
+      "per": [
+        {
+          "bg": "green-500",
+          "bgHex": "#759b2a",
+          "ratio": 3.24
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "deep green text on the brand band #759b2a",
+      "fg": "green-950",
+      "fgHex": "#141f00",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "green-500",
+        "bgHex": "#759b2a",
+        "ratio": 5.29
+      },
+      "per": [
+        {
+          "bg": "green-500",
+          "bgHex": "#759b2a",
+          "ratio": 5.29
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "ink on the lime band #94bc4a",
+      "fg": "green-950",
+      "fgHex": "#141f00",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "green-400",
+        "bgHex": "#94bc4a",
+        "ratio": 7.79
+      },
+      "per": [
+        {
+          "bg": "green-400",
+          "bgHex": "#94bc4a",
+          "ratio": 7.79
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "white on the emergency icon tile / alert button",
+      "fg": "#ffffff",
+      "fgHex": "#ffffff",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "alert",
+        "bgHex": "#941221",
+        "ratio": 8.87
+      },
+      "per": [
+        {
+          "bg": "alert",
+          "bgHex": "#941221",
+          "ratio": 8.87
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "solid",
+      "use": "green-600 accent text (tags, secondary links)",
+      "fg": "green-600",
+      "fgHex": "#53760d",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "stone",
+        "bgHex": "#efefef",
+        "ratio": 4.61
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 5.3
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 5.12
+        },
+        {
+          "bg": "green-50",
+          "bgHex": "#f8faf2",
+          "ratio": 5.03
+        },
+        {
+          "bg": "stone",
+          "bgHex": "#efefef",
+          "ratio": 4.61
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "A glass-image: body text",
+      "fg": "ink-700",
+      "fgHex": "#464451",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-image[stop 2]",
+        "bgHex": "#c2c2c2",
+        "ratio": 5.34
+      },
+      "per": [
+        {
+          "bg": "glass-image[stop 1]",
+          "bgHex": "#d6d6d6",
+          "ratio": 6.55
+        },
+        {
+          "bg": "glass-image[stop 2]",
+          "bgHex": "#c2c2c2",
+          "ratio": 5.34
+        },
+        {
+          "bg": "fallback:glass-image",
+          "bgHex": "#f0f0f0",
+          "ratio": 8.35
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "A glass-image: headings (deep slate)",
+      "fg": "slate-900",
+      "fgHex": "#1d2e33",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-image[stop 2]",
+        "bgHex": "#c2c2c2",
+        "ratio": 7.91
+      },
+      "per": [
+        {
+          "bg": "glass-image[stop 1]",
+          "bgHex": "#d6d6d6",
+          "ratio": 9.69
+        },
+        {
+          "bg": "glass-image[stop 2]",
+          "bgHex": "#c2c2c2",
+          "ratio": 7.91
+        },
+        {
+          "bg": "fallback:glass-image",
+          "bgHex": "#f0f0f0",
+          "ratio": 12.36
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "rejected",
+      "use": "A glass-image: links in green-700 (rejected; use green-800)",
+      "fg": "green-700",
+      "fgHex": "#446600",
+      "kind": "source-body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-image[stop 2]",
+        "bgHex": "#c2c2c2",
+        "ratio": 3.75
+      },
+      "per": [
+        {
+          "bg": "glass-image[stop 1]",
+          "bgHex": "#d6d6d6",
+          "ratio": 4.59
+        },
+        {
+          "bg": "glass-image[stop 2]",
+          "bgHex": "#c2c2c2",
+          "ratio": 3.75
+        }
+      ],
+      "pass": false
+    },
+    {
+      "group": "glass",
+      "use": "A glass-image: links / eyebrow (green-800)",
+      "fg": "green-800",
+      "fgHex": "#314900",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-image[stop 2]",
+        "bgHex": "#c2c2c2",
+        "ratio": 5.66
+      },
+      "per": [
+        {
+          "bg": "glass-image[stop 1]",
+          "bgHex": "#d6d6d6",
+          "ratio": 6.93
+        },
+        {
+          "bg": "glass-image[stop 2]",
+          "bgHex": "#c2c2c2",
+          "ratio": 5.66
+        },
+        {
+          "bg": "fallback:glass-image",
+          "bgHex": "#f0f0f0",
+          "ratio": 8.84
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "A glass-image: muted text (large only)",
+      "fg": "ink-500",
+      "fgHex": "#6b6974",
+      "kind": "large",
+      "threshold": 3,
+      "worst": {
+        "bg": "glass-image[stop 2]",
+        "bgHex": "#c2c2c2",
+        "ratio": 3.02
+      },
+      "per": [
+        {
+          "bg": "glass-image[stop 1]",
+          "bgHex": "#d6d6d6",
+          "ratio": 3.71
+        },
+        {
+          "bg": "glass-image[stop 2]",
+          "bgHex": "#c2c2c2",
+          "ratio": 3.02
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "B glass-light: body text",
+      "fg": "ink-700",
+      "fgHex": "#464451",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-light[stop 2]",
+        "bgHex": "#eaf2db",
+        "ratio": 8.26
+      },
+      "per": [
+        {
+          "bg": "glass-light[stop 1]",
+          "bgHex": "#f1f6e7",
+          "ratio": 8.65
+        },
+        {
+          "bg": "glass-light[stop 2]",
+          "bgHex": "#eaf2db",
+          "ratio": 8.26
+        },
+        {
+          "bg": "fallback:glass-light",
+          "bgHex": "#fafcf7",
+          "ratio": 9.22
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "B glass-light: muted text",
+      "fg": "ink-500",
+      "fgHex": "#6b6974",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-light[stop 2]",
+        "bgHex": "#eaf2db",
+        "ratio": 4.67
+      },
+      "per": [
+        {
+          "bg": "glass-light[stop 1]",
+          "bgHex": "#f1f6e7",
+          "ratio": 4.89
+        },
+        {
+          "bg": "glass-light[stop 2]",
+          "bgHex": "#eaf2db",
+          "ratio": 4.67
+        },
+        {
+          "bg": "fallback:glass-light",
+          "bgHex": "#fafcf7",
+          "ratio": 5.22
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "B glass-light: section headings (slate)",
+      "fg": "slate-700",
+      "fgHex": "#36565e",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-light[stop 2]",
+        "bgHex": "#eaf2db",
+        "ratio": 6.88
+      },
+      "per": [
+        {
+          "bg": "glass-light[stop 1]",
+          "bgHex": "#f1f6e7",
+          "ratio": 7.2
+        },
+        {
+          "bg": "glass-light[stop 2]",
+          "bgHex": "#eaf2db",
+          "ratio": 6.88
+        },
+        {
+          "bg": "fallback:glass-light",
+          "bgHex": "#fafcf7",
+          "ratio": 7.67
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "B glass-light: links (deep green)",
+      "fg": "green-700",
+      "fgHex": "#446600",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-light[stop 2]",
+        "bgHex": "#eaf2db",
+        "ratio": 5.79
+      },
+      "per": [
+        {
+          "bg": "glass-light[stop 1]",
+          "bgHex": "#f1f6e7",
+          "ratio": 6.06
+        },
+        {
+          "bg": "glass-light[stop 2]",
+          "bgHex": "#eaf2db",
+          "ratio": 5.79
+        },
+        {
+          "bg": "fallback:glass-light",
+          "bgHex": "#fafcf7",
+          "ratio": 6.46
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "C1 glass-leaf: chip / sidebar link text",
+      "fg": "green-900",
+      "fgHex": "#233500",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-leaf[stop 2]",
+        "bgHex": "#cdd2c2",
+        "ratio": 8.6
+      },
+      "per": [
+        {
+          "bg": "glass-leaf[stop 1]",
+          "bgHex": "#dfe1da",
+          "ratio": 10.07
+        },
+        {
+          "bg": "glass-leaf[stop 2]",
+          "bgHex": "#cdd2c2",
+          "ratio": 8.6
+        },
+        {
+          "bg": "fallback:glass-leaf",
+          "bgHex": "#f8faf2",
+          "ratio": 12.62
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "C1 glass-leaf: body text",
+      "fg": "ink-700",
+      "fgHex": "#464451",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-leaf[stop 2]",
+        "bgHex": "#cdd2c2",
+        "ratio": 6.16
+      },
+      "per": [
+        {
+          "bg": "glass-leaf[stop 1]",
+          "bgHex": "#dfe1da",
+          "ratio": 7.22
+        },
+        {
+          "bg": "glass-leaf[stop 2]",
+          "bgHex": "#cdd2c2",
+          "ratio": 6.16
+        },
+        {
+          "bg": "fallback:glass-leaf",
+          "bgHex": "#f8faf2",
+          "ratio": 9.04
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "C1 glass-leaf: current nav item / active pill (green-800)",
+      "fg": "green-800",
+      "fgHex": "#314900",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-leaf[stop 2]",
+        "bgHex": "#cdd2c2",
+        "ratio": 6.52
+      },
+      "per": [
+        {
+          "bg": "glass-leaf[stop 1]",
+          "bgHex": "#dfe1da",
+          "ratio": 7.64
+        },
+        {
+          "bg": "glass-leaf[stop 2]",
+          "bgHex": "#cdd2c2",
+          "ratio": 6.52
+        },
+        {
+          "bg": "fallback:glass-leaf",
+          "bgHex": "#f8faf2",
+          "ratio": 9.57
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "A/B/C1: strong text and h3-h6 (ink-900) on every light glass",
+      "fg": "ink-900",
+      "fgHex": "#313039",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-image[stop 2]",
+        "bgHex": "#c2c2c2",
+        "ratio": 7.31
+      },
+      "per": [
+        {
+          "bg": "glass-image[stop 1]",
+          "bgHex": "#d6d6d6",
+          "ratio": 8.96
+        },
+        {
+          "bg": "glass-image[stop 2]",
+          "bgHex": "#c2c2c2",
+          "ratio": 7.31
+        },
+        {
+          "bg": "glass-light[stop 1]",
+          "bgHex": "#f1f6e7",
+          "ratio": 11.83
+        },
+        {
+          "bg": "glass-light[stop 2]",
+          "bgHex": "#eaf2db",
+          "ratio": 11.3
+        },
+        {
+          "bg": "glass-leaf[stop 1]",
+          "bgHex": "#dfe1da",
+          "ratio": 9.87
+        },
+        {
+          "bg": "glass-leaf[stop 2]",
+          "bgHex": "#cdd2c2",
+          "ratio": 8.43
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "B glass-light: secondary text (ink-600)",
+      "fg": "ink-600",
+      "fgHex": "#5c5a66",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-light[stop 2]",
+        "bgHex": "#eaf2db",
+        "ratio": 5.86
+      },
+      "per": [
+        {
+          "bg": "glass-light[stop 1]",
+          "bgHex": "#f1f6e7",
+          "ratio": 6.14
+        },
+        {
+          "bg": "glass-light[stop 2]",
+          "bgHex": "#eaf2db",
+          "ratio": 5.86
+        },
+        {
+          "bg": "fallback:glass-light",
+          "bgHex": "#fafcf7",
+          "ratio": 6.54
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "rejected",
+      "use": "ink-600 secondary text on leaf and image glass (rejected; use ink-700 there)",
+      "fg": "ink-600",
+      "fgHex": "#5c5a66",
+      "kind": "source-body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-image[stop 2]",
+        "bgHex": "#c2c2c2",
+        "ratio": 3.79
+      },
+      "per": [
+        {
+          "bg": "glass-leaf[stop 1]",
+          "bgHex": "#dfe1da",
+          "ratio": 5.12
+        },
+        {
+          "bg": "glass-leaf[stop 2]",
+          "bgHex": "#cdd2c2",
+          "ratio": 4.37
+        },
+        {
+          "bg": "glass-image[stop 1]",
+          "bgHex": "#d6d6d6",
+          "ratio": 4.65
+        },
+        {
+          "bg": "glass-image[stop 2]",
+          "bgHex": "#c2c2c2",
+          "ratio": 3.79
+        }
+      ],
+      "pass": false
+    },
+    {
+      "group": "glass",
+      "use": "C2 glass-leaf-deep: white text (CTA band, appointment panel)",
+      "fg": "#ffffff",
+      "fgHex": "#ffffff",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-leaf-deep[stop 1]",
+        "bgHex": "#577519",
+        "ratio": 5.3
+      },
+      "per": [
+        {
+          "bg": "glass-leaf-deep[stop 1]",
+          "bgHex": "#577519",
+          "ratio": 5.3
+        },
+        {
+          "bg": "glass-leaf-deep[stop 2]",
+          "bgHex": "#415814",
+          "ratio": 7.98
+        },
+        {
+          "bg": "fallback:glass-leaf-deep",
+          "bgHex": "#446600",
+          "ratio": 6.67
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "C2 glass-leaf-deep: lime accent text",
+      "fg": "green-300",
+      "fgHex": "#bdd58f",
+      "kind": "large",
+      "threshold": 3,
+      "worst": {
+        "bg": "glass-leaf-deep[stop 1]",
+        "bgHex": "#577519",
+        "ratio": 3.3
+      },
+      "per": [
+        {
+          "bg": "glass-leaf-deep[stop 1]",
+          "bgHex": "#577519",
+          "ratio": 3.3
+        },
+        {
+          "bg": "glass-leaf-deep[stop 2]",
+          "bgHex": "#415814",
+          "ratio": 4.97
+        },
+        {
+          "bg": "fallback:glass-leaf-deep",
+          "bgHex": "#446600",
+          "ratio": 4.16
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "D glass-dark: white text (footer, emergency)",
+      "fg": "#ffffff",
+      "fgHex": "#ffffff",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-dark[stop 1]",
+        "bgHex": "#353e24",
+        "ratio": 11.25
+      },
+      "per": [
+        {
+          "bg": "glass-dark[stop 1]",
+          "bgHex": "#353e24",
+          "ratio": 11.25
+        },
+        {
+          "bg": "glass-dark[stop 2]",
+          "bgHex": "#39383e",
+          "ratio": 11.61
+        },
+        {
+          "bg": "fallback:glass-dark",
+          "bgHex": "#141f00",
+          "ratio": 17.13
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "D glass-dark: footer headings / eyebrows in lime #94bc4a",
+      "fg": "green-400",
+      "fgHex": "#94bc4a",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-dark[stop 1]",
+        "bgHex": "#353e24",
+        "ratio": 5.12
+      },
+      "per": [
+        {
+          "bg": "glass-dark[stop 1]",
+          "bgHex": "#353e24",
+          "ratio": 5.12
+        },
+        {
+          "bg": "glass-dark[stop 2]",
+          "bgHex": "#39383e",
+          "ratio": 5.28
+        },
+        {
+          "bg": "fallback:glass-dark",
+          "bgHex": "#141f00",
+          "ratio": 7.79
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "D glass-dark: secondary text (green-200)",
+      "fg": "green-200",
+      "fgHex": "#ddeac5",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-dark[stop 1]",
+        "bgHex": "#353e24",
+        "ratio": 8.92
+      },
+      "per": [
+        {
+          "bg": "glass-dark[stop 1]",
+          "bgHex": "#353e24",
+          "ratio": 8.92
+        },
+        {
+          "bg": "glass-dark[stop 2]",
+          "bgHex": "#39383e",
+          "ratio": 9.2
+        },
+        {
+          "bg": "fallback:glass-dark",
+          "bgHex": "#141f00",
+          "ratio": 13.58
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "glass",
+      "use": "D glass-dark: muted text (ink-200)",
+      "fg": "ink-200",
+      "fgHex": "#d1d0d4",
+      "kind": "body",
+      "threshold": 4.5,
+      "worst": {
+        "bg": "glass-dark[stop 1]",
+        "bgHex": "#353e24",
+        "ratio": 7.33
+      },
+      "per": [
+        {
+          "bg": "glass-dark[stop 1]",
+          "bgHex": "#353e24",
+          "ratio": 7.33
+        },
+        {
+          "bg": "glass-dark[stop 2]",
+          "bgHex": "#39383e",
+          "ratio": 7.56
+        },
+        {
+          "bg": "fallback:glass-dark",
+          "bgHex": "#141f00",
+          "ratio": 11.16
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "ui",
+      "use": "focus ring on light surfaces",
+      "fg": "focus",
+      "fgHex": "#446600",
+      "kind": "ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "glass-image[stop 2]",
+        "bgHex": "#c2c2c2",
+        "ratio": 3.75
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 6.67
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 6.46
+        },
+        {
+          "bg": "green-50",
+          "bgHex": "#f8faf2",
+          "ratio": 6.34
+        },
+        {
+          "bg": "glass-image[stop 1]",
+          "bgHex": "#d6d6d6",
+          "ratio": 4.59
+        },
+        {
+          "bg": "glass-image[stop 2]",
+          "bgHex": "#c2c2c2",
+          "ratio": 3.75
+        },
+        {
+          "bg": "glass-light[stop 1]",
+          "bgHex": "#f1f6e7",
+          "ratio": 6.06
+        },
+        {
+          "bg": "glass-light[stop 2]",
+          "bgHex": "#eaf2db",
+          "ratio": 5.79
+        },
+        {
+          "bg": "glass-leaf[stop 1]",
+          "bgHex": "#dfe1da",
+          "ratio": 5.06
+        },
+        {
+          "bg": "glass-leaf[stop 2]",
+          "bgHex": "#cdd2c2",
+          "ratio": 4.32
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "ui",
+      "use": "focus ring vs the primary button it surrounds (2px offset keeps a light gap)",
+      "fg": "focus",
+      "fgHex": "#446600",
+      "kind": "ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "paper",
+        "bgHex": "#ffffff",
+        "ratio": 6.67
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 6.67
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "rejected",
+      "use": "default focus ring #446600 on the #759b2a / #94bc4a bands (rejected; use focus-on-band)",
+      "fg": "focus",
+      "fgHex": "#446600",
+      "kind": "source-ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "green-500",
+        "bgHex": "#759b2a",
+        "ratio": 2.06
+      },
+      "per": [
+        {
+          "bg": "green-500",
+          "bgHex": "#759b2a",
+          "ratio": 2.06
+        },
+        {
+          "bg": "green-400",
+          "bgHex": "#94bc4a",
+          "ratio": 3.04
+        }
+      ],
+      "pass": false
+    },
+    {
+      "group": "ui",
+      "use": "focus ring on the solid #759b2a and #94bc4a bands",
+      "fg": "focus-on-band",
+      "fgHex": "#141f00",
+      "kind": "ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "green-500",
+        "bgHex": "#759b2a",
+        "ratio": 5.29
+      },
+      "per": [
+        {
+          "bg": "green-500",
+          "bgHex": "#759b2a",
+          "ratio": 5.29
+        },
+        {
+          "bg": "green-400",
+          "bgHex": "#94bc4a",
+          "ratio": 7.79
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "ui",
+      "use": "focus ring on dark / deep-green glass",
+      "fg": "focus-on-dark",
+      "fgHex": "#d4e4b7",
+      "kind": "ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "glass-leaf-deep[stop 1]",
+        "bgHex": "#577519",
+        "ratio": 3.93
+      },
+      "per": [
+        {
+          "bg": "glass-dark[stop 1]",
+          "bgHex": "#353e24",
+          "ratio": 8.35
+        },
+        {
+          "bg": "glass-dark[stop 2]",
+          "bgHex": "#39383e",
+          "ratio": 8.61
+        },
+        {
+          "bg": "fallback:glass-dark",
+          "bgHex": "#141f00",
+          "ratio": 12.71
+        },
+        {
+          "bg": "glass-leaf-deep[stop 1]",
+          "bgHex": "#577519",
+          "ratio": 3.93
+        },
+        {
+          "bg": "glass-leaf-deep[stop 2]",
+          "bgHex": "#415814",
+          "ratio": 5.92
+        },
+        {
+          "bg": "fallback:glass-leaf-deep",
+          "bgHex": "#446600",
+          "ratio": 4.95
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "rejected",
+      "use": "stars / icons in #759b2a on light glass (rejected; use green-600)",
+      "fg": "green-500",
+      "fgHex": "#759b2a",
+      "kind": "source-ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "glass-light[stop 2]",
+        "bgHex": "#eaf2db",
+        "ratio": 2.81
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 3.24
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 3.14
+        },
+        {
+          "bg": "glass-light[stop 1]",
+          "bgHex": "#f1f6e7",
+          "ratio": 2.94
+        },
+        {
+          "bg": "glass-light[stop 2]",
+          "bgHex": "#eaf2db",
+          "ratio": 2.81
+        }
+      ],
+      "pass": false
+    },
+    {
+      "group": "ui",
+      "use": "review stars / icons on light surfaces, light glass, leaf glass (green-600)",
+      "fg": "green-600",
+      "fgHex": "#53760d",
+      "kind": "ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "glass-leaf[stop 2]",
+        "bgHex": "#cdd2c2",
+        "ratio": 3.43
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 5.3
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 5.12
+        },
+        {
+          "bg": "stone",
+          "bgHex": "#efefef",
+          "ratio": 4.61
+        },
+        {
+          "bg": "glass-light[stop 1]",
+          "bgHex": "#f1f6e7",
+          "ratio": 4.81
+        },
+        {
+          "bg": "glass-light[stop 2]",
+          "bgHex": "#eaf2db",
+          "ratio": 4.6
+        },
+        {
+          "bg": "glass-leaf[stop 1]",
+          "bgHex": "#dfe1da",
+          "ratio": 4.02
+        },
+        {
+          "bg": "glass-leaf[stop 2]",
+          "bgHex": "#cdd2c2",
+          "ratio": 3.43
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "ui",
+      "use": "review stars / icons on image glass (green-700)",
+      "fg": "green-700",
+      "fgHex": "#446600",
+      "kind": "ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "glass-image[stop 2]",
+        "bgHex": "#c2c2c2",
+        "ratio": 3.75
+      },
+      "per": [
+        {
+          "bg": "glass-image[stop 1]",
+          "bgHex": "#d6d6d6",
+          "ratio": 4.59
+        },
+        {
+          "bg": "glass-image[stop 2]",
+          "bgHex": "#c2c2c2",
+          "ratio": 3.75
+        },
+        {
+          "bg": "fallback:glass-image",
+          "bgHex": "#f0f0f0",
+          "ratio": 5.86
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "ui",
+      "use": "decorative #759b2a rules, arcs, rims: paper and ground only",
+      "fg": "green-500",
+      "fgHex": "#759b2a",
+      "kind": "ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "ground",
+        "bgHex": "#fafcf6",
+        "ratio": 3.14
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 3.24
+        },
+        {
+          "bg": "ground",
+          "bgHex": "#fafcf6",
+          "ratio": 3.14
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "ui",
+      "use": "white glyph on a #759b2a icon tile (icon = non-text)",
+      "fg": "#ffffff",
+      "fgHex": "#ffffff",
+      "kind": "ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "green-500",
+        "bgHex": "#759b2a",
+        "ratio": 3.24
+      },
+      "per": [
+        {
+          "bg": "green-500",
+          "bgHex": "#759b2a",
+          "ratio": 3.24
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "ui",
+      "use": "review stars in #94bc4a on dark glass",
+      "fg": "green-400",
+      "fgHex": "#94bc4a",
+      "kind": "ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "glass-dark[stop 1]",
+        "bgHex": "#353e24",
+        "ratio": 5.12
+      },
+      "per": [
+        {
+          "bg": "glass-dark[stop 1]",
+          "bgHex": "#353e24",
+          "ratio": 5.12
+        },
+        {
+          "bg": "glass-dark[stop 2]",
+          "bgHex": "#39383e",
+          "ratio": 5.28
+        }
+      ],
+      "pass": true
+    },
+    {
+      "group": "ui",
+      "use": "input border (ink-500) on paper",
+      "fg": "ink-500",
+      "fgHex": "#6b6974",
+      "kind": "ui",
+      "threshold": 3,
+      "worst": {
+        "bg": "glass-light[stop 2]",
+        "bgHex": "#eaf2db",
+        "ratio": 4.67
+      },
+      "per": [
+        {
+          "bg": "paper",
+          "bgHex": "#ffffff",
+          "ratio": 5.39
+        },
+        {
+          "bg": "glass-light[stop 1]",
+          "bgHex": "#f1f6e7",
+          "ratio": 4.89
+        },
+        {
+          "bg": "glass-light[stop 2]",
+          "bgHex": "#eaf2db",
+          "ratio": 4.67
+        }
+      ],
+      "pass": true
+    }
+  ]
+}

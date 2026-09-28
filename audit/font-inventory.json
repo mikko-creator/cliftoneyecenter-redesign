@@ -1,0 +1,50 @@
+{
+  "schema": "site-reforge/fonts@1",
+  "generated": "2026-09-28T00:24:33.117Z",
+  "discovered": [
+    "https://www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.eot?r5nu8s",
+    "https://www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.ttf?r5nu8s",
+    "https://www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.woff?r5nu8s",
+    "https://www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.svg?r5nu8s"
+  ],
+  "saved": [
+    {
+      "url": "https://www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.eot?r5nu8s",
+      "savedAs": "EyeCarePro-Icons.eot",
+      "bytes": 437868,
+      "sha256": "62fe16c16acc68a7c1382d66e5f7a6ab2f21449cf5f689523fffb607e51ccfca"
+    },
+    {
+      "url": "https://www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.woff?r5nu8s",
+      "savedAs": "EyeCarePro-Icons.woff",
+      "bytes": 437744,
+      "sha256": "300a574d04cebf66bc7fdc52f38458773cc5a2991a5578d00f36c14022077071"
+    },
+    {
+      "url": "https://www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.ttf?r5nu8s",
+      "savedAs": "EyeCarePro-Icons.ttf",
+      "bytes": 437668,
+      "sha256": "19f87621b5c3a2bbb625c88cb89ef8f6e0cc7803b7c83b676db997d740cf294c"
+    },
+    {
+      "url": "https://www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.svg?r5nu8s",
+      "savedAs": "EyeCarePro-Icons.svg",
+      "bytes": 1869632,
+      "sha256": "fd4b2e61d2a36005d7dad416e46d73a84e7f8b3c21c880370a471dc2b27fb85b"
+    }
+  ],
+  "map": {
+    "https://www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.eot?r5nu8s": "/fonts/EyeCarePro-Icons.eot",
+    "//www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.eot?r5nu8s": "/fonts/EyeCarePro-Icons.eot",
+    "/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.eot?r5nu8s": "/fonts/EyeCarePro-Icons.eot",
+    "https://www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.woff?r5nu8s": "/fonts/EyeCarePro-Icons.woff",
+    "//www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.woff?r5nu8s": "/fonts/EyeCarePro-Icons.woff",
+    "/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.woff?r5nu8s": "/fonts/EyeCarePro-Icons.woff",
+    "https://www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.ttf?r5nu8s": "/fonts/EyeCarePro-Icons.ttf",
+    "//www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.ttf?r5nu8s": "/fonts/EyeCarePro-Icons.ttf",
+    "/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.ttf?r5nu8s": "/fonts/EyeCarePro-Icons.ttf",
+    "https://www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.svg?r5nu8s": "/fonts/EyeCarePro-Icons.svg",
+    "//www.cliftoneyecenter.com/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.svg?r5nu8s": "/fonts/EyeCarePro-Icons.svg",
+    "/wp-content/uploads/bb-plugin/icons/icon-1734360712/fonts/EyeCarePro-Icons.svg?r5nu8s": "/fonts/EyeCarePro-Icons.svg"
+  }
+}
