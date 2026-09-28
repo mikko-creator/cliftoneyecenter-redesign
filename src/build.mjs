@@ -100,7 +100,13 @@ for (const im of imgInv.images || []) {
   const cls = classByFile.get(im.localFile) || '';
   if (cls === 'platform-ui-drop') { imageMap.set(im.src, { drop: true }); uiDropped++; continue; }
   const abs = P(im.localFile);
-  if (!fs.existsSync(abs)) { fail('build:asset', im.src, 'kept asset missing on disk: ' + im.localFile); continue; }
+  if (!fs.existsSync(abs)) {
+    /* A file the harvest already recorded as not-an-image (UNRECOGNISED-FORMAT: an HTML soft-404 saved under an image
+       URL) takes the same path whether it is on disk or quarantined out of assets/ (tmp/quarantine/: the soft-404
+       carries the former agency's Maps key and must not ship in a handoff package). Anything else missing still fails. */
+    if ((im.flags || []).includes('UNRECOGNISED-FORMAT')) { notImages.push(im.src); continue; }
+    fail('build:asset', im.src, 'kept asset missing on disk: ' + im.localFile); continue;
+  }
   const lossless = cls === 'functional-qr-code';
   const big = (im.intrinsicWidth || 0) >= 1000;
   const w = images.web(abs, { maxW: big ? 1600 : 1200, q: 80, name: fileOf(im.src).replace(/\.[a-z0-9]+$/i, ''), lossless });

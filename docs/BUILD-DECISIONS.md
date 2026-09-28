@@ -21,3 +21,8 @@ is recorded as a change-control row by the build. Any of them can be reversed by
 - `audit/raw/*.html` carries the former agency's Google Maps API key (`AIza…`, 338 pages). The rebuild never
   ships it: maps use the keyless embed. `audit/raw/` must never be published (a public repo or preview must
   exclude it), and every publish runs a secret scan for `AIza` and the fal key id with a positive control.
+- 2026-09-29: the soft-404 saved as `assets/source/57a2e231-clipart-010.jpg` (live-site 404 HTML under an image URL,
+  inventory flag `UNRECOGNISED-FORMAT`, carrying the key) was moved to the git-ignored `tmp/quarantine/`, because
+  `sr-package` packs `assets/` from disk and the first handoff zip contained it (found by scanning the extracted zip).
+  `src/build.mjs` treats a missing file flagged `UNRECOGNISED-FORMAT` exactly like a present non-image, so `dist/` is
+  byte-identical (aggregate `75ed34ed...` before and after) and the build still reports 0 failures.

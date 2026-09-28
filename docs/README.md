@@ -73,7 +73,7 @@ post-rewrite ones (see "The old Maps API key").
 ### The old Maps API key: working copy and git history
 
 The former agency's Google Maps API key (one distinct value) is in **340 files of this working copy**, all
-git-ignored: the 338 raw pages in `audit/raw/`, `assets/source/57a2e231-clipart-010.jpg` (an HTML soft-404 saved
+git-ignored: the 338 raw pages in `audit/raw/`, `tmp/quarantine/57a2e231-clipart-010.jpg` (moved out of `assets/source/` on 2026-09-29 so no handoff package carries it; an HTML soft-404 saved
 under an image name) and `tmp/lab/neighborhood/work/main.txt`. `dist/` has 0 (`grep -rlE 'AIzaSy[0-9A-Za-z_-]{33}'`,
 `tmp/final/docs-fix/key-scan.log`, whose control fired).
 
