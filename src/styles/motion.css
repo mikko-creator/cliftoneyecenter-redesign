@@ -955,7 +955,6 @@
   }
 
   /* ---- chrome ---- */
-  .site-header .logo-plate { transition: scale .4s var(--ease-out); }
   .site-header__glass { transition: box-shadow .4s var(--ease-out); }
   .mainnav__link { transition: background-color var(--t-fast), color var(--t-fast); }
   .mainnav__link::after { transition: transform .4s var(--ease-out); }

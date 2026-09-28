@@ -182,10 +182,13 @@ section { position: relative; }
 }
 
 /* ---------- 6. header, primary nav, drawer (3.2) ---------- */
-.site-header { --plate-left: 24px; --plate-box: 140px; --plate-pad: 14px; --plate-scale: .72;
+/* The logo sits IN the glass bar, with no plate and no white ground (operator 2026-09-29): a transparent derivative
+   of the logo JPEG (tools/logo-alpha.mjs, 288 x 189, aspect 1.524). The bar is taller than before (92px, was 72) so
+   the wordmark stays legible without the old hanging plate; the bar reserves the logo's width + 20px. */
+.site-header { --logo-left: 22px; --logo-h: 72px;
   position: sticky; top: 12px; z-index: 50; margin-top: 12px; }
-.site-header__bar { position: relative; display: flex; align-items: center; justify-content: flex-end; gap: 16px; height: 72px; border-radius: 28px;
-  padding: 0 12px 0 calc(var(--plate-left) + var(--plate-box) + 2 * var(--plate-pad) + 16px); }
+.site-header__bar { position: relative; display: flex; align-items: center; justify-content: flex-end; gap: 16px; height: 92px; border-radius: 28px;
+  padding: 0 12px 0 calc(var(--logo-left) + var(--logo-h) * 1.524 + 20px); }
 .site-header .site-header__glass { position: absolute; inset: 0; z-index: 0; border-radius: inherit; background: var(--header-glass-bg); }
 /* CG-04 (a recorded change to spec 3.2 "the glass gains --e-2"): stuck over the page, the stacked --gb-shadow +
    --e-2 drop shadows (reaching ~40px down at up to .28 alpha) darkened whatever text scrolled just under the bar:
@@ -193,12 +196,10 @@ section { position: relative; }
    tight shadow instead (it ends ~8px below the edge), so reading surfaces keep their contrast. */
 .site-header.is-scrolled .site-header__glass { box-shadow: inset 0 1px 0 rgb(255 255 255 / .90), 0 0 0 1px rgb(68 102 0 / .10), 0 1px 2px rgb(var(--shade) / .12), 0 4px 10px -6px rgb(var(--shade) / .30); }
 .site-header__bar > .mainnav, .site-header__bar > .mobile-actions { position: relative; z-index: 1; }
-.site-header .logo-plate { position: absolute; z-index: 2; top: 0; left: var(--plate-left); display: block; padding: 10px var(--plate-pad) 12px;
-  background: var(--paper); border-radius: 0 0 20px 20px; box-shadow: var(--e-2); transform-origin: 0 0; }
-.site-header.is-scrolled .logo-plate { scale: var(--plate-scale); box-shadow: 0 1px 2px rgb(var(--shade) / .12), 0 4px 10px -6px rgb(var(--shade) / .30); }   /* CG-04 */
-.logo__box { display: block; width: var(--plate-box, 140px); aspect-ratio: 3 / 2; overflow: hidden; }
-/* the JPEG's uneven white margin trimmed in CSS (BRAND-SYSTEM 2); the file is never edited */
-.logo__box img { width: 110.07%; max-width: none; height: auto; margin: -5.56% 0 0 -5.56%; }
+/* scoped to the header: the footer logo shares .site-logo but must stay in the footer's flow (an unscoped rule first
+   pulled it out of flow onto the address text - caught by the footer screenshot, 2026-09-29) */
+.site-header .site-logo { position: absolute; z-index: 2; top: 50%; left: var(--logo-left); translate: 0 -50%; display: block; line-height: 0; border-radius: 8px; }
+.site-header .site-logo img { display: block; width: auto; height: var(--logo-h); }
 
 .mainnav__list { display: flex; gap: 2px; margin: 0; padding: 0; list-style: none; }
 .mainnav__item { position: relative; }
@@ -216,18 +217,15 @@ section { position: relative; }
 
 .mobile-actions { display: none; gap: 8px; }
 @media (min-width: 1024px) and (max-width: 1199px) {
-  .site-header { --plate-box: 124px; }
   .mainnav__link { font-size: .9375rem; padding-inline: 10px; }
   .mainnav__link::after { left: 10px; right: 10px; }
 }
-/* QA r2 VHR2-01: the bar reserves the plate width + 16px, which leaves 3 x 44 + 2 x 8 = 148px for the round buttons
-   only from 340px up (the 16px spare absorbs up to 16px of overflow); at 320 the content box was 120px and
-   justify-content: flex-end pushed the buttons 12px under the plate. Below 340px the plate box narrows with the
-   viewport (112px at 340 -> 92px at 320) so the buttons keep an 8px gap to the plate; the scrolled scale is unchanged. */
+/* Phones/tablets: a 64px bar (was 56 + a hanging plate) with a 50px-tall logo (76px wide). The bar reserves
+   14 + 76 + 20 = 110px, so the three 44px round buttons (148px with gaps) still fit at 320px (content box ~172px);
+   QA r2 VHR2-01's shrinking plate is no longer needed. */
 @media (max-width: 1023px) {
-  .site-header { --plate-left: 14px; --plate-box: clamp(92px, 100vw - 228px, 112px); --plate-pad: 10px; --plate-scale: .76; top: 8px; margin-top: 8px; }
-  .site-header__bar { height: 56px; border-radius: 22px; padding-right: 6px; }
-  .site-header .logo-plate { padding: 8px var(--plate-pad) 9px; }
+  .site-header { --logo-left: 14px; --logo-h: 50px; top: 8px; margin-top: 8px; }
+  .site-header__bar { height: 64px; border-radius: 22px; padding-right: 6px; }
   .mainnav { display: none; }
   .mobile-actions { display: flex; }
 }
@@ -669,8 +667,9 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
 /* ---------- 15. footer (3.13): the page ends on the lime field ---------- */
 .site-footer { position: relative; padding: clamp(56px, 6vw, 90px) 0 clamp(28px, 3vw, 40px); background: var(--footer-field); }
 .footer__panel { display: grid; gap: clamp(24px, 4vw, 56px); padding: clamp(28px, 4vw, 56px); border-radius: var(--r-xl); color: var(--green-200); }
-.logo-plate--footer { display: inline-block; padding: 12px; border-radius: 16px; background: var(--paper); box-shadow: var(--plate-shadow-dark); }
-.logo-plate--footer .logo__box { width: 140px; }
+/* no paper plate (operator 2026-09-29): the reversed logo (grey ink -> paper, greens kept) sits on the dark glass */
+.site-logo--footer { display: inline-block; line-height: 0; border-radius: 8px; }
+.site-logo--footer img { display: block; width: auto; height: 92px; }
 .footer__nap { margin: 18px 0 16px; max-width: 38ch; font-size: var(--fs-sm); color: var(--green-200); }
 .footer__nap strong { color: var(--paper); }
 .footer__nap a { color: var(--paper); font-weight: 700; padding-block: 12px; }   /* 44px hit box, no layout change (RA-08) */
@@ -711,7 +710,7 @@ main > .rail { margin-top: var(--s-6); }
   .has-aside main > .page-main { grid-column: main; grid-row: 2 / 4; width: auto; margin: var(--s-7) 0 0; }
   .has-aside .page-aside { grid-column: aside; grid-row: 3; width: auto; margin: var(--s-5) 0 0; align-self: start; }
   .has-aside main:not(:has(> .rail)) ~ .page-aside { grid-row: 2 / 4; margin-top: var(--s-7); }
-  .page-aside.is-sticky { position: sticky; top: 104px; }
+  .page-aside.is-sticky { position: sticky; top: 124px; }   /* 12px margin + 92px bar + 20px (was 104 with the 72px bar) */
   /* the band cut-out crosses into the content column, never onto the rail heading in the aside column */
   .has-aside .band__cut { bottom: -40px; }
 }

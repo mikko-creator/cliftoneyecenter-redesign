@@ -4,7 +4,7 @@
   "targetUrl": "https://www.cliftoneyecenter.com/",
   "origin": "https://www.cliftoneyecenter.com",
   "createdAt": "2026-09-28T00:16:29.130Z",
-  "updatedAt": "2026-09-28T20:45:16.858Z",
+  "updatedAt": "2026-09-28T23:53:31.892Z",
   "config": {
     "maxPages": 300,
     "concurrency": 2,
@@ -108,7 +108,7 @@
     },
     "decontaminate": {
       "status": "done",
-      "at": "2026-09-28T20:45:15.005Z",
+      "at": "2026-09-28T23:53:31.892Z",
       "note": "CLEAN (0 traces)"
     },
     "parity": {
@@ -118,7 +118,7 @@
     },
     "fabrication": {
       "status": "done",
-      "at": "2026-09-28T20:44:52.702Z",
+      "at": "2026-09-28T23:53:31.038Z",
       "note": "SOURCED — 0 findings"
     },
     "pixeldiff": {

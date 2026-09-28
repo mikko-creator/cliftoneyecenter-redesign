@@ -53,7 +53,7 @@ export function isoDate(d) {
   return m && MONTHS[m[1]] ? m[3] + '-' + MONTHS[m[1]] + '-' + m[2].padStart(2, '0') : '';
 }
 
-export function createTemplates({ chrome, localHref, imgUrl, logo }) {
+export function createTemplates({ chrome, localHref, imgUrl, logo, logoFooter }) {
   const H = (href, depth) => localHref(href, depth);
   const upOf = (depth) => (depth ? '../'.repeat(depth) : '');
   const tel = 'tel:' + chrome.phone;
@@ -94,8 +94,10 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
     ].filter(Boolean).join('\n');
   }
 
-  function logoImg(depth, lazy) {
-    return '<img src="' + esc(imgUrl(logo.rel, depth)) + '" alt="' + esc(chrome.logo.alt) + '" width="' + logo.w + '" height="' + logo.h + '"' + (lazy ? ' loading="lazy"' : '') + ' decoding="async">';
+  /* the transparent logo (no plate, no white ground; operator 2026-09-29): `rec` is the header version by default,
+     the reversed light version in the dark footer */
+  function logoImg(depth, lazy, rec = logo) {
+    return '<img src="' + esc(imgUrl(rec.rel, depth)) + '" alt="' + esc(chrome.logo.alt) + '" width="' + rec.w + '" height="' + rec.h + '"' + (lazy ? ' loading="lazy"' : '') + ' decoding="async">';
   }
 
   function topbar(depth) {
@@ -132,9 +134,7 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
       '<div class="wrap">',
       '<div class="site-header__bar">',
       '<span class="site-header__glass glass glass--image" aria-hidden="true"></span>',
-      '<a class="logo-plate" href="' + esc(H('/', depth)) + '" aria-label="' + esc(chrome.logo.homeLabel) + '">',
-      '<span class="logo__box">' + logoImg(depth, false) + '</span>',
-      '</a>',
+      '<a class="site-logo" href="' + esc(H('/', depth)) + '" aria-label="' + esc(chrome.logo.homeLabel) + '">' + logoImg(depth, false) + '</a>',
       '<nav class="mainnav" aria-label="Primary">',
       '<ul class="mainnav__list">' + items + '</ul>',
       '</nav>',
@@ -180,9 +180,7 @@ export function createTemplates({ chrome, localHref, imgUrl, logo }) {
       '<div class="wrap">',
       '<div class="footer__panel glass glass--dark" data-reveal="up">',
       '<div class="footer__brand">',
-      '<a class="logo-plate logo-plate--footer" href="' + esc(H('/', depth)) + '" aria-label="' + esc(chrome.logo.homeLabel) + '">',
-      '<span class="logo__box">' + logoImg(depth, true) + '</span>',
-      '</a>',
+      '<a class="site-logo site-logo--footer" href="' + esc(H('/', depth)) + '" aria-label="' + esc(chrome.logo.homeLabel) + '">' + logoImg(depth, true, logoFooter || logo) + '</a>',
       '<p class="footer__nap"><strong>' + esc(n.name) + '</strong>' + esc(n.located) + esc(n.street) + esc(n.sep) + esc(n.locality) + ', ' + esc(n.region) + ' ' + esc(n.postalCode) + ' ' + esc(n.phoneLabel) + ' <a href="' + esc(tel) + '">' + esc(chrome.phone) + '</a></p>',
       social,
       '</div>',

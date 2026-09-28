@@ -165,8 +165,8 @@ Coverage: 3.0 B.0 · 3.1 B.1 · 3.2 B.2 · 3.3 G.3 · 3.4 G.3 + B.4 · 3.5 B.5 �
   <div class="wrap">
     <div class="site-header__bar">
       <span class="site-header__glass glass glass--image" aria-hidden="true"></span>
-      <a class="logo-plate" href="{localHref('/')}" aria-label="Clifton Eye Center home">
-        <span class="logo__box"><img src="{logo url}" alt="Clifton Eye Center logo" width="317" height="221" decoding="async"></span>
+      <!-- CHANGED 2026-09-29 (operator): no plate, no white ground - the transparent logo sits directly in the bar -->
+      <a class="site-logo" href="{localHref('/')}" aria-label="Clifton Eye Center home"><img src="{transparent logo url}" alt="Clifton Eye Center logo" width="288" height="189" decoding="async"></a>
       </a>
       <nav class="mainnav" aria-label="Primary">
         <ul class="mainnav__list">
@@ -254,8 +254,8 @@ The home dock skeleton is in G.3. The same four links (`chrome.quickActions`: Em
   <div class="wrap">
     <div class="footer__panel glass glass--dark" data-reveal="up">
       <div class="footer__brand">
-        <a class="logo-plate logo-plate--footer" href="{localHref('/')}" aria-label="Clifton Eye Center home">
-          <span class="logo__box"><img src="{logo url}" alt="Clifton Eye Center logo" width="317" height="221" loading="lazy" decoding="async"></span>
+        <!-- CHANGED 2026-09-29 (operator): no paper plate - the reversed transparent logo (grey ink -> paper, greens kept) on the dark glass -->
+        <a class="site-logo site-logo--footer" href="{localHref('/')}" aria-label="Clifton Eye Center home"><img src="{reversed transparent logo url}" alt="Clifton Eye Center logo" width="288" height="189" loading="lazy" decoding="async"></a>
         </a>
         <p class="footer__nap"><strong>Clifton Eye Center</strong>{rest of the source NAP line, verbatim}<a href="tel:318-550-5815">318-550-5815</a></p>
         <a class="social" href="{facebook url}" aria-label="Visit us on facebook" rel="noopener">{icon fb}</a>

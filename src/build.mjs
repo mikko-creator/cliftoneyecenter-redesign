@@ -221,6 +221,19 @@ const srcFor = (pattern, depth) => {
 const logoHit = invBySrc.find((x) => x.src.includes(chrome.logo.srcPattern));
 if (!logoHit) throw new Error('logo not found in the image inventory: ' + chrome.logo.srcPattern);
 const logoRec = { rel: logoHit.rec.file, w: logoHit.rec.w, h: logoHit.rec.h };
+/* Header + footer logo WITHOUT a background or plate (operator 2026-09-29): transparent derivatives of the logo JPEG,
+   made by tools/logo-alpha.mjs (inks unchanged; composited over white they reproduce the original, mean 0.33/255).
+   The footer (dark glass) uses the reversed version: grey ink -> paper, greens unchanged. og:image and the JSON-LD
+   logo keep logoRec, the original on white. */
+function brandLogo(file, name) {
+  const abs = P('assets/brand', file);
+  if (!fs.existsSync(abs)) throw new Error('missing assets/brand/' + file + ' - run node tools/logo-alpha.mjs');
+  const w = images.web(abs, { maxW: 600, q: 92, alphaQ: 100, name });
+  if (!w) throw new Error('assets/brand/' + file + ' is not an image');
+  return { rel: w.rel, w: w.w, h: w.h };
+}
+const logoHeader = brandLogo('logo-clifton.png', 'logo-clifton');
+const logoFooter = brandLogo('logo-clifton-light.png', 'logo-clifton-light');
 
 /* ---------- 2. helpers ---------- */
 const willExist = new Set(content.pages.map((p) => ownPath(p.url, ORIGIN)).filter((v) => v !== null));
@@ -242,7 +255,7 @@ const LINKED_STYLES = ['tokens.css', 'brand.css', 'site.css', 'motion.css'].filt
   return !LAYERED[f] || LAYERED[f].test(fs.readFileSync(abs, 'utf8'));
 });
 const C = createContent({ origin: ORIGIN, imageMap, willExist, moved: MOVED, fail, stats, imgUrl, mapQuery: chrome.mapQuery, pdfFor, garbageAlt });
-const T = createTemplates({ chrome, localHref: C.localHref, imgUrl, logo: logoRec });
+const T = createTemplates({ chrome, localHref: C.localHref, imgUrl, logo: logoHeader, logoFooter });
 const MAP_SRC = 'https://www.google.com/maps?q=' + encodeURIComponent(chrome.mapQuery) + '&output=embed';
 
 /* family of every page (site-map.json templates partition all 349 pages) */
