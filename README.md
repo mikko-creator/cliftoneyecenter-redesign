@@ -5,7 +5,7 @@ A platform-free rebuild and total redesign of https://www.cliftoneyecenter.com/ 
 on the practice's green brand.
 
 - **Review preview:** https://mikko-creator.github.io/cliftoneyecenter-redesign/ — every page is
-  `noindex, nofollow`, there is no sitemap and `robots.txt` disallows everything, so the preview does not compete
+  `noindex, nofollow` and `robots.txt` disallows everything (its `sitemap.xml` lists only live-site URLs), so the preview does not compete
   with the live site in search. Its canonical tags point at the live site.
 - **The built site:** `dist/` (static; serve its folder at a domain root). The preview on the `gh-pages` branch is
   `dist/` with every page switched to noindex and the 404 page prefixed for the `/cliftoneyecenter-redesign/` path.

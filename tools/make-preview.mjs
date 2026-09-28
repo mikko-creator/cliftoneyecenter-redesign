@@ -33,9 +33,11 @@ const prefixed = (t) => !PREFIX ? t : t
 const BAD = PREFIX
   ? new RegExp('\\b(?:href|src|action|poster|srcset|data-[a-z-]+)\\s*=\\s*"\\/(?!\\/)(?!' + esc(PREFIX.slice(1)) + '\\/)[^"]*"|url\\(\\s*[\'"]?\\/(?!\\/)(?!' + esc(PREFIX.slice(1)) + '\\/)', 'gi')
   : /\b(?:href|src|action|poster|srcset|data-[a-z-]+)\s*=\s*"\/(?!\/)[^"]*"|url\(\s*['"]?\/(?!\/)/gi;
-// never index the preview: no sitemap of the live URLs, and a disallow-all robots.txt (it only binds at a domain
-// root, so the per-page meta robots above is what actually protects a project site)
-const SKIP = new Set(['sitemap.xml', 'robots.txt']);
+// never index the preview: a disallow-all robots.txt replaces the live one (it only binds at a domain root, so the
+// per-page meta robots above is what actually protects a project site). sitemap.xml is KEPT: it lists only the LIVE
+// site's absolute URLs (never a preview URL), and the footer "Sitemap" link on every page points at it (dropping it
+// left a 404 on all 350 pages - live crawl 2026-09-29).
+const SKIP = new Set(['robots.txt']);
 let files = 0, pages = 0, replaced = 0, inserted = 0;
 const bad = [];
 (function copy(from, to) {
