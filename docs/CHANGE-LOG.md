@@ -7,13 +7,15 @@ throughout.
 
 | commit | when | what |
 |---|---|---|
-| `4a4121a` | 2026-09-28 09:54 | Capture: crawl, extract, assets, browser baseline capture, tokens, motion, understand-phase docs |
-| `d374874` | 2026-09-28 09:54 | Untracked an HTML soft-404 saved as `clipart-010.jpg` (it carries the old agency's Maps key). This removed the file from the tree only: it is still in commit `4a4121a`, so **the key is in git history** (below) |
-| `5fb7204` | 2026-09-28 15:24 | Build: the Daylight Canopy pipeline for 349 pages, design system and home page, 15 reviewed fal images, integration review |
-| `2608d05` | 2026-09-28 19:47 | QA round 1: 40 confirmed findings fixed |
-| `7e5c462` | 2026-09-29 02:16 | QA round 2: 26 confirmed findings fixed |
+| `8ff25f7` | 2026-09-28 09:54 | Capture: crawl, extract, assets, browser baseline capture, tokens, motion, understand-phase docs |
+| `f9cf8e9` | 2026-09-28 09:54 | Untracked an HTML soft-404 saved as `clipart-010.jpg` (it carries the old agency's Maps key). This removed the file from the tree only: it is still in commit `8ff25f7`, so **the key is in git history** (below) |
+| `3b9c0fc` | 2026-09-28 15:24 | Build: the Daylight Canopy pipeline for 349 pages, design system and home page, 15 reviewed fal images, integration review |
+| `270777d` | 2026-09-28 19:47 | QA round 1: 40 confirmed findings fixed |
+| `5289405` | 2026-09-29 02:16 | QA round 2: 26 confirmed findings fixed |
+| `1558378` | 2026-09-29 04:40 | Final verification: map-corner fix (Google attribution clipped at >= 1240px), every gate artifact regenerated on the final build, handoff docs corrected against evidence |
+| (next) | 2026-09-29 | Docs updated for the history rewrite that purged the old Maps key (all hashes above are post-rewrite) |
 
-After `7e5c462`, the final gate chain and an independent re-verification ran on the unchanged `dist/`
+After `5289405`, the final gate chain and an independent re-verification ran on the unchanged `dist/`
 (`tmp/final/chain/`, `tmp/final/verify/`). Outside `tmp/`, they changed only files under `audit/` and `project.json`.
 The handoff docs (`README.md`, `DEPLOY.md`, this file) and a gate re-run followed on 2026-09-29
 (`tmp/final/docs/`). None of this is committed.
@@ -22,9 +24,12 @@ The handoff docs (`README.md`, `DEPLOY.md`, this file) and a gate re-run followe
 C19, C22, C23), 0 UNPROVEN of 29 (`audit/gate.json`). `docs/README.md` ("Verification record") classifies each FAIL.
 The rebuild is not signed off for launch.
 
-**The old Maps key in git history.** `git log --all -S AIzaSy --name-status` shows `4a4121a` adding
-`assets/source/57a2e231-clipart-010.jpg` and `d374874` deleting it. `git grep` finds the key in that file at
-`4a4121a`, which is an ancestor of `master`. Pushing or sharing this repository publishes the key. The working copy
+**The old Maps key in git history — purged 2026-09-29.** The first capture commit had added
+`assets/source/57a2e231-clipart-010.jpg` (a soft-404 carrying the key) and the next only untracked it. Before any push,
+the file was removed from every commit with `git filter-branch`, the old refs and reflog dropped and the repo
+garbage-collected; afterwards 0 of the 6 commits contain a key-shaped string and 0 unreachable objects remain (positive
+control: the untracked `audit/raw/index.html` still matches). All commit hashes changed; the table above lists the new
+ones. Evidence and the backup-bundle location: `docs/README.md`, "The old Maps API key". The working copy
 holds it in 340 git-ignored files: 338 in `audit/raw/`, plus `assets/source/57a2e231-clipart-010.jpg` and
 `tmp/lab/neighborhood/work/main.txt` (`tmp/final/docs-fix/key-scan.log`, `facts.log`).
 

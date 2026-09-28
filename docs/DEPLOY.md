@@ -37,9 +37,10 @@ IDENTICAL, control fired). That build used a warm image cache; a cold-cache rebu
 Upload **everything** in `dist/`, including the two dotfile/underscore files (`.htaccess`, `_redirects`) that some
 upload tools skip. **Upload `dist/` only, never the project folder.** The former agency's Google Maps API key is in
 340 files of the working copy: the 338 raw pages in `audit/raw/` (`docs/BUILD-DECISIONS.md`, "Secrets found in the
-harvest"), `assets/source/57a2e231-clipart-010.jpg` and `tmp/lab/neighborhood/work/main.txt`. **It is also in git
-history:** commit `4a4121a` added `assets/source/57a2e231-clipart-010.jpg`, and `d374874` only untracked it, so
-pushing or sharing the repository with its `.git` folder publishes the key. `dist/` has 0 files with the key. The
+harvest"), `assets/source/57a2e231-clipart-010.jpg` and `tmp/lab/neighborhood/work/main.txt`. **It is no longer in git
+history:** the one commit that carried it (via `assets/source/57a2e231-clipart-010.jpg`) was rewritten on 2026-09-29
+and 0 commits now contain the key, so the repository can be pushed — but `tmp/` (including the pre-rewrite backup
+bundle) and `audit/raw/` must never be published. `dist/` has 0 files with the key. The
 evidence is in `docs/README.md` ("The old Maps API key") and `tmp/final/docs-fix/key-scan.log`.
 
 ## 3. URL shape and the 404 page

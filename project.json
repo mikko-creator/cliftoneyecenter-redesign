@@ -4,7 +4,7 @@
   "targetUrl": "https://www.cliftoneyecenter.com/",
   "origin": "https://www.cliftoneyecenter.com",
   "createdAt": "2026-09-28T00:16:29.130Z",
-  "updatedAt": "2026-09-28T20:37:50.770Z",
+  "updatedAt": "2026-09-28T20:42:42.670Z",
   "config": {
     "maxPages": 300,
     "concurrency": 2,
@@ -138,7 +138,7 @@
     },
     "gate": {
       "status": "fail",
-      "at": "2026-09-28T20:37:50.770Z",
+      "at": "2026-09-28T20:42:42.670Z",
       "note": "NOT-READY — 22/29 passing"
     },
     "package": {

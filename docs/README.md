@@ -66,8 +66,9 @@ path with a plain-text 404, not with `404.html`.
 | `docs/` | this file, `DEPLOY.md`, `CHANGE-LOG.md`, `BRAND-SYSTEM.md`, `DESIGN-SPEC.md`, `COMPONENTS.md`, `BUILD-NOTES.md`, `BUILD-DECISIONS.md`, `OPEN-DECISIONS.md`, `IMAGE-PLAN.md`, `SITE-ARCHITECTURE.md`, `PORT-NOTES.md`, `DESIGN-BRIEF.md` |
 | `tmp/` | labs, QA and verification evidence. It is **not tracked by git** (`.gitignore`), so the evidence cited below exists only in this working copy |
 
-Git: `src/` is clean at commit `7e5c462` (2026-09-29, "QA round 2"). The `audit/` and `project.json` changes made by
-the final gate chain and the gate re-run are uncommitted, as are this file, `DEPLOY.md` and `CHANGE-LOG.md`.
+Git: the shipped source is commit `1558378` (2026-09-29, "Final verification": the map-corner fix on top of QA
+round 2, `5289405`); the docs were then updated for the history rewrite in the commit after it. Hashes are the
+post-rewrite ones (see "The old Maps API key").
 
 ### The old Maps API key: working copy and git history
 
@@ -76,11 +77,18 @@ git-ignored: the 338 raw pages in `audit/raw/`, `assets/source/57a2e231-clipart-
 under an image name) and `tmp/lab/neighborhood/work/main.txt`. `dist/` has 0 (`grep -rlE 'AIzaSy[0-9A-Za-z_-]{33}'`,
 `tmp/final/docs-fix/key-scan.log`, whose control fired).
 
-**It is also in git history.** Commit `4a4121a` added `assets/source/57a2e231-clipart-010.jpg`, and `d374874` only
-removed it from the tree. `git log --all -S AIzaSy --name-status` lists both commits, `git grep` finds the key in 1
-file at `4a4121a` and in 0 at `HEAD`, and `4a4121a` is an ancestor of `master` (`tmp/final/docs-fix/facts.log`). The
-repository has no remote. **Pushing this repository anywhere, or sharing it with its `.git` folder, publishes the key.**
-Rewriting that history, or having the key's owner revoke it, is a decision this project has not taken.
+**It is no longer in git history (purged 2026-09-29).** The first capture commit had added
+`assets/source/57a2e231-clipart-010.jpg` (the soft-404 carrying the key); a later commit only untracked it, so the key
+stayed reachable in history (`tmp/final/docs-fix/facts.log`). Before any push, the file was removed from every commit
+(`git filter-branch --index-filter 'git rm --cached --ignore-unmatch assets/source/57a2e231-clipart-010.jpg' -- --all`,
+then `refs/original` deleted, reflog expired, `git gc --prune=now`). Verified after the rewrite: a full-key-shaped
+`git grep -E 'AIzaSy[A-Za-z0-9_-]{33}'` finds 0 files in every one of the 6 commits, `git log --all -G` with that
+pattern lists 0 commits, `git fsck --unreachable` reports 0 objects, and the same grep still finds the key in the
+untracked `audit/raw/index.html` (positive control). The rewrite changed every commit hash (old → new:
+4a4121a → 8ff25f7, d374874 → f9cf8e9, 5fb7204 → 3b9c0fc, 2608d05 → 270777d, 7e5c462 → 5289405, 2afa709 → 1558378).
+A bundle of the pre-rewrite history is kept at `tmp/git-backup-before-key-purge.bundle` (git-ignored; it DOES contain
+the key — never share it; delete it once the rewrite is accepted). The key remains public in the live site's own HTML,
+so the agency should still rotate or restrict it (`docs/OPEN-DECISIONS.md` #4).
 
 ## Verification record
 
