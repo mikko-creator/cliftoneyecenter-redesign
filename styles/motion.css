@@ -1,0 +1,225 @@
+/* motion.css - the redesign layer of src/styles/motion.css (the measured source evidence above its marker is not shipped; see docs/BUILD-NOTES.md) */
+/* @redesign-motion ====================================================================================
+   REDESIGN MOTION - "Daylight Canopy" (docs/DESIGN-SPEC.md section 5, docs/COMPONENTS.md section 1).
+   Everything above this marker is the source-motion evidence (verbatim keyframes; gates C10/C11) and
+   is not used by the redesign. Everything below is the redesign's movement, and ALL of it sits inside
+   @media (prefers-reduced-motion: no-preference): under reduce nothing here applies, so content is
+   visible and still by construction (the closing reduce block is belt and braces).
+   Property ownership (spec 5.8): transform = hover lift/tilt; translate = reveal OR parallax (never both
+   on one element); scale = reveal or hero progress on an inner img; rotate = static tilts and the sprig;
+   opacity/filter = reveal only. site.js sets js-motion, is-in, --i, --py, --pr, --hp, --rx, --ry.
+   ===================================================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+
+  /* ---- reveals (5.1, 5.2): the hidden state has NO transition; only .is-in animates ---- */
+  .js-motion [data-reveal] { opacity: 0; translate: 0 34px; }
+  .js-motion [data-reveal="left"] { translate: -40px 0; }
+  .js-motion [data-reveal="right"] { translate: 40px 0; }
+  .js-motion [data-reveal="rise"] { translate: 0 60px; scale: .96; }
+  .js-motion [data-reveal="blur"] { translate: none; scale: .94; filter: blur(10px); }
+  .js-motion [data-reveal="settle"] { opacity: 1; translate: none; scale: 1.06; }
+  .js-motion [data-reveal].is-in { opacity: 1; translate: none; scale: none; filter: none;
+    transition: opacity var(--t-slow) var(--ease-out), translate var(--t-reveal) var(--ease-out), scale 1s var(--ease-out), filter var(--t-reveal) var(--ease-out);
+    transition-delay: calc(var(--i, 0) * var(--stagger)); }
+  .js-motion [data-reveal="settle"].is-in { transition: scale 1.2s var(--ease-out); }
+  /* RA-04 (WCAG 2.4.7): keyboard focus inside a block whose entrance has not played shows it at once, never at
+     opacity 0; site.js also marks it .is-in on focusin, so it stays shown when focus moves on */
+  .js-motion [data-reveal]:focus-within { opacity: 1; translate: none; scale: none; filter: none; transition: none; }
+  @media (max-width: 859px) { .js-motion .hero__copy[data-reveal="left"] { translate: 0 34px; } }
+  /* slides clipped by the snap track would reveal mid-swipe: below 1024px they are never hidden */
+  @media (max-width: 1023px) { .js-motion .rev-slide[data-reveal] { opacity: 1; translate: none; } }
+  /* QA r2 VHR2-05: the carousel track follows the card in view (site.js); the height change eases */
+  @media (max-width: 1023px) { .rev-track { transition: height .45s var(--ease-out); } }
+
+  /* ---- scroll-linked layers (5.3): --py / --pr / --hp written by one rAF-throttled handler ---- */
+  [data-depth] { translate: 0 calc(var(--py, 0) * 1px); }
+  /* QA r2 CG2-02: the promo photo sits 5px above the promo title (its white ring touches the title at rest), so a
+     downward parallax pose (up to +18px while the card is below the viewport centre) laid the ring over the title's
+     glyph tops and its drop shadow under the first line (768: 2.9:1, 1.1:1 where the ring covered ink). The photo
+     only ever rises from its rest pose (pops further out of the card), never sinks toward the text. */
+  .promo__img[data-depth] { translate: 0 calc(min(var(--py, 0), 0) * 1px); }
+  /* QA r2 RA2-02 (gate G10, p95 <= 16.7ms at 4x CPU): the home's scroll frames cost 33-50ms because every frame site.js
+     wrote --py / --pr on up to 20 layers and the inherited --hp on the whole hero (style recalc + repaint of blurred
+     orbs and the hero photo on the main thread). Where the browser has scroll-driven animations, the same movement is
+     a view() / named view timeline run by the compositor: site.js only copies each layer's data-depth, data-depth-max
+     and data-rot into --d / --max / --rot once, and writes nothing per frame. Same bounds as the JS path: a layer moves
+     linearly across its pass through the viewport (cover range) and never beyond +/- data-depth-max (the collision
+     fixes of VH-01, CG-02 and CG-03 were sized for those bounds); the sprig rotates within +/- data-rot; the promo
+     photo only rises (CG2-02); a viewport taller than 2400px shows the rest pose. Elsewhere the JS path above runs. */
+  @supports (animation-timeline: view()) {
+    [data-depth] { --k: 1; animation: cec-depth linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+    [data-depth][data-rot] { animation: cec-depth linear both, cec-rot linear both; animation-timeline: view(), view(); animation-range: cover 0% cover 100%, cover 0% cover 100%; }
+    .promo__img[data-depth] { animation-name: cec-depth-up; }
+    [data-hero] { view-timeline: --hero block; }
+    .hero__photo img { animation: cec-hero-img linear both; animation-timeline: --hero; animation-range: exit-crossing 0% exit-crossing 100%; }
+    .hero__sun { animation: cec-hero-sun linear both; animation-timeline: --hero; animation-range: exit-crossing 0% exit-crossing 100%; }
+    @media (max-width: 699px) { [data-depth] { --k: .55; } }
+    @media (min-height: 2401px) { [data-depth], [data-depth][data-rot], .promo__img[data-depth], .hero__photo img, .hero__sun { animation: none; } }
+  }
+  [data-rot] { rotate: calc(var(--pr, 0) * 1deg); }
+  .hero__photo img { scale: calc(1.06 - var(--hp, 0) * .06); translate: 0 calc(var(--hp, 0) * 20px); }
+  .hero__sun { translate: calc(var(--hp, 0) * -40px) calc(var(--hp, 0) * 60px); }
+  .swash path { stroke-dasharray: 320; stroke-dashoffset: 0; }
+  .js-motion .swash path { stroke-dashoffset: 320; animation: cec-draw 1.4s var(--ease-out) .7s forwards; }
+
+  /* ---- ambient loops (5.4): 700px and wider only ---- */
+  @media (min-width: 700px) {
+    .blob { will-change: transform; }
+    .blob--sun  { animation: cec-drift-a 38s ease-in-out infinite alternate; }
+    .blob--lime { animation: cec-drift-b 44s ease-in-out infinite alternate; }
+    .blob--teal { animation: cec-drift-a 52s ease-in-out infinite alternate-reverse; }
+    .blob--leaf { animation: cec-drift-b 60s ease-in-out infinite alternate-reverse; }
+    .orb { animation: cec-morph 24s ease-in-out infinite alternate; }
+    .hero__beams { animation: cec-beams 18s ease-in-out infinite alternate; }
+    /* QA r2 RA2-02 (G10): the 18-60s drifts pause while the page is being scrolled (site.js sets html.is-scrolling from
+       the first scroll event until 200ms after the last) and resume where they stopped. Moving under the glass, they
+       made every blurred surface above them redraw on each scroll frame: 1440 at 4x CPU p95 33ms, 16.8ms with them
+       still. A slow drift held for the length of a scroll is not visible. */
+    .is-scrolling :is(.blob, .orb, .hero__beams) { animation-play-state: paused; }
+  }
+
+  /* ---- chrome ---- */
+  .site-header .logo-plate { transition: scale .4s var(--ease-out); }
+  .site-header__glass { transition: box-shadow .4s var(--ease-out); }
+  .mainnav__link { transition: background-color var(--t-fast), color var(--t-fast); }
+  .mainnav__link::after { transition: transform .4s var(--ease-out); }
+  .drawer { transform: translateX(calc(100% + 24px)); transition: transform .5s var(--ease-out); }
+  .drawer.is-open { transform: none; }
+  .scrim { opacity: 0; transition: opacity .4s var(--ease-out); }
+  .scrim.is-open { opacity: 1; }
+  .glass::after { transition: opacity .4s ease; }
+
+  /* ---- buttons, pills, links (5.5): every :hover has its :focus-visible partner; movement-only hover
+         sits behind (hover: hover) so a tap never leaves a card stuck lifted ---- */
+  .btn { transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), background-color var(--t-fast), color var(--t-fast); }
+  .btn::after { transition: transform .8s var(--ease-out); }
+  .btn .ico, .more .ico, .title-link .ico { transition: transform .35s var(--ease-out); }
+  .btn:focus-visible { transform: translateY(-2px); }
+  .btn:focus-visible::after { transform: translateX(330%) skewX(-18deg); }
+  .btn:focus-visible .ico { transform: translateX(3px); }
+  .band-pill { transition: transform var(--t-fast) var(--ease-out), background-color var(--t-fast); }
+  .band-pill::after { transition: transform .7s var(--ease-out); }
+  .band-pill:focus-visible { transform: translateY(-1px); }
+  .band-pill:focus-visible::after { transform: translateX(360%) skewX(-18deg); }
+  .round-btn { transition: transform var(--t-fast) var(--ease-out), background-color var(--t-fast), color var(--t-fast); }
+  .round-btn:focus-visible { transform: translateY(-2px); }
+  .more:focus-visible .ico { transform: translateX(4px); }
+  .title-link { transition: color .4s; }
+  .title-link:focus-visible .ico { transform: translateX(6px); }
+  .news__title a, .nap__title a { transition: background-size .5s var(--ease-out), color var(--t-fast); }
+  .footer__list a { transition: color .25s; }
+  .footer__list a::after { transition: transform .4s var(--ease-out); }
+  .social { transition: transform .35s var(--ease-spring), background-color var(--t-fast); }
+  .social:focus-visible { transform: translateY(-3px) rotate(-8deg); }
+  .field__control { transition: border-color .2s, background-color .2s; }
+
+  /* ---- cards ---- */
+  .dock__tile { transition: transform var(--t-base) var(--ease-out), box-shadow var(--t-base) var(--ease-out), background-color var(--t-fast); }
+  .dock__icon { transition: transform .5s var(--ease-spring); }
+  .dock__tile:focus-visible { transform: translateY(-6px); }
+  .dock__tile:focus-visible .dock__icon { transform: rotate(-8deg) scale(1.08); }
+  .dock--aside .dock__tile:focus-visible { transform: translateX(4px); }
+
+  .svc { --lift: 0px; transform: perspective(900px) rotateX(calc(var(--ry, 0) * 1deg)) rotateY(calc(var(--rx, 0) * 1deg)) translateY(var(--lift));
+    transition: transform .55s var(--ease-out), box-shadow .55s var(--ease-out); }
+  .svc.is-tilting { transition: transform .12s linear, box-shadow .55s var(--ease-out); }
+  .svc__frame { transition: transform .55s var(--ease-out), box-shadow .55s var(--ease-out); }
+  .svc__frame img { transition: transform .9s var(--ease-out); }
+  .svc__go { transition: background-color .4s, color .4s, transform var(--t-base) var(--ease-spring); }
+  .svc:focus-visible { --lift: -10px; }
+  .svc:focus-visible .svc__frame { transform: translateY(-8px); }
+  .svc:focus-visible .svc__frame img { transform: scale(1.1); }
+  .svc:focus-visible .svc__go { transform: rotate(-45deg); }
+
+  .promo__img img { transition: transform .9s var(--ease-out); }
+  .promo:focus-within .promo__img img { transform: scale(1.06); }
+
+  .qa__item { transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out); }
+  .qa__icon { transition: transform .5s var(--ease-out), background-color var(--t-fast); }
+  .qa__icon::before, .qa__icon::after { transition: transform .5s var(--ease-out), background-color var(--t-fast); }
+  .qa__item:focus-within { transform: translateX(4px); }
+  .qa__q:focus-visible .qa__icon { transform: rotate(90deg); }
+  .qa__item[open] .qa__icon { transform: rotate(180deg); }
+  .qa__item[open] .qa__a { animation: cec-qa-in .5s var(--ease-out); }
+
+  .brand { transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out); }
+  .brand__img { transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out); }
+  .brand:focus-visible { transform: translateY(-8px); }
+  .brand:focus-visible .brand__img { transform: translateY(-10px); }
+
+  .index-card, .post-card { transition: transform var(--t-base) var(--ease-out), box-shadow var(--t-base) var(--ease-out); }
+  .index-card__thumb { transition: transform var(--t-base) var(--ease-out); }
+  .index-card__go { transition: background-color var(--t-fast), color var(--t-fast); }
+  .index-card:focus-within, .post-card:focus-within { transform: translateY(-6px); }
+  .index-card:focus-within .index-card__thumb { transform: translateY(-6px); }
+  .logo-chip--link { transition: transform var(--t-base) var(--ease-spring), box-shadow var(--t-base); }
+  .logo-chip--link:focus-within { transform: translateY(-6px); }
+  .fig--photo { transition: rotate .6s var(--ease-out); }
+  .fig--photo:focus-within { rotate: 0deg; }
+  /* QA r2 R2-VIA-07: a linked plate (the EyeGlass Guide tool link) lifts like a linked logo chip (spec 5.5) */
+  .fig--plate:has(> .fig__media > a) { transition: transform var(--t-base) var(--ease-spring), box-shadow var(--t-base); }
+  .fig--plate:has(> .fig__media > a):focus-within { transform: translateY(-6px); }
+
+  @media (hover: hover) {
+    .btn:hover { transform: translateY(-2px); }
+    .btn:hover::after { transform: translateX(330%) skewX(-18deg); }
+    .btn:hover .ico { transform: translateX(3px); }
+    .band-pill:hover { transform: translateY(-1px); }
+    .band-pill:hover::after { transform: translateX(360%) skewX(-18deg); }
+    .round-btn:hover { transform: translateY(-2px); }
+    .more:hover .ico { transform: translateX(4px); }
+    .title-link:hover .ico { transform: translateX(6px); }
+    .social:hover { transform: translateY(-3px) rotate(-8deg); }
+    .dock__tile:hover { transform: translateY(-6px); }
+    .dock__tile:hover .dock__icon { transform: rotate(-8deg) scale(1.08); }
+    .dock--aside .dock__tile:hover { transform: translateX(4px); }
+    .svc:hover { --lift: -10px; }
+    .svc:hover .svc__frame { transform: translateY(-8px); }
+    .svc:hover .svc__frame img { transform: scale(1.1); }
+    .svc:hover .svc__go { transform: rotate(-45deg); }
+    .promo:hover .promo__img img { transform: scale(1.06); }
+    .qa__item:hover { transform: translateX(4px); }
+    .qa__q:hover .qa__icon { transform: rotate(90deg); }
+    .qa__item[open] .qa__q:hover .qa__icon { transform: rotate(180deg); }
+    .brand:hover { transform: translateY(-8px); }
+    .brand:hover .brand__img { transform: translateY(-10px); }
+    .index-card:hover, .post-card:hover { transform: translateY(-6px); }
+    .index-card:hover .index-card__thumb { transform: translateY(-6px); }
+    .logo-chip--link:hover { transform: translateY(-6px); }
+    .fig--photo:hover { rotate: 0deg; }
+    .fig--plate:has(> .fig__media > a):hover { transform: translateY(-6px); }
+  }
+  .qa__item[open] .qa__q:focus-visible .qa__icon { transform: rotate(180deg); }
+}
+
+@keyframes cec-draw { to { stroke-dashoffset: 0; } }
+@keyframes cec-drift-a { to { transform: translate3d(-6vw, 4vw, 0) scale(1.08); } }
+@keyframes cec-drift-b { to { transform: translate3d(7vw, -3vw, 0) scale(.94); } }
+/* QA r2 RA2-02: transform only. The border-radius steps repainted and re-blurred every 42px-blurred orb on the main
+   thread every frame (1440 at 4x CPU: p95 33ms with the parallax writes already gone, 16.8ms without the radius);
+   under that blur the shape change was not visible, the slow turn and swell are kept (compositor). */
+@keyframes cec-morph {
+  50%  { transform: rotate(8deg) scale(1.04); }
+  100% { transform: rotate(-6deg) scale(.97); }
+}
+@keyframes cec-beams { to { transform: translate3d(-40px, 16px, 0); } }
+/* scroll-driven layers (RA2-02): see the @supports (animation-timeline: view()) block */
+@keyframes cec-depth {
+  from { translate: 0 clamp(-1px * var(--max, 42), -1 * var(--d, 0) * var(--k, 1) * (50vh + 50%), 1px * var(--max, 42)); }
+  to { translate: 0 clamp(-1px * var(--max, 42), var(--d, 0) * var(--k, 1) * (50vh + 50%), 1px * var(--max, 42)); }
+}
+@keyframes cec-depth-up {
+  from { translate: 0 0; }
+  to { translate: 0 clamp(-1px * var(--max, 42), var(--d, 0) * var(--k, 1) * (50vh + 50%), 0px); }
+}
+@keyframes cec-rot { from { rotate: calc(-1deg * var(--rot, 0)); } to { rotate: calc(1deg * var(--rot, 0)); } }
+@keyframes cec-hero-img { from { scale: 1.06; translate: 0 0; } to { scale: 1; translate: 0 20px; } }
+@keyframes cec-hero-sun { from { translate: 0 0; } to { translate: -40px 60px; } }
+@keyframes cec-qa-in { from { opacity: 0; transform: translateY(-6px); } }
+
+/* reduced motion (5.7): nothing hidden, nothing moving; colour, underline and shadow states remain */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
+  [data-reveal] { opacity: 1 !important; translate: none !important; scale: none !important; filter: none !important; }
+}
