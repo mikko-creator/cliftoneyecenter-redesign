@@ -1,0 +1,1027 @@
+{
+  "schema": "site-reforge/pixeldiff-report@1",
+  "generated": "2026-09-28T20:37:50.137Z",
+  "threshold": 0.02,
+  "tolerance": 8,
+  "pairCount": 52,
+  "verdict": "DRIFT",
+  "worst": [
+    {
+      "file": "whats-new.1440.png",
+      "ratio": 0.973458,
+      "verdict": "DRIFT"
+    },
+    {
+      "file": "index.1024.png",
+      "ratio": 0.970113,
+      "verdict": "SIZE-MISMATCH"
+    },
+    {
+      "file": "index.1440.png",
+      "ratio": 0.967971,
+      "verdict": "SIZE-MISMATCH"
+    },
+    {
+      "file": "whats-new.768.png",
+      "ratio": 0.966162,
+      "verdict": "DRIFT"
+    },
+    {
+      "file": "whats-new.1024.png",
+      "ratio": 0.964517,
+      "verdict": "DRIFT"
+    }
+  ],
+  "unpairedBaseline": [],
+  "unpairedRebuild": [],
+  "pairs": [
+    {
+      "file": "10-steps-to-prevent-vision-loss.1024.png",
+      "slug": "10-steps-to-prevent-vision-loss",
+      "width": 1024,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2157035,
+      "compared": 2733056,
+      "ratio": 0.789239,
+      "baselineSize": [
+        1024,
+        2669
+      ],
+      "rebuildSize": [
+        1024,
+        4373
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/10-steps-to-prevent-vision-loss.1024.png"
+    },
+    {
+      "file": "10-steps-to-prevent-vision-loss.1440.png",
+      "slug": "10-steps-to-prevent-vision-loss",
+      "width": 1440,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2633046,
+      "compared": 3284640,
+      "ratio": 0.801624,
+      "baselineSize": [
+        1440,
+        2281
+      ],
+      "rebuildSize": [
+        1440,
+        4641
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/10-steps-to-prevent-vision-loss.1440.png"
+    },
+    {
+      "file": "10-steps-to-prevent-vision-loss.390.png",
+      "slug": "10-steps-to-prevent-vision-loss",
+      "width": 390,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 1612214,
+      "compared": 2070120,
+      "ratio": 0.778802,
+      "baselineSize": [
+        390,
+        5308
+      ],
+      "rebuildSize": [
+        390,
+        7471
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/10-steps-to-prevent-vision-loss.390.png"
+    },
+    {
+      "file": "10-steps-to-prevent-vision-loss.768.png",
+      "slug": "10-steps-to-prevent-vision-loss",
+      "width": 768,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2598570,
+      "compared": 3122688,
+      "ratio": 0.832158,
+      "baselineSize": [
+        768,
+        4066
+      ],
+      "rebuildSize": [
+        768,
+        5680
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/10-steps-to-prevent-vision-loss.768.png"
+    },
+    {
+      "file": "contact-us-appointment-request-form.1024.png",
+      "slug": "contact-us-appointment-request-form",
+      "width": 1024,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 1563935,
+      "compared": 1947648,
+      "ratio": 0.802986,
+      "baselineSize": [
+        1024,
+        1902
+      ],
+      "rebuildSize": [
+        1024,
+        2643
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/contact-us-appointment-request-form.1024.png"
+    },
+    {
+      "file": "contact-us-appointment-request-form.1440.png",
+      "slug": "contact-us-appointment-request-form",
+      "width": 1440,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2168268,
+      "compared": 2648160,
+      "ratio": 0.818783,
+      "baselineSize": [
+        1440,
+        1839
+      ],
+      "rebuildSize": [
+        1440,
+        2874
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/contact-us-appointment-request-form.1440.png"
+    },
+    {
+      "file": "contact-us-appointment-request-form.390.png",
+      "slug": "contact-us-appointment-request-form",
+      "width": 390,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 1164661,
+      "compared": 1400880,
+      "ratio": 0.831378,
+      "baselineSize": [
+        390,
+        3592
+      ],
+      "rebuildSize": [
+        390,
+        4732
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/contact-us-appointment-request-form.390.png"
+    },
+    {
+      "file": "contact-us-appointment-request-form.768.png",
+      "slug": "contact-us-appointment-request-form",
+      "width": 768,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 1946005,
+      "compared": 2429184,
+      "ratio": 0.801094,
+      "baselineSize": [
+        768,
+        3163
+      ],
+      "rebuildSize": [
+        768,
+        3972
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/contact-us-appointment-request-form.768.png"
+    },
+    {
+      "file": "disclaimer.1024.png",
+      "slug": "disclaimer",
+      "width": 1024,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 1816650,
+      "compared": 1947648,
+      "ratio": 0.93274,
+      "baselineSize": [
+        1024,
+        1902
+      ],
+      "rebuildSize": [
+        1024,
+        2450
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/disclaimer.1024.png"
+    },
+    {
+      "file": "disclaimer.1440.png",
+      "slug": "disclaimer",
+      "width": 1440,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2470217,
+      "compared": 2648160,
+      "ratio": 0.932805,
+      "baselineSize": [
+        1440,
+        1839
+      ],
+      "rebuildSize": [
+        1440,
+        2584
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/disclaimer.1440.png"
+    },
+    {
+      "file": "disclaimer.390.png",
+      "slug": "disclaimer",
+      "width": 390,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 1270008,
+      "compared": 1361100,
+      "ratio": 0.933075,
+      "baselineSize": [
+        390,
+        3490
+      ],
+      "rebuildSize": [
+        390,
+        3729
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/disclaimer.390.png"
+    },
+    {
+      "file": "disclaimer.768.png",
+      "slug": "disclaimer",
+      "width": 768,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2116089,
+      "compared": 2228736,
+      "ratio": 0.949457,
+      "baselineSize": [
+        768,
+        2902
+      ],
+      "rebuildSize": [
+        768,
+        3059
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/disclaimer.768.png"
+    },
+    {
+      "file": "eye-care-services-eye-exams.1024.png",
+      "slug": "eye-care-services-eye-exams",
+      "width": 1024,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2396662,
+      "compared": 2677760,
+      "ratio": 0.895025,
+      "baselineSize": [
+        1024,
+        2615
+      ],
+      "rebuildSize": [
+        1024,
+        4640
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eye-care-services-eye-exams.1024.png"
+    },
+    {
+      "file": "eye-care-services-eye-exams.1440.png",
+      "slug": "eye-care-services-eye-exams",
+      "width": 1440,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 3340151,
+      "compared": 3680640,
+      "ratio": 0.907492,
+      "baselineSize": [
+        1440,
+        2556
+      ],
+      "rebuildSize": [
+        1440,
+        4982
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eye-care-services-eye-exams.1440.png"
+    },
+    {
+      "file": "eye-care-services-eye-exams.390.png",
+      "slug": "eye-care-services-eye-exams",
+      "width": 390,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 1624892,
+      "compared": 1885260,
+      "ratio": 0.861893,
+      "baselineSize": [
+        390,
+        4834
+      ],
+      "rebuildSize": [
+        390,
+        7042
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eye-care-services-eye-exams.390.png"
+    },
+    {
+      "file": "eye-care-services-eye-exams.768.png",
+      "slug": "eye-care-services-eye-exams",
+      "width": 768,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2904218,
+      "compared": 3118080,
+      "ratio": 0.931412,
+      "baselineSize": [
+        768,
+        4060
+      ],
+      "rebuildSize": [
+        768,
+        6054
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eye-care-services-eye-exams.768.png"
+    },
+    {
+      "file": "eye-care-services-your-eye-health-eye-conditions-info-glaucoma.1024.png",
+      "slug": "eye-care-services-your-eye-health-eye-conditions-info-glaucoma",
+      "width": 1024,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 3855859,
+      "compared": 4256768,
+      "ratio": 0.905818,
+      "baselineSize": [
+        1024,
+        4157
+      ],
+      "rebuildSize": [
+        1024,
+        7144
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eye-care-services-your-eye-health-eye-conditions-info-glaucoma.1024.png"
+    },
+    {
+      "file": "eye-care-services-your-eye-health-eye-conditions-info-glaucoma.1440.png",
+      "slug": "eye-care-services-your-eye-health-eye-conditions-info-glaucoma",
+      "width": 1440,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 4986260,
+      "compared": 5260320,
+      "ratio": 0.947901,
+      "baselineSize": [
+        1440,
+        3653
+      ],
+      "rebuildSize": [
+        1440,
+        7601
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eye-care-services-your-eye-health-eye-conditions-info-glaucoma.1440.png"
+    },
+    {
+      "file": "eye-care-services-your-eye-health-eye-conditions-info-glaucoma.390.png",
+      "slug": "eye-care-services-your-eye-health-eye-conditions-info-glaucoma",
+      "width": 390,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2328497,
+      "compared": 2855190,
+      "ratio": 0.815531,
+      "baselineSize": [
+        390,
+        7321
+      ],
+      "rebuildSize": [
+        390,
+        10526
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eye-care-services-your-eye-health-eye-conditions-info-glaucoma.390.png"
+    },
+    {
+      "file": "eye-care-services-your-eye-health-eye-conditions-info-glaucoma.768.png",
+      "slug": "eye-care-services-your-eye-health-eye-conditions-info-glaucoma",
+      "width": 768,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 3945576,
+      "compared": 4249344,
+      "ratio": 0.928514,
+      "baselineSize": [
+        768,
+        5533
+      ],
+      "rebuildSize": [
+        768,
+        8327
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eye-care-services-your-eye-health-eye-conditions-info-glaucoma.768.png"
+    },
+    {
+      "file": "eye-care-services.1024.png",
+      "slug": "eye-care-services",
+      "width": 1024,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2830106,
+      "compared": 3030016,
+      "ratio": 0.934023,
+      "baselineSize": [
+        1024,
+        2959
+      ],
+      "rebuildSize": [
+        1024,
+        3391
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eye-care-services.1024.png"
+    },
+    {
+      "file": "eye-care-services.1440.png",
+      "slug": "eye-care-services",
+      "width": 1440,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 3893936,
+      "compared": 4128480,
+      "ratio": 0.943189,
+      "baselineSize": [
+        1440,
+        2867
+      ],
+      "rebuildSize": [
+        1440,
+        3779
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eye-care-services.1440.png"
+    },
+    {
+      "file": "eye-care-services.390.png",
+      "slug": "eye-care-services",
+      "width": 390,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 1922242,
+      "compared": 2083380,
+      "ratio": 0.922655,
+      "baselineSize": [
+        390,
+        5342
+      ],
+      "rebuildSize": [
+        390,
+        6006
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eye-care-services.390.png"
+    },
+    {
+      "file": "eye-care-services.768.png",
+      "slug": "eye-care-services",
+      "width": 768,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 3012916,
+      "compared": 3174144,
+      "ratio": 0.949206,
+      "baselineSize": [
+        768,
+        6674
+      ],
+      "rebuildSize": [
+        768,
+        4133
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eye-care-services.768.png"
+    },
+    {
+      "file": "eyeglasses-contacts-contact-lenses.1024.png",
+      "slug": "eyeglasses-contacts-contact-lenses",
+      "width": 1024,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 3140050,
+      "compared": 3329024,
+      "ratio": 0.943234,
+      "baselineSize": [
+        1024,
+        3251
+      ],
+      "rebuildSize": [
+        1024,
+        4333
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eyeglasses-contacts-contact-lenses.1024.png"
+    },
+    {
+      "file": "eyeglasses-contacts-contact-lenses.1440.png",
+      "slug": "eyeglasses-contacts-contact-lenses",
+      "width": 1440,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 4451138,
+      "compared": 4700160,
+      "ratio": 0.947018,
+      "baselineSize": [
+        1440,
+        3264
+      ],
+      "rebuildSize": [
+        1440,
+        4694
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eyeglasses-contacts-contact-lenses.1440.png"
+    },
+    {
+      "file": "eyeglasses-contacts-contact-lenses.390.png",
+      "slug": "eyeglasses-contacts-contact-lenses",
+      "width": 390,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2182253,
+      "compared": 2323230,
+      "ratio": 0.939319,
+      "baselineSize": [
+        390,
+        5957
+      ],
+      "rebuildSize": [
+        390,
+        7105
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eyeglasses-contacts-contact-lenses.390.png"
+    },
+    {
+      "file": "eyeglasses-contacts-contact-lenses.768.png",
+      "slug": "eyeglasses-contacts-contact-lenses",
+      "width": 768,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 3597436,
+      "compared": 3821568,
+      "ratio": 0.941351,
+      "baselineSize": [
+        768,
+        7034
+      ],
+      "rebuildSize": [
+        768,
+        4976
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eyeglasses-contacts-contact-lenses.768.png"
+    },
+    {
+      "file": "eyeglasses-contacts-eyeglasses-designer-frames.1024.png",
+      "slug": "eyeglasses-contacts-eyeglasses-designer-frames",
+      "width": 1024,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2900231,
+      "compared": 3782656,
+      "ratio": 0.766718,
+      "baselineSize": [
+        1024,
+        3694
+      ],
+      "rebuildSize": [
+        1024,
+        4006
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eyeglasses-contacts-eyeglasses-designer-frames.1024.png"
+    },
+    {
+      "file": "eyeglasses-contacts-eyeglasses-designer-frames.1440.png",
+      "slug": "eyeglasses-contacts-eyeglasses-designer-frames",
+      "width": 1440,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 4153074,
+      "compared": 5181120,
+      "ratio": 0.801578,
+      "baselineSize": [
+        1440,
+        3598
+      ],
+      "rebuildSize": [
+        1440,
+        4399
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eyeglasses-contacts-eyeglasses-designer-frames.1440.png"
+    },
+    {
+      "file": "eyeglasses-contacts-eyeglasses-designer-frames.390.png",
+      "slug": "eyeglasses-contacts-eyeglasses-designer-frames",
+      "width": 390,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 784247,
+      "compared": 1079910,
+      "ratio": 0.726215,
+      "baselineSize": [
+        390,
+        2769
+      ],
+      "rebuildSize": [
+        390,
+        5857
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eyeglasses-contacts-eyeglasses-designer-frames.390.png"
+    },
+    {
+      "file": "eyeglasses-contacts-eyeglasses-designer-frames.768.png",
+      "slug": "eyeglasses-contacts-eyeglasses-designer-frames",
+      "width": 768,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 1525773,
+      "compared": 1999872,
+      "ratio": 0.762935,
+      "baselineSize": [
+        768,
+        2604
+      ],
+      "rebuildSize": [
+        768,
+        4206
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/eyeglasses-contacts-eyeglasses-designer-frames.768.png"
+    },
+    {
+      "file": "hours-location.1024.png",
+      "slug": "hours-location",
+      "width": 1024,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2261623,
+      "compared": 2499584,
+      "ratio": 0.9048,
+      "baselineSize": [
+        1024,
+        2441
+      ],
+      "rebuildSize": [
+        1024,
+        3605
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/hours-location.1024.png"
+    },
+    {
+      "file": "hours-location.1440.png",
+      "slug": "hours-location",
+      "width": 1440,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 3257680,
+      "compared": 3564000,
+      "ratio": 0.914052,
+      "baselineSize": [
+        1440,
+        2475
+      ],
+      "rebuildSize": [
+        1440,
+        3890
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/hours-location.1440.png"
+    },
+    {
+      "file": "hours-location.390.png",
+      "slug": "hours-location",
+      "width": 390,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 1495641,
+      "compared": 1601340,
+      "ratio": 0.933993,
+      "baselineSize": [
+        390,
+        4128
+      ],
+      "rebuildSize": [
+        390,
+        4106
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/hours-location.390.png"
+    },
+    {
+      "file": "hours-location.768.png",
+      "slug": "hours-location",
+      "width": 768,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2779382,
+      "compared": 2949888,
+      "ratio": 0.942199,
+      "baselineSize": [
+        768,
+        4162
+      ],
+      "rebuildSize": [
+        768,
+        3841
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/hours-location.768.png"
+    },
+    {
+      "file": "index.1024.png",
+      "slug": "index",
+      "width": 1024,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 5155722,
+      "compared": 5314560,
+      "ratio": 0.970113,
+      "baselineSize": [
+        1024,
+        5190
+      ],
+      "rebuildSize": [
+        1024,
+        6915
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/index.1024.png"
+    },
+    {
+      "file": "index.1440.png",
+      "slug": "index",
+      "width": 1440,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 7105989,
+      "compared": 7341120,
+      "ratio": 0.967971,
+      "baselineSize": [
+        1440,
+        5098
+      ],
+      "rebuildSize": [
+        1440,
+        7330
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/index.1440.png"
+    },
+    {
+      "file": "index.390.png",
+      "slug": "index",
+      "width": 390,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2566488,
+      "compared": 2710110,
+      "ratio": 0.947005,
+      "baselineSize": [
+        390,
+        6949
+      ],
+      "rebuildSize": [
+        390,
+        9526
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/index.390.png"
+    },
+    {
+      "file": "index.768.png",
+      "slug": "index",
+      "width": 768,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 5537174,
+      "compared": 5793024,
+      "ratio": 0.955835,
+      "baselineSize": [
+        768,
+        7543
+      ],
+      "rebuildSize": [
+        768,
+        8564
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/index.768.png"
+    },
+    {
+      "file": "insurance.1024.png",
+      "slug": "insurance",
+      "width": 1024,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2390368,
+      "compared": 2692096,
+      "ratio": 0.887921,
+      "baselineSize": [
+        1024,
+        2629
+      ],
+      "rebuildSize": [
+        1024,
+        3657
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/insurance.1024.png"
+    },
+    {
+      "file": "insurance.1440.png",
+      "slug": "insurance",
+      "width": 1440,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 3376096,
+      "compared": 3726720,
+      "ratio": 0.905916,
+      "baselineSize": [
+        1440,
+        2588
+      ],
+      "rebuildSize": [
+        1440,
+        4033
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/insurance.1440.png"
+    },
+    {
+      "file": "insurance.390.png",
+      "slug": "insurance",
+      "width": 390,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 1330708,
+      "compared": 1576770,
+      "ratio": 0.843946,
+      "baselineSize": [
+        390,
+        4043
+      ],
+      "rebuildSize": [
+        390,
+        5146
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/insurance.390.png"
+    },
+    {
+      "file": "insurance.768.png",
+      "slug": "insurance",
+      "width": 768,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2498095,
+      "compared": 2807040,
+      "ratio": 0.889939,
+      "baselineSize": [
+        768,
+        3655
+      ],
+      "rebuildSize": [
+        768,
+        4048
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/insurance.768.png"
+    },
+    {
+      "file": "our-eye-doctors.1024.png",
+      "slug": "our-eye-doctors",
+      "width": 1024,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2314672,
+      "compared": 2457600,
+      "ratio": 0.941842,
+      "baselineSize": [
+        1024,
+        2400
+      ],
+      "rebuildSize": [
+        1024,
+        3255
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/our-eye-doctors.1024.png"
+    },
+    {
+      "file": "our-eye-doctors.1440.png",
+      "slug": "our-eye-doctors",
+      "width": 1440,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 3378759,
+      "compared": 3555360,
+      "ratio": 0.950328,
+      "baselineSize": [
+        1440,
+        2469
+      ],
+      "rebuildSize": [
+        1440,
+        3597
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/our-eye-doctors.1440.png"
+    },
+    {
+      "file": "our-eye-doctors.390.png",
+      "slug": "our-eye-doctors",
+      "width": 390,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 1340239,
+      "compared": 1492140,
+      "ratio": 0.898199,
+      "baselineSize": [
+        390,
+        3826
+      ],
+      "rebuildSize": [
+        390,
+        3899
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/our-eye-doctors.390.png"
+    },
+    {
+      "file": "our-eye-doctors.768.png",
+      "slug": "our-eye-doctors",
+      "width": 768,
+      "verdict": "SIZE-MISMATCH",
+      "differing": 2434915,
+      "compared": 2613504,
+      "ratio": 0.931667,
+      "baselineSize": [
+        768,
+        3726
+      ],
+      "rebuildSize": [
+        768,
+        3403
+      ],
+      "sizeMismatch": true,
+      "diffImage": "audit/screens/diff/our-eye-doctors.768.png"
+    },
+    {
+      "file": "whats-new.1024.png",
+      "slug": "whats-new",
+      "width": 1024,
+      "verdict": "DRIFT",
+      "differing": 15802646,
+      "compared": 16384000,
+      "ratio": 0.964517,
+      "baselineSize": [
+        1024,
+        16000
+      ],
+      "rebuildSize": [
+        1024,
+        16000
+      ],
+      "sizeMismatch": false,
+      "diffImage": "audit/screens/diff/whats-new.1024.png"
+    },
+    {
+      "file": "whats-new.1440.png",
+      "slug": "whats-new",
+      "width": 1440,
+      "verdict": "DRIFT",
+      "differing": 22428465,
+      "compared": 23040000,
+      "ratio": 0.973458,
+      "baselineSize": [
+        1440,
+        16000
+      ],
+      "rebuildSize": [
+        1440,
+        16000
+      ],
+      "sizeMismatch": false,
+      "diffImage": "audit/screens/diff/whats-new.1440.png"
+    },
+    {
+      "file": "whats-new.390.png",
+      "slug": "whats-new",
+      "width": 390,
+      "verdict": "DRIFT",
+      "differing": 6010608,
+      "compared": 6240000,
+      "ratio": 0.963238,
+      "baselineSize": [
+        390,
+        16000
+      ],
+      "rebuildSize": [
+        390,
+        16000
+      ],
+      "sizeMismatch": false,
+      "diffImage": "audit/screens/diff/whats-new.390.png"
+    },
+    {
+      "file": "whats-new.768.png",
+      "slug": "whats-new",
+      "width": 768,
+      "verdict": "DRIFT",
+      "differing": 11872203,
+      "compared": 12288000,
+      "ratio": 0.966162,
+      "baselineSize": [
+        768,
+        16000
+      ],
+      "rebuildSize": [
+        768,
+        16000
+      ],
+      "sizeMismatch": false,
+      "diffImage": "audit/screens/diff/whats-new.768.png"
+    }
+  ]
+}

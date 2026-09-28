@@ -1,0 +1,2882 @@
+{
+  "schema": "site-reforge/seo-report@1",
+  "generated": "2026-09-28T20:25:44.264Z",
+  "origin": "https://www.cliftoneyecenter.com",
+  "buildDir": "dist",
+  "siteUrl": "https://www.cliftoneyecenter.com",
+  "mode": "migrating (replaces the original at its own domain)",
+  "limits": {
+    "titleMax": 60,
+    "titleMin": 15,
+    "descMax": 160,
+    "descMin": 50
+  },
+  "pages": 349,
+  "emitted": null,
+  "externalLinks": null,
+  "repaired": null,
+  "counts": {
+    "source": {
+      "major": 277,
+      "minor": 117,
+      "blocker": 11
+    },
+    "migration": {},
+    "byCode": {
+      "description-missing": 168,
+      "h1-multiple": 3,
+      "alt-missing": 96,
+      "title-too-short": 62,
+      "title-too-long": 32,
+      "description-too-long": 15,
+      "title-missing": 4,
+      "canonical-missing": 5,
+      "og-title-missing": 4,
+      "description-too-short": 1,
+      "h1-missing": 7,
+      "title-duplicate": 7,
+      "description-duplicate": 1
+    }
+  },
+  "findings": {
+    "source": [
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "h1-multiple",
+        "page": "https://www.cliftoneyecenter.com/",
+        "field": "h1",
+        "detail": "2 H1 elements"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/",
+        "field": "alt",
+        "detail": "1 of 15 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/1-eye-allergies-2016",
+        "field": "title",
+        "detail": "13 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/1-eye-allergies-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/1-eye-allergies-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/10-eye-healthy-foods-to-eat-this-year-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/10-eye-healthy-foods-to-eat-this-year-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/10-steps-to-prevent-vision-loss",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/10-steps-to-prevent-vision-loss",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/10-tips-to-teach-children-about-eye-safety-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/10-tips-to-teach-children-about-eye-safety-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/12-tips-for-optimal-eye-health-2019",
+        "field": "title",
+        "detail": "66 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/12-tips-for-optimal-eye-health-2019",
+        "field": "description",
+        "detail": "239 chars (limit 160)"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/404-page-not-found",
+        "field": "title",
+        "detail": "3 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/404-page-not-found",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/5-ways-to-ensure-healthy-vision",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/5-ways-to-ensure-healthy-vision",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/6-common-eye-myths-debunked",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/6-common-eye-myths-debunked",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/6-crazy-holiday-eye-injuries-to-avoid-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/6-crazy-holiday-eye-injuries-to-avoid-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/6-things-you-need-to-know-about-cataracts",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/6-things-you-need-to-know-about-cataracts",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/6-things-you-should-know-about-uv-radiation-and-your-eyes",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/6-things-you-should-know-about-uv-radiation-and-your-eyes",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/6-ways-to-prevent-amd-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/6-ways-to-prevent-amd-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/7-eye-symptoms-you-should-not-ignore-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/7-eye-symptoms-you-should-not-ignore-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/7-facts-you-should-know-about-glaucoma",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/7-things-you-should-know-about-eyelid-twitches",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/7-things-you-should-know-about-eyelid-twitches",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/8-tips-to-beat-winter-dry-eyes",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/8-tips-to-relieve-winter-dry-eyes-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/9-tips-for-coping-with-eye-allergy-season",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/a-look-behind-sleeping-eyes",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/a-look-behind-sleeping-eyes",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/aging-eyes-driving-safety-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/aging-eyes-driving-safety-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/all-about-night-blindness-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/all-about-night-blindness-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/amd-awareness-could-save-your-vision-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/amd-awareness-could-save-your-vision-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/an-active-and-eye-safe-lifestyle-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/an-active-and-eye-safe-lifestyle-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/april-is-womens-eye-health-and-safety-month-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/april-is-womens-eye-health-and-safety-month-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/are-nerf-guns-a-dangerous-holiday-present-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/are-you-ignoring-your-dry-eyes-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/are-you-ignoring-your-dry-eyes-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/are-your-eyes-sensitive-to-light-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/are-your-eyes-sensitive-to-light-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/be-on-the-lookout-for-vision-problems-this-summer-break",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/be-on-the-lookout-for-vision-problems-this-summer-break",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/bifocal-and-multifocal-contact-lenses-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/can-you-really-go-blind-from-looking-at-a-solar-eclipse",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/can-you-really-go-blind-from-looking-at-a-solar-eclipse",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/cataract-awareness-and-prevention-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/cataract-awareness-and-prevention-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/cataract-awareness-month-2016-2",
+        "field": "title",
+        "detail": "62 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/cataract-awareness-month-2016-2",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/cataract-awareness-month-2016-2",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/cataract-awareness-month-2019",
+        "field": "description",
+        "detail": "196 chars (limit 160)"
+      },
+      {
+        "severity": "blocker",
+        "code": "title-missing",
+        "page": "https://www.cliftoneyecenter.com/category/our-doctors",
+        "field": "title",
+        "detail": "no <title>"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/category/our-doctors",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "canonical-missing",
+        "page": "https://www.cliftoneyecenter.com/category/our-doctors",
+        "field": "canonical",
+        "detail": "no rel=canonical"
+      },
+      {
+        "severity": "minor",
+        "code": "og-title-missing",
+        "page": "https://www.cliftoneyecenter.com/category/our-doctors",
+        "field": "og:title",
+        "detail": "no og:title"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/category/uncategorized",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "canonical-missing",
+        "page": "https://www.cliftoneyecenter.com/category/uncategorized",
+        "field": "canonical",
+        "detail": "no rel=canonical"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/comfortable-vision-for-back-to-school-reading",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/comfortable-vision-for-back-to-school-reading",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/contact-lenses-halloween-beware-take-care-2019",
+        "field": "title",
+        "detail": "68 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/contact-lenses-halloween-beware-take-care-2019",
+        "field": "description",
+        "detail": "187 chars (limit 160)"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/contact-us",
+        "field": "title",
+        "detail": "10 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/contact-us/contact-form",
+        "field": "title",
+        "detail": "8 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/contact-us/patient-forms",
+        "field": "title",
+        "detail": "13 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/contact-us/patient-forms",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/contact-us/testimonials",
+        "field": "title",
+        "detail": "12 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/contact-us/testimonials",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/cutting-edge-eye-dentification-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/cutting-edge-eye-dentification-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/cutting-edge-glaucoma-technology",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/cutting-edge-glaucoma-technology",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/dealing-with-your-tweens-and-teens-eyesight",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/decorative-lenses-could-cost-you-your-vision",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/decorative-lenses-could-cost-you-your-vision",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/diabetes-and-your-eyes",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/diabetes-and-your-eyes",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/disclaimer",
+        "field": "title",
+        "detail": "10 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/do-you-know-the-facts-about-diabetic-eye-disease",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/do-you-know-the-facts-about-diabetic-eye-disease",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/dry-eye-syndrome-causes-and-cures-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/dry-eye-syndrome-causes-and-cures-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/enjoying-life-during-eye-allergy-season",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/enjoying-life-during-eye-allergy-season",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/exercise-and-your-eye-health-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/exercise-and-your-eye-health-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-am-home-for-the-holidays-7-eye-tips-for-college-students",
+        "field": "title",
+        "detail": "64 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-am-home-for-the-holidays-7-eye-tips-for-college-students",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/contact-lens-exams",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/contact-lens-exams/hard-to-fit",
+        "field": "title",
+        "detail": "70 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/contact-lens-exams/hard-to-fit",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-conditions",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-conditions/dry-eye-disease-and-treatment",
+        "field": "title",
+        "detail": "61 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-conditions/dry-eye-disease-and-treatment",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-conditions/presbyopia-diagnosis-and-treatment",
+        "field": "title",
+        "detail": "61 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-conditions/presbyopia-diagnosis-and-treatment",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-emergencies-pinkred-eyes",
+        "field": "title",
+        "detail": "73 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-emergencies-pinkred-eyes",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-exams",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-exams/advanced-technology",
+        "field": "title",
+        "detail": "64 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-exams/advanced-technology",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-exams/pediatric-eye-exams",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-exams/what-to-expect",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/lasik-refractive-surgery-co-management",
+        "field": "title",
+        "detail": "64 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/management-of-ocular-diseases",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/management-of-ocular-diseases/cataract-surgery-co-management",
+        "field": "title",
+        "detail": "68 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/management-of-ocular-diseases/treating-diabetic-retinopathy",
+        "field": "title",
+        "detail": "63 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/management-of-ocular-diseases/treating-macular-degeneration",
+        "field": "title",
+        "detail": "62 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/management-of-ocular-diseases/treating-macular-degeneration",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health",
+        "field": "title",
+        "detail": "66 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/childrens-vision/your-infants-visual-development",
+        "field": "title",
+        "detail": "68 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/computer-eyestrain/blue-lighthigh-energy-visible-hev-light-and-your-eyes",
+        "field": "description",
+        "detail": "229 chars (limit 160)"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/astigmatism",
+        "field": "title",
+        "detail": "11 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/cmv-retinitis",
+        "field": "title",
+        "detail": "13 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/eye-allergies",
+        "field": "title",
+        "detail": "13 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/glaucoma",
+        "field": "title",
+        "detail": "8 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/keratoconus",
+        "field": "title",
+        "detail": "11 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/nearsighted-myopia",
+        "field": "title",
+        "detail": "67 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/photophobia",
+        "field": "title",
+        "detail": "11 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/photophobia",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/pingueculae-pterygia",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/presbyopia",
+        "field": "title",
+        "detail": "10 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/presbyopia",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/ptosis",
+        "field": "title",
+        "detail": "6 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/ptosis",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/retinal-detachment",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/retinitis-pigmentosa",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/styes",
+        "field": "title",
+        "detail": "5 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/styes",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/uveitis",
+        "field": "title",
+        "detail": "7 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/uveitis",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases",
+        "field": "title",
+        "detail": "12 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/cataracts/cataract-surgery-treatment",
+        "field": "title",
+        "detail": "67 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/cataracts/common-questions-about-presbyopia-correcting-iols",
+        "field": "title",
+        "detail": "64 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/cataracts/common-questions-about-presbyopia-correcting-iols",
+        "field": "description",
+        "detail": "170 chars (limit 160)"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/glaucoma",
+        "field": "title",
+        "detail": "8 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/macular-degeneration/overview",
+        "field": "title",
+        "detail": "8 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams",
+        "field": "title",
+        "detail": "9 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests",
+        "field": "title",
+        "detail": "12 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/autorefractor",
+        "field": "title",
+        "detail": "13 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/eye-dilation",
+        "field": "title",
+        "detail": "12 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/glaucoma-test",
+        "field": "title",
+        "detail": "13 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/ophthalmoscope",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/optomap",
+        "field": "title",
+        "detail": "7 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/phoropter",
+        "field": "title",
+        "detail": "9 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/puffer-test",
+        "field": "title",
+        "detail": "11 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/retinoscope",
+        "field": "title",
+        "detail": "11 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/slit-lamp-exam",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/snellen-chart",
+        "field": "title",
+        "detail": "13 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/common-tests/vision-testing",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/eye-exams-for-children",
+        "field": "title",
+        "detail": "69 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/medications",
+        "field": "title",
+        "detail": "11 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/preparing-for-an-eye-exam",
+        "field": "title",
+        "detail": "67 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/what-to-ask",
+        "field": "title",
+        "detail": "11 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/what-to-expect",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/healthy-sight",
+        "field": "title",
+        "detail": "13 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-40",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-40/dry-eye-after-menopause",
+        "field": "title",
+        "detail": "69 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-40/how-progressive-lenses-work",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-40/multifocal-eyeglass-lenses",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-40/occupational-bifocal-and-trifocals",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-over-60",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/lasik",
+        "field": "title",
+        "detail": "5 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/prk",
+        "field": "title",
+        "detail": "3 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-health-for-college-students-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-health-for-college-students-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-health-for-women-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-health-for-women-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/eye-safe-toys-and-gifts-for-this-holiday-season",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses/disposable-contacts",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-short",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses/our-featured-brands",
+        "field": "description",
+        "detail": "44 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses",
+        "field": "title",
+        "detail": "10 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "blocker",
+        "code": "h1-missing",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/designer-frames",
+        "field": "h1",
+        "detail": "no H1 on the page"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/eyeglass-basics/womens-eyeglass-frames",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/eyeglass-guide",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/kids-optical",
+        "field": "title",
+        "detail": "13 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "h1-multiple",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/kids-optical",
+        "field": "h1",
+        "detail": "2 H1 elements"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/lens-treatments/uv-protection",
+        "field": "title",
+        "detail": "13 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/prescription-eyeglasses/bifocal-lenses",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/sunglasses",
+        "field": "title",
+        "detail": "10 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/transitions-lenses",
+        "field": "description",
+        "detail": "164 chars (limit 160)"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/eyeglasses-contacts/eyeglasses/transitions-lenses/are-transitions-right-for-you",
+        "field": "description",
+        "detail": "161 chars (limit 160)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/eyelid-twitches-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/eyelid-twitches-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/fall-eye-allergies-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/fall-eye-allergies-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/fun-holiday-gifts-that-are-good-for-childrens-vision",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/got-a-shiner-2017",
+        "field": "title",
+        "detail": "13 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/got-a-shiner-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/got-a-shiner-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/guidelines-for-picking-the-right-pair-of-shades",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/guidelines-for-picking-the-right-pair-of-shades",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/halloween-eye-safety-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/halloween-eye-safety-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/have-an-eye-safe-halloween-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/have-an-eye-safe-halloween-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/healthy-aging-for-the-eyes-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/healthy-aging-for-the-eyes-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/help-my-child-does-not-want-to-wear-glasses-2019",
+        "field": "title",
+        "detail": "65 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/help-my-child-does-not-want-to-wear-glasses-2019",
+        "field": "description",
+        "detail": "164 chars (limit 160)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/holiday-season-shopping-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/holiday-season-shopping-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/hope-in-sight-for-low-vision",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/how-contact-lenses-can-be-a-danger-to-your-eyes-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/how-contact-lenses-can-be-a-danger-to-your-eyes-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/how-do-we-see",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/how-do-we-see",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/how-pregnancy-affects-vision",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/how-pregnancy-affects-vision",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/how-to-encourage-young-kids-to-wear-their-first-pair-of-glasses",
+        "field": "title",
+        "detail": "63 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/how-to-encourage-young-kids-to-wear-their-first-pair-of-glasses",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/how-to-find-the-right-pair-of-glasses-for-your-child-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/how-to-guide-for-buying-sunglasses-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/how-to-guide-for-buying-sunglasses-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/how-to-keep-your-glasses-from-fogging-up-2019",
+        "field": "title",
+        "detail": "63 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/how-to-keep-your-glasses-from-fogging-up-2019",
+        "field": "description",
+        "detail": "206 chars (limit 160)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/how-to-prevent-diabetic-vision-loss",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/how-to-prevent-diabetic-vision-loss",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/how-uv-damages-your-eyes-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/how-uv-damages-your-eyes-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/how-your-eyes-convey-emotion",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/hydrogen-peroxide-contact-lens-solution-2019",
+        "field": "title",
+        "detail": "82 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/hydrogen-peroxide-contact-lens-solution-2019",
+        "field": "description",
+        "detail": "187 chars (limit 160)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/infant-eyesight-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/infant-eyesight-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/innovations-in-color-blindness-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/innovations-in-color-blindness-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/inside-a-life-with-color-vision-deficiency-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/inside-a-life-with-color-vision-deficiency-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/insurance",
+        "field": "title",
+        "detail": "9 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/insurance/carecredit",
+        "field": "title",
+        "detail": "10 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/is-screen-time-dangerous-for-kids-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/is-screen-time-dangerous-for-kids-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/is-your-babys-eyesight-developing-normally",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/is-your-babys-eyesight-developing-normally",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/is-your-teen-ready-for-contacts-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/is-your-teen-ready-for-contacts-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/its-time-to-be-serious-about-home-eye-safety",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/its-time-to-be-serious-about-home-eye-safety",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/june-is-cataract-awareness-month",
+        "field": "title",
+        "detail": "65 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/keeping-an-eye-on-cataracts",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/keeping-an-eye-on-cataracts",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/keeping-your-contact-lenses-clean",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/know-how-and-when-to-treat-an-eye-infection",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "h1-multiple",
+        "page": "https://www.cliftoneyecenter.com/know-how-and-when-to-treat-an-eye-infection",
+        "field": "h1",
+        "detail": "3 H1 elements"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/living-with-low-vision",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/living-with-low-vision",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/location/clifton-eye-center",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/mental-health-and-vision-2019",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/new-study-shows-how-your-eyes-shed-light-on-your-health",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/new-years-resolutions-for-an-eye-healthy-2014",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/november-is-diabetes-awareness-month-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/october-is",
+        "field": "title",
+        "detail": "11 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/october-is",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/october-is",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/ocular-migraines-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/ocular-migraines-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/order-contacts-online",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/parkinsons-awareness-month-and-your-vision-2019",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/pink-stinging-eyes",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/poolside-eye-safety-2016",
+        "field": "description",
+        "detail": "166 chars (limit 160)"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/poolside-eye-safety-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/prevent-age-related-macular-degeneration-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/prevent-age-related-macular-degeneration-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/privacy-policy",
+        "field": "title",
+        "detail": "14 chars"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/progressive-myopia-2018",
+        "field": "title",
+        "detail": "64 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/progressive-myopia-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/progressive-myopia-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/promotions",
+        "field": "title",
+        "detail": "10 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/promotions",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/protect-childrens-eyes-during-sports",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/protect-childrens-eyes-during-sports",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/protecting-your-eyes-from-the-desk-job",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/protective-sports-eyewear-is-a-serious-matter",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/refocus-on-the-digital-age-with-computer-glasses",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/refocus-on-the-digital-age-with-computer-glasses",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/request-your-next-appointment-online",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/resolve-to-prevent-glaucoma-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/return-policies",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/rubbing-your-eyes-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/rubbing-your-eyes-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/school-and-vision-2-important-partners-2019",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/should-you-be-worried-about-eye-floaters",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/should-you-be-worried-about-eye-floaters",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/signs-that-your-child-has-a-vision-problem-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/signs-that-your-child-has-a-vision-problem-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/sjogren-awareness-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/sjogren-awareness-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/smart-hygiene-habits-to-care-for-your-contact-lenses-2019",
+        "field": "title",
+        "detail": "61 chars (limit 60)"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/smart-hygiene-habits-to-care-for-your-contact-lenses-2019",
+        "field": "description",
+        "detail": "226 chars (limit 160)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/smoking-and-vision-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/smoking-and-vision-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/sneak-thief-of-sight-january-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/sneak-thief-of-sight-january-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/snow-blindness-winter-vacation-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/snow-blindness-winter-vacation-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/solar-eclipse-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/solar-eclipse-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/sports-eye-injuries-2019",
+        "field": "title",
+        "detail": "64 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/sports-eye-injuries-2019",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/sports-vision-deconstructed-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/sports-vision-deconstructed-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/summer-heat-wave-and-your-eyes-2019",
+        "field": "description",
+        "detail": "230 chars (limit 160)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/sunwear-for-a-bright-future-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/sunwear-for-a-bright-future-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "canonical-missing",
+        "page": "https://www.cliftoneyecenter.com/tag/all-about-vision",
+        "field": "canonical",
+        "detail": "no rel=canonical"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/tag/eye-emergencies",
+        "field": "title",
+        "detail": "73 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/tag/eye-emergencies",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "canonical-missing",
+        "page": "https://www.cliftoneyecenter.com/tag/eye-emergencies",
+        "field": "canonical",
+        "detail": "no rel=canonical"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/tag/gsp-eye-emergencies",
+        "field": "title",
+        "detail": "73 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/tag/gsp-eye-emergencies",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "canonical-missing",
+        "page": "https://www.cliftoneyecenter.com/tag/gsp-eye-emergencies",
+        "field": "canonical",
+        "detail": "no rel=canonical"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/talk-about-blue-light-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/talk-about-blue-light-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/team/dr-deana-clifton-od",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/template/footer",
+        "field": "title",
+        "detail": "6 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/template/footer",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "blocker",
+        "code": "h1-missing",
+        "page": "https://www.cliftoneyecenter.com/template/footer",
+        "field": "h1",
+        "detail": "no H1 on the page"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/template/header",
+        "field": "title",
+        "detail": "6 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/template/header",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "blocker",
+        "code": "h1-missing",
+        "page": "https://www.cliftoneyecenter.com/template/header",
+        "field": "h1",
+        "detail": "no H1 on the page"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/template/inner-header",
+        "field": "title",
+        "detail": "12 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/template/inner-header",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "blocker",
+        "code": "h1-missing",
+        "page": "https://www.cliftoneyecenter.com/template/inner-header",
+        "field": "h1",
+        "detail": "no H1 on the page"
+      },
+      {
+        "severity": "blocker",
+        "code": "title-missing",
+        "page": "https://www.cliftoneyecenter.com/testimonial/4726-2",
+        "field": "title",
+        "detail": "no <title>"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/testimonial/4726-2",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "blocker",
+        "code": "h1-missing",
+        "page": "https://www.cliftoneyecenter.com/testimonial/4726-2",
+        "field": "h1",
+        "detail": "no H1 on the page"
+      },
+      {
+        "severity": "minor",
+        "code": "og-title-missing",
+        "page": "https://www.cliftoneyecenter.com/testimonial/4726-2",
+        "field": "og:title",
+        "detail": "no og:title"
+      },
+      {
+        "severity": "blocker",
+        "code": "title-missing",
+        "page": "https://www.cliftoneyecenter.com/testimonial/4728-2",
+        "field": "title",
+        "detail": "no <title>"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/testimonial/4728-2",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "blocker",
+        "code": "h1-missing",
+        "page": "https://www.cliftoneyecenter.com/testimonial/4728-2",
+        "field": "h1",
+        "detail": "no H1 on the page"
+      },
+      {
+        "severity": "minor",
+        "code": "og-title-missing",
+        "page": "https://www.cliftoneyecenter.com/testimonial/4728-2",
+        "field": "og:title",
+        "detail": "no og:title"
+      },
+      {
+        "severity": "blocker",
+        "code": "title-missing",
+        "page": "https://www.cliftoneyecenter.com/testimonial/4730-2",
+        "field": "title",
+        "detail": "no <title>"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/testimonial/4730-2",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "blocker",
+        "code": "h1-missing",
+        "page": "https://www.cliftoneyecenter.com/testimonial/4730-2",
+        "field": "h1",
+        "detail": "no H1 on the page"
+      },
+      {
+        "severity": "minor",
+        "code": "og-title-missing",
+        "page": "https://www.cliftoneyecenter.com/testimonial/4730-2",
+        "field": "og:title",
+        "detail": "no og:title"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/the-dangers-of-an-online-eye-test-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/the-dangers-of-an-online-eye-test-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/the-right-way-to-clean-your-glasses-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/the-right-way-to-clean-your-glasses-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/the-sneak-thief-of-sight-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/the-sneak-thief-of-sight-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/the-staff",
+        "field": "title",
+        "detail": "9 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/the-staff",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/top-4-eyecare-tips-for-summer-vacation-2019",
+        "field": "description",
+        "detail": "228 chars (limit 160)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/trouble-seeing-the-fine-print-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/trouble-seeing-the-fine-print-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/ultraviolet-light-and-your-eyes-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/ultraviolet-light-and-your-eyes-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/under-pressure-are-you-at-risk-for-glaucoma",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/understanding-eye-color-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "description-too-long",
+        "page": "https://www.cliftoneyecenter.com/uv-safety-awareness-month-2019",
+        "field": "description",
+        "detail": "198 chars (limit 160)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/website-accessibility-policy",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/welcome-to-our-new-website",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/what-is-a-stye-anyway-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/what-is-a-stye-anyway-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/what-women-need-to-know-about-eye-health",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/what-women-need-to-know-about-eye-health",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/what-you-need-to-know-about-firework-eye-safety",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/what-you-need-to-know-about-firework-eye-safety",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-long",
+        "page": "https://www.cliftoneyecenter.com/what-you-need-to-know-about-glaucoma-the-sneak-thief-of-sight-2019",
+        "field": "title",
+        "detail": "63 chars (limit 60)"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/what-you-need-to-know-about-glaucoma-the-sneak-thief-of-sight-2019",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/what-you-need-to-know-to-help-world-blindness-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/what-you-need-to-know-to-help-world-blindness-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/what-you-should-know-about-diabetes-and-your-vision",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/whats-in-your-household-cleaning-supplies-2019",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "minor",
+        "code": "title-too-short",
+        "page": "https://www.cliftoneyecenter.com/whats-new",
+        "field": "title",
+        "detail": "10 chars"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/when-20-20-vision-isnt-enough-for-your-child-2016",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/when-20-20-vision-isnt-enough-for-your-child-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/why-do-we-need-glasses",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/women-and-diabetes-world-diabetes-day-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/women-and-diabetes-world-diabetes-day-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/women-eye-health-5-tips-for-optimal-vision-for-life-2018",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/women-eye-health-5-tips-for-optimal-vision-for-life-2018",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/workplace-eye-wellness-the-dangers-of-blue-light-2016",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/world-braille-day-2019",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/world-sight-day-challenge-no-more-avoidable-blindness",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/world-sight-day-challenge-no-more-avoidable-blindness",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "description-missing",
+        "page": "https://www.cliftoneyecenter.com/your-childs-hidden-vision-problem-2017",
+        "field": "description",
+        "detail": "no meta description"
+      },
+      {
+        "severity": "major",
+        "code": "alt-missing",
+        "page": "https://www.cliftoneyecenter.com/your-childs-hidden-vision-problem-2017",
+        "field": "alt",
+        "detail": "1 of 4 images have no alt"
+      },
+      {
+        "severity": "major",
+        "code": "title-duplicate",
+        "page": "https://www.cliftoneyecenter.com/1-eye-allergies-2016",
+        "field": "title",
+        "detail": "2 pages share \"Eye Allergies\" and do NOT share one canonical — e.g. https://www.cliftoneyecenter.com/1-eye-allergies-2016 , https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/eye-allergies"
+      },
+      {
+        "severity": "major",
+        "code": "title-duplicate",
+        "page": "https://www.cliftoneyecenter.com/8-tips-to-relieve-winter-dry-eyes-2018",
+        "field": "title",
+        "detail": "2 pages share \"8 Tips to Relieve Winter Dry Eyes\" and do NOT share one canonical — e.g. https://www.cliftoneyecenter.com/8-tips-to-relieve-winter-dry-eyes-2018 , https://www.cliftoneyecenter.com/category/uncategorized"
+      },
+      {
+        "severity": "major",
+        "code": "title-duplicate",
+        "page": "https://www.cliftoneyecenter.com/bifocal-and-multifocal-contact-lenses-2016",
+        "field": "title",
+        "detail": "2 pages share \"Bifocal and Multifocal Contact Lenses\" and do NOT share one canonical — e.g. https://www.cliftoneyecenter.com/bifocal-and-multifocal-contact-lenses-2016 , https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses/bifocal-and-multifocal-contact-lenses"
+      },
+      {
+        "severity": "major",
+        "code": "title-duplicate",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/eye-emergencies-pinkred-eyes",
+        "field": "title",
+        "detail": "3 pages share \"Pink Eye | Infection, Injury, Foreign Body Removal | Eye Emergency Doc\" and do NOT share one canonical — e.g. https://www.cliftoneyecenter.com/eye-care-services/eye-emergencies-pinkred-eyes , https://www.cliftoneyecenter.com/tag/eye-emergencies , https://www.cliftoneyecenter.com/tag/gsp-eye-emergencies"
+      },
+      {
+        "severity": "major",
+        "code": "title-duplicate",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/glaucoma",
+        "field": "title",
+        "detail": "2 pages share \"Glaucoma\" and do NOT share one canonical — e.g. https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-conditions-info/glaucoma , https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-diseases/glaucoma"
+      },
+      {
+        "severity": "major",
+        "code": "title-duplicate",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/eye-exams-for-contact-lenses",
+        "field": "title",
+        "detail": "2 pages share \"Eye Exams for Contact Lenses\" and do NOT share one canonical — e.g. https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/eye-exams/eye-exams-for-contact-lenses , https://www.cliftoneyecenter.com/eyeglasses-contacts/contact-lenses/eye-exams-for-contact-lenses"
+      },
+      {
+        "severity": "major",
+        "code": "title-duplicate",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/corrective-eye-surgery-basics",
+        "field": "title",
+        "detail": "2 pages share \"Corrective Eye Surgery Basics\" and do NOT share one canonical — e.g. https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/corrective-eye-surgery-basics , https://www.cliftoneyecenter.com/tag/all-about-vision"
+      },
+      {
+        "severity": "major",
+        "code": "description-duplicate",
+        "page": "https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/corrective-eye-surgery-basics",
+        "field": "description",
+        "detail": "2 pages share a description and do NOT share one canonical — e.g. https://www.cliftoneyecenter.com/eye-care-services/your-eye-health/vision-surgery/corrective-eye-surgery-basics , https://www.cliftoneyecenter.com/tag/all-about-vision"
+      }
+    ],
+    "migration": []
+  },
+  "note": "READ-ONLY. This run wrote no page and repaired nothing. SOURCE findings are the live site's own defects and repairing them is an improvement, not a preservation. MIGRATION findings are damage the rebuild created and did not exist on the source."
+}

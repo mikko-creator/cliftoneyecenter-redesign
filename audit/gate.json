@@ -1,13 +1,12 @@
 {
   "schema": "site-reforge/gate@1",
-  "generated": "2026-09-28T11:47:56.356Z",
+  "generated": "2026-09-28T20:37:50.768Z",
   "project": "cliftoneyecenter-com",
   "target": "https://www.cliftoneyecenter.com/",
   "verdict": "NOT-READY",
   "counts": {
-    "PASS": 17,
-    "FAIL": 5,
-    "UNPROVEN": 7
+    "PASS": 22,
+    "FAIL": 7
   },
   "note": "UNPROVEN blocks exactly like FAIL. A check that could not see its artifact did not pass.",
   "checks": [
@@ -120,29 +119,29 @@
       "id": "C16",
       "label": "Every source page exists in the rebuild",
       "stage": "parity",
-      "status": "UNPROVEN",
-      "evidence": "report predates the build it describes (2026-09-28T07:17:29.670Z < 2026-09-28T11:14:48.085Z) — re-run sr-parity.mjs"
+      "status": "PASS",
+      "evidence": "349/349 pages mapped, 1 added by decision"
     },
     {
       "id": "C17",
       "label": "Content survived the rebuild",
       "stage": "parity",
-      "status": "UNPROVEN",
-      "evidence": "report predates the build it describes (2026-09-28T07:17:29.670Z < 2026-09-28T11:14:48.085Z) — re-run sr-parity.mjs"
+      "status": "FAIL",
+      "evidence": "30 content-loss finding(s)"
     },
     {
       "id": "C18",
       "label": "SEO survived the rebuild",
       "stage": "seo",
-      "status": "UNPROVEN",
-      "evidence": "report predates the build it describes (2026-09-28T07:17:29.670Z < 2026-09-28T11:14:48.085Z) — re-run sr-parity.mjs"
+      "status": "PASS",
+      "evidence": "0 lost titles, descriptions, canonicals or H1s"
     },
     {
       "id": "C19",
       "label": "Forms and contact details are intact",
       "stage": "functional",
-      "status": "UNPROVEN",
-      "evidence": "report predates the build it describes (2026-09-28T07:17:29.670Z < 2026-09-28T11:14:48.085Z) — re-run sr-parity.mjs"
+      "status": "FAIL",
+      "evidence": "349 finding(s): Form removed | Form removed | Form removed"
     },
     {
       "id": "C20",
@@ -162,29 +161,29 @@
       "id": "C22",
       "label": "Design matches the source pixel-for-pixel at every breakpoint",
       "stage": "pixeldiff",
-      "status": "UNPROVEN",
-      "evidence": "audit/pixeldiff-report.json absent — run sr-pixeldiff.mjs"
+      "status": "FAIL",
+      "evidence": "worst drift 97.346% on whats-new.1440.png"
     },
     {
       "id": "C23",
       "label": "Responsive swept at every configured breakpoint",
       "stage": "responsive",
-      "status": "UNPROVEN",
-      "evidence": "audit/sweep-findings.json absent — run sr-sweep.mjs --collect"
+      "status": "FAIL",
+      "evidence": "1 blocker + 401 major introduced across 390/768/1024/1440px"
     },
     {
       "id": "C24",
       "label": "Recorded failures are all resolved or accepted",
       "stage": "gate",
-      "status": "FAIL",
-      "evidence": "35 unresolved failure(s): crawl:page, assets:image, home:leftover"
+      "status": "PASS",
+      "evidence": "35 recorded failure(s), none open"
     },
     {
       "id": "C25",
       "label": "Handoff documentation present and filled in",
       "stage": "package",
-      "status": "FAIL",
-      "evidence": "docs/ missing README.md, DEPLOY.md, CHANGE-LOG.md"
+      "status": "PASS",
+      "evidence": "docs/: BRAND-SYSTEM.md, BUILD-DECISIONS.md, BUILD-NOTES.md, CHANGE-LOG.md, COMPONENTS.md, DEPLOY.md, DESIGN-BRIEF.md, DESIGN-SPEC.md, IMAGE-PLAN.md, OPEN-DECISIONS.md, PORT-NOTES.md, README.md, SITE-ARCHITECTURE.md — no unfilled placeholders"
     },
     {
       "id": "C26",
@@ -211,8 +210,8 @@
       "id": "C29",
       "label": "SEO emitted and derivable fields repaired",
       "stage": "seo",
-      "status": "UNPROVEN",
-      "evidence": "audit/seo-report.json absent — run sr-seo.mjs"
+      "status": "PASS",
+      "evidence": "emitted nothing"
     }
   ]
 }

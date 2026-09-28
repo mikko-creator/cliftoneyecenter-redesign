@@ -1,6 +1,6 @@
 {
   "schema": "site-reforge/parity-report@1",
-  "generated": "2026-09-28T07:17:29.670Z",
+  "generated": "2026-09-28T20:25:38.539Z",
   "sourcePages": 349,
   "rebuiltFiles": 350,
   "mappedPages": 349,
@@ -12,9 +12,9 @@
   "contentRunFloor": 12,
   "meanRecall": 0.9827,
   "counts": {
-    "major": 39,
     "blocker": 361,
-    "minor": 213
+    "minor": 218,
+    "major": 38
   },
   "verdict": "DRIFT",
   "rows": [
@@ -27,7 +27,7 @@
       "missingWords": 3,
       "longestMissingRun": 1,
       "sourceWords": 891,
-      "rebuiltWords": 895,
+      "rebuiltWords": 896,
       "sourceH1": [
         "Welcome to Clifton Eye Center in Bossier City, Louisiana",
         "What's New!"
@@ -38,12 +38,6 @@
       "sourceLinks": 8,
       "rebuiltLinks": 62,
       "findings": [
-        {
-          "severity": "major",
-          "code": "section-lost",
-          "title": "4 source H2 section(s) absent",
-          "detail": "unique optical | contact lens services | comprehensive eye exams | pediatric eye care"
-        },
         {
           "severity": "blocker",
           "code": "form-lost",
@@ -148,6 +142,12 @@
           "code": "form-lost",
           "title": "Form removed",
           "detail": "4 form(s) on source, 0 on rebuild"
+        },
+        {
+          "severity": "minor",
+          "code": "alt-missing",
+          "title": "1 image(s) without alt",
+          "detail": "10-steps-to-prevent-vision-loss/index.html"
         }
       ]
     },
@@ -5782,16 +5782,22 @@
       "missingWords": 2,
       "longestMissingRun": 2,
       "sourceWords": 377,
-      "rebuiltWords": 375,
+      "rebuiltWords": 376,
       "sourceH1": [
         "PLENTY OF CHOICE—EYEGLASSES"
       ],
       "rebuiltH1": [
-        "PLENTY OF CHOICE—EYEGLASSES"
+        "PLENTY OF CHOICE— EYEGLASSES"
       ],
       "sourceLinks": 6,
       "rebuiltLinks": 51,
       "findings": [
+        {
+          "severity": "minor",
+          "code": "h1-changed",
+          "title": "H1 changed",
+          "detail": "\"PLENTY OF CHOICE—EYEGLASSES\" -> \"PLENTY OF CHOICE— EYEGLASSES\""
+        },
         {
           "severity": "blocker",
           "code": "form-lost",
@@ -5832,7 +5838,7 @@
         {
           "severity": "minor",
           "code": "alt-missing",
-          "title": "1 image(s) without alt",
+          "title": "2 image(s) without alt",
           "detail": "eyeglasses-contacts/eyeglasses/designer-frames/index.html"
         }
       ]
@@ -5986,7 +5992,7 @@
         "EyeGlass Guide"
       ],
       "sourceLinks": 5,
-      "rebuiltLinks": 56,
+      "rebuiltLinks": 57,
       "findings": [
         {
           "severity": "major",
@@ -7353,7 +7359,7 @@
       "missingWords": 0,
       "longestMissingRun": 0,
       "sourceWords": 203,
-      "rebuiltWords": 203,
+      "rebuiltWords": 204,
       "sourceH1": [
         "Our Eye Care Practice in Bossier City"
       ],
@@ -7434,6 +7440,12 @@
           "code": "form-lost",
           "title": "Form removed",
           "detail": "4 form(s) on source, 0 on rebuild"
+        },
+        {
+          "severity": "minor",
+          "code": "alt-missing",
+          "title": "1 image(s) without alt",
+          "detail": "how-do-we-see/index.html"
         }
       ]
     },
@@ -9777,7 +9789,7 @@
         "Header"
       ],
       "sourceLinks": 1,
-      "rebuiltLinks": 39,
+      "rebuiltLinks": 41,
       "findings": [
         {
           "severity": "blocker",
@@ -9808,7 +9820,7 @@
         "Inner Header"
       ],
       "sourceLinks": 2,
-      "rebuiltLinks": 42,
+      "rebuiltLinks": 44,
       "findings": [
         {
           "severity": "blocker",
@@ -10853,6 +10865,12 @@
           "code": "form-lost",
           "title": "Form removed",
           "detail": "4 form(s) on source, 0 on rebuild"
+        },
+        {
+          "severity": "minor",
+          "code": "alt-missing",
+          "title": "1 image(s) without alt",
+          "detail": "women-eye-health-5-tips-for-optimal-vision-for-life-2018/index.html"
         }
       ]
     },
@@ -10979,6 +10997,12 @@
           "code": "form-lost",
           "title": "Form removed",
           "detail": "4 form(s) on source, 0 on rebuild"
+        },
+        {
+          "severity": "minor",
+          "code": "alt-missing",
+          "title": "1 image(s) without alt",
+          "detail": "world-sight-day-challenge-no-more-avoidable-blindness/index.html"
         }
       ]
     },

@@ -651,10 +651,12 @@ h1.section-title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-sp
   .visit__grid:not(:has(> .sos)) > .nap > .nap__sub:has(+ .hours) { grid-column: 2; grid-row: 1; }
   .visit__grid:not(:has(> .sos)) > .nap > .nap__sub:has(+ .hours) + .hours { grid-row: 2 / -1; }
 }
-/* from 1240px the cards overlap the map's right edge, mid-height: the embed's bottom strip is already clear */
+/* from 1240px the cards overlap the map's right edge, mid-height: no card covers the embed's bottom strip, but the
+   embed now reaches the panel's bottom corners, so those corners stay small (8px) - a --r-lg corner (27-32px here)
+   clipped the end of Google's attribution ("Terms" read "Term"; final verification 2026-09-29) */
 @container visit (min-width: 1240px) {
   .visit__grid { --map-tray: 0px; }
-  .visit__grid > .map { grid-column: 1 / 8; grid-row: 1 / 3; min-height: 520px; }
+  .visit__grid > .map { grid-column: 1 / 8; grid-row: 1 / 3; min-height: 520px; border-radius: var(--r-lg) var(--r-lg) 8px 8px; }
   .visit__grid > .nap { grid-column: 7 / 10; grid-row: 1; margin: 56px 0 0 -24px; }
   .visit__grid > .sos { grid-column: 10 / 13; grid-row: 1 / 3; margin: 150px 0 0 12px; align-self: stretch; }
 }

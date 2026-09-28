@@ -1,0 +1,4377 @@
+{
+  "schema": "site-reforge/sweep-findings@1",
+  "generated": "2026-09-28T20:37:19.324Z",
+  "sweeps": 52,
+  "widths": [
+    390,
+    768,
+    1024,
+    1440
+  ],
+  "baselineWidths": [
+    390,
+    768,
+    1024,
+    1440
+  ],
+  "dimensions": [
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 390px",
+          "value": "41.9x44",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--plain > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(1) > a.crumbs__link @ 768px",
+          "value": "41.1x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--plain > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(2) > a.crumbs__link @ 768px",
+          "value": "85.6x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "40.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "73x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "82.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "70.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "91.5x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(6) > a @ 768px",
+          "value": "99.2x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "114.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "101.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "117.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "150.6x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "63.8x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(1) > a @ 768px",
+          "value": "74.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(2) > a @ 768px",
+          "value": "49.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "2 more not listed",
+          "location": "(page) @ 768px",
+          "value": "17",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Page-level",
+      "findings": [
+        {
+          "severity": "blocker",
+          "title": "Form has no action",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.sheet--form > form.form",
+          "value": "null",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--scene > div.band__stage:nth-of-type(1) > img.band__scene @ 390px",
+          "value": "2000px natural vs 390px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#f9-2-help > a @ 390px",
+          "value": "115.8x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#f9-3-0 @ 390px",
+          "value": "22x22",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#f9-3-1 @ 390px",
+          "value": "22x22",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 390px",
+          "value": "41.9x44",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--scene > div.band__stage:nth-of-type(1) > img.band__scene @ 768px",
+          "value": "2000px natural vs 762px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--scene > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(1) > a.crumbs__link @ 768px",
+          "value": "41.1x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--scene > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(2) > a.crumbs__link @ 768px",
+          "value": "75.5x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#f9-2-help > a @ 768px",
+          "value": "118.6x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#f9-3-0 @ 768px",
+          "value": "22x22",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#f9-3-1 @ 768px",
+          "value": "22x22",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "40.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "73x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "82.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "70.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "91.5x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(6) > a @ 768px",
+          "value": "99.2x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "114.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "101.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "117.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "150.6x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "5 more not listed",
+          "location": "(page) @ 768px",
+          "value": "20",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 390px",
+          "value": "41.9x44",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--plain > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(1) > a.crumbs__link @ 768px",
+          "value": "41.1x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "40.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "73x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "82.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "70.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "91.5x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(6) > a @ 768px",
+          "value": "99.2x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "114.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "101.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "117.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "150.6x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "63.8x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(1) > a @ 768px",
+          "value": "74.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(2) > a @ 768px",
+          "value": "49.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 768px",
+          "value": "43.1x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "1 more not listed",
+          "location": "(page) @ 768px",
+          "value": "16",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--scene > div.wrap.band__grid:nth-of-type(2) > img.band__cut @ 1024px",
+          "value": "800px natural vs 151px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--scene > div.wrap.band__grid:nth-of-type(2) > img.band__cut @ 1440px",
+          "value": "800px natural vs 212px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--scene > div.band__stage:nth-of-type(1) > img.band__scene @ 390px",
+          "value": "2000px natural vs 390px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--scene > div.wrap.band__grid:nth-of-type(2) > img.band__cut @ 390px",
+          "value": "800px natural vs 150px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(1) > div.prose > figure.fig.fig--photo:nth-of-type(1) > span.fig__media > img @ 390px",
+          "value": "1400px natural vs 320px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(1) > div.prose > figure.fig.fig--photo:nth-of-type(2) > span.fig__media > img @ 390px",
+          "value": "1024px natural vs 319px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(1) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "174.3x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(2) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "294.1x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(3) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "141.1x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 390px",
+          "value": "41.9x44",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--scene > div.band__stage:nth-of-type(1) > img.band__scene @ 768px",
+          "value": "2000px natural vs 762px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--scene > div.wrap.band__grid:nth-of-type(2) > img.band__cut @ 768px",
+          "value": "800px natural vs 136px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--scene > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(1) > a.crumbs__link @ 768px",
+          "value": "41.1x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--scene > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(2) > a.crumbs__link @ 768px",
+          "value": "121.6x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(1) > div.prose > p:nth-of-type(9) > a @ 768px",
+          "value": "150.2x29",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(1) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 768px",
+          "value": "184.2x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(3) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 768px",
+          "value": "149.1x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "40.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "73x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "82.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "70.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "91.5x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(6) > a @ 768px",
+          "value": "99.2x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "114.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "101.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "117.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "150.6x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "5 more not listed",
+          "location": "(page) @ 768px",
+          "value": "20",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(3) > div.prose > p:nth-of-type(1) > a @ 390px",
+          "value": "249.7x28",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(3) > div.prose > p:nth-of-type(2) > a @ 390px",
+          "value": "140.5x28",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(3) > div.prose > p:nth-of-type(3) > a @ 390px",
+          "value": "277.3x28",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 390px",
+          "value": "41.9x44",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--plain > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(1) > a.crumbs__link @ 768px",
+          "value": "41.1x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--plain > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(2) > a.crumbs__link @ 768px",
+          "value": "121.6x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--plain > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(3) > a.crumbs__link @ 768px",
+          "value": "109.9x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--plain > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(4) > a.crumbs__link @ 768px",
+          "value": "101.9x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(3) > div.prose > p:nth-of-type(1) > a @ 768px",
+          "value": "260.9x29",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(3) > div.prose > p:nth-of-type(2) > a @ 768px",
+          "value": "146.8x29",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(3) > div.prose > p:nth-of-type(3) > a @ 768px",
+          "value": "289.7x29",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "40.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "73x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "82.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "70.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "91.5x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(6) > a @ 768px",
+          "value": "99.2x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "114.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "101.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "7 more not listed",
+          "location": "(page) @ 768px",
+          "value": "22",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1024px",
+          "value": "1600px natural vs 486px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > img.band__cut @ 1024px",
+          "value": "750px natural vs 148px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) > span.cta-band__rings @ 1024px",
+          "value": "1037px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) @ 1024px",
+          "value": "197px in 134px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1440px",
+          "value": "1600px natural vs 606px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > img.band__cut @ 1440px",
+          "value": "750px natural vs 208px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) @ 1440px",
+          "value": "213px in 167px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 390px",
+          "value": "1600px natural vs 310px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > img.band__cut @ 390px",
+          "value": "750px natural vs 147px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) > span.cta-band__rings @ 390px",
+          "value": "413px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(1) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "239x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(2) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "181.2x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(3) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "222.2x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(4) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "229.7x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(5) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "298.2x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(7) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "143.7x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 390px",
+          "value": "41.9x44",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) @ 390px",
+          "value": "192px in 123px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > img.band__cut @ 768px",
+          "value": "750px natural vs 133px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) > span.cta-band__rings @ 768px",
+          "value": "788px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(1) > a.crumbs__link @ 768px",
+          "value": "41.1x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(1) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 768px",
+          "value": "252.6x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(2) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 768px",
+          "value": "191.5x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(3) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 768px",
+          "value": "234.8x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(4) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 768px",
+          "value": "242.7x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards > li.index-card.glass:nth-of-type(7) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 768px",
+          "value": "151.8x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "40.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "73x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "82.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "70.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "91.5x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(6) > a @ 768px",
+          "value": "99.2x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "114.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "101.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "117.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "6 more not listed",
+          "location": "(page) @ 768px",
+          "value": "21",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) @ 768px",
+          "value": "186px in 112px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.band__visual--left > picture > img @ 1024px",
+          "value": "1600px natural vs 486px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) > span.cta-band__rings @ 1024px",
+          "value": "1037px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) @ 1024px",
+          "value": "197px in 134px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.band__visual--left > picture > img @ 1440px",
+          "value": "1600px natural vs 606px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) @ 1440px",
+          "value": "213px in 167px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.band__visual--left > picture > img @ 390px",
+          "value": "1600px natural vs 310px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) > span.cta-band__rings @ 390px",
+          "value": "413px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards:nth-of-type(2) > li.index-card.glass:nth-of-type(1) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "188.5x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards:nth-of-type(2) > li.index-card.glass:nth-of-type(2) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "184.6x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards:nth-of-type(2) > li.index-card.glass:nth-of-type(3) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "269.3x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 390px",
+          "value": "41.9x44",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) @ 390px",
+          "value": "192px in 123px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) > span.cta-band__rings @ 768px",
+          "value": "788px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards:nth-of-type(2) > li.index-card.glass:nth-of-type(1) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 768px",
+          "value": "199.3x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards:nth-of-type(2) > li.index-card.glass:nth-of-type(2) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 768px",
+          "value": "195.1x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards:nth-of-type(2) > li.index-card.glass:nth-of-type(3) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 768px",
+          "value": "284.6x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "40.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "73x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "82.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "70.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "91.5x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(6) > a @ 768px",
+          "value": "99.2x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "114.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "101.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "117.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "150.6x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "63.8x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(1) > a @ 768px",
+          "value": "74.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "3 more not listed",
+          "location": "(page) @ 768px",
+          "value": "18",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) @ 768px",
+          "value": "186px in 112px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1024px",
+          "value": "1500px natural vs 486px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(4) > span.cta-band__rings @ 1024px",
+          "value": "1037px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(5) > span.cta-band__rings @ 1024px",
+          "value": "1037px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(4) @ 1024px",
+          "value": "197px in 134px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(4) @ 1440px",
+          "value": "213px in 167px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(1) > div.prose > figure.fig.fig--brand:nth-of-type(1) > span.fig__media > img @ 390px",
+          "value": "1280px natural vs 308px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(4) > span.cta-band__rings @ 390px",
+          "value": "413px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(5) > span.cta-band__rings @ 390px",
+          "value": "413px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(2) > div.prose > p:nth-of-type(1) > a @ 390px",
+          "value": "167.8x28",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 390px",
+          "value": "41.9x44",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(4) @ 390px",
+          "value": "213px in 166px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(4) > span.cta-band__rings @ 768px",
+          "value": "788px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(5) > span.cta-band__rings @ 768px",
+          "value": "788px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(2) > div.prose > p:nth-of-type(1) > a @ 768px",
+          "value": "175.3x29",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "40.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "73x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "82.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "70.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "91.5x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(6) > a @ 768px",
+          "value": "99.2x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "114.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "101.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "117.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "150.6x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "63.8x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(1) > a @ 768px",
+          "value": "74.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(2) > a @ 768px",
+          "value": "49.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 768px",
+          "value": "43.1x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "1 more not listed",
+          "location": "(page) @ 768px",
+          "value": "16",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(4) @ 768px",
+          "value": "186px in 112px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Page-level",
+      "findings": [
+        {
+          "severity": "nit",
+          "title": "Heading level skipped",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(2) > div.prose > h3",
+          "value": "h1 -> h3",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1024px",
+          "value": "1280px natural vs 486px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 390px",
+          "value": "1280px natural vs 310px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(2) > div.prose > p:nth-of-type(5) > a @ 390px",
+          "value": "113x28",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 390px",
+          "value": "41.9x44",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(2) > div.prose > p:nth-of-type(5) > a @ 768px",
+          "value": "118x29",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "40.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "73x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "82.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "70.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "91.5x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(6) > a @ 768px",
+          "value": "99.2x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "114.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "101.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "117.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "150.6x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "63.8x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(1) > a @ 768px",
+          "value": "74.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(2) > a @ 768px",
+          "value": "49.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 768px",
+          "value": "43.1x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "1 more not listed",
+          "location": "(page) @ 768px",
+          "value": "16",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > figure.hero__photo > span.hero__photo-in.is-in > img @ 1024px",
+          "value": "1280px natural vs 450px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > img.hero__cut @ 1024px",
+          "value": "1184px natural vs 275px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > img.sprig @ 1024px",
+          "value": "1400px natural vs 92px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.wrap:nth-of-type(2) > div.welcome__grid > div.welcome__side:nth-of-type(1) > article.promo.glass > figure.promo__img.pop > span.promo__img-in.is-in > img @ 1024px",
+          "value": "1280px natural vs 355px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.services:nth-of-type(3) > div.wrap.services__in:nth-of-type(2) > ul.svc-grid > li.is-in:nth-of-type(1) > a.svc.glass > span.svc__frame > img @ 1024px",
+          "value": "1280px natural vs 206px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.services:nth-of-type(3) > div.wrap.services__in:nth-of-type(2) > ul.svc-grid > li.is-in:nth-of-type(2) > a.svc.glass > span.svc__frame > img @ 1024px",
+          "value": "640px natural vs 206px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.services:nth-of-type(3) > div.wrap.services__in:nth-of-type(2) > ul.svc-grid > li.is-in:nth-of-type(3) > a.svc.glass > span.svc__frame > img @ 1024px",
+          "value": "640px natural vs 206px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.services:nth-of-type(3) > div.wrap.services__in:nth-of-type(2) > ul.svc-grid > li.is-in:nth-of-type(4) > a.svc.glass > span.svc__frame > img @ 1024px",
+          "value": "640px natural vs 206px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.wrap:nth-of-type(2) > div.smiles:nth-of-type(1) > span.smile.smile--a:nth-of-type(1) > img @ 1024px",
+          "value": "300px natural vs 119px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.wrap:nth-of-type(2) > div.smiles:nth-of-type(1) > span.smile.smile--c:nth-of-type(3) > img @ 1024px",
+          "value": "300px natural vs 116px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > div.hero__stage:nth-of-type(1) > span.hero__sun:nth-of-type(2) @ 1024px",
+          "value": "1135px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > div.hero__stage:nth-of-type(1) > span.hero__beams:nth-of-type(3) @ 1024px",
+          "value": "1290px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.deco:nth-of-type(1) > span.orb.orb--teal:nth-of-type(2) @ 1024px",
+          "value": "1085px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.deco:nth-of-type(1) > span.orb.orb--teal:nth-of-type(2) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > img.hero__cut @ 1440px",
+          "value": "1184px natural vs 308px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > img.sprig @ 1440px",
+          "value": "1400px natural vs 130px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.wrap:nth-of-type(2) > div.welcome__grid > div.welcome__side:nth-of-type(1) > article.promo.glass > figure.promo__img.pop > span.promo__img-in.is-in > img @ 1440px",
+          "value": "1280px natural vs 507px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.services:nth-of-type(3) > div.wrap.services__in:nth-of-type(2) > ul.svc-grid > li.is-in:nth-of-type(1) > a.svc.glass > span.svc__frame > img @ 1440px",
+          "value": "1280px natural vs 267px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.wrap:nth-of-type(2) > div.smiles:nth-of-type(1) > span.smile.smile--a:nth-of-type(1) > img @ 1440px",
+          "value": "300px natural vs 119px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.wrap:nth-of-type(2) > div.smiles:nth-of-type(1) > span.smile.smile--c:nth-of-type(3) > img @ 1440px",
+          "value": "300px natural vs 116px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > div.hero__stage:nth-of-type(1) > span.hero__sun:nth-of-type(2) @ 1440px",
+          "value": "1514px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > div.hero__stage:nth-of-type(1) > span.hero__beams:nth-of-type(3) @ 1440px",
+          "value": "1712px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.deco:nth-of-type(1) > span.orb.orb--teal:nth-of-type(2) @ 1440px",
+          "value": "1526px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.deco:nth-of-type(1) > span.orb.orb--teal:nth-of-type(2) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > div.hero__stage:nth-of-type(1) > img.hero__scene @ 390px",
+          "value": "2000px natural vs 390px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > figure.hero__photo > span.hero__photo-in.is-in > img @ 390px",
+          "value": "1280px natural vs 290px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > img.hero__cut @ 390px",
+          "value": "1184px natural vs 226px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.wrap:nth-of-type(2) > div.welcome__grid > div.welcome__side:nth-of-type(1) > article.promo.glass > figure.promo__img.pop > span.promo__img-in.is-in > img @ 390px",
+          "value": "1280px natural vs 322px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.services:nth-of-type(3) > div.wrap.services__in:nth-of-type(2) > ul.svc-grid > li.is-in:nth-of-type(1) > a.svc.glass > span.svc__frame > img @ 390px",
+          "value": "1280px natural vs 158px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.services:nth-of-type(3) > div.wrap.services__in:nth-of-type(2) > ul.svc-grid > li.is-in:nth-of-type(2) > a.svc.glass > span.svc__frame > img @ 390px",
+          "value": "640px natural vs 158px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.services:nth-of-type(3) > div.wrap.services__in:nth-of-type(2) > ul.svc-grid > li.is-in:nth-of-type(3) > a.svc.glass > span.svc__frame > img @ 390px",
+          "value": "640px natural vs 158px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.services:nth-of-type(3) > div.wrap.services__in:nth-of-type(2) > ul.svc-grid > li.is-in:nth-of-type(4) > a.svc.glass > span.svc__frame > img @ 390px",
+          "value": "640px natural vs 158px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.wrap:nth-of-type(2) > div.smiles:nth-of-type(1) > span.smile.smile--a:nth-of-type(1) > img @ 390px",
+          "value": "300px natural vs 97px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.wrap:nth-of-type(2) > div.smiles:nth-of-type(1) > span.smile.smile--b:nth-of-type(2) > img @ 390px",
+          "value": "300px natural vs 112px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.wrap:nth-of-type(2) > div.smiles:nth-of-type(1) > span.smile.smile--c:nth-of-type(3) > img @ 390px",
+          "value": "300px natural vs 94px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > div.hero__stage:nth-of-type(1) > span.hero__sun:nth-of-type(2) @ 390px",
+          "value": "424px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.deco:nth-of-type(1) > span.orb.orb--teal:nth-of-type(2) @ 390px",
+          "value": "413px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.deco:nth-of-type(1) > span.orb.orb--teal:nth-of-type(2) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.wrap:nth-of-type(2) > div.welcome__grid > div.welcome__side:nth-of-type(1) > article.promo.glass > p > a @ 390px",
+          "value": "74.3x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.wrap:nth-of-type(2) > div.welcome__grid > div.welcome__main.glass:nth-of-type(2) > p:nth-of-type(3) > a @ 390px",
+          "value": "78.7x28",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.wrap:nth-of-type(2) > div.welcome__grid > div.welcome__main.glass:nth-of-type(2) > p.closing:nth-of-type(5) > a @ 390px",
+          "value": "198.3x28",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 390px",
+          "value": "41.9x44",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > div.hero__stage:nth-of-type(1) > img.hero__scene @ 768px",
+          "value": "2000px natural vs 762px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > img.hero__cut @ 768px",
+          "value": "1184px natural vs 258px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > img.sprig @ 768px",
+          "value": "1400px natural vs 90px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.services:nth-of-type(3) > div.wrap.services__in:nth-of-type(2) > ul.svc-grid > li.is-in:nth-of-type(1) > a.svc.glass > span.svc__frame > img @ 768px",
+          "value": "1280px natural vs 335px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.wrap:nth-of-type(2) > div.smiles:nth-of-type(1) > span.smile.smile--a:nth-of-type(1) > img @ 768px",
+          "value": "300px natural vs 119px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.wrap:nth-of-type(2) > div.smiles:nth-of-type(1) > span.smile.smile--c:nth-of-type(3) > img @ 768px",
+          "value": "300px natural vs 116px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > div.hero__stage:nth-of-type(1) > span.hero__sun:nth-of-type(2) @ 768px",
+          "value": "851px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > div.hero__stage:nth-of-type(1) > span.hero__beams:nth-of-type(3) @ 768px",
+          "value": "968px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.deco:nth-of-type(1) > span.orb.orb--teal:nth-of-type(2) @ 768px",
+          "value": "814px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > section.reviews:nth-of-type(4) > div.deco:nth-of-type(1) > span.orb.orb--teal:nth-of-type(2) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.wrap:nth-of-type(2) > div.welcome__grid > div.welcome__side:nth-of-type(1) > article.promo.glass > p > a @ 768px",
+          "value": "76.1x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.wrap:nth-of-type(2) > div.welcome__grid > div.welcome__side:nth-of-type(1) > section.news.glass > article.news__post > h3.news__title > a @ 768px",
+          "value": "656.9x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.wrap:nth-of-type(2) > div.welcome__grid > div.welcome__main.glass:nth-of-type(2) > p:nth-of-type(3) > a @ 768px",
+          "value": "82.2x29",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.welcome:nth-of-type(2) > div.wrap:nth-of-type(2) > div.welcome__grid > div.welcome__main.glass:nth-of-type(2) > p.closing:nth-of-type(5) > a @ 768px",
+          "value": "207.2x29",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "40.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "73x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "82.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "70.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "91.5x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(6) > a @ 768px",
+          "value": "99.2x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "114.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "101.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "117.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "150.6x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "63.8x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "4 more not listed",
+          "location": "(page) @ 768px",
+          "value": "19",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1024px",
+          "value": "1600px natural vs 486px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) > span.cta-band__rings @ 1024px",
+          "value": "1037px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) @ 1024px",
+          "value": "197px in 134px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1440px",
+          "value": "1600px natural vs 606px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) @ 1440px",
+          "value": "213px in 167px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 390px",
+          "value": "1600px natural vs 310px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) > span.cta-band__rings @ 390px",
+          "value": "413px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards:nth-of-type(3) > li.index-card.glass:nth-of-type(1) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "280.2x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards:nth-of-type(3) > li.index-card.glass:nth-of-type(3) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 390px",
+          "value": "96.7x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 390px",
+          "value": "41.9x44",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) @ 390px",
+          "value": "192px in 123px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) > span.cta-band__rings @ 768px",
+          "value": "788px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards:nth-of-type(3) > li.index-card.glass:nth-of-type(1) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 768px",
+          "value": "296.1x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.index-cards:nth-of-type(3) > li.index-card.glass:nth-of-type(3) > p.index-card__title:nth-of-type(1) > a.index-card__link @ 768px",
+          "value": "102.2x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "40.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "73x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "82.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "70.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "91.5x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(6) > a @ 768px",
+          "value": "99.2x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "114.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "101.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "117.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "150.6x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "63.8x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(1) > a @ 768px",
+          "value": "74.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(2) > a @ 768px",
+          "value": "49.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "2 more not listed",
+          "location": "(page) @ 768px",
+          "value": "17",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(1) @ 768px",
+          "value": "186px in 112px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1024px",
+          "value": "1600px natural vs 486px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(2) > span.cta-band__rings @ 1024px",
+          "value": "1037px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(2) @ 1024px",
+          "value": "197px in 134px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1440px",
+          "value": "1600px natural vs 606px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(2) @ 1440px",
+          "value": "213px in 167px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(2) > span.cta-band__rings @ 390px",
+          "value": "413px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(2) > div.prose > p:nth-of-type(1) > a @ 390px",
+          "value": "109.5x28",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(2) > div.prose > p:nth-of-type(2) > a @ 390px",
+          "value": "176.6x28",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(2) > div.prose > p:nth-of-type(3) > a @ 390px",
+          "value": "113x28",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(3) > a @ 390px",
+          "value": "41.9x44",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(2) @ 390px",
+          "value": "192px in 123px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(2) > span.cta-band__rings @ 768px",
+          "value": "788px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(2) > div.prose > p:nth-of-type(1) > a @ 768px",
+          "value": "114.5x29",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > section.sheet.glass:nth-of-type(2) > div.prose > p:nth-of-type(2) > a @ 768px",
+          "value": "184.6x29",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "40.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "73x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "82.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "70.1x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "91.5x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(1) > ul.footer__list > li:nth-of-type(6) > a @ 768px",
+          "value": "99.2x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(1) > a @ 768px",
+          "value": "114.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(2) > a @ 768px",
+          "value": "101.4x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(3) > a @ 768px",
+          "value": "117.9x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(4) > a @ 768px",
+          "value": "150.6x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > nav.footer__col:nth-of-type(2) > ul.footer__list > li:nth-of-type(5) > a @ 768px",
+          "value": "63.8x36",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(1) > a @ 768px",
+          "value": "74.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > footer.site-footer > div.wrap > div.footer__panel.glass > div.footer__legal:nth-of-type(2) > ul.footer__legal-list > li:nth-of-type(2) > a @ 768px",
+          "value": "49.3x24",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "2 more not listed",
+          "location": "(page) @ 768px",
+          "value": "17",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Text clipped by overflow:hidden",
+          "detail": "",
+          "location": "#main > div.page-main > div.cta-band.glass:nth-of-type(2) @ 768px",
+          "value": "186px in 112px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1024px",
+      "findings": [
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1024px",
+          "value": "1065px > 1024px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1024px",
+          "value": "1167px > 1024px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 1440px",
+      "findings": [
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 1440px",
+          "value": "1498px > 1440px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 1440px",
+          "value": "1642px > 1440px",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 390px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 390px",
+          "value": "406px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 390px",
+          "value": "445px > 390px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(4) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "279x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(6) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "246.9x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(8) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "259x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(10) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "244.3x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(12) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "274.8x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(15) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "295.2x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(19) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "213.2x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(21) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "303.1x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(22) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "210.6x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(23) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "257.8x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(24) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "261.6x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(26) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "242.5x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(31) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "306.9x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(32) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "153.3x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(34) > h2.post-card__title > a.post-card__link @ 390px",
+          "value": "258x26",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "41 more not listed",
+          "location": "(page) @ 390px",
+          "value": "56",
+          "inherited": false
+        }
+      ]
+    },
+    {
+      "name": "Viewport 768px",
+      "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
+          "value": "317px natural vs 123px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.field:nth-of-type(1) > span.blob.blob--sun:nth-of-type(1) @ 768px",
+          "value": "799px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Element extends past the viewport",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.field:nth-of-type(1) > span.blob.blob--teal:nth-of-type(3) @ 768px",
+          "value": "876px > 768px",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > section.band.band--plain > div.wrap.band__grid:nth-of-type(2) > div.band__title.glass > nav.crumbs > ol.crumbs__list > li.crumbs__item:nth-of-type(1) > a.crumbs__link @ 768px",
+          "value": "41.1x32",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(4) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "294.9x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(6) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "260.9x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(8) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "273.8x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(10) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "258.2x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(12) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "290.5x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(19) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "225.3x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(22) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "222.6x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(23) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "272.5x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(24) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "276.5x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(26) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "256.2x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(32) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "162x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(34) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "272.6x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(37) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "295x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "",
+          "location": "#main > div.page-main > ul.post-cards > li.post-card.glass:nth-of-type(42) > h2.post-card__title > a.post-card__link @ 768px",
+          "value": "234.9x27",
+          "inherited": false
+        },
+        {
+          "severity": "major",
+          "title": "Tap target under 44x44",
+          "detail": "45 more not listed",
+          "location": "(page) @ 768px",
+          "value": "60",
+          "inherited": false
+        }
+      ]
+    }
+  ]
+}

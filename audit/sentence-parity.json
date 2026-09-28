@@ -1,6 +1,6 @@
 {
  "schema": "cec/sentence-parity@1",
- "generated": "2026-09-28T18:01:03.057Z",
+ "generated": "2026-09-28T20:25:40.311Z",
  "dist": "C:\\Users\\Dell\\cliftoneyecenter-reforge\\dist",
  "method": "every distinct >=5-word sentence of each source page (raw HTML split at block elements) must appear verbatim (normalised quotes/dashes/whitespace) in the rebuilt page text; misses are classified as source chrome (header/nav/footer/sidebar widget area), declared removal, or lost",
  "totals": {

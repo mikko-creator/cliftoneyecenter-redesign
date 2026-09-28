@@ -1,6 +1,6 @@
 {
   "schema": "cec/redirects@1",
-  "generated": "2026-09-28T18:00:56.495Z",
+  "generated": "2026-09-28T20:22:49.796Z",
   "note": "Emitted as dist/_redirects and dist/.htaccess.",
   "redirects": [
     {

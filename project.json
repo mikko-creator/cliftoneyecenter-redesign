@@ -4,7 +4,7 @@
   "targetUrl": "https://www.cliftoneyecenter.com/",
   "origin": "https://www.cliftoneyecenter.com",
   "createdAt": "2026-09-28T00:16:29.130Z",
-  "updatedAt": "2026-09-28T18:01:05.505Z",
+  "updatedAt": "2026-09-28T20:37:50.770Z",
   "config": {
     "maxPages": 300,
     "concurrency": 2,
@@ -92,9 +92,9 @@
       "note": ""
     },
     "responsive": {
-      "status": "pending",
-      "at": null,
-      "note": ""
+      "status": "fail",
+      "at": "2026-09-28T20:37:19.326Z",
+      "note": "52 sweeps at 1024/1440/390/768"
     },
     "seo": {
       "status": "pending",
@@ -108,23 +108,23 @@
     },
     "decontaminate": {
       "status": "done",
-      "at": "2026-09-28T18:01:05.505Z",
+      "at": "2026-09-28T20:25:43.998Z",
       "note": "CLEAN (0 traces)"
     },
     "parity": {
       "status": "fail",
-      "at": "2026-09-28T07:17:29.676Z",
-      "note": "DRIFT — 613 findings"
+      "at": "2026-09-28T20:25:38.545Z",
+      "note": "DRIFT — 617 findings"
     },
     "fabrication": {
       "status": "done",
-      "at": "2026-09-28T18:01:04.641Z",
+      "at": "2026-09-28T20:25:42.647Z",
       "note": "SOURCED — 0 findings"
     },
     "pixeldiff": {
-      "status": "pending",
-      "at": null,
-      "note": ""
+      "status": "fail",
+      "at": "2026-09-28T20:37:50.141Z",
+      "note": "DRIFT — 52/52 pairs over threshold"
     },
     "sweep": {
       "status": "pending",
@@ -138,8 +138,8 @@
     },
     "gate": {
       "status": "fail",
-      "at": "2026-09-28T11:47:56.357Z",
-      "note": "NOT-READY — 17/29 passing"
+      "at": "2026-09-28T20:37:50.770Z",
+      "note": "NOT-READY — 22/29 passing"
     },
     "package": {
       "status": "pending",

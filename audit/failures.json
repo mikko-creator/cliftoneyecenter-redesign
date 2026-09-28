@@ -14,7 +14,9 @@
           }
         ]
       },
-      "at": "2026-09-28T00:23:29.604Z"
+      "at": "2026-09-28T00:23:29.604Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE: the live site itself answers 404 for this URL (301 to the slash form, then 404; live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)). No page answers at this URL on the live site, so there is nothing to crawl or rebuild; the footer \"Sitemap\" link now points at /sitemap.xml, which the build emits (BUILD-DECISIONS #5)."
     },
     {
       "stage": "crawl:page",
@@ -29,7 +31,9 @@
           }
         ]
       },
-      "at": "2026-09-28T00:23:34.940Z"
+      "at": "2026-09-28T00:23:34.940Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE: the live site itself answers 404 for this URL (301 to the slash form, then 404; live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)). No page answers at this URL on the live site, so there is nothing to crawl or rebuild; the content lives at another URL: the rebuild re-points the source links and ships a 301 (dist/_redirects: /your-eye-health/eye-diseases/macular-degeneration/ /eye-care-services/your-eye-health/eye-diseases/macular-degeneration/ 301)."
     },
     {
       "stage": "crawl:page",
@@ -44,7 +48,9 @@
           }
         ]
       },
-      "at": "2026-09-28T00:23:34.940Z"
+      "at": "2026-09-28T00:23:34.940Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE: the live site itself answers 404 for this URL (301 to the slash form, then 404; live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)). No page answers at this URL on the live site, so there is nothing to crawl or rebuild; the source links to it (1) and no alias or moved copy is known (audit/dead-links.json: 404, not an alias); those link(s) are unwrapped with their text kept."
     },
     {
       "stage": "crawl:page",
@@ -59,7 +65,9 @@
           }
         ]
       },
-      "at": "2026-09-28T00:23:37.260Z"
+      "at": "2026-09-28T00:23:37.260Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE: the live site itself answers 404 for this URL (301 to the slash form, then 404; live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)). No page answers at this URL on the live site, so there is nothing to crawl or rebuild; the content lives at another URL: the rebuild re-points the source links and ships a 301 (dist/_redirects: /your-eye-health/eye-diseases/cataracts/ /eye-care-services/your-eye-health/eye-diseases/cataracts/ 301)."
     },
     {
       "stage": "crawl:page",
@@ -74,7 +82,9 @@
           }
         ]
       },
-      "at": "2026-09-28T00:23:37.260Z"
+      "at": "2026-09-28T00:23:37.260Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE: the live site itself answers 404 for this URL (301 to the slash form, then 404; live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)). No page answers at this URL on the live site, so there is nothing to crawl or rebuild; the source links to it (2) and no alias or moved copy is known (audit/dead-links.json: 404, not an alias); those link(s) are unwrapped with their text kept."
     },
     {
       "stage": "crawl:page",
@@ -89,7 +99,9 @@
           }
         ]
       },
-      "at": "2026-09-28T00:23:39.778Z"
+      "at": "2026-09-28T00:23:39.778Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE: the live site itself answers 404 for this URL (301 to the slash form, then 404; live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)). No page answers at this URL on the live site, so there is nothing to crawl or rebuild; the source links to it (2) and no alias or moved copy is known (audit/dead-links.json: 404, not an alias); those link(s) are unwrapped with their text kept."
     },
     {
       "stage": "crawl:page",
@@ -104,175 +116,233 @@
           }
         ]
       },
-      "at": "2026-09-28T00:23:41.292Z"
+      "at": "2026-09-28T00:23:41.292Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE: the live site itself answers 404 for this URL (301 to the slash form, then 404; live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)). No page answers at this URL on the live site, so there is nothing to crawl or rebuild; the source links to it (1) and no alias or moved copy is known (audit/dead-links.json: 404, not an alias); those link(s) are unwrapped with their text kept."
     },
     {
       "stage": "assets:image",
       "target": "https://da4e1j5r7gw87.cloudfront.net/wp-content/uploads/2017/11/Female20Sunglasses20Outdoors20Winter201280x853_preview1.jpeg",
       "reason": "status 404",
-      "at": "2026-09-28T00:25:13.305Z"
+      "at": "2026-09-28T00:25:13.305Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): Female20Sunglasses20Outdoors20Winter201280x853_preview1.jpeg answers 404 on the live site (the old platform CDN now redirects to ecpbuilder.com/site-not-found) (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /women-and-diabetes-world-diabetes-day-2017 the rebuild renders the decorative stand-in planned for it in docs/IMAGE-PLAN.md (dist page references cut-sunglasses.aff5cd0524.webp)."
     },
     {
       "stage": "assets:image",
       "target": "https://da4e1j5r7gw87.cloudfront.net/wp-content/uploads/images/1280x853/xAfrican-Woman-Trying-on-Glasses-1280x853-300x200.jpg.pagespeed.ic.wLXI3xJUkn.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:25:33.359Z"
+      "at": "2026-09-28T00:25:33.359Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): xAfrican-Woman-Trying-on-Glasses-1280x853-300x200.jpg.pagespeed.ic.wLXI3xJUkn.jpg answers 404 on the live site (the old platform CDN now redirects to ecpbuilder.com/site-not-found) (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /eyeglasses-contacts/eyeglasses/eyeglass-basics/womens-eyeglass-frames the rebuild renders the decorative stand-in planned for it in docs/IMAGE-PLAN.md (dist page references scene-optical-boutique.0033cc84e6.webp, cut-eyeglasses-trim.b0762e8c9f.webp, svc-eyewear-boutique.45d6dfdad7.webp)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/eyes/blue%20eye%20between%20fingers.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:35.526Z"
+      "at": "2026-09-28T00:26:35.526Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): blue eye between fingers.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /cutting-edge-eye-dentification-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (blue-eye-between-fingers.bcc3a4b61a.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/eyes/clipart-042.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:35.962Z"
+      "at": "2026-09-28T00:26:35.962Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): clipart-042.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /1-eye-allergies-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (clipart-042.b5c5765b57.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/eyes/clipart-048.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:36.337Z"
+      "at": "2026-09-28T00:26:36.337Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): clipart-048.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /innovations-in-color-blindness-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (clipart-048.60bd7c1a92.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/glasses_and_contacts/glasses5.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:36.911Z"
+      "at": "2026-09-28T00:26:36.911Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): glasses5.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /how-uv-damages-your-eyes-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (glasses5.7a6ea0a9c5.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/glasses_and_contacts/glassesondogs.JPG",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:37.218Z"
+      "at": "2026-09-28T00:26:37.218Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): glassesondogs.JPG answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /how-to-find-the-right-pair-of-glasses-for-your-child-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (glassesondogs.901553dee4.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/glasses_and_contacts/puttingincontact.JPG",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:37.733Z"
+      "at": "2026-09-28T00:26:37.733Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): puttingincontact.JPG answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /how-contact-lenses-can-be-a-danger-to-your-eyes-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (puttingincontact.901cb142c3.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/holidays/thanksgiving%20-%20basket%20slide.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:38.132Z"
+      "at": "2026-09-28T00:26:38.132Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): thanksgiving - basket slide.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /october-is the live page already shows it broken; a holiday (event) picture cannot get a stand-in without depicting an event, so it is a declared REMOVE (ledger ledger-rm-img-thanksgiving, docs/IMAGE-PLAN.md)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/nature_images/cactus2.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:38.593Z"
+      "at": "2026-09-28T00:26:38.593Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): cactus2.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /dry-eye-syndrome-causes-and-cures-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (cactus2.1269718750.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/IMG_1631.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:38.910Z"
+      "at": "2026-09-28T00:26:38.910Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): IMG_1631.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /poolside-eye-safety-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (img_1631.99d305521f.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/boy%20in%20front%20of%20eye%20chart.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:39.372Z"
+      "at": "2026-09-28T00:26:39.372Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): boy in front of eye chart.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /when-20-20-vision-isnt-enough-for-your-child-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (boy-in-front-of-eye-chart.0a0bd25878.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/clipart-032.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:39.807Z"
+      "at": "2026-09-28T00:26:39.807Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): clipart-032.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /what-is-a-stye-anyway-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (clipart-032.16fcef6353.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/clipart-048.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:40.205Z"
+      "at": "2026-09-28T00:26:40.205Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): clipart-048.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /refocus-on-the-digital-age-with-computer-glasses the rebuild renders the decorative stand-in planned for it in docs/IMAGE-PLAN.md (dist page references cut-eyeglasses.0884b26f5e.webp)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/dad-riding-bike-with-daughter.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:40.602Z"
+      "at": "2026-09-28T00:26:40.602Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): dad-riding-bike-with-daughter.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /prevent-age-related-macular-degeneration-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (dad-riding-bike-with-daughter.617101558d.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/father%20and%20son%20shaking%20hands.png",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:41.051Z"
+      "at": "2026-09-28T00:26:41.051Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): father and son shaking hands.png answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /cataract-awareness-month-2016-2 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (father-and-son-shaking-hands.ea9523f140.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/girl-beside-balcony.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:41.407Z"
+      "at": "2026-09-28T00:26:41.407Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): girl-beside-balcony.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /sunwear-for-a-bright-future-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (girl-beside-balcony.9a067f808d.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/girl-in-funny-glasses.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:41.980Z"
+      "at": "2026-09-28T00:26:41.980Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): girl-in-funny-glasses.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /10-tips-to-teach-children-about-eye-safety-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (girl-in-funny-glasses.08219add25.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/jamie_in_the_fall.JPG",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:42.245Z"
+      "at": "2026-09-28T00:26:42.245Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): jamie_in_the_fall.JPG answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /fall-eye-allergies-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (jamie_in_the_fall.d5bed4210c.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/man_in_glasses2.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:42.792Z"
+      "at": "2026-09-28T00:26:42.792Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): man_in_glasses2.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /an-active-and-eye-safe-lifestyle-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (man_in_glasses2.3372327af7.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/mom%20and%20dad%20with%20child%20in%20pink.png",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:43.240Z"
+      "at": "2026-09-28T00:26:43.240Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): mom and dad with child in pink.png answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /holiday-season-shopping-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (mom-and-dad-with-child-in-pink.1320a8156b.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/senior%20couple%20in%20orange%20and%20white.png",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:43.593Z"
+      "at": "2026-09-28T00:26:43.593Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): senior couple in orange and white.png answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /bifocal-and-multifocal-contact-lenses-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (senior-couple-in-orange-and-white.7034782578.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/senior_man_in_thought2.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:44.130Z"
+      "at": "2026-09-28T00:26:44.130Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): senior_man_in_thought2.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /treating-vision-problems-lowers-risk-of-falling-in-seniors the rebuild renders the decorative stand-in planned for it in docs/IMAGE-PLAN.md (dist page references cut-eyeglasses.0884b26f5e.webp)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.cliftoneyecenter.com/clipart/people/woman%20with%20laptop.jpg",
       "reason": "status 404",
-      "at": "2026-09-28T00:26:44.438Z"
+      "at": "2026-09-28T00:26:44.438Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (dead image on the live site): woman with laptop.jpg answers 404 on the live site (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)); the bytes do not exist to download. On /workplace-eye-wellness-the-dangers-of-blue-light-2016 it was only the page's og:image/twitter:image path on the practice's own domain; the visible image loads from the platform-CDN twin, which was downloaded. The rebuild points og:image and twitter:image at the shipped copy of that twin (woman-with-laptop.c76153e7c0.webp, docs/IMAGE-PLAN.md 2b)."
     },
     {
       "stage": "assets:image",
       "target": "https://www.eyecarepro.net/sites/all/themes/ECP/images/review-quote.png",
       "reason": "refused: HTTP 403",
-      "at": "2026-09-28T00:26:49.158Z"
+      "at": "2026-09-28T00:26:49.158Z",
+      "accepted": true,
+      "acceptedReason": "SOURCE-SIDE (refused vendor asset): a background image in the EyeCarePro platform stylesheet (public.css) on the vendor's own domain; it answered 403 at crawl time and 404 now (live re-check 2026-09-28 (tmp/final/chain/05a-live-recheck.log, positive control 200 on the live home)). The rebuild ships none of the platform CSS; the element is a declared L11 REMOVE (audit/clone-removals.json, ledger row ledger-rm-review-quote-png...)."
     },
     {
       "stage": "home:leftover",
       "target": "/",
       "reason": "source text not rendered: \"Eye Disease Treatment- We are qualified to provide you with the best in care for many eye diseases such as glaucoma and \"",
-      "at": "2026-09-28T03:36:05.389Z"
+      "at": "2026-09-28T03:36:05.389Z",
+      "resolved": true,
+      "resolvedReason": "REBUILD-SIDE, FIXED (not accepted): recorded by an early build (2026-09-28T03:36:05.389Z). The current dist/index.html renders it verbatim (\"Eye Disease Treatment- We are qualified to provide you with ...\"; the \"#\" is <span class=\"hash\">#</span>, the lead is <strong>). The canonical build (audit/build-report.json 2026-09-28T18:00:56.495Z) and both CEC_DIST re-builds of 2026-09-28 (tmp/final/chain/00a-build-a.log, 00b-build-b.log) record 0 failures, and home.mjs reports every unrendered source text through the same fail(). The item survived only because src/build.mjs clears stale items whose stage starts with \"build:\", and home.mjs records \"home:leftover\"."
     },
     {
       "stage": "home:leftover",
       "target": "/",
       "reason": "source text not rendered: \"#HappyPatients\"",
-      "at": "2026-09-28T03:36:05.389Z"
+      "at": "2026-09-28T03:36:05.389Z",
+      "resolved": true,
+      "resolvedReason": "REBUILD-SIDE, FIXED (not accepted): recorded by an early build (2026-09-28T03:36:05.389Z). The current dist/index.html renders it verbatim (\"#HappyPatients...\"; the \"#\" is <span class=\"hash\">#</span>, the lead is <strong>). The canonical build (audit/build-report.json 2026-09-28T18:00:56.495Z) and both CEC_DIST re-builds of 2026-09-28 (tmp/final/chain/00a-build-a.log, 00b-build-b.log) record 0 failures, and home.mjs reports every unrendered source text through the same fail(). The item survived only because src/build.mjs clears stale items whose stage starts with \"build:\", and home.mjs records \"home:leftover\"."
     },
     {
       "stage": "home:leftover",
       "target": "/",
       "reason": "source text not rendered: \"#HeretoHelp\"",
-      "at": "2026-09-28T03:36:05.389Z"
+      "at": "2026-09-28T03:36:05.389Z",
+      "resolved": true,
+      "resolvedReason": "REBUILD-SIDE, FIXED (not accepted): recorded by an early build (2026-09-28T03:36:05.389Z). The current dist/index.html renders it verbatim (\"#HeretoHelp...\"; the \"#\" is <span class=\"hash\">#</span>, the lead is <strong>). The canonical build (audit/build-report.json 2026-09-28T18:00:56.495Z) and both CEC_DIST re-builds of 2026-09-28 (tmp/final/chain/00a-build-a.log, 00b-build-b.log) record 0 failures, and home.mjs reports every unrendered source text through the same fail(). The item survived only because src/build.mjs clears stale items whose stage starts with \"build:\", and home.mjs records \"home:leftover\"."
     }
   ]
 }
