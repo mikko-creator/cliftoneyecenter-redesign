@@ -232,7 +232,7 @@
     if (!from) return;
     var href = from.getAttribute && from.getAttribute('href');
     var links = $$('.mainnav__link[href]');
-    var to = (href && links.filter(function (a) { return a.getAttribute('href') === href; })[0]) || links[0] || d.querySelector('.site-header .logo-plate');
+    var to = (href && links.filter(function (a) { return a.getAttribute('href') === href; })[0]) || links[0] || d.querySelector('.site-header .site-logo');
     if (to) to.focus();
   });
 
@@ -269,7 +269,7 @@
   var aside = d.querySelector('[data-sticky-fit]');
   function stickyFit() {
     if (!aside) return;
-    var fits = desk.matches && aside.offsetHeight + 124 <= window.innerHeight;
+    var fits = desk.matches && aside.offsetHeight + 144 <= window.innerHeight;   // the aside sticks at 124px (below the 92px bar) + 20px air
     aside.classList.toggle('is-sticky', fits);
   }
   if (aside) {
