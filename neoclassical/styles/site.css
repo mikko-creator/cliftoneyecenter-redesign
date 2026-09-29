@@ -10,7 +10,12 @@
 
 /* ---------------------------------------------------------------- 1. base */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: calc(var(--bar-h) + 24px); }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+/* the sticky header's clearance sits on what scrolls into view (anchor targets, keyboard focus in the page), never on
+   the scroller: an html scroll-padding-top also applied to the header's own controls, so focusing the menu button
+   (closing the drawer) or a nav link scrolled the page up by ~430px (QA round 1, RA-1). :where() keeps it at
+   specificity 0, so the explicit scroll-margin-top of headings still wins. */
+:where(main, .page-aside, .site-footer) :where(a[href], button, input, select, textarea, summary, iframe, [tabindex], [id]), :where(main) { scroll-margin-top: calc(var(--bar-h) + 24px); }
 html.is-locked { overflow: hidden; }
 body {
   margin: 0; min-width: 0; background: var(--marble-50); color: var(--ink-700);
@@ -51,6 +56,8 @@ a.btn[href^="tel:"] > .ico:last-child { position: absolute; right: 26px; top: 50
   padding: 10px 18px; background: var(--green-700); color: var(--paper); font-weight: 600; text-decoration: none;
 }
 .skip:focus, .skip:focus-visible { top: 12px; outline-color: var(--green-950); }
+/* the generic a:is(:hover, :focus-visible) green-800 (0,1,1) outranked .skip (0,1,0): paper on green-700 in every state (RA-2) */
+.skip:is(:hover, :focus, :focus-visible) { color: var(--paper); }
 
 .page { position: relative; }
 .wrap { position: relative; z-index: 3; width: min(100% - 2 * var(--gutter), var(--wrap)); margin-inline: auto; }
@@ -121,7 +128,7 @@ main:focus { outline: none; }
 
 /* ---------------------------------------------------------------- 4. base controls */
 .btn {
-  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 30px;
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 10px 30px;   /* padding-block: a label that wraps keeps 6px+ clear of the inner rule (RA-4); one line stays 52px */
   font: 600 var(--n-ui)/1.2 var(--n-face-text); letter-spacing: .04em; text-decoration: none; text-align: center; border: 0; cursor: pointer;
   transition: background-color .35s var(--n-ease), color .35s var(--n-ease);
 }
@@ -163,12 +170,14 @@ main:focus { outline: none; }
 .topbar { position: relative; z-index: 60; background: var(--green-500); color: var(--green-950); }
 .topbar__in { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 56px; padding-block: 6px; }
 .topbar__addr { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--green-950); font-size: var(--n-sm); line-height: 1.35; text-decoration: none; }
-.topbar__addr:hover { color: var(--green-950); }
+.topbar__addr:is(:hover, :focus-visible) { color: var(--green-950); }   /* focus = hover (NG6; RA-3: focus fell to the generic green-800, 3.11:1) */
 .topbar__addr strong { font-weight: 600; padding-bottom: 3px; }
 .topbar__actions { display: flex; gap: 10px; flex: none; }
 .band-pill {
-  display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 0 16px;
-  color: var(--green-950); background: var(--green-500); font-weight: 600; font-size: var(--n-sm); letter-spacing: .02em; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 10px 16px;
+  color: var(--green-950); background: var(--green-500); font-weight: 600; font-size: var(--n-sm); line-height: 1.3; letter-spacing: .02em; text-decoration: none;
+  /* padding-block + line-height 1.3: a label that wraps (the drawer's "Make an Appointment" at 320) keeps its
+     descenders clear of the inner rule at 4px (RA-5); one line stays 44px */
   border: 1px solid var(--green-950); box-shadow: inset 0 0 0 3px var(--green-500), inset 0 0 0 4px var(--rule-ink-band-55);
   transition: background-color var(--n-t-hover) var(--n-ease), color var(--n-t-hover) var(--n-ease), box-shadow var(--n-t-hover) var(--n-ease);
 }
@@ -337,7 +346,9 @@ main:focus { outline: none; }
 .hero__stylobate::after { content: ""; display: block; height: 5px; border-block: 1px solid currentColor; margin-inline: -10px; }
 .hero__stylobate .meander { color: var(--green-500); }
 /* the hero dock (NEO-SPEC 3.4): one markup; plaque list by default (700-1199), portico niches 1200+, phone plates < 700 */
-.dock--portico { grid-column: 3; grid-row: 5 / 8; align-self: start; position: relative; z-index: 3; display: grid; gap: 10px; margin-top: 6px; }
+/* 700-1199 (the plaque list): 22px down from line 2, so the first plaque clears the "EYE CARE CLINIC" ink by 24px+ as
+   the hero's other clearances do (was 6px: 8-10px from the ink, QA round 1 VH8); 1200+ and < 700 set their own */
+.dock--portico { grid-column: 3; grid-row: 5 / 8; align-self: start; position: relative; z-index: 3; display: grid; gap: 10px; margin-top: 22px; }
 
 /* quick-action tiles: the plaque (default look, also aside and row) */
 .dock__tile {
@@ -376,7 +387,9 @@ main:focus { outline: none; }
   .hero__grid > .pilaster { grid-row: 3 / 8; grid-column: 1 / -1; }
   .hero__grid > .pilaster--l { left: -46px; } .hero__grid > .pilaster--r { right: -46px; }
   /* the script: absolutely set at the left end of line 2, rotated -4deg, crossing the lowest part of "EYE" */
-  .hero { --l2w: 7.08; --script-fs: clamp(2.5rem, 1.2rem + 2.4vw, 4.25rem); --script-shift: 1.7em; }
+  /* the script stops growing at 1447px (54px), with the poster lines and the wrap (--n-hero stops at ~1323, the wrap at
+     1352, the bust at 1476): growing on to 68px it ran into the bust's head (0px at 2048) and onto "CARE" (QA VH1) */
+  .hero { --l2w: 7.08; --script-fs: clamp(2.5rem, 1.2rem + 2.4vw, 3.375rem); --script-shift: 1.7em; }
   .hero__line--accent {
     grid-row: 4; grid-column: 1 / -1; justify-self: start; align-self: end; white-space: nowrap;
     font-size: var(--script-fs); rotate: -4deg;
@@ -387,7 +400,10 @@ main:focus { outline: none; }
 @media (min-width: 1024px) and (max-width: 1199.98px) { .hero { --script-fs: 2.5rem; --script-shift: 2em; } }
 /* >= 1200: the portico of four arched niches in the right bay, the lower row straddling the seam */
 @media (min-width: 1200px) {
-  .dock--portico { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px clamp(18px, 1.8vw, 26px); margin: 22px 0 calc(-.5 * var(--niche-h)); padding-inline: 10px; }
+  /* end-aligned in rows 5-7, so the negative margin-bottom IS the lower row's crossing (start-aligned, it only gave
+     back the dock's share of a track the photo sizes: 6-36px, QA VH2). 30% of the niche, not half: at half the lower
+     labels fall to 884-930px at 1440 x 900, outside the first screen NG9 requires (recorded, NEO-SPEC 4.1) */
+  .dock--portico { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px clamp(18px, 1.8vw, 26px); align-self: end; margin: 22px 0 calc(-.3 * var(--niche-h)); padding-inline: 10px; }
   .dock--portico .dock__tile {
     grid-template-columns: 1fr; grid-template-rows: auto 1fr; justify-items: center; align-content: start; gap: 12px;
     height: var(--niche-h); padding: 28px 12px 16px; text-align: center; border-bottom: 6px solid var(--green-700);
@@ -486,6 +502,16 @@ main:focus { outline: none; }
   .news__cut { display: block; position: absolute; z-index: 4; right: clamp(8px, 2vw, 24px); width: var(--hand-w); max-width: none;
     bottom: calc(100% - 12px); translate: 0 29.5%; filter: var(--n-drop-light); pointer-events: none; }
   .news:has(> .news__cut) { margin-top: calc(var(--hand-w) * .524 + 12px); }
+  /* +10px under the frame: the fingertips keep 24px+ from the "What's New!" glyph box (was 17-23px, QA VH7) */
+  .news:has(> .news__cut) { padding-top: calc(clamp(34px, 3vw, 40px) + 10px); }
+}
+/* phones (NG18, QA VH3 / VH6): the promo arch rises 44px (NEO-SPEC 3.7; it rose 58 at every width); the hero-to-Welcome
+   clearance is 32px (48 from 700) and the Welcome/Services seam keeps 24px + the relief's crossing, without the
+   extra .4 x --n-sec; every figure keeps 24px+ of clear ground */
+@media (max-width: 699.98px) {
+  .welcome { padding: calc(var(--n-seam) + 32px) 0 calc(clamp(40px, 5vw, 72px) + 24px); }
+  .promo { margin-top: 44px; }
+  .promo__img { margin-top: -44px; }
 }
 @media (min-width: 700px) and (max-width: 1099.98px) {
   .welcome { --hand-w: clamp(180px, 22vw, 220px); }
@@ -553,6 +579,16 @@ main:focus { outline: none; }
 }
 @media (max-width: 699.98px) { .smile--a, .smile--c { margin-top: 34px; } }
 @media (max-width: 419.98px) { .smiles { gap: 18px; } .smile { width: 76px; } .smile--b { width: 96px; } }
+/* phones (NG18, QA VH3): the paddings on both sides of the Services/reviews seam were sized from the desktop middle
+   medallion. Below 700 the trio is 126px tall (92 + its 34px offset), below 420 110px (76 + 34), centred on the seam,
+   plus the 11px outer rule; the service plates and the arch-mark IV each keep 30px of ground (was 48-70). The relief
+   keeps 28px to the Services pediment (was 40). */
+@media (max-width: 699.98px) {
+  .services, .reviews { --sm-reach: calc(63px + 11px + 30px); }
+  .services { padding-top: calc(var(--rw) * .7432 * .313 + 28px); padding-bottom: var(--sm-reach); }
+  .reviews { padding-top: var(--sm-reach); }
+}
+@media (max-width: 419.98px) { .services, .reviews { --sm-reach: calc(55px + 11px + 30px); } }
 
 /* testimonial stele (home and interior): marble-50 plate, segmental head, inner hairline, green-600 plinth */
 .review {
@@ -613,6 +649,9 @@ main:focus { outline: none; }
   .qa { margin-left: calc(-1 * clamp(24px, 3vw, 48px)); position: relative; z-index: 3; }
 }
 @media (max-width: 699.98px) { .qa__a { padding-left: 4px; } .accordion .qa__a { padding-left: 22px; } }
+/* phones (NG18, QA VH3): the blind niche at 44% of the column, 170px at most (was min(68%, 250px): 239 x 325 at 390),
+   still a 3:4 arch with its ring and patera; the niche-to-plate gap 32px (was 40) */
+@media (max-width: 699.98px) { .help__grid { gap: 32px; } .help__niche { width: min(44%, 170px); } }
 
 /* ---------------------------------------------------------------- 15. HOME VI: the #759b2a designer band */
 .designer { display: flow-root; background: var(--green-500); color: var(--green-950); padding: clamp(48px, 4.4vw, 62px) 0 0; }
@@ -649,7 +688,9 @@ main:focus { outline: none; }
 /* ---------------------------------------------------------------- 16. HOME VII + interior: visit */
 .visit > .wrap, .visit--page { container: visit / inline-size; }
 main > .visit:not(.visit--page) { padding: calc(clamp(84px, 7vw, 104px) + 24px + clamp(40px, 3.4vw, 50px)) 0 var(--n-sec); }
-@media (max-width: 767.98px) { main > .visit:not(.visit--page) { padding-top: calc(150px + 24px + 48px); } }
+/* below 768 the brand plates hang 150px into Visit and their name plaques 24px more; 24px of ground then the numeral
+   VII (was 48: 54px of empty ground at 390, NG18, QA VH3) */
+@media (max-width: 767.98px) { main > .visit:not(.visit--page) { padding-top: calc(150px + 24px + 24px); } }
 .sec-head--quiet { gap: 10px; margin-bottom: clamp(28px, 3vw, 40px); }
 .visit__grid { display: grid; gap: clamp(28px, 3vw, 44px); grid-template-columns: minmax(0, 1fr); align-items: start; }
 /* the map plate (N1): a poster-2 mat around the real keyless embed, a dark ledge under it */
@@ -657,8 +698,14 @@ main > .visit:not(.visit--page) { padding: calc(clamp(84px, 7vw, 104px) + 24px +
 .map-plate::before { content: ""; position: absolute; inset: 6px; border: 1px solid var(--rule-lime-55); pointer-events: none; }
 .map { position: relative; line-height: 0; background: var(--marble-200); }
 .map__frame { display: block; width: 100%; height: 100%; min-height: 280px; border: 0; }
-.map-plate .map { aspect-ratio: 1 / 1.02; }
-.map-plate .map .map__frame { position: absolute; inset: 0; }
+/* the plate's map box keeps the embed's 280px floor itself, so the absolutely placed iframe fills it exactly: the
+   floor on the iframe alone let it hang out of a shorter box (4:3 at 320-768 on the interior pages, 1:1.02 below 334
+   at home) under the ledge, which then covered Google's attribution row (QA VI-1, VH4). The proportion is a padding
+   strut, not aspect-ratio: aspect-ratio would transfer the 280px floor to a min-width (373px at 4:3) and widen the
+   map past its plate. */
+.map-plate .map { min-height: 280px; }
+.map-plate .map::before { content: ""; display: block; padding-top: 102%; }   /* home: 1 / 1.02 */
+.map-plate .map .map__frame { position: absolute; inset: 0; min-height: 0; }
 .map-plate__ledge { position: relative; display: block; height: clamp(72px, 7vw, 96px); margin: 14px -14px -14px; background: var(--poster-2); }
 .map-plate__ledge::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; border-block: 1px solid var(--rule-lime-55); }
 /* the magnifier (T0 colour, N4): mirrored so the lens lies on the dark ledge and the handle crosses the right frame rule */
@@ -666,7 +713,8 @@ main > .visit:not(.visit--page) { padding: calc(clamp(84px, 7vw, 104px) + 24px +
    the ledge's right half and the handle crosses the right frame rule; unmirrored beside the column (the handle crosses
    the left rule, clear of the column) */
 .map-plate { --mag-w: clamp(150px, 13vw, 200px); }
-.visit__magnifier { position: absolute; z-index: 4; right: max(calc(var(--mag-w) * -.2), calc(8px - var(--gutter))); bottom: calc(clamp(72px, 7vw, 96px) / 2 - var(--mag-w) * .7568 * .42);
+/* 4px under the ledge's middle: its top keeps 24px+ from the iframe (Google's attribution row) at every width (was 22) */
+.visit__magnifier { position: absolute; z-index: 4; right: max(calc(var(--mag-w) * -.2), calc(8px - var(--gutter))); bottom: calc(clamp(72px, 7vw, 96px) / 2 - var(--mag-w) * .7568 * .42 - 4px);
   width: var(--mag-w); max-width: none; height: auto; transform: scaleX(-1); filter: var(--n-drop-ledge); pointer-events: none; }
 .visit__column { display: none; }
 /* the NAP stele (N3): round head, inner hairline, green-700 plinth, centred */
@@ -778,6 +826,12 @@ main > .visit:not(.visit--page) { padding: calc(clamp(84px, 7vw, 104px) + 24px +
 .band::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; height: 4px; border-block: 1px solid var(--marble-300); pointer-events: none; }
 .band__grid { display: grid; grid-template-columns: minmax(0, 1fr); align-items: end; column-gap: clamp(28px, 4vw, 64px); padding-inline: 8px; }
 .band__title { position: relative; z-index: 3; min-width: 0; padding-block: 8px; }
+/* a plain band shorter than its min-height: the grid fills the band's content box and centres the title in it, so the
+   title sits mid-frame and the 1024+ pilasters stand as far inside the frame at the top as at the base (as on the
+   scene and photo bands); taller plain bands (dated posts, long titles) are unchanged (QA VI-3: the title hung at
+   the top, 93-134px of dead marble under the divider, pilasters floating) */
+.band--plain { display: flex; flex-direction: column; }
+.band--plain > .band__grid { flex: 1 0 auto; align-items: center; }
 @media (min-width: 700px) { .band__grid:has(> .band__niche) > .band__title, .band__grid:has(> .band__visual) > .band__title { align-self: center; } }
 .band__h { font-family: var(--n-face-display); font-stretch: 75%; font-weight: 500; font-size: var(--n-h1); line-height: var(--lh-h1); letter-spacing: var(--ls-h1); color: var(--poster); max-width: 22ch; text-wrap: balance; }
 .band__divider { justify-content: flex-start; width: min(100%, 300px); margin: 18px 0 0; }
@@ -804,7 +858,8 @@ span.crumbs__link { color: var(--ink-600); font-weight: 400; }
 .band--has-cut { margin-bottom: calc(var(--n-cross) + 24px); }
 @media (max-width: 699.98px) {
   .band--has-cut .band__divider { width: min(50%, 200px); }
-  .band--has-cut:has(.band__cut[src*="bust"]) { --band-pb: calc(clamp(104px, 30vw, 128px) * 1.3214 * .965 - 64px); }
+  /* the bust's head keeps 24px+ under the h1 (was 9-18px at 320/390 on the your-eye-health indexes, QA VI-5): +18px */
+  .band--has-cut:has(.band__cut[src*="bust"]) { --band-pb: calc(clamp(104px, 30vw, 128px) * 1.3214 * .965 - 46px); }
 }
 .band__visual { position: relative; z-index: 2; margin-top: 22px; padding: 6px; background: var(--paper); box-shadow: var(--n-e-hang); }
 .band__visual::before { content: ""; position: absolute; inset: -8px; border: 1px solid var(--marble-400); pointer-events: none; }
@@ -842,10 +897,23 @@ span.crumbs__link { color: var(--ink-600); font-weight: 400; }
   .band__visual { grid-column: 2; grid-row: 1; margin: 0 0 calc(-1 * var(--n-cross) - var(--band-pb)); align-self: end; }
   .band--photo.band--has-cut { margin-bottom: calc(var(--n-cross) + 24px); }
   .band--photo:not(.band--has-cut) { margin-bottom: calc(var(--n-cross) + 24px); }
-  .band__cut--photo { right: auto; left: calc(50% + 12px); bottom: calc(-1 * var(--n-cross) - var(--band-pb)); --cw: clamp(140px, 13vw, 190px); }
+  /* the photo band's cut-out stands BESIDE the visual, never on the photo (QA VI-2: at left: 50% + 12px it lay on the
+     picture, the hand at the woman's jaw at 1440 and on her shoulder at 1024; NEO-SPEC 4.3, 7.1). Placed in the title
+     column's grid area (an absolutely placed grid child takes its area as containing block; both lines explicit, an auto end line would be the padding edge): its right side 24px
+     short of the visual's paper (16px from the outer rule), its opaque centre on the band's bottom edge, so it
+     straddles the edge, clears the divider by 24px+ and the first sheet by 24px+. --cw x .7429 is the image height;
+     the opaque part spans 16.3-70.4% of the hand's height, 17.1-79.3% of the relief's. */
+  .band__grid > .band__cut--photo { grid-column: 1 / 2; grid-row: 1 / 2; left: auto; right: calc(24px - clamp(28px, 4vw, 64px)); --cw: clamp(124px, 12vw, 180px); bottom: calc(-1 * var(--band-pb) - var(--cw) * .4); }
+  .band__grid > .band__cut--photo[src*="hand-spectacles"] { bottom: calc(-1 * var(--band-pb) - var(--cw) * .421); }
+  .band__grid > .band__cut--photo[src*="eye-relief"] { bottom: calc(-1 * var(--band-pb) - var(--cw) * .385); }
 }
 @media (max-width: 1023.98px) {
-  .band__grid:has(> .band__visual) .band__cut--photo { right: 8px; bottom: -24px; --cw: clamp(96px, 20vw, 140px); }
+  /* below 1024 the visual spans the column under the title: the cut-out hangs under the photo's bottom-right corner,
+     its opaque top 10px below the paper (2px under the outer rule), crossing the band's bottom edge and keeping 24px+
+     from the first sheet (QA VI-2: it lay on the photo's corner). Its containing block is the visual's grid row. */
+  .band__grid > .band__cut--photo { grid-column: 1 / 2; grid-row: 2 / 3; right: 8px; bottom: auto; --cw: clamp(96px, 16vw, 120px); top: calc(100% + 10px - var(--cw) * .7429 * .163); }
+  .band__grid > .band__cut--photo[src*="eye-relief"] { bottom: auto; top: calc(100% + 10px - var(--cw) * .7429 * .171); }
+  .band__grid > .band__cut--photo[src*="hand-spectacles"] { bottom: auto; }
 }
 
 /* ---------------------------------------------------------------- 19. interior frame, aside, rail */
@@ -969,9 +1037,15 @@ main > .rail { margin-top: var(--s-6); }
 figcaption { margin-top: 10px; font-size: var(--n-sm); line-height: 1.45; color: var(--ink-600); }
 .fig--photo, .fig--feature { position: relative; padding: 6px; background: var(--paper); box-shadow: var(--n-e-plate); }
 .fig--photo::before, .fig--feature::before { content: ""; position: absolute; inset: -8px; border: 1px solid var(--marble-400); pointer-events: none; }
-.fig--photo img { width: 100%; }
+/* never upscaled (NEO-SPEC 6.4, 6.5): the frame fits the photo at its own width (the img's width attribute), up to the
+   column plus the one-side break-out, as glass does with fit-content (QA VI-4: `img { width: 100% }` stretched 500
+   and 640px photos to 803-915px). The svc-* feature panels stay the full width of the column (3.15). */
+.fig--photo:not(.fig--feature) { width: fit-content; max-width: 100%; }
+.fig--feature img { width: 100%; }
 .sheet .prose > .fig--photo.fig--start { margin-left: calc(-1 * clamp(8px, 2.4vw, 36px)); }
 .sheet .prose > .fig--photo.fig--end { margin-right: calc(-1 * clamp(8px, 2.4vw, 36px)); }
+.sheet .prose > .fig--photo.fig--end:not(.fig--feature) { margin-left: auto; }
+.sheet .prose > .fig--photo:not(.fig--feature):is(.fig--start, .fig--end) { max-width: calc(100% + clamp(8px, 2.4vw, 36px)); }
 .fig--plate { padding: 12px; width: fit-content; max-width: 100%; }
 .fig--plate figcaption { text-align: center; }
 @media (min-width: 900px) { .prose > .fig--plate { float: right; width: auto; max-width: 44%; margin: .3em 0 1em 1.6em; } .prose > :is(h2, h3, .table-scroll, .fig-grid, .embed, .fig--photo, .logo-grid) { clear: both; } .prose > .fig--plate + :is(h2, h3) { clear: none; } .prose > .fig--plate:last-child { float: none; width: fit-content; max-width: 100%; margin: .9em 0 0; } }
@@ -983,6 +1057,7 @@ figcaption { margin-top: 10px; font-size: var(--n-sm); line-height: 1.45; color:
 .fig-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 24px; margin: 1.4em 0; align-items: start; }
 .fig-grid > .fig { margin: 0; float: none; width: auto; max-width: 100%; }
 .fig-grid > .fig--photo { margin: 0 !important; }
+.fig-grid > .fig--photo:not(.fig--feature) { width: fit-content; justify-self: center; }   /* a cell wider than the photo never stretches it (6.5) */
 @media (min-width: 700px) { .fig-grid[data-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fig-grid[data-count="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); } .fig-grid[data-count="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 /* logo walls, payment row, QR plate */
 .logo-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
@@ -1033,7 +1108,10 @@ figcaption { margin-top: 10px; font-size: var(--n-sm); line-height: 1.45; color:
 .team-card__photo img { display: block; width: 100%; max-width: 225px; }
 .team-card__name { font-family: var(--n-face-display); font-stretch: 75%; font-weight: 500; font-size: var(--n-h2-prose); line-height: var(--lh-h2); color: var(--slate-900); }
 .doc-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
-.doc-card { padding: 4px 18px; }
+/* the source's " (pdf)" sits beside the label, centred on the 56px link row as in glass (QA VI-6: in a plain list item
+   it took the inline-flex link's baseline, the icon's bottom edge, and dropped 9px below the label) */
+.doc-card { display: flex; align-items: center; column-gap: .3em; padding: 4px 18px; }
+.doc-card > .doc-card__link { min-width: 0; }
 .doc-card__link { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; min-height: 56px; color: var(--ink-900); font-weight: 600; font-size: var(--n-ui); text-decoration: none; }
 .doc-card__link .ico { color: var(--green-700); width: 24px; height: 24px; }
 .doc-card__link:is(:hover, :focus-visible) { color: var(--green-800); }
@@ -1053,7 +1131,7 @@ figcaption { margin-top: 10px; font-size: var(--n-sm); line-height: 1.45; color:
 .rev-grid > li > .review { flex: 1 1 auto; }
 .rev-grid .review__by { margin-top: auto; }
 .sheet > .review { box-shadow: none; }
-.visit--page .map-plate .map { aspect-ratio: 4 / 3; }
+.visit--page .map-plate .map::before { padding-top: 75%; }   /* 4:3 (the padding strut of section 16) */
 
 /* ---------------------------------------------------------------- 23. forms and the honest notice */
 .sheet--form { padding: clamp(22px, 1rem + 2vw, 44px); }
