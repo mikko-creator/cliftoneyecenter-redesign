@@ -11,20 +11,23 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const arg = (k, d) => { const i = process.argv.indexOf('--' + k); return i > 0 ? process.argv[i + 1] : d; };
-const DIST = path.join(ROOT, 'dist');
+// --dist dist-neo: preview another theme's build (default dist/, the glass design)
+const DIST = path.resolve(ROOT, arg('dist', 'dist'));
 const OUT = path.resolve(ROOT, arg('out', 'preview'));
+// --keep a,b: entries of --out that survive the wipe besides .git (e.g. the glass preview keeps its neoclassical/ subfolder)
+const KEEP = new Set(['.git', ...String(arg('keep', '') || '').split(',').map((s) => s.trim()).filter(Boolean)]);
 if (OUT === ROOT || OUT === DIST || DIST.startsWith(OUT + path.sep) || OUT.startsWith(DIST + path.sep)) throw new Error('--out must not be the project, dist/ or contain/sit inside dist/: ' + OUT);
 if (!fs.existsSync(path.join(DIST, 'index.html'))) throw new Error('no dist/index.html - run node src/build.mjs first');
 
 fs.mkdirSync(OUT, { recursive: true });
-for (const e of fs.readdirSync(OUT)) if (e !== '.git') fs.rmSync(path.join(OUT, e), { recursive: true, force: true });
+for (const e of fs.readdirSync(OUT)) if (!KEEP.has(e)) fs.rmSync(path.join(OUT, e), { recursive: true, force: true });
 
 const ROBOTS = '<meta name="robots" content="noindex, nofollow">';
 // --prefix /<repo>: a Pages PROJECT site lives under /<repo>/. The pages are page-relative and need nothing, but
 // 404.html is root-relative by design (the host serves it at any missing path), so its "/x" becomes "/<repo>/x".
 // The BAD check below then runs on the rewritten text: only references outside the prefix count.
 const PREFIX = (arg('prefix', '') || '').replace(/\/+$/, '');
-if (PREFIX && !/^\/[A-Za-z0-9._-]+$/.test(PREFIX)) throw new Error('--prefix must look like /repo-name: ' + PREFIX);
+if (PREFIX && !/^(\/[A-Za-z0-9._-]+)+$/.test(PREFIX)) throw new Error('--prefix must look like /repo-name or /repo-name/sub: ' + PREFIX);
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const prefixed = (t) => !PREFIX ? t : t
   .replace(/(\b(?:href|src|action|poster|data-[a-z-]+)\s*=\s*")\/(?!\/)/gi, (m, a) => a + PREFIX + '/')
