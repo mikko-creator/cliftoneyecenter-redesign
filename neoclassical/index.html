@@ -20,7 +20,6 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="fonts/NotoSerifDisplay-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/SourceSerif4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="img/girl-smiling-brown-hair-1280x853.f515b43d5d.webp" as="image" fetchpriority="high">
 <script>document.documentElement.classList.add('js');/* set before first paint so nothing flashes; removed again if site.js never runs */(function(d){try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver" in window){d.classList.add("js-motion");setTimeout(function(){if(!window.__siteReady)d.classList.remove("js-motion")},4000)}}catch(e){}})(document.documentElement);</script>
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="styles/tokens.css">
@@ -77,15 +76,14 @@
 <span class="hero__line hero__line--2">Eye Care Clinic</span>
 <span class="hero__line hero__line--accent">We Know You!</span>
 </p>
-<figure class="hero__photo"><span class="hero__photo-in" data-reveal="settle"><img src="img/girl-smiling-brown-hair-1280x853.f515b43d5d.webp" alt="" width="1280" height="853" fetchpriority="high" decoding="async"></span></figure>
-<img class="hero__cut" src="img/generated/neo-cut-bust-glasses.cb0139ff14.webp" alt="" width="760" height="1004" decoding="async">
+<img class="hero__cut" src="img/generated/neo-cut-bust-glasses.cb0139ff14.webp" alt="" width="760" height="1004" fetchpriority="high" decoding="async">
 <span class="hero__pedestal" aria-hidden="true"></span>
 <div class="hero__stylobate" aria-hidden="true"><span class="meander"></span></div>
 <nav class="dock dock--portico" aria-label="Quick actions">
-<a class="dock__tile" href="contact-us/contact-form/index.html"><span class="dock__icon"><svg class="dock__ring" aria-hidden="true" focusable="false"><use href="#o-badge"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg></span><span class="dock__label">Email Us</span><span class="dock__go" aria-hidden="true"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span></a>
-<a class="dock__tile dock__tile--primary" href="contact-us/appointment-request-form/index.html" target="_blank" rel="noopener"><span class="dock__icon"><svg class="dock__ring" aria-hidden="true" focusable="false"><use href="#o-badge"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg></span><span class="dock__label">Schedule An Appointment</span><span class="dock__go" aria-hidden="true"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span></a>
-<a class="dock__tile" href="contact-us/patient-forms/index.html"><span class="dock__icon"><svg class="dock__ring" aria-hidden="true" focusable="false"><use href="#o-badge"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-form"/></svg></span><span class="dock__label">Patient Forms</span><span class="dock__go" aria-hidden="true"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span></a>
-<a class="dock__tile" href="order-contacts-online/index.html" target="_blank" rel="noopener"><span class="dock__icon"><svg class="dock__ring" aria-hidden="true" focusable="false"><use href="#o-badge"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cart"/></svg></span><span class="dock__label">Order Contacts Online</span><span class="dock__go" aria-hidden="true"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span></a>
+<a class="dock__tile dock__tile--l" href="contact-us/contact-form/index.html"><span class="dock__icon"><svg class="dock__ring" aria-hidden="true" focusable="false"><use href="#o-badge"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg></span><span class="dock__label">Email Us</span><span class="dock__go" aria-hidden="true"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span></a>
+<a class="dock__tile dock__tile--l dock__tile--primary" href="contact-us/appointment-request-form/index.html" target="_blank" rel="noopener"><span class="dock__icon"><svg class="dock__ring" aria-hidden="true" focusable="false"><use href="#o-badge"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg></span><span class="dock__label">Schedule An Appointment</span><span class="dock__go" aria-hidden="true"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span></a>
+<a class="dock__tile dock__tile--r" href="contact-us/patient-forms/index.html"><span class="dock__icon"><svg class="dock__ring" aria-hidden="true" focusable="false"><use href="#o-badge"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-form"/></svg></span><span class="dock__label">Patient Forms</span><span class="dock__go" aria-hidden="true"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span></a>
+<a class="dock__tile dock__tile--r" href="order-contacts-online/index.html" target="_blank" rel="noopener"><span class="dock__icon"><svg class="dock__ring" aria-hidden="true" focusable="false"><use href="#o-badge"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cart"/></svg></span><span class="dock__label">Order Contacts Online</span><span class="dock__go" aria-hidden="true"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span></a>
 </nav>
 </div>
 </section>
@@ -192,7 +190,7 @@
 <h2 class="tag-title help__tag" id="help-h"><span class="hash">#</span>HeretoHelp</h2>
 </div>
 <div class="help__grid">
-<span class="help__niche" aria-hidden="true"><svg class="help__ring" aria-hidden="true" focusable="false"><use href="#o-badge"/></svg><svg class="help__patera" aria-hidden="true" focusable="false"><use href="#o-rosette"/></svg></span>
+<figure class="help__portrait" data-reveal="settle"><span class="help__portrait-in"><img src="img/deana-clifton-portrait.d95928dfed.webp" alt="Dr. Deana Clifton, OD" width="720" height="1271" loading="lazy" decoding="async"></span></figure>
 <div class="qa plate" data-reveal="up">
 <h2 class="qa__h">Ask Dr. Deana Clifton a Question...</h2>
 <div class="qa__list" data-accordion>
