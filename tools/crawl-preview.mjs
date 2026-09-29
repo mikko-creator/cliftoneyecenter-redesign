@@ -66,7 +66,8 @@ const cssRefs = [];
 await pool(refs, async (u) => {
   const r = await get(u);
   if (r.status !== 200) bad.push([r.status, u, seenRefs.get(u)]);
-  else if (/text\/css/.test(r.ct) && r.body) for (const m of r.body.replace(/url\(\s*(['"])data:[\s\S]*?\1\s*\)/g, '').matchAll(/url\(\s*['"]?([^'")]+)/g)) if (!m[1].startsWith('data:')) cssRefs.push([strip(new URL(m[1], r.final).href), u]);
+  // comments first: browsers never fetch a url() written inside /* */ (the neo fonts.css header names "url(<file>)")
+  else if (/text\/css/.test(r.ct) && r.body) for (const m of r.body.replace(/\/\*[\s\S]*?\*\//g, '').replace(/url\(\s*(['"])data:[\s\S]*?\1\s*\)/g, '').matchAll(/url\(\s*['"]?([^'")]+)/g)) if (!m[1].startsWith('data:')) cssRefs.push([strip(new URL(m[1], r.final).href), u]);
 });
 await pool(cssRefs, async ([u, from]) => {
   const x = new URL(u);

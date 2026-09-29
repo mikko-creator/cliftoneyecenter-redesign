@@ -374,8 +374,9 @@ never emit them.
 
 ### 3.0 Base controls
 
-- **Buttons** `.btn` (square, `min-height: 52px`, padding `0 30px`, text 600 `--n-ui`, `.04em`): an inner fine rule
-  (`::before` at `inset: 3px`, 1px `currentColor` at .55). Primary: `green-700` fill, `paper` text; hover and focus:
+- **Buttons** `.btn` (square, `min-height: 52px`, padding `10px 30px`, text 600 `--n-ui`, `.04em`): an inner fine rule
+  (`::before` at `inset: 3px`, 1px `currentColor` at .55). The 10px block padding keeps a label that wraps (the CTA
+  band's long labels at 320-380px) 6px or more clear of the inner rule; a one-line button stays 52px (QA round 1 RA-4). Primary: `green-700` fill, `paper` text; hover and focus:
   `green-800`, the inner rule insets to 5px, `translate: 0 -2px` (movement only under `hover: hover` and
   no-preference). Alert: `paper` fill, `alert` text; hover `marble-100`. Invert (on green-800 / green-700 / the band):
   `paper` fill, `green-800` text. Temple 246-258.
@@ -395,13 +396,22 @@ never emit them.
 - **Phone numbers never break:** every visible "318-550-5815" in a text node is wrapped in `span.nw`
   (`white-space: nowrap`, gallery 181), by `T.page` as a final pass over the page HTML: text nodes only, never inside a
   tag or attribute, text unchanged (ledger N02). `a[href^="tel:"]` also gets `white-space: nowrap`.
-- Skip link `a.skip` to `#main` (the lab's `#content` is the defect; COMPONENTS A.3).
+- Skip link `a.skip` to `#main` (the lab's `#content` is the defect; COMPONENTS A.3): `paper` on `green-700` (6.67) in
+  every state, hover and focus included (QA round 1 RA-2: the generic link hover/focus colour had made it 1.51).
+- **The sticky header's clearance** is a `scroll-margin-top: calc(var(--bar-h) + 24px)` on what scrolls into view
+  inside `main`, the aside and the footer (at specificity 0, so the headings' own 120px wins), never an `html`
+  `scroll-padding-top`: that also applied to the header's own controls, so focusing the menu button (closing the
+  drawer) or a nav link scrolled the page up about 430px (QA round 1 RA-1). Keyboard focus and anchor targets still
+  land below the header.
 
 ### 3.1 Top bar (COMPONENTS B.1, kept)
 
 `#759b2a` strip (`green-500`), `green-950` text (5.29), `min-height: 56px`. The address link (engraved underline on its
 `strong`). The two `a.band-pill` become **ruled plaques**: 44px tall, 1px `green-950` border plus an inner 3px band
-and a 1px rule (`box-shadow: inset 0 0 0 3px var(--green-500), inset 0 0 0 4px rgb(20 31 0 / .55)`), icon + label.
+and a 1px rule (`box-shadow: inset 0 0 0 3px var(--green-500), inset 0 0 0 4px rgb(20 31 0 / .55)`), icon + label;
+padding `10px 16px`, line-height 1.3, so a label that wraps (the drawer's "Make an Appointment" at 320px) keeps its
+descenders clear of the inner rule (QA round 1 RA-5). The address link's hover colour (`green-950`) has an identical
+`:focus-visible` partner (QA round 1 RA-3; the focus state had fallen to `green-800`, 3.11).
 Hover and focus: `green-950` fill, `green-100` text, the inner rule in `green-300` (temple 152-158). Focus ring
 `--focus-on-band`. Below 720px only `band-pill--call` shows, centred (L02); below 1024px `band-pill--appt` hides.
 Not sticky, not a landmark.
@@ -476,7 +486,7 @@ LCP photo) and **no parallax** (it stands on the pedestal).
 
 | width | row 1-2 | cella (row 3): left bay / centre / right bay | seam |
 |---|---|---|---|
-| **1200+** | pediment (82% wide, numeral I), cornice, pilasters, two poster lines at `--n-hero` | **photo arch** (T1, 3:4, `--photo-w: clamp(260px, 21vw, 300px)`, face kept inside with `object-position: 78% 18%`, re-checked by NG5) / **bust** (`--bust-w: clamp(250px, 21vw, 310px)`) on the pedestal / **2x2 portico of arched niches** (3.4) | the lower niche row straddles the seam; the photo's plinth and the pedestal cross it by `--n-seam` (115px at 1440); the meander stylobate passes behind all three |
+| **1200+** | pediment (82% wide, numeral I), cornice, pilasters, two poster lines at `--n-hero` | **photo arch** (T1, 3:4, `--photo-w: clamp(260px, 21vw, 300px)`, face kept inside with `object-position: 78% 18%`, re-checked by NG5) / **bust** (`--bust-w: clamp(250px, 21vw, 310px)`) on the pedestal / **2x2 portico of arched niches** (3.4) | the lower niche row straddles the seam by 30% of its height (4.1); the photo's plinth and the pedestal cross it by `--n-seam` (115px at 1440); the meander stylobate passes behind all three |
 | **1024-1199** | as 1200+ | photo arch / bust / **plaque list** (4 ruled plaques, 3.4) | photo plinth and pedestal cross by `--n-seam` (82px at 1024) |
 | **700-1023** | pediment, cornice (no pilasters), lines at `--n-hero` | photo arch / bust (`--bust-w: clamp(200px, 26vw, 250px)`) / plaque list | as 1024 (61px at 768) |
 | **< 700** | small pediment without its numeral (temple 423), lines at `--n-hero-phone` (they wrap to 4: YOUR / COMMUNITY / EYE CARE / CLINIC) | two columns: **script left, bust right** (`--bust-w: min(48vw, 200px)`), its crown breaking the last line; then the **2x2 quick-action plates** over the bust's base (3.4); then the **photo arch** centred, `width: min(62vw, 260px)` | the photo arch crosses the seam by 40px |
@@ -487,7 +497,10 @@ capitals by CSS only), `green-400` on the poster ground (4.90), with a
 draws; `-webkit-text-stroke` plus `paint-order` is not used (its WebKit support on HTML text is unverified, and a
 stroke without `paint-order` eats the glyph). From 1024px it is absolutely placed at the left end of line 2,
 `rotate: -4deg`, crossing the lowest part of "EYE": **2 letters at most, 35% of cap height at most**, target 5-20%
-(poster measured 2-10%), and it ends 24px or more before the bust's head. At 700-1023 it sits under line 2 at the left
+(poster measured 2-10%), and it ends 24px or more before the bust's head. From 1024px its size is
+`clamp(2.5rem, 1.2rem + 2.4vw, 3.375rem)` (2.5rem at 1024-1199): it stops growing at 1447px, with the poster lines,
+the wrap and the bust; growing on to 4.25rem it reached the bust's head from about 1750px and crossed "CARE" (QA
+round 1 VH1). At 700-1023 it sits under line 2 at the left
 and touches no letter; below 700 it stacks in the left column beside the bust (2-3 lines). The photo arch in the left
 bay starts at least 16px below the script's glyph box at every width (text never on a photo).
 
@@ -527,8 +540,8 @@ span.dock__label`.
 
 | variant | where | shape | states |
 |---|---|---|---|
-| **portico niche** | hero 1200+, `nav.dock.dock--portico` | round-headed niche (`--r-arch`), `marble-50` fill, 1px `green-600` border with a 6px `green-700` plinth, outer rule at -9px and keystone (`green-500`); ring 64px, label `ink-900` 600 `--n-ui`; height `clamp(150px, 12vw, 172px)`; primary: `green-700` fill, `paper` text and ring | hover and focus: arch lift -6px, the outer rule grows 9 to 13px, the keystone rises 4px, the ring turns 45deg, fill `paper` (primary `green-800`); straddling tiles use the two-tone ring (temple 368-397) |
-| **plaque list** | hero 700-1199 | ruled plaques (gallery 311-326 shape): 64px, square, `marble-50`, inner double rule, ring 44px + label + arrow | lift -4px, arrow +4px, rule `green-700` |
+| **portico niche** | hero 1200+, `nav.dock.dock--portico` | round-headed niche (`--r-arch`), `marble-50` fill, 1px `green-600` border with a 6px `green-700` plinth, outer rule at -9px and keystone (`green-500`); ring 64px, label `ink-900` 600 `--n-ui`; height `clamp(150px, 12vw, 172px)`; the dock is end-aligned in the cella so the lower row crosses the seam by 30% of the niche height (4.1); primary: `green-700` fill, `paper` text and ring | hover and focus: arch lift -6px, the outer rule grows 9 to 13px, the keystone rises 4px, the ring turns 45deg, fill `paper` (primary `green-800`); straddling tiles use the two-tone ring (temple 368-397) |
+| **plaque list** | hero 700-1199 | ruled plaques (gallery 311-326 shape): 64px, square, `marble-50`, inner double rule, ring 44px + label + arrow; the first plaque 22px under line 2, 24px or more from its ink (QA round 1 VH8) | lift -4px, arrow +4px, rule `green-700` |
 | **phone plates** | hero < 700 | 2 x 2 grid of `marble-50` plates, 68px or more tall, 1px `green-600` border, ring 44px left of the label, **overlapping the bust's base by 24-40px** (N3 over N2; poster 150-160 composition) | fill `paper`; primary `green-800`; focus ring `green-700` |
 | **aside** | `nav.dock.dock--aside` (interior) | the plaque list, full aside width | as the plaque list |
 | **row** | `div.dock.dock--row` (9 builder pages) | a 2 or 4 column row of plaques, each with `data-reveal="up"` | as the plaque list |
@@ -584,7 +597,9 @@ relief, crossing the seam by `clamp(40px, 5vw, 72px)` up and down; `data-depth="
 - **What's New** `section.news` (plate): `h2.news__h` display 75% with a 64px double rule; `h3.news__title` link;
   `p.news__date.date-pill` in meta caps with the clock icon; excerpt; `a.more`. **New N4 figure (graft from gallery):**
   `img.news__cut` (`neo-cut-hand-spectacles`, T3, `width: clamp(200px, 19vw, 260px)`, `alt=""`), its underside
-  resting **12px into the plate's top frame**, 24px or more from any text (gallery 383-390); 560px and wider only.
+  resting **12px into the plate's top frame**, 24px or more from any text (gallery 383-390); 560px and wider only. With
+  the hand the plate's padding-top grows by 10px, so the fingertips keep 24px or more from the "What's New!" glyph box
+  (QA round 1 VH7: 17-23px).
 - **Practice copy** `div.welcome__main` (plate, `max-width` `--n-measure` per child): `p.lead` with a display drop cap
   (`::first-letter`, `green-700`, temple 446-449); paragraphs; `ul.feature-list` with the **`<strong>` lead terms
   restored** (L07; the lab dropped them) and 18px `o-rosette` markers (`green-600`); `h3.offer-h` (`slate-700`);
@@ -622,7 +637,8 @@ or 1 columns, `minmax(300px, 1fr)`); `/testimonial/*` renders one stele inside t
   `span.help__niche` (new, aria-hidden), a **blind niche**: a 3:4 arch (`width: min(100%, 300px)`), outer rule and
   keystone `green-600`, filled with `--n-ground-dark`, holding a large carved patera (`o-rosette` at 46% of the niche
   width in `marble-50` at .22, inside an `o-badge` ring in `green-400` at .35). The Q&A plate **overlaps the niche's right rule by
-  `clamp(24px, 3vw, 48px)`** (N3 over N1). Below 1024: the niche centred above the plate at `min(68%, 250px)`.
+  `clamp(24px, 3vw, 48px)`** (N3 over N1). Below 1024: the niche centred above the plate at `min(68%, 250px)`; below 700 at `min(44%, 170px)` with a 32px gap
+  to the plate (NG18, QA round 1 VH3).
   **No generated image in this section** (its text contains "Ask Dr." and "Dr. Deana Clifton", 6.1; operator option
   7.6 #1 restores the lab's relief niche).
 - **Q&A plate** `div.qa` (paper, inset hairline): `h2.qa__h` display 75% `slate-900`; `div.qa__list[data-accordion]`
@@ -653,10 +669,15 @@ rule appears around it (`::before` inset -6px), shadow `--n-e-lift`; focus ring 
   .55)` hairline around the **real keyless embed** (`div.map > iframe.map__frame`, `title="Google map"`, L22; the
   BUILD-DECISIONS #10 link fallback if it does not resolve). No "Map placeholder" text or drawn map ever ships. The
   map is **rectangular** (an arch would clip Google's top controls). Under it, `span.map-plate__ledge` (aria-hidden), a
-  `poster-2` ledge `clamp(72px, 7vw, 96px)` tall with a double rule on top.
+  `poster-2` ledge `clamp(72px, 7vw, 96px)` tall with a double rule on top. The map box keeps the embed's 280px floor
+  and takes its proportion (1:1.02 home, 4:3 on `visit--page`) from a padding strut, never from `aspect-ratio` plus
+  `min-height` (which transfers the floor to a min-width and widens the box past its plate): the iframe fills the box
+  exactly at every width and the 14px mat shows on all four sides (QA round 1 VH4, VI-1: the iframe had hung 15-85px
+  under the ledge, which covered Google's attribution row).
 - **Magnifier** `img.visit__magnifier` (`neo-cut-magnifier`, T0 colour, resized, `alt=""`, N4): it lies on the ledge,
   its **lens over the dark ledge only** (IMAGE-PLAN-NEO 3.2: never over a photograph or white), the handle crossing
-  the mat's right frame rule. **It never overlaps the iframe** (Google attribution and controls stay clear).
+  the mat's right frame rule. **It never overlaps the iframe** (Google attribution and controls stay clear): its lens sits 4px under the ledge's
+  middle, so its top keeps 24px or more from the iframe at every width (QA round 1 VH4).
   `data-depth="-0.04" data-depth-max="12"`.
 - **1100+ three planes (graft from gallery):** grid `minmax(0, 1fr) minmax(0, 1.08fr) minmax(0, 1fr)`: the map plate
   (N1), then `img.visit__column` (`neo-cut-column`, T3, `width: clamp(150px, 16vw, 240px)`, `alt=""`, N2) standing in
@@ -664,7 +685,7 @@ rule appears around it (`::before` inset -6px), shadow `--n-e-lift`; focus ring 
   overlapping its right side by 24-40px; then the emergency tile. The column carries a contact shadow on the ground
   (2.6) and `--n-drop-light`.
 - **NAP stele** `div.nap` (+ `nap--stele`): paper plate with the round head (`--r-arch`), inner hairline, 6px
-  `green-700` plinth, centred: `p.nap__title` link (display 75% `slate-900`), `p.nap__addr`, `p.nap__phone` ("Phone:"
+  `green-700` plinth, centred: `p.nap__title` link (display 75% `slate-900`), `p.nap__addr` ("Suite 302" one unbreakable run, QA round 1 VH9), `p.nap__phone` ("Phone:"
   label strong, the number a `green-800` link in `span.nw`), `dl.hours[data-hours]` (7 rows, `data-day` 1-6 then 0,
   `hours__row` with `dt` 600 `ink-900` and `dd` `ink-700` tabular figures, 1px `marble-200` rules, a 4px double rule
   on top; **today's row** `is-today` gets a `green-100` background with `ink-900` text, L16). From 1100:
@@ -736,14 +757,22 @@ home):
   `band__scene` is above the fold: **no arch reveal** on it.
 - **700-1023:** the niche at `clamp(160px, 22vw, 200px)` to the right of the title column. **Below 700:** no niche
   and no scene; the cut-out alone (`width: clamp(104px, 30vw, 128px)`) sits at the band's bottom-right, crossing the
-  edge by 24px, and the band's padding-bottom reserves its height so it never meets the h1 (NG5).
+  edge by 24px, and the band's padding-bottom reserves its height so it never meets the h1 (NG5); for the bust
+  it reserves 18px more, so the head keeps 24px or more from the h1 (QA round 1 VI-5: 9-18px at 320/390).
 - **`band--photo`** (the 8 source header photos, COMPONENTS C.2): `figure.band__visual` in a fine double frame (T1,
   square, `max-height: 320px`, `band__visual--left|right` focus as the build passes it; `/designer-frames/` brand
   photo T0) in the right column from 1024px, crossing the band edge by `--n-cross`; below 1024 under the title.
-  `fetchpriority="high"` (the build preloads it).
+  `fetchpriority="high"` (the build preloads it). Its cut-out (`band__cut--photo`) stands **beside** the visual, never
+  on the photograph: from 1024px in the title column's grid area, its right side 24px short of the visual's paper,
+  its opaque centre on the band's bottom edge (width `clamp(124px, 12vw, 180px)`); below 1024 under the photo's
+  bottom-right corner, its opaque top 10px below the paper, crossing the band edge (width `clamp(96px, 16vw, 120px)`).
+  It keeps 24px or more from the divider, the first sheet and any face (QA round 1 VI-2: it lay on the photo, the hand
+  at the woman's jaw at 1440).
 - **`band--plain`** without a cut-out: title only, no niche. Blog posts add `p.date-pill` (meta caps with the clock
   icon, `green-700`) after the h1 (C.3).
-- Min-height 220px below 768px, 300px from 1024px (plus the crossing margin).
+- Min-height 220px below 768px, 300px from 1024px (plus the crossing margin). A `band--plain` shorter than that
+  centres its title in the frame (the grid fills the band's content box), so the 1024+ pilasters stand as far inside
+  the frame at the base as at the top, as on the scene and photo bands (QA round 1 VI-3).
 
 ### 3.14 Page frame, aside, section rail (COMPONENTS A.3, C.1, B.15, B.17, kept markup)
 
@@ -784,7 +813,8 @@ Inside `div.prose` (every child `max-width: var(--n-measure)` except figures, ta
   (the page never does), focus ring on the region; `table` full width, `th` 600 `ink-900` on `marble-100` with a 4px
   double `marble-400` rule under `thead`, cells `--n-sm`-`--n-base` padding 10px 12px, 1px `marble-300` row rules.
 - **Figures** (role class from the build, D.3): `fig--photo` (T1) in a fine double frame (1px `marble-400` at -8px,
-  square), breaking out of the sheet padding on one side by `clamp(8px, 2.4vw, 36px)` (`fig--start` / `fig--end`
+  square) at the photo's own width, never stretched (`fit-content`, up to the column plus the one-side break-out;
+  QA round 1 VI-4: 500/640px photos had been stretched to 803-915px), breaking out of the sheet padding on one side by `clamp(8px, 2.4vw, 36px)` (`fig--start` / `fig--end`
   alternate), `--n-e-plate`, no rotation; `fig--feature` (the `svc-*` panels) the same, wider. `fig--plate`: paper
   plate with padding 12px and the inset hairline, floated right at 44% from 900px. `fig--portrait`: arch mask; **Dr.
   Clifton's portrait T0, 225 CSS px at most, never protrudes, never on the dark ground, never in a medallion or
@@ -857,7 +887,8 @@ focus ring `focus-on-dark`. No ornaments (interior budget).
 most, never protrudes, no laurel, never on the dark ground); `h2.team-card__name` display 75% `--n-h2-prose`
 `slate-900`; `a.more`. The page's tel button (`btn--primary`) and the emergency `div.sos` follow in source order. No
 generated image on these pages (the build excludes them: "Dr. Clifton"). `ul.doc-cards`: `li.doc-card` plates, the
-`doc` icon, the label 600 `--n-ui` with the engraved underline, 56px tall.
+`doc` icon, the label 600 `--n-ui` with the engraved underline, 56px tall; the source's " (pdf)" beside it, centred on
+the row (the card is a flex row, as glass; QA round 1 VI-6: it had dropped 9px below the label).
 
 ### 3.23 404 (COMPONENTS F.7, kept)
 
@@ -933,9 +964,9 @@ protrusion:** every `data-depth` element carries `data-depth-max` of 40% or less
 | script (N1 accent) over line 2 | "EYE" | 0 letters | 0 letters | ≤ 2 letters, ≤ 35% depth | same | text-shadow halo; ≥ 24px before the bust's head |
 | photo arch (T1, N1) | hero seam | 40px | 61px | 82px | 115px | `--n-seam`; never under the script's glyph box |
 | pedestal (N2) | stylobate and seam | hidden | 61px | 82px | 115px | contact shadow under the bust |
-| portico niches (N3) | seam (lower row) | n/a | n/a | n/a | half the niche height (about 86px) | 1200+ only |
+| portico niches (N3) | seam (lower row) | n/a | n/a | n/a | 30% of the niche height: 52px (45 at 1200) | 1200+ only; the dock is end-aligned in the cella. **Recorded (QA round 1 VH2):** was half the niche (about 86px), but at half the lower labels sit at 884-930px, outside the 1440 x 900 first screen NG9 requires; at 30% the lowest label ends at 894px |
 | phone plates (N3) over the bust base (N2) | bust base | 24-40px overlap | n/a | n/a | n/a | < 700 only; all 4 inside 844px at 390 |
-| eye relief (N2) | Welcome/Services seam | 40px up and down | 40px | 51px | 72px | `clamp(40px, 5vw, 72px)`; ≥ 24px from the Services title |
+| eye relief (N2) | Welcome/Services seam | 35px up and down | 35px | 40px | 56px (50 at 1280) | half its opaque height, centred on the seam; ≥ 24px from the Services title. **Recorded (QA round 1 VH5):** was `clamp(40px, 5vw, 72px)`, which the image cannot reach at its own 240px width cap (6.2): its opaque part is 62.2% of its height (17.1% / 20.7% transparent), so 72px up and down would need a 311px relief |
 | promo arch (N1) | its plate top | 44px | 58px | 58px | 58px | left edge ≥ 16px inside the viewport |
 | hand (N4) | What's New frame | hidden (< 560) | 12px into the frame | same | same | ≥ 24px from text |
 | service arches (N1) | plinth plate top | 28% of arch height | same | same | about 200px | measured |
@@ -949,8 +980,16 @@ protrusion:** every `data-depth` element carries `data-depth-max` of 40% or less
 | Q&A plate (N3) over the help niche (N1) | niche right rule | n/a | n/a | 31px | 43px | `clamp(24px, 3vw, 48px)`, 1024+ |
 
 Section order of crossings (tree order does the stacking, 2.8): hero figures cross into Welcome (Welcome's padding-top
-= the largest crossing + 48px); the relief belongs to Services and crosses up; the smiles belong to reviews (z 4) and
+= the largest crossing + 48px; + 32px below 700, NG18); the relief belongs to Services and crosses up; the smiles belong to reviews (z 4) and
 cross up; the designer plates cross down (Visit's padding-top clears them); nothing crosses into the footer.
+
+**Phone spacing (NG18, QA round 1 VH3).** Below 700 the empty ground at the seams is 24-32px, not 40-70px: Welcome's
+padding-top is the photo arch's crossing + 32px; the Welcome/Services seam keeps the relief's crossing + 24px above
+and 28px below; the paddings on both sides of the Services/reviews seam are sized from the phone medallion trio
+(126px tall below 700, 110px below 420, plus its 11px outer rule) + 30px, not from the desktop middle medallion;
+the #HeretoHelp niche is `min(44%, 170px)` with a 32px gap; the promo arch rises 44px (3.7); below 768 Visit's
+padding-top is the designer plates' 150px hang + 24px plaque + 24px. No copy, figure or depth layer is removed and no
+text is resized. Measured at 390: 10,395px (NG18).
 
 ### 4.2 Interior
 
@@ -958,6 +997,7 @@ cross up; the designer plates cross down (Visit's padding-top clears them); noth
 |---|---|---|---|
 | band cut-out (T3, N2) | the band niche's crown or side rule, then the band's bottom edge | head 12-22% of the arch height above the crown; base `--n-cross` below the edge (24px at 390, about 51px at 1024, 72px at 1440) | lands in the `band--has-cut` margin, never on a plate or the h1 |
 | `band--photo` visual (T1) | band bottom edge | `--n-cross` | 1024+; below, under the title |
+| `band__cut--photo` (T3, N2) | band bottom edge, beside the visual | opaque centre on the edge (1024+); below 1024 hanging under the photo, opaque top 10px below its paper | never on the photograph; ≥ 24px from the visual's paper (1024+), the divider, the first sheet and any face (QA round 1 VI-2) |
 | `fig--photo` | sheet padding, one side | `clamp(8px, 2.4vw, 36px)`, alternating | never diagrams, logos, the QR code, the portrait |
 | index-card thumbnail | card top | 32px | the 25 thumbnailed children only |
 | 404 relief | sheet top-right frame | 48px | ≥ 24px from text |
@@ -1300,7 +1340,7 @@ All browser gates: one foreground headless Chrome at a time, closed at the end, 
 | NG15 | secret scan: no `AIza` and no fal key id in `dist-neo/`, with a positive control | 0 |
 | NG16 | no platform survivors in `dist-neo/` (`wp-content`, `fl-`, `gform`, `ecp-`, GTM, icon fonts) | 0 |
 | NG17 | glass untouched: rebuild glass after the neo hooks land and hash `dist/` by the method of commit 440a6d9 | identical to the committed build (0e6d64d9, 665 files) |
-| NG18 | page length at 390 (home) | ≤ 10,300px (temple 11,306); record 1440 |
+| NG18 | page length at 390 (home) | ≤ 10,300px (temple 11,306); record 1440. **QA round 1:** 10,395px at 390 (was 10,654) after the phone spacing trims of 4.1; the operator's delegate accepts a measured value between 10,300 and 10,654 without removing content, depth layers or shrinking body copy below 16px |
 | NG19 | phone number: each visible "318-550-5815" has one line box (`getClientRects().length === 1`) at 320-1440 | all |
 
 ### 7.6 Decisions for the operator

@@ -229,7 +229,7 @@ always `dock__tile--primary`. The hero tiles carry **no** `data-reveal` (they mu
   {2.6 nav.dock.dock--aside}
   <section class="aside-card aside-card--location" aria-labelledby="aside-loc">
     <h2 class="aside-card__h" id="aside-loc"><a href="{location href}">{title}</a></h2>
-    <p class="nap__addr">{icon pin}<span>{addressLines joined by <br>}</span></p>
+    <p class="nap__addr">{icon pin}<span>{addressLines joined by <br>; "Suite 302" in span.nw}</span></p>
     <p class="nap__phone">{icon phone}<span>{phoneLabel} <a href="tel:318-550-5815"><span class="nw">318-550-5815</span></a></span></p>
     <div class="map map--aside"><iframe class="map__frame" src="{keyless map url}" title="Google map" loading="lazy"></iframe></div>
     {2.9 dl.hours}
@@ -431,7 +431,7 @@ main) renders `band--plain` without a niche (no scene, no cut), exactly as glass
     </div>
     <div class="nap nap--stele" data-reveal="up">
       <p class="nap__title"><a href>{title}</a></p>?  <p class="nap__sub">{sub}</p>?
-      <p class="nap__addr">{icon pin}<span>{lines}</span></p>?  <p class="nap__phone">{icon phone}<span>{label} <a href="tel:…">{phone}</a></span></p>?
+      <p class="nap__addr">{icon pin}<span>{lines; "Suite 302" in span.nobr}</span></p>?  <p class="nap__phone">{icon phone}<span>{label} <a href="tel:…">{phone}</a></span></p>?
       {2.9 dl.hours}?
     </div>
   </div>
@@ -721,7 +721,7 @@ The ads are T0: never cropped, masked, filtered or arch-framed. No generated ima
       <div class="nap nap--stele" data-reveal="up">
         <span class="nap__medal" aria-hidden="true"><img class="nap__laurel" src="{gen neo-cut-laurel}" alt="" width height loading="lazy" decoding="async">?<svg class="nap__ring" focusable="false"><use href="#o-badge"/></svg><svg class="nap__rosette" focusable="false"><use href="#o-rosette"/></svg></span>
         <p class="nap__title"><a href="{location}">Clifton Eye Center</a></p>
-        <p class="nap__addr">{icon pin}<span>{address lines}</span></p>
+        <p class="nap__addr">{icon pin}<span>{address lines; "Suite 302" in span.nobr}</span></p>
         <p class="nap__phone">{icon phone}<span><strong>Phone:</strong> <a href="tel:318-550-5815">318-550-5815</a></span></p>
         <dl class="hours" data-hours>{7 rows}</dl>
       </div>
@@ -798,8 +798,14 @@ Not defined in neo: `data-tilt`, `data-rot`, `data-hero`, the `.glass` pointer s
    the 404 relief.
 6. **`band__niche` only when there is something to stand in it**; `band--photo` places its cut-out beside the visual
    (`band__cut--photo`) instead of in a niche (the photo is the band's picture; a second arch beside it would compete).
+   QA round 1 (VI-2): "beside" is now literal. From 1024px the cut-out is placed in the title column's grid area
+   (`grid-column: 1 / 2; grid-row: 1 / 2`), its right side 24px short of the visual's paper, its opaque centre on the
+   band's bottom edge; below 1024 in the visual's row (`grid-row: 2 / 3`), hanging under the photo's bottom-right
+   corner. It never lies on the photograph (NEO-SPEC 3.13, 4.3).
 7. **Phone numbers:** `span.nw` outside `<main>` (templates), `span.nobr` inside (the existing shared pass), never
    both (NEO-SPEC 3.0 asked for one `T.page` pass over the whole page; the shared pass already covers `<main>`).
 8. **The footer carries no `data-reveal`** (glass revealed `footer__panel`, which neo does not render).
+9. **"Suite 302" is one unbreakable run** in every `p.nap__addr` (QA round 1 VH9): `span.nw` outside `<main>` (aside),
+   `span.nobr` inside (home Visit, `T.visit`), like the phone numbers of #7. The characters are unchanged.
 
 END OF CONTRACT

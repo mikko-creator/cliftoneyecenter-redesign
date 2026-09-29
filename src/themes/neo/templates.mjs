@@ -57,6 +57,8 @@ const PEDIMENT_SVG = (hidden) => '<svg viewBox="0 0 1000 106.3" preserveAspectRa
 const PILASTERS = '<span class="pilaster pilaster--l" aria-hidden="true"></span><span class="pilaster pilaster--r" aria-hidden="true"></span>';
 /* an unbreakable number OUTSIDE <main> (NEO-COMPONENTS 0, 6.3 #7): the text is escaped first, the characters are unchanged */
 const nw = (escaped) => String(escaped).replace(/\d{3}-\d{3}-\d{4}/g, '<span class="nw">$&</span>');
+/* "Suite 302" never breaks inside the address (QA round 1 VH9: "302" alone on a line); nw outside <main>, nobr inside */
+const suite = (escaped, cls) => String(escaped).replace(/\bSuite \d+[A-Za-z]?\b/g, '<span class="' + cls + '">$&</span>');
 
 /* QA r2 (content-seo F2): a new-tab link keeps the SOURCE link types (nofollow, noreferrer ...) plus noopener */
 const REL_KEEP = new Set(['nofollow', 'noopener', 'noreferrer', 'sponsored', 'ugc']);
@@ -267,7 +269,7 @@ export function createTemplates({ chrome, localHref, imgUrl, logo, logoFooter })
       dock(depth, 'aside'),
       '<section class="aside-card aside-card--location" aria-labelledby="aside-loc">',
       '<h2 class="aside-card__h" id="aside-loc"><a href="' + esc(H(s.location.href, depth)) + '">' + esc(s.location.title) + '</a></h2>',
-      '<p class="nap__addr">' + icon('pin') + '<span>' + chrome.addressLines.map(esc).join('<br>') + '</span></p>',
+      '<p class="nap__addr">' + icon('pin') + '<span>' + chrome.addressLines.map((l) => suite(esc(l), 'nw')).join('<br>') + '</span></p>',
       '<p class="nap__phone">' + icon('phone') + '<span>' + esc(s.location.phoneLabel) + ' <a href="' + esc(tel) + '">' + nw(esc(chrome.phone)) + '</a></span></p>',
       mapEmbed(mapSrc, 'map--aside'),
       hours(chrome.hours),
@@ -413,7 +415,7 @@ export function createTemplates({ chrome, localHref, imgUrl, logo, logoFooter })
       v.subs.contact ? '<p class="nap__sub">' + esc(v.subs.contact) + '</p>' : '',
       v.phone && v.subs.contact ? '<p class="nap__phone">' + icon('phone') + '<span>' + esc(v.phoneLabel) + ' <a href="tel:' + esc(v.phone) + '">' + esc(v.phone) + '</a></span></p>' : '',
       v.subs.address ? '<p class="nap__sub">' + esc(v.subs.address) + '</p>' : '',
-      v.address && v.address.length ? '<p class="nap__addr">' + icon('pin') + '<span>' + v.address.map(esc).join('<br>') + '</span></p>' : '',
+      v.address && v.address.length ? '<p class="nap__addr">' + icon('pin') + '<span>' + v.address.map((l) => suite(esc(l), 'nobr')).join('<br>') + '</span></p>' : '',
       v.phone && !v.subs.contact ? '<p class="nap__phone">' + icon('phone') + '<span>' + esc(v.phoneLabel) + ' <a href="tel:' + esc(v.phone) + '">' + esc(v.phone) + '</a></span></p>' : '',
       v.subs.hours ? '<p class="nap__sub">' + esc(v.subs.hours) + '</p>' : '',
       v.hours && v.hours.length ? hours(v.hours) : '',

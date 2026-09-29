@@ -1,7 +1,8 @@
 # Neo build notes: templates and the theme-aware pipeline
 
 Status: 2026-09-29, pipeline agent (sections 1-6); integration agent (section 7: first full review, five CSS fixes,
-definition of done on the final `dist-neo` 17f041cb...). Scope: the neoclassical "Temple" theme's templates and the build hooks that let
+definition of done on the final `dist-neo` 17f041cb...); fixer (section 8: QA round 1, 21 findings, final `dist-neo`
+39fa000c...). Scope: the neoclassical "Temple" theme's templates and the build hooks that let
 `CEC_THEME=neo node src/build.mjs` build `dist-neo/` through the shared content, SEO, forms and image pipeline, while
 the glass build stays byte-identical. The design itself is `docs/NEO-SPEC.md`; the binding neo markup is
 `docs/NEO-COMPONENTS.md`; the look (`src/themes/neo/styles/*`, `scripts/*`, `home.mjs`) belongs to the design agent.
@@ -205,7 +206,8 @@ breadcrumb on `/designer-frames/` and "Home" as the only crumb on the archive (b
 
 ### 7.3 Open (for QA and the design owner)
 
-1. **NG18 fails:** the home at 390 is **10,654px** (gate 10,300; temple lab 11,306). Section budget at 390
+1. **NG18 fails** (superseded by 8.1 VH3: 10,395px after the phone spacing trims, accepted by the operator's delegate):
+   the home at 390 is **10,654px** (gate 10,300; temple lab 11,306). Section budget at 390
    (`tmp/neo/int/homegeo.mjs`): hero 927, welcome 3,185 (its verbatim practice copy alone 1,911; promo + What's New
    855), services 1,002, reviews 804, help 1,447 (the CSS niche 325, spec-sized `min(68%, 250px)`), designer 517,
    visit 1,830 (222px top padding under the brand plates that hang 150px into it), footer 820. The safe phone-only
@@ -233,4 +235,108 @@ for w in 320 390 768 1024 1440; do node tmp/gallery-neo/work/sweep.mjs --base ht
 node tmp/neo/int/overflow-control.mjs; node tmp/neo/int/dod-browser.mjs; node tmp/neo/int/ux.mjs; node tmp/neo/int/telbtn.mjs
 node tmp/gallery-neo/work/behaviour.mjs --base http://127.0.0.1:8861
 node tmp/neo/int/fab-diff.mjs
+```
+
+## 8. QA round 1 (2026-09-29, fixer)
+
+Scope: the 21 confirmed findings of QA round 1 (lenses visual-home, visual-interior, runtime-a11y-contrast,
+content-seo-contract), fixed at their root in the neo-owned files only: `src/themes/neo/styles/site.css`,
+`src/themes/neo/scripts/site.js`, `src/themes/neo/templates.mjs`, `src/themes/neo/home.mjs` and the neo-only hook 2
+of `src/build.mjs` (inside `if (TI)`). No shared file (`src/lib/*`, `tools/*`, glass paths of `src/build.mjs`) was
+changed; the glass guard below is identical. Spec values that changed are recorded in `docs/NEO-SPEC.md` (3.0-3.4,
+3.7, 3.9, 3.11, 3.13, 3.15, 3.22, 4.1 incl. a new "Phone spacing" paragraph, 4.2, 7.5 NG18) and
+`docs/NEO-COMPONENTS.md` (departure 6 made literal, new departure 9, the three `p.nap__addr` markups).
+
+Method: every "before" was re-measured by the fixer on the untouched artifact (`17f041cb...`, kept as
+`tmp/qa-neo/fix/before-dist-neo/`) with copies of the refuters' probes (port changed to 8851, outputs under
+`tmp/qa-neo/fix/{home,interior,runtime}/`, `*.before.json`), then again on the rebuilt `dist-neo`. One headless Chrome
+at a time, `tools/serve.mjs --root dist-neo --port 8851`. Reduced motion (rest pose) for geometry and colour.
+
+### 8.1 Findings: fix, before and after
+
+| id | fix (root cause) | before | after | evidence / repro |
+|---|---|---|---|---|
+| VH1 major | `--script-fs` capped at `3.375rem` (was `4.25rem`): the script grew until 2033px while the poster lines, the wrap and the bust stopped at 1323-1476px, so its end ran into the bust | "!" glyph box to the bust's opaque pixels 64.2 / 31.7 / 1.3 / 0 px at 1440 / 1680 / 1920 / 2048; ink gap 82.2 / 54.7 / 26.4 / 13.4; from 1680 the ink crossed "C" and "A" of CARE | 64.2 at 1440, 61.0 at 1680-2560 (script 54px from 1447); ink gap 79.5; only the last "E" of EYE crossed, 5% deep; 1024-1440 unchanged; control (script moved 300px right) ink gap 0.4 | `home/geo/script{.before,}.json`, `home/crops/script-bust.2048.x2.png` (viewed); `node tmp/qa-neo/fix/home/script.mjs --widths 1024,...,2560` |
+| VH2 major | the 1200+ portico dock is end-aligned in the cella (`align-self: end`), so its negative margin-bottom IS the lower row's crossing (start-aligned it only gave back its share of a track the photo sizes); crossing 30% of the niche, **recorded** in NEO-SPEC 4.1 instead of half: at half the lower labels would sit at 884-930px at 1440 x 900, outside NG9's first screen | lower row past the seam 6 / 7 / 10 / 15 / 23 / 34 / 36 px (1200 / 1280 / 1366 / 1440 / 1536 / 1680 / 1920) | 45 / 46 / 49 / 52 / 52 / 52 / 52 px; photo and pedestal still cross by `--n-seam` 96-140 (control unchanged); NG9 1440 x 900: lowest label 894px (inside) | `home/geo/portico{.before,}.json`, `home/crops/portico-seam.1280.png`, `proto/portico-C-seam.1440.png` (viewed), `ng9.after1.json`; `node tmp/qa-neo/fix/home/portico.mjs`, `node tmp/qa-neo/fix/ng9.mjs` |
+| VH3 major (NG18) | empty ground trimmed below 700 only (the delegate's decision): Welcome padding-top crossing + 32 (was + 48); Welcome/Services seam crossing + 24 above (was + 43) and + 28 below (was + 40); Services/reviews paddings sized from the phone medallion trio (126px below 700, 110px below 420) + 11px rule + 30px (were sized from the 116px desktop medallion + 48-70px); help niche `min(44%, 170px)` (was `min(68%, 250px)`) and a 32px gap (was 40); promo arch 44px (VH6); Visit padding-top below 768 150 + 24 + 24 (was + 48). No copy, figure or depth layer removed, no text resized | home at 390: 10,654px (414: 10,637; 360: 10,841; 320: 11,284); help niche 325px | **10,395px** at 390 (414: 10,382; 360: 10,591; 320: 11,061); sections: welcome 3185 -> 3150, services 1002 -> 964, reviews 804 -> 764, help 1447 -> 1324, visit 1825 -> 1801 (hero, designer, footer unchanged); 768: 8,569 (+10, VH7), 1440: 7,834 (unchanged). **Lands between 10,300 and 10,654: recorded and accepted per the operator's delegate** (NEO-SPEC 7.5) | `home/geo/ng18{.before,}.json`, `shots/home.390.{A,B,C,D}.png` (viewed); `node tmp/qa-neo/fix/home/ng18.mjs` |
+| VH4 minor | `.map-plate .map` carries the 280px floor itself and takes its proportion from a padding strut (`::before { padding-top: 102% }`), the iframe `inset: 0; min-height: 0`; the magnifier 4px lower (lens under the ledge's middle) | 320: box 260 x 265, iframe 280 tall, mat band under the map -1px; magnifier 6.9px from the iframe (21.7 at 334-1024) | 320: box = iframe 260 x 280, mat band 14px at every width 320-1440; magnifier 25.7px (320-1024), 31.4 (1440); lens still wholly on the ledge | `home/geo/map{.before,}.json`, `home/crops/map-bottom.320.x3.png` (viewed); `node tmp/qa-neo/fix/home/map.mjs` |
+| VH5 minor | **resolved by record** (NG4 allows it): the relief's own 240px width cap leaves its opaque part 62.2% of its height, so `clamp(40px, 5vw, 72px)` cannot be reached (72px would need a 311px relief); NEO-SPEC 4.1 now states half its opaque height. No CSS change | opaque crossing up/down 35/34 (390, 768), 40/41 (1024), 50/50 (1280), 56/55 (1440, 1920) against 40 / 51 / 64 / 72 | unchanged values, now the spec's; centred on the seam within 0.5px; Services title clearance 69px at 390 (was 81, the phone seam trim), 78-80 elsewhere | `home/geo/relief{.before,}.json`; `node tmp/qa-neo/fix/home/relief.mjs` |
+| VH6 minor | below 700 `.promo { margin-top: 44px }`, `.promo__img { margin-top: -44px }` (NEO-SPEC 3.7) | promo arch rise 58px at 320-414 | 44px at 320 / 360 / 390 / 414; 58 at 768 and 1440 (spec) | `home/geo/ng18{.before,}.json` (promoRise) |
+| VH7 minor | with the hand, the What's New plate's padding-top + 10px (the fingertips were too near the heading's glyph box) | hand to "What's New!" glyph box 17.3 / 17.0 / 20.2 / 22.7 / 22.7 px (768 / 1100 / 1280 / 1440 / 1920) | 27.1 / 27.0 / 30.2 / 32.7 / 32.7 (1024: 57.3); ink gap 40-46; underside still 11-12px into the frame; control (heading moved into the hand) 0 | `home/geo/hand{.before,}.json`; `node tmp/qa-neo/fix/home/hand.mjs` |
+| VH8 minor | the plaque-list dock (700-1199) starts 22px under line 2 (was 6px) | first plaque 8 / 9 / 9 / 9 / 10 px under the "EYE CARE CLINIC" ink (768 / 900 / 1024 / 1100 / 1199) | 24 / 25 / 25 / 25 / 26 px; NG9 1024 x 768 lowest label 700px (was 684, inside 768) | `home/geo/plaque{.before,}.json`, `home/crops/hero-plaque.1024.png` (viewed) |
+| VH9 minor | "Suite 302" wrapped in `span.nobr` (home Visit, `T.visit`, inside main) / `span.nw` (aside) by `home.mjs` and `templates.mjs`; characters unchanged | "Suite" / "302" on different lines at 1200, 1100, 768, 700, 360 | on one line at all 14 widths (1920-320); control ("Drive," / "Bossier", split by `<br>`) two lines at all 14 | `home/geo/wraps.before.json` (refuter probe), `home/geo/wraps2.json` (same probe walking descendant text nodes: the refuter's reads direct children only and cannot read the new span; run on the kept before-build it reports the 5 broken widths again, `home/geo/wraps2.control-before.json`), `home/crops/nap-addr.1100.x2.png` (viewed) |
+| VI-1 major | same root as VH4 (`.map__frame { min-height: 280px }` beat `inset: 0` in a shorter box): the box keeps the floor (4:3 strut `padding-top: 75%` on `visit--page`). A first attempt with `aspect-ratio` + `min-height` was caught by the re-measure: Chrome transferred the floor to a 373px min-width, widening the map past its plate onto the NAP stele at 768 (6 scan points); replaced by the strut | /hours-location/ and /location/clifton-eye-center/: box 195 / 248 / 233 px under a 280px iframe (320 / 390 / 768); the ledge over the iframe's bottom 71 / 19 / 33 px; bottom-strip scan on the iframe 0/156, 25/150, 0/156 | box = iframe 280px at 320 / 390 / 768 (321 / 330 at 1024 / 1440, unchanged); ledge over the iframe 0; scan 156/156, 150/150, 156/156 (and 150/150 at 1024, 1440); on all 3 pages x 5 widths the map sits inside the mat with 14px left, right and bottom; attribution row visible | `interior/map/map{.before,}.json`, `interior/map/hours.390.plate.png` (viewed); `node tmp/qa-neo/fix/interior/map.mjs` |
+| VI-2 major | `band__cut--photo` placed in a grid area instead of over the photo: from 1024 the title column (`grid-column: 1 / 2; grid-row: 1 / 2`; both lines explicit, an `auto` end line is the padding edge for an absolutely placed item), right side 24px short of the visual's paper, opaque centre on the band's bottom edge; below 1024 the visual's row, hanging under the photo's bottom-right corner (opaque top 10px below the paper) | the cut's opaque pixels on the band photo: /eyeglasses-contacts/ 419 / 243 / 266 / 111 / 111 samples (1440 / 1024 / 768 / 390 / 320), at 1440 the lace cuff at the woman's jaw; /eye-care-services/ 577 / 337 / 344 / 123 / 123 | 0 samples on the photo on both pages at all 5 widths; 1440: hand x 598-742 against the photo from 783 (paper 777); 1024: 418-522 against 560; below 1024 under the photo, clear of the first sheet | `interior/cut/cut.reduce{.before,}.json`, `interior/cut/eyehub.{1440,1024,390}.reduce.png`, `svchub.1440.reduce.png` (viewed); `node tmp/qa-neo/fix/interior/cut.mjs reduce` |
+| VI-3 minor | `.band--plain` is a flex column and its grid grows (`flex: 1 0 auto; align-items: center`): a plain band shorter than its min-height centres the title and its 1024+ pilasters stand 21-36px inside the frame at top and base, as on scene bands | 1024: crumbs 37px under the frame top, divider 93px over its base, pilasters inset 21 / 77; 1440: 52 / 61, pilasters 36 / 45; 404: divider 134 / 102 / 94 / 97 px over the base (1024 / 1440 / 390 / 320) | 1024: 65 / 65, pilasters 21 / 21; 1440: 56 / 57, pilasters 36 / 38; 404: 86 / 85 (1024), 76 / 78 (1440), 54 / 62 (390), 56 / 64 (320); scene, photo and dated-post bands unchanged (control) | `interior/band/band{.before,}.json`, `interior/band/{privacy.1024,e404.390}.png` (viewed); `node tmp/qa-neo/fix/interior/band.mjs` |
+| VI-4 minor | `.fig--photo:not(.fig--feature) { width: fit-content; max-width: 100% }` (up to 100% + the break-out for `fig--start/--end` in a sheet, `fig--end` pushed right), the `img { width: 100% }` rule kept for `fig--feature` only; fig-grid photos centred at their own width | 500px photo at 803 / 520 / 650 (1440 / 1024 / 768); 640px photos at 915 / 882 / 650 | 500 -> 500 and 640 -> 640 at 1440 / 1024 / 768 (1x); 390 unchanged (308 = the column) | `interior/upscale/upscale{.before,}.json`, `shots/postclean.1440.png` (viewed); `node tmp/qa-neo/fix/interior/upscale.mjs` |
+| VI-5 minor | bust bands below 700 reserve 18px more (`--band-pb: ... - 46px`, was `- 64px`) | bust head 9-12px under the h1 box at 320 (7 pages), 10 / 18 at 390 | 27-29px at 320, 28-127 at 390; all 39 page x width rows >= 27px; control (bust 30px up) 0 | `interior/bust/bust{.before,}.json`; `node tmp/qa-neo/fix/interior/bust.mjs` |
+| VI-6 minor | `.doc-card { display: flex; align-items: center; column-gap: .3em }` (as glass) | " (pdf)" baseline 9.1 / 9.0 px below the label's (390 / 1440); at 320 the second card's "(pdf)" wrapped to its own line (+37.9px) | "(pdf)" centred on the row (centre offset -0.6 to 0 px at 320-1440), beside the label at 320 too | `interior/doccard/{doccard,baseline}{.before,}.json`, `interior/doccard/doccards.390.png` (viewed) |
+| RA-1 major | the sticky header's clearance moved from `html { scroll-padding-top }` (it also applied to the header's own controls) to `scroll-margin-top` on focus and anchor targets in main, aside and footer (`:where()`, specificity 0); `closeDrawer` restores focus with `preventScroll` | drawer close by button / Escape / scrim: 1500 -> 1066 (-434) at 390 and 320 on 2 pages; keyboard route 1500 -> 1072 -> 1066 -> 632; 1440 nav-link focus -462 from 800 / 1500 / 2500 | every route 1500 -> 1500 (delta 0), keyboard route 1500 throughout, 1440 nav focus delta 0; regression probe: a main link under the stuck header reached by Tab / Shift+Tab lands at 116 (1440) / 96 (390), below the header (92 / 72); anchor targets at 120; control (scroll-margin removed) leaves the link under the header | `runtime/ra1-scroll.{before,after}.json`, `obscure.json`; `node tmp/qa-neo/fix/runtime/ra1-scroll.mjs --base http://127.0.0.1:8851`, `node tmp/qa-neo/fix/obscure.mjs` |
+| RA-2 major | `.skip:is(:hover, :focus, :focus-visible) { color: var(--paper) }` | focused skip link green-800 on green-700 1.51:1 | paper on green-700 6.67:1 (computed and pixel p98, 3 pages x 1440 / 390); Enter still moves focus to main | `runtime/ra23/ra23{.before,}.json`; `node tmp/qa-neo/fix/runtime/ra23-focus.mjs --base ...` |
+| RA-3 major | `.topbar__addr:is(:hover, :focus-visible) { color: var(--green-950) }` | focus 3.11:1 (green-800), hover 5.29 | focus 5.29 = hover, on link, strong and icon (1440, 1024, 768) | same |
+| RA-4 major | `.btn` padding `10px 30px` (was `0 30px`); a one-line button stays 52px | 3-line CTA labels at 320-380: line boxes -2 / -0.8 px past the button, ink on the inner rule | line-box gaps 8 / 9.2 px, ink 10-11 px clear of the rule; 3-line button 77.6px, 2-line 58.5px (was 52) | `runtime/ra45/ra45{.before,}.json`, `ra45/cta_eye_care_services_-375-0-x4.png` (viewed); `node tmp/qa-neo/fix/runtime/ra45-framed.mjs --base ...` |
+| RA-5 minor | `.band-pill` padding `10px 16px`, line-height 1.3 (one line stays 44px) | drawer "Make an Appointment" at 320: 2 lines in 53px, gaps 3 / 3.5, descenders on the inner rule | 2 lines in 61px, gaps 10 / 10.5, descenders 7 rows clear of the rule; one-line plaques 44px | same, `ra45/drawer-320-0-x4.png` (viewed) |
+| CSC-01 minor | hook 2 (`src/build.mjs`, inside `if (TI)`): when the audit's `postProcess.what` says the matte was replaced, CreatorTool credits the key (`alpha keyed from its black-backdrop edit (matte-key-black.mjs)`) instead of birefnet | `neo-cut-eye-relief.3353156294.webp`, `neo-cut-hand-spectacles.413aa9dfd4.webp`: "fal.ai fal-ai/flux-pro/kontext + fal-ai/birefnet/v2 (...)" | `neo-cut-eye-relief.a70d390810.webp`, `neo-cut-hand-spectacles.73d350c29f.webp`: "fal.ai fal-ai/flux-pro/kontext + alpha keyed from its black-backdrop edit (matte-key-black.mjs) (tone-mapped (T3 duo-marble) and resized by the build)"; decoded RGBA identical to the old files (sha256 4333b468... / a19d2c97...; control file differs); 58 pages reference the new names, 0 the old; the other 11 neo files unchanged; 13/13 carry trainedAlgorithmicMedia | `content/xmp-creatortool.{before,after}.log`; `webpmux -get xmp <file> -o -` |
+
+Not changed, with the reason: none of the 21 was left open. VH2 and VH5 end as recorded spec values (NG4 "or
+recorded"), VH3 as the accepted NG18 value.
+
+Seen while measuring, not part of any finding and not changed: at 1024-1280 (below the new cap, so untouched by VH1)
+the script's ink also reaches the "C" of CARE, 1-12% of its height deep (1024: "E" 2% + "C" 1%; 1100 and 1200: "C"
+12%; 1280: "C" 5%; `home/geo/script.json`). That is within NEO-SPEC 3.3's limit (2 letters at most, 35% at most), but
+the letter is in CARE rather than EYE; left for the design owner.
+
+### 8.2 Reviewed by eye (this round, after the last edit)
+
+Viewed after the fixes: the 1440 x 900 first screen with the portico option chosen (`proto/portico-C.1440.png`, and the
+rejected option A with 3:4 niches, whose upper niches were half empty), the portico seam at 1280 and 1440, the script
+end at 2048 (2x), the 1024 plaque list, the home at 390 in four parts (hero to promo, the relief seam to the medallion
+seam, the help niche, the designer plates to the map), the Suite line at 1100, the home map at 320 (3x), the
+/hours-location/ map plate at 390, the photo bands of /eyeglasses-contacts/ at 1440 / 1024 / 390 and of
+/eye-care-services/ at 1440, the plain bands of /privacy-policy/ at 1024 and the 404 at 390, the contact-lens photo
+at native size at 1440, the patient-form cards at 390, a 3-line CTA at 375 (4x) and the drawer plaque at 320 (4x).
+
+### 8.3 Regression (final `dist-neo`, built after the last source edit; every check below ran on it)
+
+| gate | command | result |
+|---|---|---|
+| build | `CEC_THEME=neo node src/build.mjs` | **exit 0**, 349 / 349 + `404.html`, **0 build failures**, generated slots 249 rendered / 17 skipped (unchanged) |
+| reproducible | `CEC_THEME=neo CEC_DIST=tmp/qa-neo/fix/repro-a` and `-b`, `hashdir.mjs tmp/qa-neo/fix/repro-a tmp/qa-neo/fix/repro-b dist-neo --control` | **IDENTICAL** `39fa000c5457f5c26959f933cff271f70756d80b93aa5be3901e7e0634885220`, 668 files (all three), control fired |
+| glass guard | `CEC_DIST=tmp/qa-neo/fix/guard node src/build.mjs`, `hashdir.mjs tmp/qa-neo/fix/guard dist --control` | **IDENTICAL** `0e6d64d9b6e89b988d883b854d6fb8e39738900849b4c496da9a21355d32aa3b`, 665 files, control fired |
+| sentence parity | `node tools/sentence-parity.mjs --dir dist-neo` | 349 pages, 13,966 sentences, **0 lost** (13,595 found, 363 source chrome, 8 declared, 3 whitespace-only), control fired |
+| tag balance | `node tools/tag-balance.mjs --dir dist-neo` | 350 pages, **0 findings**, control fired |
+| link check | `node tools/link-check.mjs --dir dist-neo` | 354 files, 20,789 local refs, **0 broken**, control fired |
+| decontamination | `sr-decontaminate --project . --dir dist-neo --strict`; report copied to `tmp/qa-neo/fix/decontamination-dist-neo.json`; `git checkout -- audit/decontamination.json project.json` | **CLEAN**, 359 files, 0 / 0 / 0; after the restore `git status` shows neither file |
+| robots + markup contract | `node tmp/neo/build/neo-audit.mjs dist-neo dist` | robots **0 mismatches** (census 83 / 122 / 137 / 7 + `404.html` noindex); markup **0 findings**; controls fired |
+| fabrication-equivalent | `node tmp/qa-neo/fix/reg/fab-diff.mjs` (copy of `tmp/neo/int/fab-diff.mjs`, output moved) | 20 pages: neo-only strings "II", "III", "VII" only (the aria-hidden numerals, ledger N01), as before; control fired |
+| overflow | `tmp/qa-neo/fix/reg/sweep.mjs --base http://127.0.0.1:8851 --root dist-neo --width W`, W = 320 / 390 / 768 / 1024 / 1440 | **0 overflowing pages** of 350 at each width, **0 JS errors**; control (a planted 600px block: 390 -> 600) fired |
+| JS errors, drawer, reduced motion, inert form | `tmp/qa-neo/fix/reg/dod-browser.mjs --base http://127.0.0.1:8851` | E: **0** errors over 24 loads, drawer open + Escape 12 / 12, control fired; R: 0 pages with hidden content or `js-motion` (24 loads), control fired; F: the honest notice shown and focused, 0 non-GET requests |
+| reveals, hover/keyboard parity | `tmp/qa-neo/fix/reg/behaviour.mjs --base http://127.0.0.1:8851` | A (reduced, 1440 / 390): no `js-motion`, 0 hidden, 0 pending, no `--py` / `--settle`, hover moves nothing; B (natural): 0 pending or invisible in view at load, after a scroll-through 0 pending / 0 invisible, End jump 0 pending above; C: **14 MATCH** of 15, the portico tile differs only in the designed two-tone focus ring (`box-shadow`, as in 7.2); D: 0 real errors on 6 pages, control caught |
+| NG11 / NG19 | `tmp/qa-neo/fix/reg/ux.mjs --base http://127.0.0.1:8851` | NG11: 508 targets at 320 / 390, **0 under 44px**; NG19: 135 numbers, **0** in more than one line box; both controls fired |
+| tel buttons | `tmp/qa-neo/fix/reg/telbtn.mjs` | 9 buttons at 320 / 390 / 1440: label 1 line box (0 on the home's number-only button), number 1 line box, arrow inside and clear of the number |
+| NG9 first screen | `tmp/qa-neo/fix/ng9.mjs` (new, `ng9.final.json`) | 390 x 844: the 4 plates inside (lowest 739), the number visible; 1024 x 768: labels inside (lowest 700); 1440 x 900: labels inside (lowest 894); control (1024 x 600) fired |
+| NG18 | `tmp/qa-neo/fix/home/ng18.mjs`, `ux.mjs` | **10,395px** at 390 (rest and natural, both probes); accepted value (8.1 VH3) |
+| palette contrast | `tmp/qa-neo/fix/reg/neo-contrast.mjs` (copy of `tools/neo-contrast.mjs`, output moved) | 42 pairs, **0 failing**; `--control` adds a failing pair and exits 1 |
+| rendered contrast | `tmp/qa-neo/fix/reg/contrast.mjs --base http://127.0.0.1:8851 --pages "/,/eye-care-services/,/eye-care-services/your-eye-health/how-the-eye-works/,/contact-us/appointment-request-form/,/hours-location/" --widths 390,1440 --out contrast-fix` (copy of the QA lens probe: force-settled, every step, 2nd-percentile ink) | 10 page x width runs, 1313 text and icon runs, **0 FAIL**; controls fired on every run (4.54 passes, 3.24 and 2.11 fail). The home's non-fail categories are as in the QA baseline (390: rect-only 2, decorative 6; 1440: rect-only 2, decorative 7): rect-only = glyph boxes of "EYE CARE CLINIC" under the coverage-gated bust (ink passes), decorative = the aria-hidden stars and patera |
+
+### 8.4 Reproduce this section
+
+```sh
+node tools/serve.mjs --root dist-neo --port 8851 --no-open                                  # background; kill after
+# per finding (copies of the refuters' probes, port 8851, outputs under tmp/qa-neo/fix/)
+node tmp/qa-neo/fix/home/script.mjs --widths 1024,1100,1200,1280,1440,1680,1760,1920,2048,2560   # VH1
+node tmp/qa-neo/fix/home/portico.mjs; node tmp/qa-neo/fix/ng9.mjs                           # VH2 + NG9
+node tmp/qa-neo/fix/home/ng18.mjs                                                           # VH3, VH6
+node tmp/qa-neo/fix/home/map.mjs; node tmp/qa-neo/fix/interior/map.mjs                     # VH4, VI-1
+node tmp/qa-neo/fix/home/relief.mjs; node tmp/qa-neo/fix/home/hand.mjs                     # VH5, VH7
+node tmp/qa-neo/fix/home/plaque.mjs; node tmp/qa-neo/fix/home/wraps2.mjs                   # VH8, VH9
+node tmp/qa-neo/fix/interior/cut.mjs reduce; node tmp/qa-neo/fix/interior/band.mjs          # VI-2, VI-3
+node tmp/qa-neo/fix/interior/upscale.mjs; node tmp/qa-neo/fix/interior/bust.mjs            # VI-4, VI-5
+node tmp/qa-neo/fix/interior/doccard.mjs; node tmp/qa-neo/fix/interior/doccard-baseline.mjs # VI-6
+MSYS_NO_PATHCONV=1 node tmp/qa-neo/fix/runtime/ra1-scroll.mjs --base http://127.0.0.1:8851 --out tmp/qa-neo/fix/runtime/ra1-scroll.after.json
+node tmp/qa-neo/fix/obscure.mjs                                                             # RA-1 regression
+MSYS_NO_PATHCONV=1 node tmp/qa-neo/fix/runtime/ra23-focus.mjs --base http://127.0.0.1:8851  # RA-2, RA-3
+MSYS_NO_PATHCONV=1 node tmp/qa-neo/fix/runtime/ra45-framed.mjs --base http://127.0.0.1:8851 # RA-4, RA-5
+for f in dist-neo/img/generated/neo-*.webp; do webpmux -get xmp $f -o - | grep -o '<xmp:CreatorTool>[^<]*'; done  # CSC-01
+# regression: 8.3 (the int / gallery / contrast probes are copied to tmp/qa-neo/fix/reg/ with port 8851)
 ```

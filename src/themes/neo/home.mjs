@@ -413,7 +413,8 @@ export function buildHome(ctx) {
     '<div class="nap nap--stele" data-reveal="up">',
     '<span class="nap__medal" aria-hidden="true">' + (laurel ? img(laurel, '', ' loading="lazy" decoding="async"').replace('<img ', '<img class="nap__laurel" ') : '') + orn('o-badge', 'nap__ring') + orn('o-rosette', 'nap__rosette') + '</span>',
     loc ? '<p class="nap__title">' + (locHref ? '<a href="' + esc(locHref) + '">' + esc(textOf(locA)) + '</a>' : esc(textOf(loc.html))) + '</p>' : '',
-    addrLines.length ? '<p class="nap__addr">' + icon('pin') + '<span>' + addrLines.map(esc).join('<br>') + '</span></p>' : '',
+    /* "Suite 302" kept whole in span.nobr (inside <main>; QA round 1 VH9: "302" alone on a line at 700-1200) */
+    addrLines.length ? '<p class="nap__addr">' + icon('pin') + '<span>' + addrLines.map((l) => esc(l).replace(/\bSuite \d+[A-Za-z]?\b/g, '<span class="nobr">$&</span>')).join('<br>') + '</span></p>' : '',
     phone ? '<p class="nap__phone">' + icon('phone') + '<span>' + (phoneLabel ? '<strong>' + esc(phoneLabel) + '</strong> ' : '') + '<a href="' + esc(H(attr(openTag(phoneA), 'href')) || 'tel:' + phone) + '">' + esc(phone) + '</a></span></p>' : '',
     hoursRows.length ? '<dl class="hours" data-hours>' + hoursRows.join('') + '</dl>' : '',
     '</div>',

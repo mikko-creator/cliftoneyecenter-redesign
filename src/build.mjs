@@ -238,7 +238,12 @@ if (TI) {
     const g = recOf(id);
     if (!g) { genById.delete(id); continue; }   /* a missing file already failed in the loop above; its slots stay empty */
     const derived = bake(g, TI.recipeOf(d), id + '-' + d.tone.toLowerCase());
-    const aiLabel = { tool: 'fal.ai ' + g.model + (g.cutout ? ' + ' + g.cutout.model : '') + ' (' + TI.TONE_LABEL[d.tone] + ')', description: (g.alt || g.id) + ' (AI-generated illustrative image, not a photograph of this practice)' };
+    /* the credit names what made the SHIPPED pixels: where the audit's postProcess replaced the birefnet matte by the
+       deterministic black-backdrop key (neo-cut-eye-relief, neo-cut-hand-spectacles), the key is credited instead of
+       birefnet, whose output is not in the file (QA round 1 CSC-01) */
+    const keyed = !!(g.postProcess && /matte replaced/i.test(g.postProcess.what || ''));
+    const cutCredit = keyed ? ' + alpha keyed from its black-backdrop edit (' + path.basename(String(g.postProcess.tool || 'matte key').split(' ')[0]) + ')' : (g.cutout ? ' + ' + g.cutout.model : '');
+    const aiLabel = { tool: 'fal.ai ' + g.model + cutCredit + ' (' + TI.TONE_LABEL[d.tone] + ')', description: (g.alt || g.id) + ' (AI-generated illustrative image, not a photograph of this practice)' };
     const w = derived && genImages.web(derived, { maxW: d.maxW, q: d.q, name: id, aiLabel });
     if (!w) { if (derived) fail('build:asset', derived, 'derivative is not an image'); genById.delete(id); continue; }
     genById.set(id, { rel: 'generated/' + w.rel, w: w.w, h: w.h, alt: g.alt || '' });
