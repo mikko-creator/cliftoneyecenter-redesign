@@ -10,13 +10,17 @@
 //   lost          - anything else: a real loss. The run exits 1 when lost > 0.
 // Positive control: a found sentence is deleted from one rebuilt page IN MEMORY and must be reported
 // lost; the run exits 1 if the control does not fire.
-//   node tools/sentence-parity.mjs [--show 20]        ($CEC_DIST overrides dist/)
+//   node tools/sentence-parity.mjs [--show 20] [--dir dist-neo]   ($CEC_DIST or --dir overrides dist/; --dir wins, is
+//   resolved against the current directory, and like $CEC_DIST never writes audit/sentence-parity.json)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const PROJ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const DIST = path.resolve(process.env.CEC_DIST || path.join(PROJ, 'dist'));
+const DIR_OPT = process.argv.includes('--dir') ? process.argv[process.argv.indexOf('--dir') + 1] : null;
+if (process.argv.includes('--dir') && !DIR_OPT) throw new Error('--dir needs a directory');
+const DIST = path.resolve(DIR_OPT || process.env.CEC_DIST || path.join(PROJ, 'dist'));
+const WRITE_AUDIT = !process.env.CEC_DIST && !DIR_OPT;
 const content = JSON.parse(fs.readFileSync(path.join(PROJ, 'audit/content-inventory.json'), 'utf8'));
 const removals = JSON.parse(fs.readFileSync(path.join(PROJ, 'audit/clone-removals.json'), 'utf8'));
 const show = Number(process.argv[process.argv.indexOf('--show') + 1]) || 20;
@@ -112,7 +116,7 @@ const out = {
   method: 'every distinct >=5-word sentence of each source page (raw HTML split at block elements) must appear verbatim (normalised quotes/dashes/whitespace) in the rebuilt page text; misses are classified as source chrome (header/nav/footer/sidebar widget area), declared removal, or lost',
   totals: res.totals, control, lost: res.lost, whitespaceOnly: res.wsOnly, declared: res.declaredList, sourceChrome: res.chromeList.slice(0, 400), sourceChromeCount: res.chromeList.length,
 };
-if (!process.env.CEC_DIST) fs.writeFileSync(path.join(PROJ, 'audit/sentence-parity.json'), JSON.stringify(out, null, 1));
+if (WRITE_AUDIT) fs.writeFileSync(path.join(PROJ, 'audit/sentence-parity.json'), JSON.stringify(out, null, 1));
 console.log(JSON.stringify(res.totals));
 console.log('control:', control.fired ? 'fired (' + control.page.replace(/^https?:\/\/[^/]+/, '') + ')' : 'DID NOT FIRE');
 for (const l of res.lost.slice(0, show)) console.log(' -', l.url.replace(/^https?:\/\/[^/]+/, ''), '|', l.sentence.slice(0, 160));

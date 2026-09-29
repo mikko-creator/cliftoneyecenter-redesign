@@ -1,0 +1,110 @@
+/* @redesign-motion ====================================================================================
+   REDESIGN MOTION - neoclassical theme "Temple" (docs/NEO-SPEC.md section 5, docs/NEO-COMPONENTS.md 6.1).
+   The whole file ships (the build keeps everything from this marker comment on). Stately motion only: slow rises,
+   arches that open from the plinth, one letter-spacing settle, statues that drift a little on scroll, medallions that
+   turn a quarter on hover/focus. No ambient loops. Every movement sits inside
+   @media (prefers-reduced-motion: no-preference); the reduce block at the end is belt and braces.
+   Property ownership (5.6): translate = the reveal entrance OR the parallax (never both on one element) OR a hover
+   lift on an element that neither reveals nor parallaxes; scale = the settle and hover photo zoom on an inner img;
+   rotate = medallion and ring turns; clip-path = the arch reveal; opacity = reveals; letter-spacing = the settle.
+   site.js sets js-motion (head script), is-in, --i, --py, --settle, --scroll.
+   ===================================================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+
+  /* ---- reveals (5.1, 5.2): the hidden state has NO transition; only .is-in animates; site.js releases after ---- */
+  .js-motion :is([data-reveal="up"], [data-reveal="rise"]) { opacity: 0; translate: 0 28px; }
+  .js-motion :is([data-reveal="up"], [data-reveal="rise"]).is-in {
+    opacity: 1; translate: none;
+    transition: opacity var(--n-t-rise) var(--n-ease), translate var(--n-t-rise) var(--n-ease);
+    transition-delay: calc(var(--i, 0) * var(--n-stagger));
+  }
+  .js-motion [data-reveal="settle"] { scale: 1.04; }
+  .js-motion [data-reveal="settle"].is-in { scale: 1; transition: scale var(--n-t-settle) var(--n-ease); }
+  @supports (clip-path: inset(0 round 1px)) {
+    .js-motion [data-reveal="arch"] { clip-path: inset(100% 0 0 0 round 999px 999px 0 0); }
+    .js-motion [data-reveal="arch"].is-in { clip-path: inset(0 0 0 0 round 999px 999px 0 0); transition: clip-path var(--n-t-arch) var(--n-ease) .15s; }
+  }
+  @supports not (clip-path: inset(0 round 1px)) {
+    .js-motion [data-reveal="arch"] { opacity: 0; translate: 0 28px; }
+    .js-motion [data-reveal="arch"].is-in { opacity: 1; translate: none; transition: opacity var(--n-t-rise) var(--n-ease), translate var(--n-t-rise) var(--n-ease); }
+  }
+  @media (max-width: 699.98px) { .js-motion :is([data-reveal="up"], [data-reveal="rise"]) { translate: 0 20px; } }
+  /* keyboard focus inside a block whose entrance has not played shows it at once (RA-04 lesson, WCAG 2.4.7) */
+  .js-motion [data-reveal]:focus-within { opacity: 1; translate: none; clip-path: none; transition: none; }
+  /* slides clipped by the snap track would reveal mid-swipe: below 1024px they are never hidden */
+  @media (max-width: 1023.98px) { .js-motion .rev-slide[data-reveal] { opacity: 1; translate: none; } }
+
+  /* ---- scroll-linked (5.3): --py (px) on each [data-depth] element; --settle (0..1) on the settle title ---- */
+  [data-depth] { translate: 0 calc(var(--py, 0) * 1px); }
+  @media (min-width: 1024px) { .js-motion [data-settle] { letter-spacing: calc(.08em - .06em * var(--settle, 1)); } }
+
+  /* ---- chrome ---- */
+  .drawer { translate: calc(100% + 24px) 0; transition: translate .5s var(--ease-out); }
+  .drawer.is-open { translate: none; }
+  .scrim { opacity: 0; transition: opacity .4s var(--ease-out); }
+  .scrim.is-open { opacity: 1; }
+
+  /* ---- hover and focus movement (5.4): movement-only hover behind (hover: hover); focus movement everywhere ---- */
+  .btn { transition: background-color .35s var(--n-ease), color .35s var(--n-ease), translate .35s var(--n-ease); }
+  .btn:focus-visible { translate: 0 -2px; }
+  .more .ico, .title-link .ico { transition: translate var(--n-t-hover) var(--n-ease); }
+  .more:focus-visible .ico { translate: 4px 0; }
+  .title-link:focus-visible .ico { translate: 6px 0; }
+  .dock__tile { transition: translate var(--n-t-hover) var(--n-ease), background-color var(--n-t-hover) var(--n-ease), box-shadow var(--n-t-hover) var(--n-ease), border-color var(--n-t-hover) var(--n-ease); }
+  .dock__tile:focus-visible .dock__go .ico { translate: 4px 0; }
+  .dock__tile:focus-visible .dock__ring { rotate: 45deg; }
+  :is(.dock--aside, .dock--portico) .dock__tile:not([data-reveal]):focus-visible { translate: 0 -4px; }
+  .svc:focus-visible .svc__frame { translate: 0 -6px; }
+  .svc:focus-visible .svc__frame img { scale: 1.03; }
+  .svc:focus-visible .svc__go .ico { translate: 6px 0; }
+  .index-card__thumb, .index-card__go .ico { transition: translate var(--n-t-hover) var(--n-ease); }
+  .index-card:focus-within .index-card__thumb { translate: 0 -6px; }
+  .index-card:focus-within .index-card__go .ico { translate: 6px 0; }
+  .post-card .more .ico { transition: translate var(--n-t-hover) var(--n-ease); }
+  .post-card:focus-within .more .ico { translate: 6px 0; }
+  .brand__img { transition: translate var(--n-t-hover) var(--n-ease); }
+  .brand:focus-visible .brand__img { translate: 0 -4px; }
+  .logo-chip__link img { transition: translate var(--n-t-hover) var(--n-ease); }
+  .logo-chip__link:focus-visible img { translate: 0 -4px; }
+  .qa__item[open] > .qa__q .qa__icon { rotate: 45deg; }
+  .social:focus-visible { rotate: 45deg; }
+  .social:focus-visible .ico { rotate: -45deg; }
+  .nap--stele:focus-within :is(.nap__ring, .nap__rosette) { rotate: 45deg; }
+  .round-btn { transition: background-color var(--n-t-hover) var(--n-ease), color var(--n-t-hover) var(--n-ease), border-color var(--n-t-hover) var(--n-ease), translate .3s var(--n-ease); }
+  .qa__item[open] > .qa__a { animation: n-open .6s var(--n-ease); }
+  @media (hover: hover) {
+    .btn:hover { translate: 0 -2px; }
+    .more:hover .ico { translate: 4px 0; }
+    .title-link:hover .ico { translate: 6px 0; }
+    .dock__tile:hover .dock__go .ico { translate: 4px 0; }
+    .dock__tile:hover .dock__ring { rotate: 45deg; }
+    :is(.dock--aside, .dock--portico) .dock__tile:not([data-reveal]):hover { translate: 0 -4px; }
+    .svc:hover .svc__frame { translate: 0 -6px; }
+    .svc:hover .svc__frame img { scale: 1.03; }
+    .svc:hover .svc__go .ico { translate: 6px 0; }
+    .index-card:hover .index-card__thumb { translate: 0 -6px; }
+    .index-card:hover .index-card__go .ico { translate: 6px 0; }
+    .post-card:hover .more .ico { translate: 6px 0; }
+    .brand:hover .brand__img { translate: 0 -4px; }
+    .logo-chip__link:hover img { translate: 0 -4px; }
+    .social:hover { rotate: 45deg; }
+    .social:hover .ico { rotate: -45deg; }
+    .nap--stele:hover :is(.nap__ring, .nap__rosette) { rotate: 45deg; }
+  }
+  @media (min-width: 1200px) {
+    .dock--portico .dock__tile:not([data-reveal]):focus-visible { translate: 0 -6px; }
+  }
+  @media (min-width: 1200px) and (hover: hover) {
+    .dock--portico .dock__tile:not([data-reveal]):hover { translate: 0 -6px; }
+  }
+}
+@keyframes n-open { from { opacity: 0; translate: 0 -6px; } to { opacity: 1; translate: none; } }
+
+/* ---- reduced motion (5.5): nothing hidden (js-motion is never set), nothing moves, nothing turns ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
+  [data-reveal] { opacity: 1 !important; translate: none !important; scale: none !important; clip-path: none !important; }
+  [data-depth] { translate: none !important; }
+  [data-settle] { letter-spacing: var(--ls-tag) !important; }
+}

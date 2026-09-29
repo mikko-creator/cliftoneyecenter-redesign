@@ -12,13 +12,17 @@
 // Same-page fragments (href="#id") must name an element id on that page.
 // Positive controls: a planted missing file, a planted root-absolute href and a planted dead
 // fragment must each be reported; the run exits 1 if any control does not fire.
-//   node tools/link-check.mjs  -> audit/link-check.json (exit 1 on any broken reference)
+//   node tools/link-check.mjs [--dir dist-neo]  -> audit/link-check.json (exit 1 on any broken reference)
+//   --dir <dir> (resolved against the current directory) wins over $CEC_DIST; either one skips the audit/ report.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const DIST = path.resolve(process.env.CEC_DIST || path.join(ROOT, 'dist'));
+const DIR_OPT = process.argv.includes('--dir') ? process.argv[process.argv.indexOf('--dir') + 1] : null;
+if (process.argv.includes('--dir') && !DIR_OPT) throw new Error('--dir needs a directory');
+const DIST = path.resolve(DIR_OPT || process.env.CEC_DIST || path.join(ROOT, 'dist'));
+const WRITE_AUDIT = !process.env.CEC_DIST && !DIR_OPT;
 const EXTERNAL = /^(https?:|mailto:|tel:|data:|javascript:|about:|blob:)/i;
 
 function listFiles(dir, base = dir, out = []) {
@@ -43,7 +47,10 @@ function refsOfHtml(html) {
 function refsOfCss(css) {
   const out = [];
   const c = css.replace(/\/\*[\s\S]*?\*\//g, '');
-  for (const m of c.matchAll(/url\(\s*['"]?([^'")]+)['"]?\s*\)/gi)) out.push({ attr: 'css-url', value: m[1].trim() });
+  /* a quoted url() is ONE token up to its own closing quote (2026-09-29, neo build): the looser pattern stopped at the
+     first quote of either kind, so an SVG data URI holding filter='url(%23n)' was read as two references and its
+     in-document fragment reported as a missing file. Unquoted values end at whitespace or ')'. */
+  for (const m of c.matchAll(/url\(\s*(?:"([^"]*)"|'([^']*)'|([^'")\s]+))\s*\)/gi)) out.push({ attr: 'css-url', value: (m[1] !== undefined ? m[1] : m[2] !== undefined ? m[2] : m[3]).trim() });
   for (const m of c.matchAll(/@import\s+['"]([^'"]+)['"]/gi)) out.push({ attr: 'css-import', value: m[1].trim() });
   return out;
 }
@@ -98,11 +105,14 @@ const ctl = checkFile('ctl/index.html', ctlHtml, exists).problems;
 const ctl404Html = '<a href="/">home</a><a href="/styles/site.css">css</a><link href="/styles/nope.css"><a href="index.html">rel</a>';
 const ctl404 = checkFile('404.html', ctl404Html, exists).problems;
 const fired404 = !ctl404.some((p) => p.value === '/' || p.value === '/styles/site.css') && ctl404.some((p) => p.kind === 'missing' && p.value === '/styles/nope.css') && ctl404.some((p) => p.kind === 'page-relative-in-404' && p.value === 'index.html');
-const fired = fired404 && ctl.some((p) => p.kind === 'missing' && p.value === 'nope/index.html') && ctl.some((p) => p.kind === 'root-absolute') && ctl.some((p) => p.kind === 'dead-fragment') && ctl.some((p) => p.kind === 'missing' && p.attr === 'src');
+/* CSS: a missing quoted and unquoted url() are reported; an SVG data URI's own url(%23n) fragment is not a reference */
+const ctlCss = checkFile('styles/ctl.css', ".a{background:url(\"../img/none-1.webp\")}.b{background:url(../img/none-2.webp)}.c{--g:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect filter='url(%23n)'/%3E%3C/svg%3E\")}", exists).problems;
+const firedCss = ctlCss.length === 2 && ctlCss.some((p) => p.value === '../img/none-1.webp') && ctlCss.some((p) => p.value === '../img/none-2.webp');
+const fired = fired404 && firedCss && ctl.some((p) => p.kind === 'missing' && p.value === 'nope/index.html') && ctl.some((p) => p.kind === 'root-absolute') && ctl.some((p) => p.kind === 'dead-fragment') && ctl.some((p) => p.kind === 'missing' && p.attr === 'src');
 
 const byKind = broken.reduce((a, b) => { a[b.kind] = (a[b.kind] || 0) + 1; return a; }, {});
 const out = { schema: 'cec/link-check@1', generated: new Date().toISOString(), dist: DIST, filesChecked: checked, localRefs: local, externalRefsSkipped: external, broken: broken.length, byKind, control: { planted: ctlHtml, reported: ctl, planted404: ctl404Html, reported404: ctl404, fired }, findings: broken.slice(0, 2000) };
-if (!process.env.CEC_DIST) fs.writeFileSync(path.join(ROOT, 'audit/link-check.json'), JSON.stringify(out, null, 1));
+if (WRITE_AUDIT) fs.writeFileSync(path.join(ROOT, 'audit/link-check.json'), JSON.stringify(out, null, 1));
 console.log('files', checked, '· local refs', local, '· external skipped', external, '· broken', broken.length, JSON.stringify(byKind), '· control', fired ? 'fired' : 'DID NOT FIRE');
 for (const b of broken.slice(0, 15)) console.log('  ' + b.file + '  ' + b.kind + ' ' + b.attr + '=' + b.value);
 if (broken.length || !fired) process.exit(1);

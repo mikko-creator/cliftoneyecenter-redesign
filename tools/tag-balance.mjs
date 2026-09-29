@@ -6,13 +6,16 @@
 // Also flags block elements nested inside <p> (the parser would close the <p> early).
 // Control: the same check run on a planted unclosed <div> must report it.
 // Ported from the friscoeyesource reference; ROOT fixed (tools/ sits at the project root here) and
-// $CEC_DIST honoured.
-//   node tools/tag-balance.mjs   -> audit/tag-balance.json (exit 1 on any finding or a failed control)
+// $CEC_DIST honoured; --dir <dir> (resolved against the current directory) wins over it. Either one skips the audit/ report.
+//   node tools/tag-balance.mjs [--dir dist-neo]   -> audit/tag-balance.json (exit 1 on any finding or a failed control)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const DIST = path.resolve(process.env.CEC_DIST || path.join(ROOT, 'dist'));
+const DIR_OPT = process.argv.includes('--dir') ? process.argv[process.argv.indexOf('--dir') + 1] : null;
+if (process.argv.includes('--dir') && !DIR_OPT) throw new Error('--dir needs a directory');
+const DIST = path.resolve(DIR_OPT || process.env.CEC_DIST || path.join(ROOT, 'dist'));
+const WRITE_AUDIT = !process.env.CEC_DIST && !DIR_OPT;
 const VOID = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr']);
 const OPTIONAL = new Set(['p', 'li', 'dt', 'dd', 'option', 'tr', 'td', 'th', 'thead', 'tbody']);
 const CLOSES_P = new Set(['address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hr', 'main', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'ul']);
@@ -47,7 +50,7 @@ for (const f of files) {
 const control = check('<main><section><div class="a"><p>x</p></section></main>');
 const control2 = check('<p>a<div>b</div></p>');
 const fired = control.some((p) => p.tag === 'div' || p.tag === 'section') && control2.some((p) => p.kind === 'block-in-p');
-if (!process.env.CEC_DIST) fs.writeFileSync(path.join(ROOT, 'audit/tag-balance.json'), JSON.stringify({ schema: 'cec/tag-balance@1', generated: new Date().toISOString(), dist: DIST, pages: files.length, unbalancedPages: pagesWith.size, findings, control: { input: 'unclosed <div> inside <section>; <div> inside <p>', reported: [...control, ...control2], fired } }, null, 1));
+if (WRITE_AUDIT) fs.writeFileSync(path.join(ROOT, 'audit/tag-balance.json'), JSON.stringify({ schema: 'cec/tag-balance@1', generated: new Date().toISOString(), dist: DIST, pages: files.length, unbalancedPages: pagesWith.size, findings, control: { input: 'unclosed <div> inside <section>; <div> inside <p>', reported: [...control, ...control2], fired } }, null, 1));
 console.log('pages', files.length, '· unbalanced pages', pagesWith.size, '· findings', findings.length, '· control', fired ? 'fired (' + [...control, ...control2].map((p) => p.kind + ' ' + p.tag).join(', ') + ')' : 'DID NOT FIRE');
 for (const f of findings.slice(0, 12)) console.log('  ' + f.file + ' ' + f.kind + ' <' + f.tag + '> … ' + f.context);
 if (findings.length || !fired) process.exit(1);

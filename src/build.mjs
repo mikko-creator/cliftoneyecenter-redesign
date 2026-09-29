@@ -38,6 +38,9 @@ const TH = THEME === 'glass'
 const { createTemplates, icon, isoDate } = await import(pathToFileURL(P(TH.templates)).href);
 const DIST = path.resolve(process.env.CEC_DIST || P(TH.dist));
 const REPORTS = !process.env.CEC_DIST && THEME === 'glass';   /* audit/ reports are written only by the canonical (glass) build */
+/* A non-glass theme's image map and derivative recipes (docs/NEO-SPEC.md 0.2, build hooks 1-3: src/themes/<theme>/images.mjs).
+   null for glass, and every hook below is guarded by it, so the glass branch is unchanged (byte-identical dist/). */
+const TI = THEME === 'glass' ? null : await import(pathToFileURL(P('src/themes', THEME, 'images.mjs')).href);
 const chrome = readJSON(P('src/content/chrome.json'));
 const siteMap = readJSON(P('src/content/site-map.json'));
 const ORIGIN = chrome.origin;
@@ -209,6 +212,48 @@ function trimmedGen(id) {
   trimById.set(id, out);
   return out;
 }
+/* THEME hooks 2 and 3 (docs/NEO-SPEC.md 0.2, 2.7, 2.10, 6.5; not run for glass). Hook 2: every id with a recipe in the
+   theme's DERIVE is baked ONCE with ffmpeg (crop, lanczos resize never upscaling, then the tone: T3 duo-marble keeps the
+   alpha exactly, T5 duo-niche for the arch scenes, T0 resize only) into tmp/build-cache/derived/, cached by source hash
+   + recipe exactly as the 6% texture above, then encoded by the shared encoder with the AI label. The derivative
+   REPLACES the raw entry in genById, so genFor, useGen and ctx.gen only ever return it; if a bake fails the entry is
+   removed (an empty slot and a listed failure, never the raw file). Hook 3: the three pre-composited marble grounds,
+   appended to the shipped tokens.css in section 4. */
+const themeGrounds = [];
+if (TI) {
+  const derivedDir = P('tmp/build-cache/derived');
+  fs.mkdirSync(derivedDir, { recursive: true });
+  const bake = (g, recipe, base) => {
+    const abs = P(g.file);
+    const key = crypto.createHash('sha1').update(fs.readFileSync(abs)).update('|' + recipe).digest('hex').slice(0, 10);
+    const derived = path.join(derivedDir, base + '.' + key + '.png');
+    if (!fs.existsSync(derived)) {
+      const r = spawnSync(process.env.FFMPEG || 'ffmpeg', ['-loglevel', 'error', '-y', '-i', abs, '-vf', recipe, '-frames:v', '1', derived], { encoding: 'utf8' });
+      if (r.status !== 0 || !fs.existsSync(derived)) { fail('build:asset', g.file, 'ffmpeg could not bake the ' + THEME + ' derivative ' + base + ': ' + String(r.stderr || r.error || '').slice(0, 300)); return null; }
+    }
+    return derived;
+  };
+  const recOf = (id) => (genRec.images || []).find((x) => x.id === id && fs.existsSync(P(x.file)));
+  for (const [id, d] of Object.entries(TI.DERIVE)) {
+    const g = recOf(id);
+    if (!g) { genById.delete(id); continue; }   /* a missing file already failed in the loop above; its slots stay empty */
+    const derived = bake(g, TI.recipeOf(d), id + '-' + d.tone.toLowerCase());
+    const aiLabel = { tool: 'fal.ai ' + g.model + (g.cutout ? ' + ' + g.cutout.model : '') + ' (' + TI.TONE_LABEL[d.tone] + ')', description: (g.alt || g.id) + ' (AI-generated illustrative image, not a photograph of this practice)' };
+    const w = derived && genImages.web(derived, { maxW: d.maxW, q: d.q, name: id, aiLabel });
+    if (!w) { if (derived) fail('build:asset', derived, 'derivative is not an image'); genById.delete(id); continue; }
+    genById.set(id, { rel: 'generated/' + w.rel, w: w.w, h: w.h, alt: g.alt || '' });
+    stats.themeDerivatives = (stats.themeDerivatives || 0) + 1;
+  }
+  for (const gr of TI.GROUNDS) {
+    const g = recOf(gr.id);
+    if (!g) { fail('build:asset', gr.id, 'texture for ' + gr.token + ' missing'); continue; }
+    const derived = bake(g, TI.groundRecipe(gr), gr.name);
+    const aiLabel = { tool: 'fal.ai ' + g.model + ' (composited at ' + Math.round(gr.alpha * 100) + '% over ' + gr.overName + ' and resized by the build)', description: 'Marble texture ground (AI-generated illustrative image, not a photograph of this practice)' };
+    const w = derived && genImages.web(derived, { maxW: TI.GROUND_W, q: TI.GROUND_Q, name: gr.name, aiLabel });
+    if (!w) { if (derived) fail('build:asset', derived, 'ground is not an image'); continue; }
+    themeGrounds.push({ token: gr.token, id: gr.id, rel: 'generated/' + w.rel, w: w.w, h: w.h });
+  }
+}
 const planById = new Map(plan.images.map((i) => [i.id, i]));
 for (const item of plan.images.filter((i) => i.fillFor)) {
   const g = genById.get(item.reuse || item.id);
@@ -350,6 +395,10 @@ const CUTS = [
   [/^\/eyeglasses-contacts\//, 'cut-eyeglasses'],
   [/^\/eye-care-services\/$|^\/eye-care-services\/eye-conditions\/|^\/eye-care-services\/management-of-ocular-diseases\/|^\/eye-care-services\/eye-emergencies-pinkred-eyes\/|^\/eye-care-services\/lasik-refractive-surgery-co-management\//, 'cut-lens-prism'],
 ];
+/* THEME hook 1 (NEO-SPEC 6.3): a non-glass theme takes its cut-out prefix table, band plan and 404 cut-out from its
+   images.mjs; the SVC feature table, PHOTO_PAGES and BAND_FOCUS below stay shared. For glass these are the inline tables. */
+const BAND_CUTS = TI ? TI.cutRules(LIB_INDEXES) : CUTS;
+const CUT_404 = TI ? TI.CUT_404 : 'cut-lens-prism';
 const SVC = {
   '/eye-care-services/eye-exams/': 'svc-eye-exam',
   '/eye-care-services/contact-lens-exams/': 'svc-contact-lens',
@@ -543,7 +592,8 @@ function buildPage(page, opts = {}) {
     const g = genFor(id, depth);
     if (!g && droppedGen.has(id)) { slots.push({ page: p, slot, image: id, rendered: false, why: 'declared drop (audit/generated-images.json): ' + droppedGen.get(id) }); stats.droppedSlots = (stats.droppedSlots || 0) + 1; return null; }
     if (!g) { fail('build:generated', p, slot + ' planned image not generated yet: ' + id); slots.push({ page: p, slot, image: id, rendered: false, why: 'file missing' }); return null; }
-    if (opts.trim) {
+    /* the trimmed copy is cut from the RAW file: a non-glass theme ships its tone-mapped derivative (hook 2) untrimmed */
+    if (opts.trim && !TI) {
       const t = trimmedGen(id);
       if (t) {
         slots.push({ page: p, slot, image: id, rendered: true, file: 'trimmed copy' });
@@ -692,7 +742,7 @@ function buildPage(page, opts = {}) {
   });
 
   /* ---- band ---- */
-  const bp = bandPlan(family, p);
+  const bp = TI ? TI.bandPlan(family, p, PHOTO_PAGES) : bandPlan(family, p);
   let bandHtml = '', lcp = null;
   const trail = (prep.trail || []).map((seg) => ({ text: seg.text, href: seg.href }));
   if (!isHome) {
@@ -716,7 +766,7 @@ function buildPage(page, opts = {}) {
         if (unused.length) (stats.bandPhotosNotRendered = stats.bandPhotosNotRendered || []).push(p + ': ' + unused.join(', '));
       }
     }
-    const cutRule = CUTS.find(([re]) => re.test(p));
+    const cutRule = BAND_CUTS.find(([re]) => re.test(p));
     bandArgs.cut = cutRule && cutRule[1] ? useGen(cutRule[1], 'band cut-out', { trim: true }) : null;
     /* cut-contact-lens is a fingertip cut flat at its bottom and left edges (the image plan: "its flat bottom
        edge is anchored"): floating across the band edge it showed a severed finger (tmp/orch/shots2, 390 and
@@ -744,7 +794,7 @@ function buildPage(page, opts = {}) {
   /* ---- 404 variant (COMPONENTS F.7) ---- */
   let mainHtml;
   if (opts.as404 || p === '/404-page-not-found/') {
-    const cut = useGen('cut-lens-prism', '404 sheet', { trim: true });
+    const cut = useGen(CUT_404, '404 sheet', { trim: true });
     const prose = bodyParts.map((b) => b.replace(/^<section class="sheet[^>]*>\n<div class="prose">\n|\n<\/div>\n<\/section>$/g, '')).join('\n');
     mainHtml = T.band({ depth, variant: 'plain', trail: opts.as404 ? null : (trail.length ? trail : null), h1: h1.text }) + '\n<div class="page-main">\n<section class="sheet sheet--404 glass glass--light is-flat">\n'
       + (cut ? '<img class="sheet__cut" src="' + esc(cut.url) + '" alt="" width="' + cut.w + '" height="' + cut.h + '" loading="lazy" decoding="async" data-depth="-0.05" data-depth-max="16">\n' : '')
@@ -912,7 +962,7 @@ slots.push({ page: '/eye-care-services/', slot: 'hub section image (image-plan u
   why: 'not placed: the hub has no eye-exam prose section; its services are the 7 source index cards, each with its source thumbnail (the "Comprehensive Eye Exams" card already shows a phoropter), and a generated duplicate beside a source photo is redundant (DESIGN-SPEC 3.6 rationale). The image renders as the feature on /eye-care-services/eye-exams/.' });
 slots.push({ page: '/eye-care-services/', slot: 'hub section image (image-plan usedFor: the "optical" section)', image: 'svc-eyewear-boutique', rendered: false,
   why: 'not placed: /eye-care-services/ has no optical section in the source (its 7 index cards are exams, contact lens exams, conditions, disease management, emergencies, LASIK co-management and Your Eye Health). The image renders as the stand-in on /eyeglasses-contacts/eyeglasses/eyeglass-basics/womens-eyeglass-frames/; its feature slot on /eyeglasses-contacts/eyeglasses/ is excluded by the DESIGN-SPEC 6.3 brand rule ("Transitions" in the main text).' });
-slots.push({ page: '(site-wide)', slot: 'texture layer at 6%: the home hero statement and every interior .sheet.is-flat (DESIGN-SPEC 6.4)', image: 'tex-frosted-glass', rendered: !!texFrost, ...(texFrost ? {} : { why: 'derived texture unavailable (see build failures)' }) });
+if (!TI) slots.push({ page: '(site-wide)', slot: 'texture layer at 6%: the home hero statement and every interior .sheet.is-flat (DESIGN-SPEC 6.4)', image: 'tex-frosted-glass', rendered: !!texFrost, ...(texFrost ? {} : { why: 'derived texture unavailable (see build failures)' }) });
 /* dist/404.html: the /404-page-not-found/ content at depth 0 (COMPONENTS F.7) */
 {
   const p404 = content.pages.find((p) => pathOf(p.url) === '/404-page-not-found/');
@@ -946,10 +996,16 @@ for (const f of fs.existsSync(P(TH.styles)) ? fs.readdirSync(P(TH.styles)).sort(
     css = '/* ' + f + ' - the redesign layer of ' + TH.styles + '/' + f + ' (the measured source evidence above its marker is not shipped; see docs/BUILD-NOTES.md) */\n' + css.slice(start);
   }
   /* the build-derived 6% texture (section 1): its content-hashed name is known only here */
-  if (f === 'tokens.css' && texFrost) {
+  if (f === 'tokens.css' && texFrost && !TI) {
     ship(texFrost.rel);
     css += '\n/* set by src/build.mjs: tex-frosted-glass with its alpha baked to 6% (AI-generated, labelled in the file) */\n:root { --tex-frost: url("../img/' + texFrost.rel + '"); }\n';
     stats.texFrost = texFrost.rel;
+  }
+  /* THEME hook 3 (NEO-SPEC 0.2, 2.7): the baked grounds, content-hashed names known only here */
+  if (f === 'tokens.css' && TI && themeGrounds.length) {
+    for (const g of themeGrounds) ship(g.rel);
+    css += '\n/* set by src/build.mjs: the pre-composited marble grounds (NEO-SPEC 2.7; AI-generated texture, labelled in each file) */\n:root { ' + themeGrounds.map((g) => g.token + ': url("../img/' + g.rel + '");').join(' ') + ' }\n';
+    stats.themeGroundsSet = themeGrounds.length;
   }
   fs.writeFileSync(path.join(DIST, 'styles', f), css);
   shippedStyles.push(f);
@@ -1029,6 +1085,12 @@ fs.writeFileSync(path.join(DIST, '_redirects'), '# Carried-forward redirects (se
 fs.writeFileSync(path.join(DIST, '.htaccess'), '# 404 page (dist/404.html; its URLs are root-relative, COMPONENTS F.7)\nErrorDocument 404 /404.html\n\n# Carried-forward redirects (see audit/redirects.json)\n' + rLines.map(([f, t]) => 'RedirectMatch 301 ^' + f.replace(/\/$/, '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '/?$ ' + t).join('\n') + '\n');
 stats.redirects = rLines.length;
 
+/* THEME: the baked grounds are site-wide slots of their own (rendered when tokens.css shipped them, section 4) */
+if (TI) for (const g of TI.GROUNDS) {
+  const on = themeGrounds.find((x) => x.token === g.token) && stats.themeGroundsSet;
+  slots.push({ page: '(site-wide)', slot: 'ground ' + g.token + ' (NEO-SPEC 2.7)', image: g.id, rendered: !!on, ...(on ? {} : { why: 'ground unavailable or tokens.css not shipped (see build failures)' }) });
+}
+
 /* ---------- 6. reports ---------- */
 const now = new Date().toISOString();
 const aud = (f, obj) => { if (REPORTS) fs.writeFileSync(P('audit', f), JSON.stringify(obj, null, 2) + '\n'); };
@@ -1101,6 +1163,15 @@ const report = {
 };
 aud('build-report.json', report);
 aud('build-pages.json', { schema: 'cec/build-pages@1', generated: now, pages: pageRecords });
+/* THEME hook 4 (NEO-SPEC 0.2): REPORTS is glass-only, so a non-glass theme writes its slot log, build report and page
+   records under tmp/<theme>/build/ (never audit/) */
+if (TI) {
+  const dir = P('tmp', THEME, 'build');
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'image-slots.json'), JSON.stringify({ schema: 'cec/image-slots@1', generated: now, theme: THEME, dist: DIST, note: 'Every generated-image slot the ' + THEME + ' build resolved (NEO-SPEC 6), rendered or not, with the reason.', slots }, null, 2) + '\n');
+  fs.writeFileSync(path.join(dir, 'build-report.json'), JSON.stringify(Object.assign({ theme: THEME }, report), null, 2) + '\n');
+  fs.writeFileSync(path.join(dir, 'build-pages.json'), JSON.stringify({ schema: 'cec/build-pages@1', generated: now, theme: THEME, pages: pageRecords }, null, 2) + '\n');
+}
 if (REPORTS) {
   const fpath = P('audit/failures.json');
   const existing = fs.existsSync(fpath) ? JSON.parse(fs.readFileSync(fpath, 'utf8')) : { schema: 'site-reforge/failures@1', items: [] };
