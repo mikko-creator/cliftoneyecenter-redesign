@@ -23,13 +23,21 @@ import { esc, up, depthOf, ownPath, readJSON, walk, plain, decodeEntities } from
 import { createContent, TOKEN_RE } from './lib/content.mjs';
 import { parseGravityForm, renderForm, parseConditionalLogic } from './lib/forms.mjs';
 import { MOVED, sourceRobots, mergeRobots, pageTitle, deriveDescription, canonicalSlugFor, jsonLd } from './lib/seo.mjs';
-import { createTemplates, icon, isoDate } from './lib/templates.mjs';
 import { createImages } from './lib/images.mjs';
 
 const PROJ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = (...a) => path.join(PROJ, ...a);
-const DIST = path.resolve(process.env.CEC_DIST || P('dist'));
-const REPORTS = !process.env.CEC_DIST;   /* audit/ reports are written only by the canonical build */
+/* THEME (2026-09-29): the glass design ("Daylight Canopy") is the default and its paths are unchanged, so its output is
+   byte-identical; CEC_THEME=neo builds the neoclassical exploration from src/themes/neo/ (templates, home, styles,
+   scripts) and assets/fonts/neo/ into dist-neo/, through the SAME content, SEO, forms and image pipeline. */
+const THEME = process.env.CEC_THEME || 'glass';
+if (!/^[a-z][a-z0-9-]*$/.test(THEME)) throw new Error('CEC_THEME must be a simple name: ' + THEME);
+const TH = THEME === 'glass'
+  ? { styles: 'src/styles', scripts: 'src/scripts', templates: 'src/lib/templates.mjs', home: 'src/lib/home.mjs', fonts: 'assets/fonts/web', dist: 'dist' }
+  : { styles: 'src/themes/' + THEME + '/styles', scripts: 'src/themes/' + THEME + '/scripts', templates: 'src/themes/' + THEME + '/templates.mjs', home: 'src/themes/' + THEME + '/home.mjs', fonts: 'assets/fonts/' + THEME, dist: 'dist-' + THEME };
+const { createTemplates, icon, isoDate } = await import(pathToFileURL(P(TH.templates)).href);
+const DIST = path.resolve(process.env.CEC_DIST || P(TH.dist));
+const REPORTS = !process.env.CEC_DIST && THEME === 'glass';   /* audit/ reports are written only by the canonical (glass) build */
 const chrome = readJSON(P('src/content/chrome.json'));
 const siteMap = readJSON(P('src/content/site-map.json'));
 const ORIGIN = chrome.origin;
@@ -250,7 +258,7 @@ const pdfFor = (href, depth) => {
    motion.css are linked only when they carry their redesign layer (the marker; see section 4). */
 const LAYERED = { 'tokens.css': /REDESIGN TOKENS/, 'motion.css': /@redesign-motion/ };
 const LINKED_STYLES = ['tokens.css', 'brand.css', 'site.css', 'motion.css'].filter((f) => {
-  const abs = P('src/styles', f);
+  const abs = P(TH.styles, f);
   if (!fs.existsSync(abs)) return f === 'site.css';   /* site.css is always linked; its absence is a build failure */
   return !LAYERED[f] || LAYERED[f].test(fs.readFileSync(abs, 'utf8'));
 });
@@ -476,7 +484,7 @@ const canonicalBySlug = new Map();
 const pageRecords = [];
 let built = 0;
 let homeModule = null, homeError = null;
-try { homeModule = await import(pathToFileURL(P('src/lib/home.mjs')).href); if (typeof homeModule.buildHome !== 'function') throw new Error('home.mjs does not export buildHome'); }
+try { homeModule = await import(pathToFileURL(P(TH.home)).href); if (typeof homeModule.buildHome !== 'function') throw new Error('home.mjs does not export buildHome'); }
 catch (e) { homeError = e; homeModule = null; }
 
 function buildPage(page, opts = {}) {
@@ -913,12 +921,12 @@ slots.push({ page: '(site-wide)', slot: 'texture layer at 6%: the home hero stat
 }
 
 /* ---------- 4. static assets ---------- */
-for (const f of fs.readdirSync(P('assets/fonts/web')).sort()) {
-  if (/\.(woff2|txt|css)$/i.test(f)) fs.copyFileSync(P('assets/fonts/web', f), path.join(DIST, 'fonts', f));
+for (const f of fs.readdirSync(P(TH.fonts)).sort()) {
+  if (/\.(woff2|txt|css)$/i.test(f)) fs.copyFileSync(P(TH.fonts, f), path.join(DIST, 'fonts', f));
 }
 /* the design agent's src/styles/fonts.css (urls rewritten to ../fonts/<file>, valid from dist/fonts/
    too) supersedes the harvested one; it ships ONCE, at the linked {up}fonts/fonts.css (COMPONENTS A.1) */
-if (fs.existsSync(P('src/styles/fonts.css'))) fs.copyFileSync(P('src/styles/fonts.css'), path.join(DIST, 'fonts', 'fonts.css'));
+if (fs.existsSync(P(TH.styles, 'fonts.css'))) fs.copyFileSync(P(TH.styles, 'fonts.css'), path.join(DIST, 'fonts', 'fonts.css'));
 /* Stylesheets. src/styles/tokens.css and motion.css each hold the MEASURED SOURCE EVIDENCE (sr-tokens /
    sr-motion output, read by the gates, with wp-content URLs and ecp-/fl- selectors inside) followed,
    after a marker comment, by the redesign's own layer. dist/ ships only the redesign layer (from the
@@ -927,15 +935,15 @@ if (fs.existsSync(P('src/styles/fonts.css'))) fs.copyFileSync(P('src/styles/font
    The integrity check below fails the build if the shipped CSS references a custom property or a
    keyframe that only the stripped evidence defined. */
 const shippedStyles = [];
-for (const f of fs.existsSync(P('src/styles')) ? fs.readdirSync(P('src/styles')).sort() : []) {
+for (const f of fs.existsSync(P(TH.styles)) ? fs.readdirSync(P(TH.styles)).sort() : []) {
   if (!/\.css$/.test(f) || f === 'fonts.css') continue;   /* fonts.css ships to dist/fonts/ above */
-  let css = fs.readFileSync(P('src/styles', f), 'utf8');
+  let css = fs.readFileSync(P(TH.styles, f), 'utf8');
   if (LAYERED[f]) {
     const at = css.search(LAYERED[f]);
     if (at < 0) { (stats.evidenceOnlyStylesNotShipped = stats.evidenceOnlyStylesNotShipped || []).push(f); continue; }
     const start = css.lastIndexOf('/*', at);
     stats.stylesEvidenceStripped = (stats.stylesEvidenceStripped || []).concat(f + ' (' + start + ' of ' + css.length + ' chars)');
-    css = '/* ' + f + ' - the redesign layer of src/styles/' + f + ' (the measured source evidence above its marker is not shipped; see docs/BUILD-NOTES.md) */\n' + css.slice(start);
+    css = '/* ' + f + ' - the redesign layer of ' + TH.styles + '/' + f + ' (the measured source evidence above its marker is not shipped; see docs/BUILD-NOTES.md) */\n' + css.slice(start);
   }
   /* the build-derived 6% texture (section 1): its content-hashed name is known only here */
   if (f === 'tokens.css' && texFrost) {
@@ -952,7 +960,7 @@ if (!shippedStyles.includes('site.css')) fail('build:asset', 'src/styles/site.cs
   const all = shippedStyles.map((f) => fs.readFileSync(path.join(DIST, 'styles', f), 'utf8')).join('\n').replace(/\/\*[\s\S]*?\*\//g, '');
   const defined = new Set([...all.matchAll(/(--[A-Za-z0-9_-]+)\s*:/g)].map((m) => m[1]));
   const used = new Set([...all.matchAll(/var\(\s*(--[A-Za-z0-9_-]+)\s*\)/g)].map((m) => m[1]));   /* var(--x, fallback) is safe by construction */
-  const js = fs.existsSync(P('src/scripts/site.js')) ? fs.readFileSync(P('src/scripts/site.js'), 'utf8') : '';
+  const js = fs.existsSync(P(TH.scripts, 'site.js')) ? fs.readFileSync(P(TH.scripts, 'site.js'), 'utf8') : '';
   const setByJs = new Set([...js.matchAll(/['"`](--[A-Za-z0-9_-]+)['"`]/g)].map((m) => m[1]));
   const undefinedVars = [...used].filter((v) => !defined.has(v) && !setByJs.has(v));
   const frames = new Set([...all.matchAll(/@keyframes\s+([A-Za-z0-9_-]+)/g)].map((m) => m[1]));
@@ -964,7 +972,7 @@ if (!shippedStyles.includes('site.css')) fail('build:asset', 'src/styles/site.cs
   for (const v of undefinedVars) fail('build:css', v, 'custom property used by the shipped CSS but defined nowhere in it (fallback values aside; set by site.js? not found)');
   for (const a of missingFrames) fail('build:css', a, 'animation name used by the shipped CSS with no @keyframes in it');
 }
-if (fs.existsSync(P('src/scripts'))) for (const f of fs.readdirSync(P('src/scripts')).sort()) if (/\.js$/.test(f)) fs.copyFileSync(P('src/scripts', f), path.join(DIST, 'scripts', f));
+if (fs.existsSync(P(TH.scripts))) for (const f of fs.readdirSync(P(TH.scripts)).sort()) if (/\.js$/.test(f)) fs.copyFileSync(P(TH.scripts, f), path.join(DIST, 'scripts', f));
 if (!fs.existsSync(path.join(DIST, 'scripts', 'site.js'))) fail('build:asset', 'src/scripts/site.js', 'script linked by every page is not written yet');
 for (const f of PDFS.keys()) { if (fs.existsSync(P('assets/docs', f))) fs.copyFileSync(P('assets/docs', f), path.join(DIST, 'docs', f)); else fail('build:asset', 'assets/docs/' + f, 'harvested PDF missing'); }
 
