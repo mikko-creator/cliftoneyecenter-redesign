@@ -7,6 +7,12 @@ on the practice's green brand.
 - **Review preview:** https://mikko-creator.github.io/cliftoneyecenter-redesign/ — every page is
   `noindex, nofollow` and `robots.txt` disallows everything (its `sitemap.xml` lists only live-site URLs), so the preview does not compete
   with the live site in search. Its canonical tags point at the live site.
+- **Second design, for comparison — Neoclassical ("Temple"):**
+  https://mikko-creator.github.io/cliftoneyecenter-redesign/neoclassical/ — the same 349 pages and content in a
+  neoclassical style (pediment and columns, busts and reliefs crossing section seams, marble grounds, serif display
+  type) on the same brand colours; also `noindex, nofollow` on every page. Build it with
+  `CEC_THEME=neo node src/build.mjs` into `dist-neo/` (sources `src/themes/neo/`, design and verification in
+  `docs/NEO-SPEC.md` and `docs/NEO-BUILD-NOTES.md`). Building it never changes `dist/`.
 - **The built site:** `dist/` (static; serve its folder at a domain root). The preview on the `gh-pages` branch is
   `dist/` with every page switched to noindex and the 404 page prefixed for the `/cliftoneyecenter-redesign/` path.
 - **Everything else:** start at [`docs/README.md`](docs/README.md) (verification record, gate verdict and why),

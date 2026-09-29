@@ -310,6 +310,27 @@ The operator asked for the logo in the navigation bar and the footer with no bac
   and decontamination strict pass, JS errors 0. Live preview: 350/350 pages noindex, 688/688 pages + 307 assets 200.
   All gate artifacts regenerated on the new build (`0e6d64d9...`): 22 PASS / 7 FAIL / 0 UNPROVEN, unchanged.
 
+## 6c. Operator request: a second, Neoclassical design (2026-09-29)
+
+The operator asked to explore a Neoclassical style instead of glassmorphism, keeping the brand colours and the
+layered, protruding imagery. It is built as a second theme beside this one, from the same content pipeline; the glass
+build `dist/` is byte-identical before and after (aggregate `0e6d64d9…`, 665 files, re-checked after every change).
+
+- Design: three concepts judged, "Temple" chosen 3/3 (`docs/NEO-SPEC.md`); 12 new fal images (busts, relief, hand,
+  column, magnifier, laurel, scenes, marble), each labelled AI-generated in its metadata; self-hosted OFL fonts
+  Noto Serif Display, Source Serif 4, Parisienne. The operator's moodboard was used for style traits only and is not
+  in the repository.
+- Build: `CEC_THEME=neo node src/build.mjs` → `dist-neo/` (349 pages + 404, 0 failures, reproducible `39fa000c…`,
+  668 files). Same text as glass (sentence parity 0 lost of 13,966), same head fields and robots, 0 broken links,
+  decontamination clean.
+- QA round 1: 22 findings, 21 confirmed by independent refuters, 21 fixed or recorded
+  (`docs/NEO-BUILD-NOTES.md` section 8). The phone home is 10,395px at 390 against a 10,300px target (accepted).
+- Preview: `/neoclassical/` under the review preview, every page `noindex, nofollow`. A missing URL there shows the
+  glass 404 page (Pages serves one 404 per site).
+- Found in QA and **present in the glass build too, not changed there:** closing the phone menu (or keyboard focus
+  on a header control) scrolls the page up about 440px, because `html { scroll-padding-top }` applies to the sticky
+  header's own controls. Fixed in the neo theme (scroll-margin on in-page targets instead of scroll-padding, and `focus({ preventScroll: true })` when the menu closes); the same small change would fix glass and awaits the operator.
+
 ## 7. Decisions taken for the build
 
 `docs/BUILD-DECISIONS.md` (orchestrator, 2026-09-28). The operator said "go ahead, pick the winner and build it", so
