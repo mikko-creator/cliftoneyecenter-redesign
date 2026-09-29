@@ -65,7 +65,8 @@ const bad = [];
 })(DIST, OUT);
 fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
 fs.writeFileSync(path.join(OUT, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
-const noindex = (function count(dir) { let n = 0; for (const e of fs.readdirSync(dir, { withFileTypes: true })) { if (e.name === '.git') continue; const p = path.join(dir, e.name); if (e.isDirectory()) n += count(p); else if (/\.html?$/i.test(e.name) && fs.readFileSync(p, 'utf8').includes(ROBOTS)) n++; } return n; })(OUT);
+// count only what THIS run wrote: a --keep folder (e.g. neoclassical/) is another build's preview with its own pages
+const noindex = (function count(dir) { let n = 0; for (const e of fs.readdirSync(dir, { withFileTypes: true })) { if (e.name === '.git' || (dir === OUT && KEEP.has(e.name))) continue; const p = path.join(dir, e.name); if (e.isDirectory()) n += count(p); else if (/\.html?$/i.test(e.name) && fs.readFileSync(p, 'utf8').includes(ROBOTS)) n++; } return n; })(OUT);
 console.log('preview        ', OUT);
 console.log('files          ', files, '| pages', pages, '| noindex', noindex, '(replaced', replaced, '/ inserted', inserted + ')');
 console.log('root-absolute  ', bad.length);
