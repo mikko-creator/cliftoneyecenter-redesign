@@ -288,6 +288,28 @@ fixed on 2026-09-29 (the map panel's bottom corners are 8px inside the >= 1240px
 verifier's own probe and zoomed crops, and every gate artifact was then regenerated on the final build (`docs/README.md`,
 "Fixed after the independent verification"; final gate 22 PASS / 7 FAIL / 0 UNPROVEN, `tmp/orch/regate/gate3.log`).
 
+## 6b. Operator change after review: the logo without a plate (2026-09-29)
+
+The operator asked for the logo in the navigation bar and the footer with no background and no white container.
+
+- **Assets:** the practice has only a 317 x 221 JPEG on white, so `tools/logo-alpha.mjs` derives two transparent PNGs
+  (`assets/brand/logo-clifton.png`, `logo-clifton-light.png`, 288 x 189). Each pixel keeps its own colour with the white
+  it was blended with removed; composited over white the result reproduces the original (mean 0.33/255, 0.07% of
+  channels over 8/255). The footer version is reversed: the 8 grey shapes (eye outline, CLIFTON) become paper white,
+  the 13 green shapes keep their exact greens (classified per shape, because 4:2:0 JPEG colour left grey-looking pixels
+  inside thin green strokes). og:image and the JSON-LD logo still use the original JPEG.
+- **Header:** the white hanging plate and its scroll-shrink are gone; the logo sits in the glass bar (110 x 72 in a
+  92px bar from 1024px, 76 x 50 in a 64px bar below). The sticky aside moved from `top: 104px` to `124px` and its fit
+  check from 124 to 144 to clear the taller bar. **Footer:** no paper plate; the reversed logo sits on the dark glass.
+- **Found and fixed during verification:** the first CSS pass put the header's absolute positioning on the shared
+  `.site-logo` class, which pulled the footer logo onto the address text; the rule is now scoped to the header, and
+  the probe (`tmp/orch/logo-verify.mjs`) asserts the footer logo is static with 0 px overlap with the address and the
+  Facebook button.
+- **Verified:** at 1440/1280/1024/768/390/320 the logo is inside the bar at rest and scrolled, transparent, >= 44px
+  from the nav or buttons, no horizontal overflow; screenshots viewed. Link check 0 broken, tag balance 0, fabrication
+  and decontamination strict pass, JS errors 0. Live preview: 350/350 pages noindex, 688/688 pages + 307 assets 200.
+  All gate artifacts regenerated on the new build (`0e6d64d9...`): 22 PASS / 7 FAIL / 0 UNPROVEN, unchanged.
+
 ## 7. Decisions taken for the build
 
 `docs/BUILD-DECISIONS.md` (orchestrator, 2026-09-28). The operator said "go ahead, pick the winner and build it", so

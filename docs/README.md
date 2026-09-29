@@ -96,14 +96,14 @@ so the agency should still rotate or restrict it (`docs/OPEN-DECISIONS.md` #4).
 
 | what | command | result |
 |---|---|---|
-| dist hash, sha256 aggregate (FINAL build, after the map-corner fix) | `node tmp/orch/hashdir.mjs dist` (2026-09-29) | `75ed34ed4301846e3f1c0b69b07bf3b44fcee03f7c68e905700a4c8af1f2ddcd`, 663 files |
+| dist hash, sha256 aggregate (SHIPPED build, after the logo change) | `node tmp/orch/hashdir.mjs dist` (2026-09-29) | `0e6d64d9b6e89b988d883b854d6fb8e39738900849b4c496da9a21355d32aa3b`, 665 files (the two transparent logo files added; the map-corner build before it was `75ed34ed...`, 663 files) |
 | dist hash, sha1 list (the re-verifier's method) | `node tmp/final/verify/hashdist.mjs tmp/orch/regate/dist-hash-sha1.txt` | `0f8e63d7323c26a68adf5b8adab0954446c12c1f`, 663 files. `diff` against the list the independent re-verification wrote (`tmp/final/docs/dist-hash-sha1.txt`, aggregate `33c6b026...`) shows exactly ONE changed file, `dist/styles/site.css`: the map-corner fix below. Every other shipped file is byte-identical to the re-verified build |
-| reproducible build | `CEC_DIST=tmp/orch/repro/a` and `tmp/orch/repro/b` builds, then `node tmp/orch/hashdir.mjs tmp/orch/repro/a tmp/orch/repro/b dist --control` | all three IDENTICAL (`75ed34ed...`); the control fired (`tmp/orch/regate/repro-hashdir.log`). The pre-fix build reproduced the same way at `ec2f3712...` (`tmp/final/chain/00-repro.log`). Warm cache; a cold-cache rebuild was **not** compared |
+| reproducible build | `CEC_DIST=tmp/orch/repro2/a` and `tmp/orch/repro2/b` builds, then `node tmp/orch/hashdir.mjs tmp/orch/repro2/a tmp/orch/repro2/b dist --control` | all three IDENTICAL (`0e6d64d9...`); the control fired (`tmp/orch/regate-logo/repro.log`). The map-corner build reproduced the same way at `75ed34ed...` (`tmp/orch/regate/repro-hashdir.log`). The pre-fix build reproduced the same way at `ec2f3712...` (`tmp/final/chain/00-repro.log`). Warm cache; a cold-cache rebuild was **not** compared |
 | build | `node src/build.mjs` | exit 0, 0 build failures, 349/349 pages + `404.html` (`tmp/orch/build-mapfix.log`); 18 generated files shipped, 18 AI-labelled |
 
 ### Gate (`sr-gate.mjs --project .`)
 
-**Latest result: NOT-READY, 22 PASS, 7 FAIL, 0 UNPROVEN of 29 — on the FINAL build (`75ed34ed...`).** After the
+**Latest result: NOT-READY, 22 PASS, 7 FAIL, 0 UNPROVEN of 29 — on the SHIPPED build (`0e6d64d9...`, after the logo change; every artifact regenerated on it: `tmp/orch/refresh-evidence.log`, `tmp/orch/regate-logo/`, report `audit/reports/cliftoneyecenter-com-2026-09-29T00-16-55-359Z.html`). The 26 extra sweep minors are all `img-oversized` on the new header logo (288px file shown at 110/76px, kept for 2x-3x screens).** The same verdict held on the map-corner build (`75ed34ed...`). After the
 map-corner fix (below) every artifact the gate reads was regenerated on the final build: parity, sentence parity, tag
 balance, link check, fabrication, decontamination and SEO (`tmp/orch/regate/*.log`, all pass as before), and ALL 52
 rebuild screenshots and ALL 52 rebuild sweeps were re-taken (`screens-all.log`, `sweep-all.log`; the pixel diff

@@ -52,6 +52,16 @@ Usage rules for the redesign:
   glass fill inside a `backdrop-filter` stacking context in all engines; check it in Chrome and Safari at build
   time. On dark or deep-green glass (footer), set the logo on a **paper plate** (solid `#ffffff`, radius 16 px,
   12 px padding) and never use multiply there.
+- **OPERATOR CHANGE 2026-09-29 — supersedes the white-box, paper-plate and trim rules for the header and footer.**
+  The operator asked for the logo with no background and no white container. Since the practice has no transparent
+  or vector logo, `tools/logo-alpha.mjs` derives two transparent PNGs from this JPEG (`assets/brand/logo-clifton.png`,
+  `logo-clifton-light.png`, 288 x 189, trimmed to the ink): every pixel keeps its own colour with the white it was
+  blended with removed, so nothing is redrawn — composited over white it reproduces the original (mean 0.33/255, 0.07%
+  of channels over 8/255). The header uses it directly in the glass bar. The dark footer uses the REVERSED version:
+  the eye outline and "CLIFTON" (8 grey shapes) become paper white, the "e", "EYE CENTER" and dashes (13 green shapes)
+  keep their exact greens; shapes, not pixels, are classified, because the JPEG's 4:2:0 colour left grey-looking pixels
+  inside the thin green strokes. og:image and the JSON-LD logo still use the original JPEG on white. If the practice
+  can supply a vector or transparent master, replace both derivatives with it.
 - **Trim:** to drop the uneven white margin, wrap the image in a 3:2 box with `overflow: hidden` and offset the
   image by the measured margins (16/13 px at intrinsic size, i.e. `width: 110.07%` (317/288) and
   `margin: -5.56% 0 0 -5.56%` (16/288); vertical margin percentages resolve against the box's width, so both

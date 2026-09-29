@@ -11,8 +11,8 @@ them is a real functional gap: C19, the 2 inert forms (section 6).
 ## 1. Target
 
 - **What ships:** the contents of `dist/`, a fully static site of 663 files (`node tmp/orch/hashdir.mjs dist` →
-  aggregate `75ed34ed4301846e3f1c0b69b07bf3b44fcee03f7c68e905700a4c8af1f2ddcd`, 663 files — the final build, after the
-  map-corner fix of 2026-09-29). There is no server code,
+  aggregate `0e6d64d9b6e89b988d883b854d6fb8e39738900849b4c496da9a21355d32aa3b`, 665 files — the shipped build, after the
+  logo change of 2026-09-29). There is no server code,
   no database and no build step on the host.
 - **Where:** a static host serving the **domain root** of `https://www.cliftoneyecenter.com/`. Every canonical URL,
   `og:url`, sitemap entry and `robots.txt` line points at that origin (all 350 pages carry

@@ -7,7 +7,7 @@ integration agent the same day, after the first full visual review; section 9 (a
 2026-09-29, for the 26 confirmed round-2 findings. This file says what the pipeline does, which decisions it applies,
 and the evidence for each definition-of-done item. Every number in section 5 was produced by a command run on the
 round-2 `dist/` (aggregate `ec2f3712...`, 663 files); the command is named beside it. The shipped build is one fix
-later: the map-corner fix of 2026-09-29 changed only `styles/site.css` (aggregate `75ed34ed...`), and every gate
+later: the map-corner fix of 2026-09-29 changed only `styles/site.css` (aggregate `75ed34ed...`), then the plate-free logo (2026-09-29, aggregate `0e6d64d9...`), and every gate
 artifact was regenerated on it — see `docs/README.md`, "Fixed after the independent verification".
 
 ## 1. Run it

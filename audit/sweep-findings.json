@@ -1,6 +1,6 @@
 {
   "schema": "site-reforge/sweep-findings@1",
-  "generated": "2026-09-28T20:37:19.324Z",
+  "generated": "2026-09-29T00:16:22.361Z",
   "sweeps": 52,
   "widths": [
     390,
@@ -18,6 +18,14 @@
     {
       "name": "Viewport 1024px",
       "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
         {
           "severity": "major",
           "title": "Element extends past the viewport",
@@ -39,6 +47,14 @@
     {
       "name": "Viewport 1440px",
       "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
         {
           "severity": "major",
           "title": "Element extends past the viewport",
@@ -64,8 +80,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -101,8 +117,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-blog-post > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -268,6 +284,14 @@
       "name": "Viewport 1024px",
       "findings": [
         {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
           "severity": "major",
           "title": "Element extends past the viewport",
           "detail": "",
@@ -288,6 +312,14 @@
     {
       "name": "Viewport 1440px",
       "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
         {
           "severity": "major",
           "title": "Element extends past the viewport",
@@ -313,8 +345,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -382,8 +414,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -544,6 +576,14 @@
       "name": "Viewport 1024px",
       "findings": [
         {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
           "severity": "major",
           "title": "Element extends past the viewport",
           "detail": "",
@@ -564,6 +604,14 @@
     {
       "name": "Viewport 1440px",
       "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
         {
           "severity": "major",
           "title": "Element extends past the viewport",
@@ -589,8 +637,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -626,8 +674,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-legal > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -783,6 +831,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.band.band--scene > div.wrap.band__grid:nth-of-type(2) > img.band__cut @ 1024px",
           "value": "800px natural vs 151px displayed",
           "inherited": false
@@ -808,6 +864,14 @@
     {
       "name": "Viewport 1440px",
       "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
         {
           "severity": "minor",
           "title": "Image far larger than its display size",
@@ -841,8 +905,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -934,8 +998,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -1104,6 +1168,14 @@
       "name": "Viewport 1024px",
       "findings": [
         {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
           "severity": "major",
           "title": "Element extends past the viewport",
           "detail": "",
@@ -1124,6 +1196,14 @@
     {
       "name": "Viewport 1440px",
       "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
         {
           "severity": "major",
           "title": "Element extends past the viewport",
@@ -1149,8 +1229,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -1210,8 +1290,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-library-article > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -1367,6 +1447,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1024px",
           "value": "1600px natural vs 486px displayed",
           "inherited": false
@@ -1420,6 +1508,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1440px",
           "value": "1600px natural vs 606px displayed",
           "inherited": false
@@ -1465,8 +1561,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -1582,8 +1678,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-service-hub > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -1763,6 +1859,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.band__visual--left > picture > img @ 1024px",
           "value": "1600px natural vs 486px displayed",
           "inherited": false
@@ -1808,6 +1912,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.band__visual--left > picture > img @ 1440px",
           "value": "1600px natural vs 606px displayed",
           "inherited": false
@@ -1845,8 +1957,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -1930,8 +2042,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -2103,6 +2215,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1024px",
           "value": "1500px natural vs 486px displayed",
           "inherited": false
@@ -2153,6 +2273,14 @@
       "name": "Viewport 1440px",
       "findings": [
         {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
           "severity": "major",
           "title": "Element extends past the viewport",
           "detail": "",
@@ -2185,8 +2313,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -2262,8 +2390,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-eyewear-contacts > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -2456,6 +2584,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1024px",
           "value": "1280px natural vs 486px displayed",
           "inherited": false
@@ -2482,6 +2618,14 @@
       "name": "Viewport 1440px",
       "findings": [
         {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
           "severity": "major",
           "title": "Element extends past the viewport",
           "detail": "",
@@ -2506,8 +2650,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -2559,8 +2703,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-contact-forms > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -2716,6 +2860,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > figure.hero__photo > span.hero__photo-in.is-in > img @ 1024px",
           "value": "1280px natural vs 450px displayed",
           "inherited": false
@@ -2849,6 +3001,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.hero:nth-of-type(1) > div.wrap.hero__grid > img.hero__cut @ 1440px",
           "value": "1184px natural vs 308px displayed",
           "inherited": false
@@ -2950,8 +3110,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -3123,8 +3283,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-home > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -3360,6 +3520,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1024px",
           "value": "1600px natural vs 486px displayed",
           "inherited": false
@@ -3405,6 +3573,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1440px",
           "value": "1600px natural vs 606px displayed",
           "inherited": false
@@ -3442,8 +3618,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -3519,8 +3695,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-insurance > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -3692,6 +3868,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1024px",
           "value": "1600px natural vs 486px displayed",
           "inherited": false
@@ -3737,6 +3921,14 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
           "location": "#main > section.band.band--photo > div.wrap.band__grid:nth-of-type(2) > figure.band__visual.is-in > picture > img @ 1440px",
           "value": "1600px natural vs 606px displayed",
           "inherited": false
@@ -3774,8 +3966,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -3851,8 +4043,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-doctor-team > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -4021,6 +4213,14 @@
       "name": "Viewport 1024px",
       "findings": [
         {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1024px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
+        {
           "severity": "major",
           "title": "Element extends past the viewport",
           "detail": "",
@@ -4041,6 +4241,14 @@
     {
       "name": "Viewport 1440px",
       "findings": [
+        {
+          "severity": "minor",
+          "title": "Image far larger than its display size",
+          "detail": "",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 1440px",
+          "value": "288px natural vs 110px displayed",
+          "inherited": false
+        },
         {
           "severity": "major",
           "title": "Element extends past the viewport",
@@ -4066,8 +4274,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-blog-index > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 390px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 390px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {
@@ -4223,8 +4431,8 @@
           "severity": "minor",
           "title": "Image far larger than its display size",
           "detail": "",
-          "location": "html.js.js-motion > body.t-page.t-blog-index > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.logo-plate > span.logo__box > img @ 768px",
-          "value": "317px natural vs 123px displayed",
+          "location": "html.js.js-motion > body.t-page.t-blog-index > div.page:nth-of-type(3) > header.masthead > div.site-header:nth-of-type(2) > div.wrap > div.site-header__bar > a.site-logo > img @ 768px",
+          "value": "288px natural vs 76px displayed",
           "inherited": false
         },
         {

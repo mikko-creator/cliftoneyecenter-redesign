@@ -1,6 +1,6 @@
 {
   "schema": "site-reforge/gate@1",
-  "generated": "2026-09-28T20:45:15.429Z",
+  "generated": "2026-09-29T00:16:55.077Z",
   "project": "cliftoneyecenter-com",
   "target": "https://www.cliftoneyecenter.com/",
   "verdict": "NOT-READY",
@@ -99,7 +99,7 @@
       "label": "Brand token layer emitted and actually referenced",
       "stage": "brand",
       "status": "PASS",
-      "evidence": "309 tokens declared, 187 referenced across 3 authored sheet(s), 6 off-token colour literal(s)"
+      "evidence": "309 tokens declared, 186 referenced across 3 authored sheet(s), 4 off-token colour literal(s)"
     },
     {
       "id": "C14",
@@ -162,7 +162,7 @@
       "label": "Design matches the source pixel-for-pixel at every breakpoint",
       "stage": "pixeldiff",
       "status": "FAIL",
-      "evidence": "worst drift 97.346% on whats-new.1440.png"
+      "evidence": "worst drift 97.245% on whats-new.1440.png"
     },
     {
       "id": "C23",
