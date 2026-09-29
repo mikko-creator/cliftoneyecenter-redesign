@@ -1,0 +1,232 @@
+{
+  "note": "Generated imagery for the Clifton Eye Center NEOCLASSICAL exploration (built alongside the shipped glass 'Daylight Canopy' design, not replacing it). Same schema as src/content/image-plan.json; every id is prefixed neo-. Style traits only are taken from the third-party moodboard tmp/neo/reference-moodboard.png (monochrome classical marble, cut-out statues overlapping large serif display type, arched frames, deep flat grounds, fine grain); nothing here recreates its posters, artworks, statues, words or lockups, and no entry copies a famous sculpture: every bust, hand and relief is an original generic classical-style carving. Rules: illustrative only; never a stand-in for Dr. Deana Clifton, her staff, the office, a patient, a result, a brand or an insurance carrier; no text, numbers, labels, inscriptions, emblems or wordmarks anywhere in frame (every image is reviewed as zoomed native-size crops and Kontext-edited or regenerated if any appear); statues must read as carved stone, never as living people; alt describes what is depicted, never 'our office' / 'Dr. Clifton'; decorative layers (backdrops, textures, column, laurel) carry alt \"\". Cut-outs are generated on a plain mid-grey seamless backdrop (contrast for white marble) and matted by birefnet; each is reviewed over the deep green-black neo ground (#10150c), the light ground (#fafcf6) and brand green (#759b2a). Generated images must carry an AI label in file metadata after any re-encode (IPTC trainedAlgorithmicMedia XMP). Review log: docs/IMAGE-PLAN-NEO.md; crop evidence: tmp/imgreview-neo/.",
+  "defaults": {
+    "model": "fal-ai/flux-pro/v1.1-ultra",
+    "style": "museum-quality studio photography, soft directional light, marble in monochrome with subtle green tint, crisp detail, photorealistic, no text, no lettering, no logos, no labels, no watermark",
+    "input": {
+      "aspect_ratio": "16:9",
+      "num_images": 1,
+      "enable_safety_checker": true,
+      "output_format": "jpeg"
+    },
+    "cutoutModel": "fal-ai/birefnet/v2",
+    "cutoutInput": {
+      "model": "General Use (Heavy)",
+      "operating_resolution": "2048x2048",
+      "output_format": "png"
+    },
+    "editModel": "fal-ai/flux-pro/kontext",
+    "editNote": "Fix path: add editFrom (path of the rejected file under assets/generated/rejected/ or raw/), set model to fal-ai/flux-pro/kontext, and a prompt describing ONLY the change ('Remove ... Keep everything else exactly the same'). An edit gets no style suffix. Regenerate a file already on disk with --only <id> --force <id>."
+  },
+  "images": [
+    {
+      "id": "neo-cut-bust-glasses",
+      "cutout": true,
+      "role": "depth-cutout",
+      "input": {
+        "aspect_ratio": "3:4",
+        "output_format": "png"
+      },
+      "prompt": "a classical-style white marble portrait bust of a young man with short tightly curled hair, an original generic sculpture that is not a copy of any famous statue, softly draped cloth folded over both shoulders, the eyes smooth blank carved stone without pupils in the classical manner, the bust wearing a pair of modern thin-rimmed round eyeglasses with a slim plain dark metal frame and clear lenses, both temple arms resting over the ears, the head turned slightly to the left in three-quarter view, the bust rising from the bottom edge of the frame and cut off at mid-chest by the bottom edge, the carved marble surface clearly stone with fine pores and subtle grey veining, the entire subject in crisp sharp focus, isolated on a plain seamless mid-grey studio backdrop with no cast shadow",
+      "alt": "Classical marble bust wearing modern thin-rimmed eyeglasses",
+      "usedFor": [
+        "proposed: neoclassical lab home hero, the lead cut-out: rises from the hero's lower edge and overlaps the large serif display title (moodboard trait: statue over type), crossing the hero seam into the next section",
+        "alt \"\" wherever it is purely decorative beside a heading that already says the same thing"
+      ],
+      "textRisk": true,
+      "anatomyRisk": true,
+      "reviewFocus": "eyeglasses: two lenses, a bridge, both temples reaching the ears, no pseudo-text on temples or lens corners; face must read as carved stone (blank eyes), not a living person; no resemblance to a famous sculpture; flat bottom cut is intended"
+    },
+    {
+      "id": "neo-cut-bust-profile",
+      "cutout": true,
+      "role": "depth-cutout",
+      "input": {
+        "aspect_ratio": "3:4",
+        "output_format": "png"
+      },
+      "rejectReason": "review 2026-09-29 round 1: not a profile. The head is in three-quarter view facing LEFT (the prompt asked for a strict side profile facing right), so the alt 'in profile' would be false; the pose also nearly duplicates neo-cut-bust-glasses, and the clinging drapery over the chest is more than a clinic page needs (tmp/imgreview-neo/neo-cut-bust-profile/r1/). Round-1 raw kept as assets/generated/rejected/neo-cut-bust-profile.r1.raw.jpg",
+      "prompt": "a classical-style white marble bust of a woman carved in a pure side view, the head and shoulders turned fully sideways so the face points straight at the right edge of the frame and only the right side of the face is visible, a strict 90-degree profile with the forehead, nose, lips and chin forming one clean silhouette against the backdrop, an original generic sculpture that is not a copy of any famous statue, wavy hair gathered into a low knot at the nape and bound with a plain carved ribbon, a high-necked draped garment in soft heavy folds covering the shoulders and the whole chest up to the collarbones, the eye smooth blank carved stone without a pupil in the classical manner, calm serene expression, the bust ending below the shoulders on a small plain square marble socle, the carved marble surface clearly stone with fine pores and subtle grey veining, the entire subject in crisp sharp focus, isolated on a plain seamless mid-grey studio backdrop with no cast shadow",
+      "alt": "Classical marble bust of a woman in profile",
+      "usedFor": [
+        "proposed: interior title band cut-out for the eye-health / your-eye-health family, rising from the band's lower edge beside the serif page title",
+        "proposed: arched-frame companion on About / Our Eye Doctors pages (never captioned as or placed as a portrait of Dr. Clifton or staff)"
+      ],
+      "textRisk": false,
+      "anatomyRisk": true,
+      "reviewFocus": "profile anatomy (ear, nose, jaw) plausible; reads as carved stone; hair knot and ribbon carry no pattern that reads as letters; flat bottom cut is intended"
+    },
+    {
+      "id": "neo-cut-column",
+      "cutout": true,
+      "role": "depth-cutout",
+      "input": {
+        "aspect_ratio": "9:16",
+        "output_format": "png"
+      },
+      "prompt": "an upright fragment of a classical fluted Ionic column in white marble, an Ionic capital with two symmetrical spiral volutes and a carved egg-and-dart band crowning a short section of vertically fluted shaft, the shaft ending at the bottom in a rough broken stone edge, seen from the front at a slight angle, the whole fragment fully inside the frame with space around it, weathered carved stone with fine pores, the entire subject in crisp sharp focus, isolated on a plain seamless mid-grey studio backdrop with no cast shadow",
+      "alt": "",
+      "usedFor": [
+        "proposed: decorative depth layer standing at a section edge (half on one sheet, half over the next) or flanking a centred serif title (symmetry trait)"
+      ],
+      "textRisk": false,
+      "reviewFocus": "volutes symmetrical and plausible; flutes straight and parallel; the egg-and-dart band must not read as letters; clean matte around the volutes' spirals"
+    },
+    {
+      "id": "neo-cut-laurel",
+      "cutout": true,
+      "role": "depth-cutout",
+      "input": {
+        "aspect_ratio": "1:1",
+        "output_format": "png"
+      },
+      "model": "fal-ai/flux-pro/kontext",
+      "editFrom": "assets/generated/rejected/neo-cut-laurel.r1.raw.jpg",
+      "rejectReason": "review 2026-09-29 round 1: COLOUR. Clean wreath and cut-out (the centre is fully transparent: max alpha 0 in the central 400x400; one 3 px speck), but the leaves are a blue-green verdigris teal (dominant hue 150 deg, mean #818e7b) against the brand's yellow-green anchors #759b2a / #94bc4a (hue about 80 deg), so beside the brand green it reads as a second, clashing green; a CSS hue-rotate would also turn the gold stems orange (tmp/imgreview-neo/neo-cut-laurel/r1/). Fix: Kontext colour edit of the round-1 raw",
+      "promptR1": "an open circular laurel wreath cast in aged bronze with a soft verdigris green patina, two branches of slender pointed laurel leaves curving up from the bottom and almost meeting at the top with a small gap, seen flat from the front, the centre of the wreath completely empty, no ribbon, the whole wreath fully inside the frame with space around it, the entire object in crisp sharp focus, isolated on a plain seamless mid-grey studio backdrop with no cast shadow",
+      "prompt": "Change the colour of every laurel leaf from blue-green to a warm yellow-green olive, like fresh young laurel leaves in soft daylight. Keep the gold stems, the shape of the wreath, the lighting and the plain grey background exactly the same.",
+      "alt": "",
+      "usedFor": [
+        "proposed: circular badge frame (moodboard trait: circular badges) around a short label such as a year or 'We Know You!' set in HTML type, never text in the image",
+        "proposed: small decorative ornament beside section titles"
+      ],
+      "textRisk": false,
+      "reviewFocus": "centre of the wreath must be transparent after the cut-out (alpha at the centre = 0); leaves read as laurel, not olive fruit clusters; no ribbon with pseudo-text"
+    },
+    {
+      "id": "neo-cut-hand-spectacles",
+      "cutout": true,
+      "role": "depth-cutout",
+      "input": {
+        "aspect_ratio": "4:3",
+        "output_format": "png"
+      },
+      "model": "fal-ai/flux-pro/kontext",
+      "editFrom": "assets/generated/rejected/neo-cut-hand-spectacles.r2.raw.jpg",
+      "rejectReason": "review 2026-09-29 round 2: MATTE only. The round-2 generation is right (a marble hand, palm up, one thumb plus four fingers, no nails, spectacles resting in the palm with stone under both lenses, no pseudo-text on the temples; tmp/imgreview-neo/neo-cut-hand-spectacles/r2/crop-*.png), but birefnet cut away the base of the little finger and the heel of the palm where the shadowed stone meets the backdrop shadow, leaving the fingertip floating (r2/cc-lower-fingers.dark.png). Fix: Kontext edit of the round-2 raw (kept as assets/generated/rejected/neo-cut-hand-spectacles.r2.raw.jpg) to a solid black backdrop, then a fresh cut-out. EARLIER: review 2026-09-29 round 1: ANATOMY and material. The digits do not resolve into one thumb plus four fingers (a fist with a folded thumb on top and two nailed fingers pointing down), it reads as a porcelain mannequin hand with fingernails rather than carved marble, the spectacles float in front of the hand instead of being held by the bridge, the right lens kept the grey backdrop as an opaque disc after the cut-out, and the forearm runs off the bottom edge instead of ending in a sculpted break (tmp/imgreview-neo/neo-cut-hand-spectacles/r1/). Round-1 raw kept as assets/generated/rejected/neo-cut-hand-spectacles.r1.raw.jpg",
+      "matteOverride": "SHIPPED MATTE IS NOT BIREFNET: assets/generated/neo-cut-hand-spectacles.png is the deterministic black-backdrop key of the round-3 Kontext edit (tmp/imgreview-neo/bin/matte-key-black.mjs; audit/generated-images.json postProcess). Re-running fal-gen with --force on this id reinstates a birefnet matte that drops the palm: re-key and re-install after (tmp/imgreview-neo/bin/install-keyed.mjs).",
+      "promptR2": "a fragment of a classical white marble statue: a single open right hand broken off at the wrist, lying on its back with the palm facing up, the thumb clearly separate on one side and four fingers side by side, all five digits relaxed and slightly curled, a pair of small antique round wire-rimmed spectacles with thin dark metal rims and thin temple arms folded closed resting entirely inside the open palm so both lenses lie over the stone palm, the hand clearly carved from marble with fine pores and subtle grey veining, smooth carved fingertips without fingernail detail, a rough broken stone surface at the wrist, seen from slightly above at a three-quarter angle, the whole fragment fully inside the frame with space around it, the entire subject in crisp sharp focus, isolated on a plain seamless mid-grey studio backdrop with no cast shadow",
+      "prompt": "Change the plain grey background and the grey shadow under the hand into a plain, even, solid black background everywhere, with no shadow. Keep the marble hand, the broken wrist and the spectacles exactly the same.",
+      "alt": "Marble hand fragment with antique round spectacles resting in its palm",
+      "usedFor": [
+        "proposed: eyeglasses / optical family title band cut-out, reaching in from a band edge toward the serif title",
+        "proposed: home 'Our Designer Optical' band depth layer (never beside a frame-brand name)"
+      ],
+      "textRisk": true,
+      "anatomyRisk": true,
+      "reviewFocus": "HAND: four fingers and one thumb, joints plausible, reads as stone; spectacles: two lenses, a bridge held between thumb and finger, temples attached at the hinges; no pseudo-text on the temples"
+    },
+    {
+      "id": "neo-cut-eye-relief",
+      "cutout": true,
+      "role": "depth-cutout",
+      "input": {
+        "aspect_ratio": "4:3",
+        "output_format": "png"
+      },
+      "model": "fal-ai/flux-pro/kontext",
+      "editFrom": "assets/generated/rejected/neo-cut-eye-relief.r1.raw.jpg",
+      "rejectReason": "review 2026-09-29 round 1: MATTE. The carving is good (a calm stylised eye, stone, no inscription), but the panel's flat field is the same light grey as the backdrop, so birefnet cut it away as background and punched holes through the panel around and below the eye (visible as the dark ground through the stone in tmp/imgreview-neo/neo-cut-eye-relief/r1/comp.dark.png). Fix: Kontext edit of the round-1 raw to a black backdrop for matte contrast, then a fresh cut-out",
+      "matteOverride": "SHIPPED MATTE IS NOT BIREFNET: assets/generated/neo-cut-eye-relief.png is the deterministic black-backdrop key of the round-2 Kontext edit (tmp/imgreview-neo/bin/matte-key-black.mjs; audit/generated-images.json postProcess). Re-running fal-gen with --force on this id reinstates a birefnet matte with holes: re-key and re-install after (tmp/imgreview-neo/bin/install-keyed.mjs).",
+      "promptR1": "a fragment of an ancient white marble relief panel carved with a single large stylised human eye in shallow bas-relief, a calm almond-shaped eye with carved upper and lower lids, a smooth round carved iris without colour and a simple arched brow line above, idealised in the classical manner, the panel a roughly rectangular stone fragment with chipped broken edges and corners, seen straight on, weathered carved stone with fine pores, the entire subject in crisp sharp focus, isolated on a plain seamless mid-grey studio backdrop with no cast shadow",
+      "prompt": "Change the plain grey background around the stone fragment into a plain, even, solid black background everywhere, with no shadow. Keep the marble relief fragment and the carved eye exactly the same.",
+      "alt": "Marble relief fragment carved with a single eye",
+      "usedFor": [
+        "proposed: eye-care-services family title band cut-out, overlapping the band's lower edge",
+        "proposed: 404 page ornament"
+      ],
+      "textRisk": false,
+      "anatomyRisk": true,
+      "reviewFocus": "the eye must read as a calm carving, not an uncanny living eye (no glossy wet iris, no catchlight); lids and brow symmetric; no inscription on the panel"
+    },
+    {
+      "id": "neo-scene-arch-garden",
+      "role": "scene-backdrop",
+      "input": {
+        "aspect_ratio": "3:4"
+      },
+      "prompt": "a classical white stone arch with simple moulded edges standing in a sunlit garden, seen straight on and perfectly symmetrical, through the arch a soft-focus view of lush green foliage, clipped green hedges and a pale gravel path in soft morning daylight, a few climbing green leaves on the stone, the stone plain and uncarved, calm and quiet, no people, no statues, no signage, no inscriptions",
+      "alt": "",
+      "usedFor": [
+        "proposed: image inside an arched frame (CSS arch mask, fine-line frame) in the home Welcome section or an interior title band",
+        "proposed: backdrop behind a cut-out bust so the bust breaks out of the arch (layering trait)"
+      ],
+      "textRisk": false,
+      "reviewFocus": "no inscription or keystone carving that reads as letters; arch symmetric; no people or statues in the garden"
+    },
+    {
+      "id": "neo-scene-colonnade",
+      "role": "scene-backdrop",
+      "input": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "a sunlit classical colonnade of white marble columns receding in perspective along a quiet portico, long soft diagonal shadows of the columns falling across a pale stone floor, glimpses of green garden foliage between the columns, soft warm afternoon light, calm and symmetrical, generous open negative space, no people, no statues, no signage, no inscriptions on the stone",
+      "alt": "",
+      "usedFor": [
+        "proposed: interior title band backdrop (under a deep green-black or light veil) for /our-eye-doctors/, /insurance/**, /contact-us/** and the location pages",
+        "proposed: full-bleed band behind the home services grid"
+      ],
+      "textRisk": false,
+      "reviewFocus": "columns straight, evenly spaced, not melting; no frieze inscription; no people"
+    },
+    {
+      "id": "neo-tex-marble-light",
+      "role": "texture",
+      "input": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "flat top-down macro photograph of a polished white marble slab, even soft lighting, faint delicate grey and pale sage-green veining running in gentle diagonal drifts, subtle fine crystalline grain, a uniform evenly distributed pattern across the whole frame with no focal point, calm and minimal, seamless even surface with no edges, seams, joints or tiles",
+      "alt": "",
+      "usedFor": [
+        "proposed: light section ground and card fill at low opacity (a marble/stone neutral beside --ground #fafcf6 and --stone #efefef)"
+      ],
+      "textRisk": false,
+      "reviewFocus": "no seams, slab joints or banding; no vein that reads as a letter or a face"
+    },
+    {
+      "id": "neo-tex-marble-dark",
+      "role": "texture",
+      "input": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "flat top-down macro photograph of a polished deep green-black marble slab, even soft lighting, fine thin veins of pale grey and muted moss green running in gentle diagonal drifts, fine grain, very dark overall, a uniform evenly distributed pattern across the whole frame with no focal point, seamless even surface with no edges, seams, joints, tiles or reflections of objects",
+      "alt": "",
+      "usedFor": [
+        "proposed: the deep green-black ground (derived from green-950 #141f00 / ink-950 #232229) for the hero, the footer and dark bands, at low opacity under a flat colour so light type keeps its contrast"
+      ],
+      "textRisk": false,
+      "reviewFocus": "overall luminance dark enough for white type after a flat veil; no seams or banding; no bright hotspots"
+    },
+    {
+      "id": "neo-cut-magnifier",
+      "cutout": true,
+      "role": "depth-cutout",
+      "input": {
+        "aspect_ratio": "4:3",
+        "output_format": "png"
+      },
+      "prompt": "an antique magnifying glass with a round polished brass rim and a turned dark wooden handle joined by a plain brass collar, lying at a gentle diagonal, the round clear glass lens with one soft curved highlight, seen from slightly above, the brass completely plain and smooth with no engraving, the entire object in crisp sharp focus, isolated on a plain seamless mid-grey studio backdrop with no cast shadow",
+      "alt": "Antique brass magnifying glass",
+      "usedFor": [
+        "proposed: your-eye-health library / articles family title band cut-out, crossing the band's lower edge",
+        "proposed: 'Ask the doctor' / FAQ ornament (never captioned as or beside Dr. Clifton copy as if it were hers)"
+      ],
+      "textRisk": true,
+      "reviewFocus": "no engraving or maker's mark on the brass rim or collar; the lens interior: birefnet keeps the backdrop seen through the glass, so check it over dark and light grounds"
+    },
+    {
+      "id": "neo-scene-library",
+      "role": "scene-backdrop",
+      "input": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "a quiet neoclassical reading room with tall white fluted columns, a coffered ceiling, tall arched windows of warm golden daylight, long wooden reading tables with green-shaded brass reading lamps, tall wooden shelves of old books along the walls in soft focus, the book spines plain and unmarked, calm and empty, symmetrical one-point perspective, no people, no signage, no inscriptions",
+      "alt": "",
+      "usedFor": [
+        "proposed: interior title band backdrop (under a veil, softly blurred) for the your-eye-health article library and the blog index /whats-new/"
+      ],
+      "textRisk": true,
+      "reviewFocus": "HIGH: zoom the book spines, the lamp shades and any frieze for pseudo-text; columns and tables not warped; no people"
+    }
+  ]
+}
