@@ -38,7 +38,9 @@ export function createImages({ cacheDir, stats }) {
     const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return '<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?><x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">'
       + '<rdf:Description rdf:about="" xmlns:Iptc4xmpExt="http://iptc.org/std/Iptc4xmpExt/2008-02-29/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xmp="http://ns.adobe.com/xap/1.0/">'
-      + '<Iptc4xmpExt:DigitalSourceType>http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia</Iptc4xmpExt:DigitalSourceType>'
+      /* label.sourceType: an IPTC digitalsourcetype code; default trainedAlgorithmicMedia (created by AI). A real
+         photograph enhanced by a generative model is compositeWithTrainedAlgorithmicMedia (neo: the doctor portrait) */
+      + '<Iptc4xmpExt:DigitalSourceType>http://cv.iptc.org/newscodes/digitalsourcetype/' + esc(label.sourceType || 'trainedAlgorithmicMedia') + '</Iptc4xmpExt:DigitalSourceType>'
       + '<xmp:CreatorTool>' + esc(label.tool) + '</xmp:CreatorTool>'
       + '<dc:description><rdf:Alt><rdf:li xml:lang="x-default">' + esc(label.description) + '</rdf:li></rdf:Alt></dc:description>'
       + '</rdf:Description></rdf:RDF></x:xmpmeta><?xpacket end="w"?>';

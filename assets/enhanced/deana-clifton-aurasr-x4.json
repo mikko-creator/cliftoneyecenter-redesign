@@ -1,0 +1,41 @@
+{
+ "id": "deana-portrait",
+ "file": "assets/enhanced/deana-clifton-aurasr-x4.png",
+ "source": "assets/source/23fe4783-deana_GSP_UID_8da55bc2-8976-4660-9c16-b42d04b436df.png (225x397, the live site doctor photo)",
+ "operator": "2026-09-29: put Dr. Deana photo in #HeretoHelp and increase its quality",
+ "model": "fal-ai/aura-sr",
+ "input": {
+  "image_url": "<data uri of orig.png>",
+  "upscaling_factor": 4,
+  "overlapping_tiles": true
+ },
+ "request_id": "01a0ed4e-90df-7b81-b303-cc8fd1b7b946",
+ "output": {
+  "width": 900,
+  "height": 1588
+ },
+ "selection": {
+  "method": "4 upscalers run on the original; each downscaled back to 225x397 (area) and compared with the original",
+  "psnr_ssim": {
+   "fal-ai/aura-sr": [
+    38.31,
+    0.9916
+   ],
+   "fal-ai/topaz/upscale/image (High Fidelity V2)": [
+    37.36,
+    0.9797
+   ],
+   "fal-ai/recraft/upscale/crisp": [
+    35.07,
+    0.9765
+   ],
+   "fal-ai/esrgan (RealESRGAN_x4plus)": [
+    34.73,
+    0.9746
+   ]
+  },
+  "control": "original blurred 3px: PSNR 26.5",
+  "chosen": "fal-ai/aura-sr: highest fidelity, natural skin/hair/jewellery at 1:1; ESRGAN and Recraft look painted, Topaz smooths skin"
+ },
+ "label": "IPTC DigitalSourceType compositeWithTrainedAlgorithmicMedia (enhancement of a real photograph with a generative model)"
+}

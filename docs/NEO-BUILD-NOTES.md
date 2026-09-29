@@ -340,3 +340,91 @@ MSYS_NO_PATHCONV=1 node tmp/qa-neo/fix/runtime/ra45-framed.mjs --base http://127
 for f in dist-neo/img/generated/neo-*.webp; do webpmux -get xmp $f -o - | grep -o '<xmp:CreatorTool>[^<]*'; done  # CSC-01
 # regression: 8.3 (the int / gallery / contrast probes are copied to tmp/qa-neo/fix/reg/ with port 8851)
 ```
+
+## 9. Operator revision of the home (asked 2026-09-29 21:14, verified and published 2026-09-30)
+
+Request: "on the hero section, remove the girl altogether ... move the Email us and Schedule an appointment buttons on
+the left side of the head bust and align all the buttons so there are 4 buttons across the whole hero section ... in
+the happy patients section, make sure all the text box are the same size for all the reviews ... in the heretohelp
+section, put the photo of Dr. Deana, it would be great if you can increase the quality of this photo".
+
+Implemented on 2026-09-29 (21:15-21:28) in `src/themes/neo/home.mjs`, `images.mjs`, `styles/site.css`,
+`scripts/site.js`, plus two theme-inert hooks in shared code: `src/build.mjs` ships `TI.ENHANCED` photos (null for
+glass), and `src/lib/images.mjs` takes an optional IPTC source type that defaults to the old value. That session ended
+during verification. It was resumed on 2026-09-30, and the full verification below ran on the final build.
+
+### 9.1 What changed
+
+| ask | result |
+|---|---|
+| remove the girl | The source hero photo is not rendered. It is declared in `home.mjs` (`declaredRemoved`), so the completeness check counts a decision, not a loss. The head no longer preloads an image: `build.mjs` preloads the hero photo only when the home renders it. The bust is the hero's only image (`fetchpriority="high"`). The page's LCP element is the hero's marble ground, a CSS background, at 1440, 1024 and 390 (`tmp/orch/resume/lcp.mjs`; a planted text-block control fires). |
+| Email Us + Schedule left of the bust, 4 across | `home.mjs` sets the side from the label (`dock__tile--l` / `--r`) and orders the left pair first, so DOM and Tab order match the visual order. >= 1024: one row `[1][2] bust [4][5]`, straddling the seam by 30% of `--niche-h`. 700-1023: a pair of plaques in each bay. < 700: 2 x 2 plates under the bust; the stylobate frieze is hidden. |
+| review boxes one size | The track stretches its slides (`align-items: stretch`), each card fills its slide, and the name sits on the base. Below 1024 the carousel `fit()` only clears a stale inline height; it used to size the track to the card in view, which clipped a taller card waiting off-screen. |
+| Dr. Deana's photo, better quality | The live site has only a 225 x 397 copy (`assets/source/23fe4783-deana_GSP_UID_…png`). Four fal upscalers were run and each result scaled back to 225 x 397: `fal-ai/aura-sr` matched the original best (PSNR 38.31 dB, SSIM 0.9916; topaz 37.36 / 0.9797, recraft 35.07 / 0.9765, esrgan 34.73 / 0.9746; a 3px blur of the original scores 26.5). The build ships it as `img/deana-clifton-portrait.d95928dfed.webp`, 720 x 1271, 74,466 bytes, labelled `compositeWithTrainedAlgorithmicMedia` ("enhanced, not generated"). Provenance: `assets/enhanced/deana-clifton-aurasr-x4.json`; tool `tools/fal-upscale.mjs` (key via `FAL_KEY` or `--key-file` outside the project, refused inside it). |
+
+### 9.2 Found when the revision was verified (2026-09-30), fixed in `styles/site.css`
+
+| # | defect (R1-R3 measured on the 2026-09-29 build `94f66deb…`, R4-R5 on `e2e9f235…`) | fix | after (final `9844142e…`) |
+|---|---|---|---|
+| R1 | A second person's hair along the photo's right edge still showed at 390 (2x capture). The photo is narrower than the arch (0.57 vs 0.76), so `cover` crops only top and bottom, and the old comment "drops the sliver" was false. The hair reaches 2.7% in from the edge (pixel strip of the 900 x 1588 upscale). | The `<img>` box is 106% wide, anchored left; the frame clips the right 5.7%. | no trace at 1440 x 2 or 390 x 2 (`tmp/orch/resume/final/portrait-pair.png`); the refuter (on `e2e9f235…`; the portrait rules have not changed since): the visible photo is the left 94.34% of the file at every width, the hair starts at columns 684-708 of 720, 0 dark edge pixels shipped vs 2,093 with the crop removed (its control) |
+| R2 | From 1024 the Q&A plate (pulled left by `clamp(24px, 3vw, 48px)`) covered the right ~15% of the portrait and its arch (43px of 290 at 1440). | `--qa-pull` on `.help__grid`, portrait `margin-right: calc(var(--qa-pull) + 36px)`; the plate is unchanged. | the whole arch visible at 1920, 1440, 1280 and 1024 (`tmp/orch/resume/final/sheet-h.png`); 36px from the plate and 27px from its outer rule (refuter, on `e2e9f235…`) |
+| R3 | The niche labels ran into the niche's padding and base. At 1024 "Order Contacts Online" took 3 lines, clear -14px. At 1200 / 1280 / 1366 the 2-line labels were clear -19 / -16 / -5px; at 1200 the label box ended 3px into the green base. `height: var(--niche-h)` (150-164px) was less than the ~169px a 2-line label needs. | `min-height: var(--niche-h)`. The row stretches all four to one size, and the dock is end-aligned, so the extra height grows upward. | clear >= 0 at 1024-1920 (10 widths), four equal niches per width, one row, Email + Schedule left of the bust centre, no bust overlap (`tmp/orch/resume/dock.after.txt`; a control label forced to 40px wraps). Script-to-niche gap >= 88px (`scriptgap.mjs`). |
+| R4 | (independent refuter) Below 1024 the lower tiles now cross the seam, and the hero's light focus outline alone (`--focus-on-dark`, 3px) measured 1.14-1.22:1 on the marble below it (390, 768). | The two-tone ring (outline `green-700` 3px at 5px offset over a 5px `--focus-on-dark` band) at every width, with each variant's own shadow. | the refuter's `keys.mjs`: all four tiles at 1440, 1100, 768 and 390 show outline `rgb(68, 102, 0)` 3px / 5px plus the band; `green-700` on marble about 5.9:1, the band on the dark ground about 12.3:1 (`tmp/orch/resume/final/focus-after.png`) |
+| R5 | (independent refuter) The hero frame's bottom corner stars, centred on the seam, touched the outer tiles: -1 / -1 / -0.4px at 320 / 390 / 414, 7 / 3 / 5.7px at 600 / 700 / 768. | Not drawn below 1024. | the refuter's `corner.mjs` with `e2e9f235…` served as the regression control: the control reproduces every gap, the final build draws no bottom star below 1024; `stars.mjs`: all four stars drawn from 1024 |
+
+Also corrected: comments and docs that called the bust "the hero's LCP" (see 9.1).
+
+**Recorded, not changed (F1, the operator's decision):** with the four niches in one row on the seam, no quick-action
+label lies inside the first screen at common laptop viewports: 1280 x 720, 1366 x 768, 1536 x 864 and 1024 x 600
+(label bottoms 793 / 831 / 864 / 701-721px). Before the revision the right-bay 2 x 2 showed two of the four there. NG9
+(390 x 844, 1024 x 768, 1440 x 900) passes, and at 1440 x 900 all four tiles are now fully in view, where two were
+before. The top bar's "Make an Appointment" and "Call Us" are visible at every size. A browser's own toolbars make the
+viewport shorter still (not measured). A `(min-width: 1024px) and (max-height: ~880px)` rule that trims the hero by
+at least 84px at 1280 x 720 would lift the row; it is not built, pending the operator (evidence:
+`tmp/orch/refuter/fold.json`, `sheet-fold-1366.png`).
+
+### 9.3 Verification (final `dist-neo` `9844142ea6f6…`, 668 files; every check ran on it)
+
+| gate | command | result |
+|---|---|---|
+| build | `CEC_THEME=neo node src/build.mjs` | exit 0, 349 + `404.html`, 0 build failures, generated slots 249 / 17 (unchanged) |
+| reproducible | `CEC_THEME=neo CEC_DIST=tmp/orch/resume/repro-a` and `-b`, `hashdir.mjs repro-a repro-b dist-neo --control` | IDENTICAL `9844142ea6f66d4da56dba8eaf201845f166f6b4b7c4aaaf57cd1d7674f24854` (all three), control fired |
+| glass guard | `CEC_DIST=tmp/orch/resume/guard node src/build.mjs`, `hashdir.mjs … dist --control` | IDENTICAL `40fc4155bf35c699e61e70a3019cc544f4cc859c6c6bff343261c5269ca1a885`, 665 files, control fired |
+| changed files | `diff -rq` against the committed `dist-neo` (`39fa000c…`, kept as `tmp/neo-prev/`) | `index.html`, `styles/site.css`, `scripts/site.js`, `img/deana-clifton-portrait.d95928dfed.webp` added, `img/girl-smiling-brown-hair-1280x853.f515b43d5d.webp` removed |
+| sentence parity | `node tools/sentence-parity.mjs --dir dist-neo` | 13,966 sentences, 0 lost, control fired |
+| tag balance / links | `tools/tag-balance.mjs`, `tools/link-check.mjs` `--dir dist-neo` | 0 findings of 350 pages; 0 broken of 20,788 local refs; controls fired |
+| robots + markup | `node tmp/neo/build/neo-audit.mjs dist-neo dist` | 0 mismatches, 0 markup findings, controls fired |
+| fabrication-equivalent | `node tmp/qa-neo/fix/reg/fab-diff.mjs` | neo-only strings "II", "III", "VII" (as before) and the portrait's alt "Dr. Deana Clifton, OD", which is the live site's own (`audit/raw/our-eye-doctors.html`, `team-dr-deana-clifton-od.html`); control fired |
+| decontamination | `sr-decontaminate --project . --dir dist-neo --strict`, audit files restored | CLEAN 0 / 0 / 0 |
+| AI labels | `webpmux -get xmp` | portrait `compositeWithTrainedAlgorithmicMedia`; 20 of 20 generated images `trainedAlgorithmicMedia` |
+| home-only change | `grep -l` in `dist-neo` | `dock--portico`, `rev-track`, `help__portrait`, `help__grid`, `data-carousel` each on 1 page (the home) |
+| **browser suite** | `bash tmp/orch/resume/verify-final.sh`, strictly sequential | The rows below ran on `e2e9f235…`, which differs from the final build only by the two home-only rules of R4 and R5 (a focus ring and two hidden ornaments; no layout change). The same suite re-ran on the final `9844142e…` (log `tmp/orch/resume/verify-final.log`; the `e2e9f235…` run is kept as `verify-final.e2e9f235.log`). |
+| overflow | `sweep.mjs --width W`, W = 320 / 390 / 768 / 1024 / 1440 | 0 overflowing pages of 350 at each width, 0 JS errors; control (a planted 600px block: 390 -> 600) fired |
+| JS errors, drawer, reduced motion, inert form | `dod-browser.mjs` | E: 0 errors over 24 loads, drawer open + Escape 12 / 12, control fired; R: 0 pages with hidden content or `js-motion` (24 loads), control fired; F: the notice shown and focused, 0 non-GET requests |
+| reveals, hover/keyboard parity | `behaviour.mjs` | A (reduced, 1440 / 390): no `js-motion`, 0 hidden, 0 pending, hover moves nothing; B (natural): 0 pending or invisible in view at load, 0 / 0 after a scroll-through, End jump 0 pending above; C: 14 MATCH of 15, the portico tile differing only in the designed two-tone ring (as in 8.3); D: 0 errors on 6 pages, control caught |
+| NG11 / NG19 | `ux.mjs` | 508 targets at 320 / 390, 0 under 44px; 135 numbers, 0 in more than one line box; controls fired |
+| tel buttons | `telbtn.mjs` | 9 buttons at 320 / 390 / 1440: label 1 line box (0 on the home's number-only button), number 1, arrow inside and clear of the number |
+| RA-1 | `obscure.mjs` | PASS 10 cases (Tab, Shift+Tab and anchor jumps land below the sticky header at 1440 and 390); control fired |
+| rendered contrast | `MSYS_NO_PATHCONV=1 contrast.mjs --pages / --widths 390,1440` | home 390: 214 runs, 0 FAIL; 1440: 225 runs, 0 FAIL; controls fired (4.54 passes, 3.24 and 2.11 fail); rect-only 2, decorative 4 / 5 (was 6 / 7: the patera niche is now the portrait) |
+| palette contrast | `neo-contrast.mjs` | 42 pairs, 0 failing, controls fired |
+| NG9 first screen | `tmp/orch/resume/ng9r.mjs` | 390 x 844: the 4 plates inside (lowest 745), the number visible; 1024 x 768: labels inside (lowest 720); 1440 x 900: labels inside (lowest 864, was 894), the bust wholly inside; control (1024 x 600) fired |
+| NG18 | `tmp/orch/resume/ng18r.mjs` | 10,244px at 390 (was 10,395), the same at rest and after a natural scroll-through; 414: 10,182, 360: 10,480, 320: 11,003 |
+| hero tiles | `tmp/orch/resume/dock.mjs` | as 9.2 R3; control fired |
+| VH1 script vs bust | `tmp/qa-neo/fix/home/script.mjs`, 1024-2560 | glyph gap >= 59.8px at every width; control (the script shifted 300px) 0.4 |
+| LCP | `tmp/orch/resume/lcp.mjs` | `div.deco--dark` (the hero's marble ground) at 1440, 1024 and 390; control (a planted text block) fired |
+| independent refuter | one agent, read-only, its own Chrome profile, briefed with the change set | 3 findings, all new against the pre-change build: R4 and R5 (fixed, above) and F1 (recorded, above). Everything else it attacked held: 22 widths with no overflow, Tab order, hover vs focus, equal review cards, the carousel buttons and track height, the portrait crop at 6 widths at DPR 2, reveals under both motion settings; each "never happens" claim shown able to fire (`tmp/orch/refuter/`) |
+
+### 9.4 Reproduce
+
+```sh
+node tools/serve.mjs --root dist-neo --port 8851 --no-open        # background; kill after
+bash tmp/orch/resume/verify-final.sh                               # the browser suite, strictly sequential (log: verify-final.log)
+node tmp/orch/resume/cap.mjs --widths 1440,390 --sel ".help__portrait" --dpr 2 --out tmp/orch/resume/after
+node tmp/orch/resume/dock.mjs; node tmp/orch/resume/scriptgap.mjs; node tmp/orch/resume/lcp.mjs
+```
+
+The `tmp/qa-neo/fix/reg/*` probes (and `tmp/qa-neo/fix/{ng9,obscure}.mjs`) pin one Chrome profile each, so never run
+two of them at once. A second launch attaches to the first one's browser and closes it on exit. That showed up here as
+sweeps exiting 13 with no output and a focus-parity DIFF; those runs were discarded and re-run alone. `ng9.mjs` and
+`home/ng18.mjs` read the removed photo and the replaced niche (`ng18.mjs` then exits 0 silently), so this round ran
+revision-aware copies, `tmp/orch/resume/ng9r.mjs` and `ng18r.mjs`.

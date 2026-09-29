@@ -455,6 +455,12 @@ appears without sliding under reduced motion. The scrim is `rgb(17 20 11 / .45)`
 The temple front on the green-black poster ground. **Every text node is the source's** (the three `div.ecp-heading`
 lines of row 0; the four badges of row 1).
 
+> **Operator revision (2026-09-29), supersedes what follows where they differ:** the photo arch (`figure.hero__photo`,
+> T1, the stock photo of a girl) is removed, so every photo-arch row, value and check below no longer applies. The bust
+> is the hero's only image (`fetchpriority="high"`). The page's LCP element is the hero's marble ground, a CSS
+> background, measured at 1440 / 1024 / 390 on 2026-09-30. The quick actions stand in the bays beside the bust (3.4).
+> Record: `docs/CHANGE-LOG.md` 6d, `docs/NEO-BUILD-NOTES.md` 9.
+
 ```html
 <section class="hero">
   <div class="deco deco--dark" aria-hidden="true"></div>
@@ -538,6 +544,17 @@ The four source links in source order (Email Us, Schedule An Appointment, Patien
 `dock__tile--primary`. Markup per tile: `a.dock__tile > span.dock__icon > (svg.dock__ring using #o-badge + icon) +
 span.dock__label`.
 
+> **Operator revision (2026-09-29), supersedes the hero bands in the table below:** Email Us and Schedule An
+> Appointment stand in the bay LEFT of the bust, Patient Forms and Order Contacts Online right of it. `home.mjs` sets
+> the side from the label (`dock__tile--l` / `--r`) and puts the left pair first, so the Tab order is the visual order.
+> **1024+:** one row of four portico niches, `[1][2] bust [4][5]`, straddling the seam by 30% of `--niche-h`. The niche
+> is `min-height: var(--niche-h)`, because a two-line label needs ~169px; all four stretch to one size. From 1024 to
+> 1199 the niche keeps a 52px medallion and an `--n-sm` label. **700-1023:** a pair of plaques in each bay. **< 700:**
+> the 2 x 2 plates under the bust (Email and Schedule on top), the lower row straddling the seam; the stylobate frieze
+> is not drawn below 700. Because the tiles straddle the seam at every width, the two-tone focus ring (outline
+> `green-700` at 5px offset over a 5px `--focus-on-dark` band) applies at every width, and the hero frame's bottom
+> corner stars are not drawn below 1024, where the outer tiles reach them.
+
 | variant | where | shape | states |
 |---|---|---|---|
 | **portico niche** | hero 1200+, `nav.dock.dock--portico` | round-headed niche (`--r-arch`), `marble-50` fill, 1px `green-600` border with a 6px `green-700` plinth, outer rule at -9px and keystone (`green-500`); ring 64px, label `ink-900` 600 `--n-ui`; height `clamp(150px, 12vw, 172px)`; the dock is end-aligned in the cella so the lower row crosses the seam by 30% of the niche height (4.1); primary: `green-700` fill, `paper` text and ring | hover and focus: arch lift -6px, the outer rule grows 9 to 13px, the keystone rises 4px, the ring turns 45deg, fill `paper` (primary `green-800`); straddling tiles use the two-tone ring (temple 368-397) |
@@ -607,6 +624,11 @@ relief, crossing the seam by `clamp(40px, 5vw, 72px)` up and down; `data-depth="
 
 ### 3.8 Testimonials (COMPONENTS G.6 and F.3, kept markup)
 
+> **Operator revision (2026-09-29):** on the home every review card is one size at every width. The track stretches
+> its slides to the tallest (`align-items: stretch`), each card fills its slide, and the name sits on the card's base
+> (`margin-top: auto`). Below 1024 the carousel track takes its own height (the tallest card) instead of the height
+> of the card in view.
+
 **Home, `section.reviews`** on the poster ground (`deco--dark`), the one dark feature band of the page:
 - `div.smiles` (aria-hidden, z 4): the three source smile photos (T1) as **round medallions** with a 5px `marble-50`
   ring and a 1px `green-500` outer rule, a symmetric trio **centred on the Services/reviews seam** (the middle one
@@ -630,6 +652,15 @@ relief, crossing the seam by `clamp(40px, 5vw, 72px)` up and down; `data-depth="
 or 1 columns, `minmax(300px, 1fr)`); `/testimonial/*` renders one stele inside the first sheet.
 
 ### 3.9 Ask-the-doctor accordion (#HeretoHelp, COMPONENTS G.7 and F.6, kept markup)
+
+> **Operator revision (2026-09-29), supersedes the blind niche below:** the left bay holds `figure.help__portrait`,
+> Dr. Deana Clifton's photograph upscaled 4x with AI and labelled as enhanced (`docs/CHANGE-LOG.md` 6d). It uses the
+> niche's 3:4 arch, outer rule and keystone, with a 5px marble mat and a 12px plinth. The blind niche remains only as
+> the fallback if the enhanced file is missing. **1024+:** the portrait stands clear of the Q&A plate
+> (`margin-right: calc(var(--qa-pull) + 36px)`); the plate's pull over the column is unchanged
+> (`--qa-pull: clamp(24px, 3vw, 48px)`). The frame clips the photo's right 5.7%, where a second person's hair runs
+> down the edge. Below 1024 the portrait is centred above the plate at `min(68%, 250px)`; below 700 at
+> `min(58%, 230px)`.
 
 - **Head centred (symmetry must-fix):** arch-mark V and `h2.tag-title.help__tag#help-h` "#HeretoHelp" across the
   full wrap on the axis, `--n-tag` (no `cqi` units, WebKit must-fix).

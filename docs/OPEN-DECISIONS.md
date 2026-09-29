@@ -19,6 +19,11 @@ Items only the practice (or its agency) can settle. Each one is also named in th
    the staff, the office, a patient, a result or a brand. Two service images show generic illustrative models (a man
    at an exam instrument, a smiling child in glasses); nothing on the page presents them as the practice's patients.
    Replace any of it with real photography of the practice whenever that is available.
+   **Neoclassical theme only:** the home's #HeretoHelp shows Dr. Deana Clifton's own photograph, upscaled 4x with AI
+   because the live site holds only a 225 x 397 copy (operator request, 2026-09-29). It is labelled as an AI-enhanced
+   photograph (IPTC `compositeWithTrainedAlgorithmicMedia`), not as generated. An upscaler invents fine detail such as
+   hair, skin texture and jewellery, so Dr. Clifton should approve the image before launch, or the practice should
+   supply an original high-resolution photo to use instead.
 4. **The former agency's Google Maps API key** is embedded in the live site's HTML (so it is already public) and in
    this workspace's untouched crawl (`audit/raw/`, never to be published). The rebuild ships a keyless map embed and
    no copy of the key; the agency should still rotate or restrict that key once the old site is retired.

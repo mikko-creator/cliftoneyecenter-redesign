@@ -273,21 +273,10 @@
     function go(dir) { track.scrollBy({ left: dir * step(), behavior: reduce.matches ? 'auto' : 'smooth' }); }
     on(prev, 'click', function () { if (prev.getAttribute('aria-disabled') !== 'true') go(-1); });
     on(next, 'click', function () { if (next.getAttribute('aria-disabled') !== 'true') go(1); });
-    /* below 1024px the track is as tall as the cards in view (at least half inside), so the buttons sit under what is read */
-    function fit() {
-      if (desk.matches) { track.style.height = ''; return; }
-      var tr = track.getBoundingClientRect(), h = 0;
-      Array.prototype.forEach.call(track.children, function (s) {
-        var r = s.getBoundingClientRect();
-        var seen = Math.min(r.right, tr.right) - Math.max(r.left, tr.left);
-        if (r.width && seen >= r.width / 2) h = Math.max(h, r.height);
-      });
-      if (!h) return;
-      var cs = getComputedStyle(track);
-      h += parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
-      var v = Math.ceil(h) + 'px';
-      if (track.style.height !== v) track.style.height = v;
-    }
+    /* every stele has one height since the operator revision (2026-09-29): the track's own height (the tallest slide,
+       align-items: stretch) is right at every width. It used to be set to the cards in view, which clipped a taller
+       card waiting off-screen once the slides were stretched; fit() now only clears a stale inline height */
+    function fit() { if (track.style.height) track.style.height = ''; }
     var raf = 0;
     on(track, 'scroll', function () { if (!raf) raf = window.requestAnimationFrame(function () { raf = 0; ends(); fit(); }); }, { passive: true });
     onMQ(desk, mode);

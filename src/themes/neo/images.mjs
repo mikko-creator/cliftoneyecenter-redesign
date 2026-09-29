@@ -79,3 +79,16 @@ export function cutRules(libIndexes) {
 }
 /* 3.23: the 404 sheet's relief */
 export const CUT_404 = 'neo-cut-eye-relief';
+
+/* The practice's OWN photographs, enhanced with AI at the operator's request (2026-09-29: "put the photo of Dr. Deana
+   [in #HeretoHelp], increase the quality of this photo"). The build ships each through images.web with an honest label:
+   a real photograph enhanced by a generative model (IPTC compositeWithTrainedAlgorithmicMedia), never "AI-generated".
+   Provenance and the model choice (4 upscalers compared for fidelity) are in the .json beside each file. */
+export const ENHANCED = [
+  {
+    id: 'deana-portrait', file: 'assets/enhanced/deana-clifton-aurasr-x4.png', name: 'deana-clifton-portrait', maxW: 720, q: 86,
+    alt: 'Dr. Deana Clifton, OD',
+    tool: 'fal.ai fal-ai/aura-sr (4x upscale of the practice photo, resized by the build)',
+    description: 'Dr. Deana Clifton, OD: the practice\'s own photograph, upscaled 4x with an AI model (enhanced, not generated)',
+  },
+];

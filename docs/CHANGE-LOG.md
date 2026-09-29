@@ -331,6 +331,52 @@ build `dist/` stayed byte-identical through the neo work (aggregate `0e6d64d9…
   on a header control) scrolls the page up about 440px, because `html { scroll-padding-top }` applies to the sticky
   header's own controls. Fixed in both themes the same way: scroll-margin on in-page targets instead of scroll-padding, and `focus({ preventScroll: true })` when the menu closes. Glass after the fix: drawer close 0px on every route (was -437), nav-link focus 0px (was -447), keyboard focus and anchors still land below the sticky header (probe control fires), only `styles/site.css` and `scripts/site.js` changed (`40fc4155...`), gate 22 / 7 / 0 unchanged.
 
+## 6d. Operator revision of the Neoclassical home (asked 2026-09-29, verified and published 2026-09-30)
+
+Four changes to the neo home page only. The glass build is untouched (`dist/` still `40fc4155...`, rebuilt and
+compared).
+
+- **Hero:** the source's hero photo (a stock portrait of a smiling girl) is removed ("she looks very irrelevant").
+  `home.mjs` declares it as an operator removal, so the build's completeness check counts a decision, not a loss. The
+  bust is now the hero's only image (`fetchpriority="high"`). The page's LCP element is the hero's marble ground, a
+  CSS background (measured at 1440, 1024 and 390), and the head no longer preloads an image.
+- **Hero quick actions:** Email Us and Schedule An Appointment stand in the bay left of the bust, Patient Forms and
+  Order Contacts Online right of it. From 1024px the four arched niches form one row across the hero, straddling the
+  seam by 30% of their height. From 700 to 1023px each bay holds a pair of plaques (four across would leave ~100px
+  buttons). Phones show a 2 x 2 under the bust. The side comes from the label, not the source order, and the Tab
+  order follows the visual order.
+- **#HappyPatients:** the three review cards are one size at every width. The tallest sets the height and the name
+  sits on the card's base. The phone and tablet carousel no longer sizes its track to the card in view.
+- **#HeretoHelp:** the empty decorative niche is replaced by Dr. Deana Clifton's portrait in the same arch. The live
+  site has only a 225 x 397 copy. It was upscaled 4x with AI (`fal-ai/aura-sr`), chosen from four upscalers for
+  fidelity: scaled back down to 225 x 397 it matches the original best (PSNR 38.3 dB, SSIM 0.992). It ships as a
+  720 x 1271 WebP labelled in its metadata as the practice's own photograph *enhanced* with AI (IPTC
+  `compositeWithTrainedAlgorithmicMedia`), not as a generated image. Provenance is in
+  `assets/enhanced/deana-clifton-aurasr-x4.json`. The alt text "Dr. Deana Clifton, OD" is the live site's own.
+- **Found when the revision was verified (2026-09-30), fixed before publishing:**
+  1. A second person's hair along the photo's right edge still showed. The arch crops only top and bottom, so the
+     frame now clips the right 5.7% of the photo; the hair reaches 2.7% in.
+  2. From 1024px the Q&A plate, pulled left over the portrait's column, covered the right ~15% of the photo and its
+     arch. The portrait now stands clear of it.
+  3. The niche labels ran up to 19px into the niche's padding and base at 1024px and at 1200-1366px. The niches now
+     grow to fit (`min-height`), and all four stay one size.
+- **Found by an independent refuter on the fixed build, fixed:**
+  4. Below 1024px the lower tiles now cross the seam. Their light keyboard-focus ring measured 1.14-1.22:1 on the
+     marble below it. The two-tone ring the niches use from 1024px (dark green outline, light inner band) now applies
+     at every width.
+  5. The hero frame's bottom corner stars touched the outer tiles on phones (-1px at 320-414px, 3-7px at 600-768px).
+     They are not drawn below 1024px.
+- **Recorded, not changed (a decision for the operator):** with the four niches in one row on the hero's seam, no
+  quick-action label is inside the first screen at common laptop viewports: 1280 x 720, 1366 x 768, 1536 x 864 and
+  1024 x 600 (label bottoms 793, 831, 864 and 701-721px). Before the revision the 2 x 2 portico showed two of four
+  there. The design's own first-screen gate (390 x 844, 1024 x 768, 1440 x 900) passes, and at 1440 x 900 all four
+  tiles are now fully in view, where two were before. The top bar's "Make an Appointment" and "Call Us" stay visible
+  at every size. If wanted, a short-screen rule can lift the row.
+- **Result:** `dist-neo` `9844142e...` (668 files, reproducible). Against the previous `dist-neo` only `index.html`,
+  `styles/site.css`, `scripts/site.js` and two images changed (the girl's photo out, the portrait in). The phone home
+  is 10,244px at 390, under the 10,300px target (was 10,395). The verification record is `docs/NEO-BUILD-NOTES.md`
+  section 9.
+
 ## 7. Decisions taken for the build
 
 `docs/BUILD-DECISIONS.md` (orchestrator, 2026-09-28). The operator said "go ahead, pick the winner and build it", so

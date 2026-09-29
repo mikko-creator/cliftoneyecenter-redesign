@@ -90,16 +90,25 @@ export function buildHome(ctx) {
   if (heroLines.length !== 3) fail('home:hero', '/', 'expected 3 hero heading lines, found ' + heroLines.length);
   const bgUrl = attr(openTag(row.hero), 'data-background-image-src');
   if (!bgUrl) throw new Error('home: hero row has no data-background-image-src');
-  const heroPhoto = sourceImg(bgUrl);
+  /* the source hero photo (a stock portrait of a smiling girl) is NOT rendered: operator revision 2026-09-29 ("remove the
+     girl altogether as she looks very irrelevant"). Declared here so the completeness check below counts it as a
+     decision, not a loss; the bust is now the hero's only image. */
+  const declaredRemoved = new Map([[bgUrl, 'operator 2026-09-29: hero photo removed']]);
   const tiles = byClass(row.dock, 'ecp-badge', 'a').map((e) => {
     const tag = openTag(e.html);
     const label = textOf((firstByClass(e.html, 'ecp-badge-title') || e).html);
     return { label, href: attr(tag, 'href'), blank: attr(tag, 'target') === '_blank' };
   });
-  const dockHtml = tiles.map((t) => {
+  /* operator 2026-09-29: Email Us + Schedule An Appointment LEFT of the bust, the other two right of it, all four in one
+     row (>= 1024). The side comes from the label, not the position, so a reordered source cannot swap them silently. */
+  const LEFT = /^(Email Us|Schedule An Appointment)$/i;
+  if (tiles.filter((t) => LEFT.test(t.label)).length !== 2 || tiles.length !== 4) fail('home:dock', '/', 'expected Email Us + Schedule An Appointment and 2 more tiles, found: ' + tiles.map((t) => t.label).join(' | '));
+  /* left pair first, source order kept inside each side: DOM (and Tab) order = visual order */
+  const ordered = [...tiles.filter((t) => LEFT.test(t.label)), ...tiles.filter((t) => !LEFT.test(t.label))];
+  const dockHtml = ordered.map((t) => {
     const primary = /^Schedule An Appointment$/i.test(t.label);
     const href = H(t.href);
-    return '<a class="dock__tile' + (primary ? ' dock__tile--primary' : '') + '"' + (href ? ' href="' + esc(href) + '"' : '') + (t.blank ? ' target="_blank" rel="noopener"' : '') + '>'
+    return '<a class="dock__tile ' + (LEFT.test(t.label) ? 'dock__tile--l' : 'dock__tile--r') + (primary ? ' dock__tile--primary' : '') + '"' + (href ? ' href="' + esc(href) + '"' : '') + (t.blank ? ' target="_blank" rel="noopener"' : '') + '>'
       + '<span class="dock__icon"><svg class="dock__ring" aria-hidden="true" focusable="false"><use href="#o-badge"/></svg>' + icon(DOCK_ICON[t.label] || 'arrow') + '</span>'
       + '<span class="dock__label">' + esc(t.label) + '</span>'
       + '<span class="dock__go" aria-hidden="true">' + icon('arrow') + '</span></a>';
@@ -115,9 +124,11 @@ export function buildHome(ctx) {
     '<span class="cornice" aria-hidden="true"></span>',
     pilasters,
     '<p class="hero__statement">', statement, '</p>',
-    '<figure class="hero__photo"><span class="hero__photo-in" data-reveal="settle">' + img(heroPhoto, '', ' fetchpriority="high" decoding="async"') + '</span></figure>',
-    /* no fetchpriority on the bust (it must not compete with the LCP photo) and no parallax (it stands on the pedestal) */
-    genImg('neo-cut-bust-glasses', 'the hero statue', 'hero__cut', ' decoding="async"'),
+    /* the bust is the hero's only image since the photo was removed (operator 2026-09-29), so it gets fetchpriority.
+       It is not the LCP: that is the hero's marble ground, a CSS background (measured at 1440 / 1024 / 390,
+       2026-09-30); the head preloads no image now (build.mjs preloads the hero photo only when the home renders it).
+       No parallax (it stands on the pedestal) */
+    genImg('neo-cut-bust-glasses', 'the hero statue', 'hero__cut', ' fetchpriority="high" decoding="async"'),
     '<span class="hero__pedestal" aria-hidden="true"></span>',
     '<div class="hero__stylobate" aria-hidden="true"><span class="meander"></span></div>',
     /* "Quick actions", not "Quick links": the footer nav is "Quick Links" (glass QA RA-07) */
@@ -312,6 +323,8 @@ export function buildHome(ctx) {
 
   /* ================= V. #HeretoHelp (row 6): a blind niche, no generated image (its text names "Ask Dr.") ================= */
   const helpTag = headingText((firstByClass(row.help, 'ecp-heading', 'div') || { html: '' }).html);
+  const portrait = ctx.enhanced ? ctx.enhanced('deana-portrait') : null;
+  if (!portrait) fail('home:enhanced', 'deana-portrait', 'the enhanced portrait is not available; #HeretoHelp shows the empty niche');
   const qaH = headingText((byTag(row.help, 'h2')[0] || { html: '' }).html);
   const teamModule = firstByClass(row.help, 'ecp-posts-wrapper-team', 'div');
   if (teamModule && textOf(teamModule.html)) fail('home:leftover', '/', 'the #HeretoHelp team module is no longer empty: ' + textOf(teamModule.html).slice(0, 80));
@@ -336,7 +349,11 @@ export function buildHome(ctx) {
     '<h2 class="tag-title help__tag" id="help-h">' + hashTitle(helpTag) + '</h2>',
     '</div>',
     '<div class="help__grid">',
-    '<span class="help__niche" aria-hidden="true">' + orn('o-badge', 'help__ring') + orn('o-rosette', 'help__patera') + '</span>',
+    /* Dr. Deana Clifton's portrait in the arch (operator 2026-09-29: "put the photo of Dr. Deana" here, quality raised
+       with AI - labelled as enhanced). The empty patera niche is the fallback if the enhanced file is missing. */
+    portrait
+      ? '<figure class="help__portrait" data-reveal="settle"><span class="help__portrait-in">' + img(portrait, portrait.alt, ' loading="lazy" decoding="async"') + '</span></figure>'
+      : '<span class="help__niche" aria-hidden="true">' + orn('o-badge', 'help__ring') + orn('o-rosette', 'help__patera') + '</span>',
     '<div class="qa plate" data-reveal="up">',
     '<h2 class="qa__h">' + esc(qaH) + '</h2>',
     '<div class="qa__list" data-accordion>', qaItems.join('\n'), '</div>',
@@ -442,8 +459,9 @@ export function buildHome(ctx) {
   leftovers.forEach((t) => fail('home:leftover', '/', 'source text not rendered: "' + t.slice(0, 120) + '"'));
   const rawImgs = [...cleanMain.matchAll(/<img\b[^>]*\ssrc="([^"]+)"/gi)].map((m) => decodeEntities(m[1]));
   if (bgUrl) rawImgs.push(bgUrl);
-  const missingImgs = [...new Set(rawImgs)].filter((u) => !usedImages.has(u));
+  const missingImgs = [...new Set(rawImgs)].filter((u) => !usedImages.has(u) && !declaredRemoved.has(u));
   missingImgs.forEach((u) => fail('home:leftover', '/', 'source image not rendered: ' + u));
+  stats.homeDeclaredImageRemovals = [...declaredRemoved.values()];
   stats.homeSourceTextRuns = new Set(runs).size;
   stats.homeLeftoverTextRuns = leftovers.length;
   stats.homeSourceImages = new Set(rawImgs).size;

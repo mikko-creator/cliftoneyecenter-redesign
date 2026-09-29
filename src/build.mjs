@@ -292,6 +292,17 @@ function brandLogo(file, name) {
 }
 const logoHeader = brandLogo('logo-clifton.png', 'logo-clifton');
 const logoFooter = brandLogo('logo-clifton-light.png', 'logo-clifton-light');
+/* theme only (inert for glass): the practice's own photos enhanced with AI (TI.ENHANCED), labelled as enhanced -
+   IPTC compositeWithTrainedAlgorithmicMedia - never as generated. ctx.enhanced(id) on the home. */
+const enhancedById = new Map();
+if (TI && TI.ENHANCED) for (const e of TI.ENHANCED) {
+  const abs = P(e.file);
+  if (!fs.existsSync(abs)) { fail('build:asset', e.file, 'enhanced photo missing'); continue; }
+  const w = images.web(abs, { maxW: e.maxW, q: e.q, name: e.name, aiLabel: { tool: e.tool, description: e.description, sourceType: 'compositeWithTrainedAlgorithmicMedia' } });
+  if (!w) { fail('build:asset', e.file, 'enhanced photo is not an image'); continue; }
+  enhancedById.set(e.id, { rel: w.rel, w: w.w, h: w.h, alt: e.alt });
+}
+const enhancedFor = (id, depth) => { const e = enhancedById.get(id); return e ? { url: imgUrl(e.rel, depth), w: e.w, h: e.h, alt: e.alt, rel: e.rel } : null; };
 
 /* ---------- 2. helpers ---------- */
 const willExist = new Set(content.pages.map((p) => ownPath(p.url, ORIGIN)).filter((v) => v !== null));
@@ -819,6 +830,7 @@ function buildPage(page, opts = {}) {
         localHref: (href, dp) => C.localHref(href, dp === undefined ? 0 : dp),
         src: (pattern) => srcFor(pattern, 0),
         gen: (id) => { const g = genFor(id, 0); if (g) { slots.push({ page: '/', slot: 'home', image: id, rendered: true }); hit('L18'); } return g; },
+        enhanced: (id) => enhancedFor(id, 0),
         /* chrome.json plus the HOME CONTRACT names: name, menus (site-map.json menus: primary,
            quickActions, footer...), social, and the keyless map URL the aside/visit blocks use */
         chrome: Object.assign({}, chrome, { name: chrome.brandName, menus: siteMap.menus, social: chrome.footer.social, mapSrc: MAP_SRC }),
