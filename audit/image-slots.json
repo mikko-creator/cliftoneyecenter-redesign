@@ -1,6 +1,6 @@
 {
   "schema": "cec/image-slots@1",
-  "generated": "2026-09-28T23:52:39.963Z",
+  "generated": "2026-09-29T10:44:09.887Z",
   "note": "Every generated-image slot the build resolved (DESIGN-SPEC 6.3), rendered or not, with the reason.",
   "slots": [
     {

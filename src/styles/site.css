@@ -16,7 +16,12 @@
 
 /* ---------- 1. base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 110px; background: var(--ground); }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; background: var(--ground); }
+/* the sticky header's clearance sits on what scrolls into view (anchor targets, keyboard focus in the page), never on the
+   scroller: an html scroll-padding-top also applied to the header's own controls, so closing the drawer (focus back to the
+   menu button) or focusing a nav link scrolled the page up ~440px (found by the neoclassical QA, 2026-09-29).
+   :where() keeps it at specificity 0, so the explicit scroll-margin-top of headings still wins. */
+:where(main, .page-aside, .site-footer) :where(a[href], button, input, select, textarea, summary, iframe, [tabindex], [id]), :where(main) { scroll-margin-top: 110px; }
 body {
   margin: 0; min-height: 100vh; background: var(--ground); color: var(--ink-700);
   font-family: var(--ff-body); font-size: var(--fs-base); line-height: var(--lh-body); font-weight: 400;

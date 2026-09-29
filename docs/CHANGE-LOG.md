@@ -314,7 +314,7 @@ The operator asked for the logo in the navigation bar and the footer with no bac
 
 The operator asked to explore a Neoclassical style instead of glassmorphism, keeping the brand colours and the
 layered, protruding imagery. It is built as a second theme beside this one, from the same content pipeline; the glass
-build `dist/` is byte-identical before and after (aggregate `0e6d64d9…`, 665 files, re-checked after every change).
+build `dist/` stayed byte-identical through the neo work (aggregate `0e6d64d9…`, 665 files, re-checked after every change) until the drawer fix below.
 
 - Design: three concepts judged, "Temple" chosen 3/3 (`docs/NEO-SPEC.md`); 12 new fal images (busts, relief, hand,
   column, magnifier, laurel, scenes, marble), each labelled AI-generated in its metadata; self-hosted OFL fonts
@@ -327,9 +327,9 @@ build `dist/` is byte-identical before and after (aggregate `0e6d64d9…`, 665 f
   (`docs/NEO-BUILD-NOTES.md` section 8). The phone home is 10,395px at 390 against a 10,300px target (accepted).
 - Preview: `/neoclassical/` under the review preview, every page `noindex, nofollow`. A missing URL there shows the
   glass 404 page (Pages serves one 404 per site).
-- Found in QA and **present in the glass build too, not changed there:** closing the phone menu (or keyboard focus
+- Found in QA and **present in the glass build too, then fixed there as well:** closing the phone menu (or keyboard focus
   on a header control) scrolls the page up about 440px, because `html { scroll-padding-top }` applies to the sticky
-  header's own controls. Fixed in the neo theme (scroll-margin on in-page targets instead of scroll-padding, and `focus({ preventScroll: true })` when the menu closes); the same small change would fix glass and awaits the operator.
+  header's own controls. Fixed in both themes the same way: scroll-margin on in-page targets instead of scroll-padding, and `focus({ preventScroll: true })` when the menu closes. Glass after the fix: drawer close 0px on every route (was -437), nav-link focus 0px (was -447), keyboard focus and anchors still land below the sticky header (probe control fires), only `styles/site.css` and `scripts/site.js` changed (`40fc4155...`), gate 22 / 7 / 0 unchanged.
 
 ## 7. Decisions taken for the build
 

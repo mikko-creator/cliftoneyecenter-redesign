@@ -1,6 +1,6 @@
 {
   "schema": "site-reforge/gate@1",
-  "generated": "2026-09-29T00:16:55.077Z",
+  "generated": "2026-09-29T10:52:30.158Z",
   "project": "cliftoneyecenter-com",
   "target": "https://www.cliftoneyecenter.com/",
   "verdict": "NOT-READY",
@@ -183,7 +183,7 @@
       "label": "Handoff documentation present and filled in",
       "stage": "package",
       "status": "PASS",
-      "evidence": "docs/: BRAND-SYSTEM.md, BUILD-DECISIONS.md, BUILD-NOTES.md, CHANGE-LOG.md, COMPONENTS.md, DEPLOY.md, DESIGN-BRIEF.md, DESIGN-SPEC.md, IMAGE-PLAN.md, OPEN-DECISIONS.md, PORT-NOTES.md, README.md, SITE-ARCHITECTURE.md — no unfilled placeholders"
+      "evidence": "docs/: BRAND-SYSTEM.md, BUILD-DECISIONS.md, BUILD-NOTES.md, CHANGE-LOG.md, COMPONENTS.md, DEPLOY.md, DESIGN-BRIEF.md, DESIGN-SPEC.md, IMAGE-PLAN-NEO.md, IMAGE-PLAN.md, NEO-BRIEF.md, NEO-BUILD-NOTES.md, NEO-COMPONENTS.md, NEO-SPEC.md, OPEN-DECISIONS.md, PORT-NOTES.md, README.md, SITE-ARCHITECTURE.md — no unfilled placeholders"
     },
     {
       "id": "C26",

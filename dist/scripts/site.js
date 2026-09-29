@@ -208,7 +208,7 @@
     d.body.style.paddingRight = '';
     var done = function () { drawer.hidden = true; if (scrim) scrim.hidden = true; };
     if (reduce.matches) done(); else closeTimer = setTimeout(done, 520);
-    if (restore !== false) opener.focus();
+    if (restore !== false) opener.focus({ preventScroll: true });   /* the opener is in the sticky header: never scroll to it */
   }
   on(opener, 'click', openDrawer);
   $$('[data-drawer-close]').forEach(function (b) { on(b, 'click', function () { closeDrawer(true); }); });

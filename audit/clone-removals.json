@@ -1,6 +1,6 @@
 {
   "schema": "site-reforge/clone-removals@1",
-  "declaredAt": "2026-09-28T23:52:39.963Z",
+  "declaredAt": "2026-09-29T10:44:09.887Z",
   "note": "Deliberate removals, each a decision with a reason: platform runtime, former-vendor claims, controls with no backend, or statements that would be false on a static site. Editorial copy is never removed. Ledger ids refer to docs/DESIGN-SPEC.md 7.4.",
   "elements": [
     {

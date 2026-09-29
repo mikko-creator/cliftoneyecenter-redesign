@@ -1,6 +1,6 @@
 {
   "schema": "cec/build-report@1",
-  "generated": "2026-09-28T23:52:39.963Z",
+  "generated": "2026-09-29T10:44:09.887Z",
   "dist": "C:\\Users\\Dell\\cliftoneyecenter-reforge\\dist",
   "pages": {
     "built": 349,
@@ -13,19 +13,19 @@
     "platformUiDropped": 21,
     "decidedDropped": 1,
     "standInsForMissing": 5,
-    "generatedAvailable": 15,
+    "generatedAvailable": 27,
     "generatedShipped": 18,
     "generatedLabelled": 18,
     "altsBlanked": 37,
     "shipped": 294,
     "pruned": 3,
     "encoded": 0,
-    "cached": 289,
+    "cached": 301,
     "copiedLossless": 1,
     "encoderMissing": 0
   },
   "content": {
-    "cached": 289,
+    "cached": 301,
     "copiedLossless": 1,
     "hiddenRatingValuesRemoved": 9,
     "testimonialCards": 9,
