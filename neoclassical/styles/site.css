@@ -197,6 +197,18 @@ main:focus { outline: none; }
 .site-header .site-logo { grid-column: 2; grid-row: 1; justify-self: center; position: relative; z-index: 2; padding: 6px 10px; }
 .site-logo img { display: block; width: 116px; height: auto; transform-origin: 50% 50%; transition: scale .5s var(--n-ease); }
 .site-header.is-scrolled .site-logo img { scale: .82; }
+/* a stand-in for Source Serif 4 at 600 while it loads (font-display: swap) or when web fonts are blocked: Georgia Bold is
+   7% wider (measured: 0.930 on the five menu labels), which ran the last menu label under the scrolled appointment
+   button from 1366px (refuter NAV-1) and wrapped the footer heading "Important Links" at 376-399px (refuter FP-1,
+   2026-09-30). Sized to match, with Source Serif 4's vertical metrics measured at 1000px (ascent 1.036, descent 0.335,
+   no line gap, divided by the size-adjust; the 100px reading, 1.04 / 0.34, set the stand-in's text 1px low at
+   1262-1328px, refuter H3-1). Used by the menu labels and the footer headings only (the weight 600 they use); body text
+   keeps its plain fallback */
+@font-face {
+  font-family: "Source Serif 4 UI Fallback"; font-style: normal; font-weight: 600 700;
+  src: local("Georgia Bold"), local("Georgia-Bold");
+  size-adjust: 93%; ascent-override: 111.4%; descent-override: 36.02%; line-gap-override: 0%;
+}
 .mainnav { --nav-gap: clamp(18px, 2.2vw, 34px); grid-column: 1 / -1; grid-row: 1; display: grid; grid-template-columns: 1fr 156px 1fr; align-items: center; }
 .mainnav__list { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: var(--nav-gap); }
 .mainnav__list--l { grid-column: 1; justify-content: flex-end; padding-right: 22px; }
@@ -206,10 +218,17 @@ main:focus { outline: none; }
   content: ""; position: absolute; left: calc(-1 * var(--nav-gap) / 2 - 2.5px); top: 50%; width: 5px; height: 5px;
   background: var(--green-600); rotate: 45deg; translate: 0 -60%;
 }
-.mainnav__link { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-900); font-weight: 600; font-size: var(--n-ui); letter-spacing: .01em; white-space: nowrap; }
+.mainnav__link { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-900); font-family: "Source Serif 4", "Source Serif 4 UI Fallback", Georgia, "Times New Roman", serif; font-weight: 600; font-size: var(--n-ui); letter-spacing: .01em; white-space: nowrap; }
 .mainnav__link:is(:hover, :focus-visible), .mainnav__link[aria-current="page"] { color: var(--green-800); }
+/* the current page's rosette crowns the label, out of flow: in the line (9px + 7px) it widened the current link by 16px,
+   which on the five section pages took that space from the logo gap (16px at 1024) or the scroll button (8px from 1366)
+   (operator 2026-09-30 spacing request). top: -2px clears the text's line box and stops at the focus ring's inner edge
+   (outline-offset 2px) */
+.mainnav__link[aria-current="page"] { position: relative; }
+/* its focus ring 2px further out, so the ring's top bar clears the rosette instead of touching it (refuter NAV-2) */
+.site-header .mainnav__link[aria-current="page"]:focus-visible { outline-offset: 4px; }
 .mainnav__link[aria-current="page"]::before {
-  content: ""; width: 9px; height: 9px; margin-right: 7px; background: var(--green-600);
+  content: ""; position: absolute; left: 50%; top: -2px; width: 9px; height: 9px; translate: -50% 0; background: var(--green-600);
   -webkit-mask: var(--rosette) center / contain no-repeat; mask: var(--rosette) center / contain no-repeat;
 }
 .mobile-actions { display: none; }
@@ -224,10 +243,22 @@ main:focus { outline: none; }
   .site-header__call { order: 1; }
   .site-header__appt { order: 2; }
 }
-@media (min-width: 1024px) and (max-width: 1279.98px) {
+/* menu spacing (operator 2026-09-30: "the navigation bar options are too close to each other"). Measured before: 14-20px
+   between labels from 1280 (the split menu squeezed so its three-link half left room for the scroll button), 22-28px
+   at 1024-1279, and at rest the 116px logo 5px from the first label at 1024. Now at least 26px everywhere (30-36px from
+   1200), the scroll button >= 24px from the nearest label, the logo >= 28px from it.
+   1024-1365: the logo at the left and the five links as one right-aligned group - the split menu needs the full
+   1240px bar (from 1366) to hold 30px gaps; below that its long half had 13-17px to spare */
+@media (min-width: 1024px) and (max-width: 1365.98px) {
   .site-header__bar { grid-template-columns: auto 1fr; }
   .site-header .site-logo { grid-column: 1; justify-self: start; padding-left: 0; }
-  .mainnav { grid-column: 2; display: flex; justify-content: flex-end; gap: var(--nav-gap); padding-right: 60px; }
+  /* the left-aligned logo shrinks toward its left edge when scrolled, so it stays level with the content edge (it drifted
+     7-10px inward, refuter NAV-5) */
+  .site-header .site-logo img { transform-origin: 0 50%; }
+  /* padding-right: the 44px scroll button + 24px. padding-left: 18px + the logo's own 10px keep the first label 28px
+     from the logo even when a desktop scrollbar (15px on Windows) narrows the bar: the logo (max-width: 100%) gives up
+     the width instead, 92px -> 81px at 1024 */
+  .mainnav { grid-column: 2; display: flex; justify-content: flex-end; gap: var(--nav-gap); padding-left: 18px; padding-right: 68px; }
   .mainnav__list--l, .mainnav__list--r { padding: 0; }
   .mainnav__list--r > .mainnav__item:first-child::before {
     content: ""; position: absolute; left: calc(-1 * var(--nav-gap) / 2 - 2.5px); top: 50%; width: 5px; height: 5px;
@@ -236,14 +267,28 @@ main:focus { outline: none; }
   .site-header__call { display: none; }
   .site-header__actions { justify-content: flex-end; }
 }
-@media (min-width: 1280px) {
-  /* the call and appointment buttons sit in the free space at the wrap's two ends, keeping the axis: the split menu
-     tightens (gap, logo column, list padding) so each end keeps >= 60px free for a 44px button */
+/* 1024-1199: the bar is 942-1103px, so the logo takes its tablet size and the labels 16px: 26px gaps at 1024 rising to
+   34px, the logo 32px or more from the first label */
+@media (min-width: 1024px) and (max-width: 1199.98px) {
+  .mainnav { --nav-gap: clamp(26px, 4.4vw - 19px, 34px); }
+  .site-header .site-logo img { width: 92px; }
+  .mainnav__link { font-size: 1rem; }
+}
+/* 1200-1365: 36px gaps; both scroll buttons (call, then appointment) at the bar's right end, 10px apart, so the scrolled
+   header keeps its call button here (it showed at 1280-1365 before); 122px = two 44px buttons + 10px + 24px */
+@media (min-width: 1200px) and (max-width: 1365.98px) {
+  .mainnav { --nav-gap: 36px; padding-right: 122px; }
+  .site-header__call { display: inline-grid; }
+  .site-header__actions { gap: 10px; }
+}
+@media (min-width: 1366px) {
+  /* the call and appointment buttons sit in the free space at the wrap's two ends, keeping the axis: with the bar at
+     1240px the long (three-link) half holds 30px gaps, 18px from the logo column, and 24px clear of its end button */
   .site-header__actions { left: 0; right: 0; }
-  .mainnav { --nav-gap: clamp(14px, 3.3vw - 28px, 20px); grid-template-columns: 1fr 136px 1fr; }
+  .mainnav { --nav-gap: 30px; grid-template-columns: 1fr 136px 1fr; }
   .mainnav__link { letter-spacing: 0; }
-  .mainnav__list--l { padding-right: 12px; }
-  .mainnav__list--r { padding-left: 12px; }
+  .mainnav__list--l { padding-right: 18px; }
+  .mainnav__list--r { padding-left: 18px; }
 }
 @media (max-width: 1023.98px) {
   .site-header__bar { grid-template-columns: auto 1fr auto; }
@@ -841,7 +886,10 @@ main > .visit:not(.visit--page) { padding: calc(clamp(84px, 7vw, 104px) + 24px +
 .footer__nap { max-width: 34ch; color: var(--green-200); font-size: var(--n-sm); margin: 0; }
 .footer__nap strong { color: var(--paper); }
 .footer__nap a, .footer__nap a:is(:hover, :focus-visible) { color: var(--paper); font-weight: 700; }
-.footer__h { font-size: var(--n-meta); font-weight: 600; letter-spacing: var(--ls-meta); text-transform: uppercase; color: var(--green-300); margin: 0 0 10px; }
+.footer__h { font-size: var(--n-meta); font-weight: 600; letter-spacing: var(--ls-meta); text-transform: uppercase; color: var(--green-300); margin: 0 0 10px; font-family: "Source Serif 4", "Source Serif 4 UI Fallback", Georgia, "Times New Roman", serif; }
+/* at 14px "Important Links" needs 159px and wrapped at 345-366px (incl. 360), dropping its list 24px below the other
+   column's (refuter F1/REG-1); tighter tracking keeps it on one line down to 342px (the published build wrapped below 345) */
+@media (max-width: 379.98px) { .footer__h { letter-spacing: .08em; } }
 .footer__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; justify-items: start; }
 .footer__list a { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; color: var(--marble-50); font-size: var(--n-ui); background-position: 50% calc(100% - 8px), 50% calc(100% - 11px); }
 .footer__list a:is(:hover, :focus-visible) { color: var(--paper); }
@@ -1150,6 +1198,15 @@ figcaption { margin-top: 10px; font-size: var(--n-sm); line-height: 1.45; color:
 .post-card__excerpt { font-size: var(--n-sm); max-width: 52ch; }
 .post-card .more { margin-top: auto; align-self: flex-start; }
 .post-card:is(:hover, :focus-within) { box-shadow: var(--n-e-lift); }
+/* phones (operator 2026-09-30, "optimize mobile view"): the 151 cards of /whats-new/ were a median 371px (excerpts 7-10
+   lines), 60,657px of page at 390. The excerpt shows three lines (the full text stays in the page and on the post),
+   the cards and their gaps tighten, and the placeholder size follows. Screens only: a narrow printout keeps every
+   excerpt whole (refuter REG-2) */
+@media screen and (max-width: 699.98px) {
+  .post-cards { gap: 16px; }
+  .post-card { padding: 22px 20px 14px; contain-intrinsic-size: auto 210px; }
+  .post-card__excerpt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
+}
 .team-card { display: grid; justify-items: start; gap: 14px; padding: clamp(24px, 3vw, 40px); }
 .team-card__photo { width: min(100%, 225px); overflow: hidden; border-radius: var(--r-arch); border: 5px solid var(--marble-50); box-shadow: var(--n-e-plate); }
 .team-card__photo img { display: block; width: 100%; max-width: 225px; }
