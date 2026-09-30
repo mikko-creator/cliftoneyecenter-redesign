@@ -520,7 +520,15 @@ Lab: canopy 421-448 (cards, cluster); carousel is new.
 - **The first item is open by default** (lens graft; Dr. Clifton's own answer is the most personal copy on the page,
   **L05**).
 - Item hover and focus-within: `translateX(4px)` plus shadow. Use `:focus-within`, not `:has()`, for engine reach. The
-  answer eases in (6px, .5s) on open.
+  answer eases in (6px, .5s) on open. **Operator revision (2026-09-30, "apply the same slower accordions to the glass
+  site too"):**
+  - The panel's height now opens *and* closes over `--t-fold` (1s) on `--ease-fold`, the neoclassical curve
+    `cubic-bezier(.22, .61, .36, 1)`, through `::details-content` + `interpolate-size` where supported (Chrome and
+    Edge 131+). Before, the height did not animate.
+  - The answer's ease-in and the +/- morph take the same 1s. The icon's open half-turn takes 1s; its hover and focus
+    quarter-turn keep .5s.
+  - The section rail (`details[data-rail]`) folds the same way below 1024px, and its chevron turns with it.
+  - Screens only; reduced motion stays instant. See `docs/CHANGE-LOG.md` 6e.
 - This same component renders the 3 builder heading-accordions (for example "Forms of Payment" on `/hours-location/`)
   and any FAQ section. Source toggles `<a href="#">` plus hidden divs become `<details>/<summary>` (**L05**).
 

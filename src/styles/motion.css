@@ -1011,11 +1011,38 @@
 
   .qa__item { transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out); }
   .qa__icon { transition: transform .5s var(--ease-out), background-color var(--t-fast); }
-  .qa__icon::before, .qa__icon::after { transition: transform .5s var(--ease-out), background-color var(--t-fast); }
+  /* the plus/minus bars change only with [open]: they morph over --t-fold both ways */
+  .qa__icon::before, .qa__icon::after { transition: transform var(--t-fold) var(--ease-fold), background-color var(--t-fast); }
   .qa__item:focus-within { transform: translateX(4px); }
   .qa__q:focus-visible .qa__icon { transform: rotate(90deg); }
-  .qa__item[open] .qa__icon { transform: rotate(180deg); }
-  .qa__item[open] .qa__a { animation: cec-qa-in .5s var(--ease-out); }
+  /* the icon's half-turn on opening takes --t-fold; its hover and focus quarter-turn keep .5s */
+  .qa__item[open] .qa__icon { transform: rotate(180deg); transition: transform var(--t-fold) var(--ease-fold), background-color var(--t-fast); }
+  .qa__item[open] .qa__a { animation: cec-qa-in var(--t-fold) var(--ease-fold); }
+  /* ---- accordions (operator 2026-09-30, the neoclassical change applied to glass): a <details> item's panel opens
+     AND closes over --t-fold (1s) wherever the browser can animate a details element's height (::details-content +
+     interpolate-size: Chrome and Edge 131+); elsewhere it opens and closes at once, as before, with the slower fade.
+     Screens only: print opens every item. The section rail animates only below 1024px, where the visitor toggles it;
+     from 1024 site.js opens it on every page load, which must not play ---- */
+  @supports (interpolate-size: allow-keywords) and selector(::details-content) {
+    @media screen {
+      .qa__item { interpolate-size: allow-keywords; }
+      .qa__item::details-content {
+        block-size: 0; overflow: clip;
+        transition: block-size var(--t-fold) var(--ease-fold), content-visibility var(--t-fold) allow-discrete;
+      }
+      .qa__item[open]::details-content { block-size: auto; }
+    }
+    @media screen and (max-width: 1023.98px) {
+      .rail { interpolate-size: allow-keywords; }
+      .rail::details-content {
+        block-size: 0; overflow: clip;
+        transition: block-size var(--t-fold) var(--ease-fold), content-visibility var(--t-fold) allow-discrete;
+      }
+      .rail[open]::details-content { block-size: auto; }
+    }
+  }
+  /* the rail's chevron turns with its panel (it flipped at once before) */
+  @media (max-width: 1023.98px) { .rail__summary::after { transition: rotate var(--t-fold) var(--ease-fold); } }
 
   .brand { transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out); }
   .brand__img { transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out); }

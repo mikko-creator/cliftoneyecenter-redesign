@@ -415,6 +415,17 @@ still `40fc4155...`, rebuilt and compared).
     item.
   - The height animation needs Chrome or Edge 131 or later. Other browsers keep the instant open and close, with the
     slower fade.
+  - **Applied to the glass site too** (operator: "apply the same slower accordions to the glass site too"):
+    - The same 1s and the same easing curve: glass's own ease-out made the same second look finished at about 0.7s.
+    - The same items: the home page's questions, the two payment accordions and the rail below 1024px.
+    - The glass icon's hover quarter-turn stays quick.
+    - Measured on glass: opening 0.87-0.91s, closing about 0.9s, the rail 0.89s (before: instant). Print, reduced
+      motion, the desktop rail and the focus rings inside answers are unchanged.
+    - Glass `dist` `d1193b3b…` is reproducible: only `styles/motion.css` and `tokens.css` differ, and every HTML page
+      is identical.
+    - Tag balance 0, links 0 broken of 20,333, decontamination 0 / 0 / 0. The handoff zip
+      (`cliftoneyecenter-com-handoff-v20260928.zip`, built 2026-09-29 04:45) predates the plate-free logo (07:54), the
+      drawer fix (18:53) and this change, so it needs a re-package before handoff.
 - **The current-page mark.** The small rosette that marks the page you are on now sits centred above its label,
   not before it. Before, it made the current link 16px wider, and on the five section pages that width came out of
   the logo gap (10-16px left at 1024px) or the scrolled appointment button's gap (8px from 1366px on Eye Care
