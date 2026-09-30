@@ -703,3 +703,24 @@ control fired. The two `navsweep2` steps found 0 issues in 2,912 samples each. D
 
 Logs of the earlier runs are kept beside it: `verify-final.aca0fda8.log`, `verify-final.c416771e.log`,
 `verify-final.90489f10.log`.
+
+### 10.8 Published (2026-09-30, at the operator's request: "publish it to the preview when it's done")
+
+- **main:** `bcdece4` (1852572..bcdece4). The staged tree was secret-scanned: 0 Maps key, 0 fal key id or full key,
+  0 generic tokens, and both controls fired.
+- **Preview regenerated:** `make-preview --dist dist-neo --out preview/neoclassical --prefix
+  /cliftoneyecenter-redesign/neoclassical`, 350 / 350 pages noindex, 0 root-absolute links. Only
+  `neoclassical/styles/site.css` and `tokens.css` changed. `gh-pages` `2e971b4` (ce29be5..2e971b4).
+- **Live at 13:44:** both CSS files are served byte-identical to `dist-neo` (md5 `2cc272038784` / `eee9cbbe0a05`).
+- **Noindex:** `noindex-live-check`: 700 / 700 pages (glass + neo) carry exactly one `noindex,nofollow`; the nested
+  404 is styled and noindex.
+- **Crawl:** `crawl-preview /neoclassical/`: 688 / 688 pages 200, 309 assets, 0 non-200, 0 references outside the
+  prefix.
+- **The operator's own Chrome,** through the extension, on the live Insurance page at its current 1600 x 662 (DPR
+  1.2, a classic scrollbar): the new stylesheet, label gaps 30 / 30 / 30 with the 172px logo column, the logo 28px
+  from the first label to its right, the rosette `absolute`, `top: -2px`, above "Insurance".
+- **Trap:** GitHub Pages serves CSS with `Cache-Control: max-age=600`, and `styles/site.css` is not fingerprinted.
+  The operator's Chrome first showed the old menu from its HTTP cache (the page's `site.css` had transferSize 0)
+  until the file was re-fetched. After a publish, a reviewer who opened the preview in the last 10 minutes needs
+  Ctrl+F5. Fingerprinting the CSS and JS names, as the images already are, would remove this; it is an option, not
+  done.
