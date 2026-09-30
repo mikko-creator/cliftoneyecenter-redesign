@@ -418,6 +418,24 @@ Not sticky, not a landmark.
 
 ### 3.2 Header, primary nav, drawer (COMPONENTS B.2, kept, plus the scrolled actions)
 
+> **Operator revision (2026-09-30, "the navigation bar options are too close to each other"), supersedes the bands
+> below:** the split menu starts at **1366** (it needs the full 1240px bar), with 30px gaps and 18px list padding by
+> the 136px logo column. From 1024 to 1365 the logo sits at the left and the five links form one right-aligned group:
+> 1024-1199 has a 92px logo, 16px labels and `clamp(26px, 4.4vw - 19px, 34px)` gaps; 1200-1365 has 36px gaps and
+> both scroll buttons together at the right end. From 1024 to 1365 the nav also keeps an 18px left padding, so the
+> first label stays >= 28px from the logo; when a desktop scrollbar narrows the bar, the logo (`max-width: 100%`)
+> gives up the width (81px at 1024 with a 15px scrollbar). The current page's rosette sits centred **above** its label
+> (absolute, `top: -2px`, out of flow) instead of before it, so every page keeps the same spacing. The scroll buttons
+> keep >= 24px from the nearest label in every band, on every page. Three more details, all from the independent
+> check:
+> - The menu's font stack includes a size-matched stand-in, "Source Serif 4 UI Fallback" (local Georgia Bold,
+>   `size-adjust: 93%`, with Source Serif 4's ascent and descent). Before the web font loads, or when it is blocked,
+>   the labels keep their width to within 1%. The footer headings (3.12) use the same stand-in.
+> - The current link's focus ring is offset 4px, so it clears the rosette.
+> - From 1024 to 1365 the scrolled logo scales from its left edge (`transform-origin: 0 50%`).
+>
+> Record: `docs/CHANGE-LOG.md` 6e, `docs/NEO-BUILD-NOTES.md` 10.
+
 **Anatomy.** `header.site-header` is sticky, `marble-50`, with a 4px double `marble-300` rule on its bottom edge.
 - **1280+:** a symmetric entablature: the flat 5-item menu is split around the logo on the axis (2 left, 3 right,
   temple lab.css 163-174), small `green-600` diamonds between items, logo 116px wide, bar 92px. **Markup departure:**
@@ -442,7 +460,8 @@ right of it, keeping the axis. NG3 and NG11 check the row at 1024 and 1280.
 
 **Nav states:** links `ink-900` 600 `--n-ui`, 44px tall; hover and focus: `green-800` plus the engraved underline;
 `aria-current="page"`: the double hairline at full width plus a small `o-star` before it; `is-section`: the single
-hairline.
+hairline. (Operator revision 2026-09-30: the mark, drawn with the `--rosette` mask, now sits centred above the label;
+in the line it widened the current link by 16px.)
 
 **Drawer** (COMPONENTS B.2 markup and hooks: `nav.drawer#drawer[data-drawer][hidden]`, label "Primary",
 `div.scrim[data-drawer-close][hidden]` after `div.page`, focus trap, Esc, `inert` on `div.page`): a `marble-50`
@@ -744,7 +763,11 @@ rule appears around it (`::before` inset -6px), shadow `--n-e-lift`; focus ring 
   left-aligned** (UX must-fix: the lab right-aligned the first); each column block is pushed toward the axis so the
   bays stay symmetric. Below 900: brand first, then the two columns side by side.
 - `p.footer__h` meta caps `green-300`; links `marble-50` `--n-ui`, engraved underline, hover `paper`; **44px tall below
-  768px, 36px above**. `div.footer__legal`: "© 2026" and Accessibility, Sitemap (`sitemap.xml`, L10), Privacy,
+  768px, 36px above**. (Operator revision 2026-09-30: below 380px the headings track at `.08em`, not `.14em`. At a
+  flat 14px, "Important Links" otherwise wrapped at 345-366px and dropped its list 24px below the other column's. It
+  now stays on one line down to 342px; the published build wrapped below 345px. The headings also use the "Source
+  Serif 4 UI Fallback" stand-in (3.2). With web fonts missing they therefore wrap only below 354px; before, they
+  wrapped up to 399px, and the published build up to 375px.) `div.footer__legal`: "© 2026" and Accessibility, Sitemap (`sitemap.xml`, L10), Privacy,
   Disclaimer in `ink-200` `--n-sm`, 44px below 768px, 24px or more above.
 - `a.social`: 46px ring `green-300`; hover and focus: `green-300` fill, `poster` glyph, the medallion turn (the glyph
   counter-rotates).
@@ -864,6 +887,11 @@ arch-cropped**, some carry baked text) in a fine double frame, **rising 32px abo
 thumbnail -6px, the title engraved underline, arrow +6px. First 12 carry `data-reveal="rise"`.
 
 ### 3.17 Blog index and pagination (COMPONENTS F.2, F.5, kept)
+
+> **Operator revision (2026-09-30, "optimize mobile view"):** below 700 each excerpt shows three lines
+> (`-webkit-line-clamp: 3`; the full text stays in the DOM). Cards are padded `22px 20px 14px` with a 16px grid gap and
+> `contain-intrinsic-size: auto 210px`. The page went from 60,657 to 42,238px at 390. `--n-meta` is a flat 14px
+> (was 13-14px; 2.3). These rules are `screen` only, so a printout on narrow paper keeps every excerpt whole.
 
 `/whats-new/`: all 151 cards on one URL in source order. `ul.post-cards`: 3, 2 or 1 columns (`minmax(300px, 1fr)`).
 `li.post-card`: paper plate, inset hairline, `content-visibility: auto; contain-intrinsic-size: auto 280px`; DOM order

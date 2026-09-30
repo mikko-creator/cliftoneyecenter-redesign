@@ -67,7 +67,9 @@
   --n-face-script: "Parisienne", "Segoe Script", cursive;
 
   /* ---- fluid type scale 320 -> 1440 (NEO-BRIEF 3.4 verbatim) plus NEO-SPEC 2.3 additions ---- */
-  --n-meta: clamp(0.8125rem, 0.7946rem + 0.0893vw, 0.875rem);
+  /* meta caps (dates, review names, footer headings) at 14px at every width: the 13px floor was the only text under
+     14px on a phone (operator 2026-09-30, "optimize mobile view") */
+  --n-meta: 0.875rem;
   --n-sm: clamp(0.9375rem, 0.9196rem + 0.0893vw, 1rem);
   --n-ui: clamp(1rem, 0.9821rem + 0.0893vw, 1.0625rem);
   --n-base: clamp(1.0625rem, 1.0268rem + 0.1786vw, 1.1875rem);

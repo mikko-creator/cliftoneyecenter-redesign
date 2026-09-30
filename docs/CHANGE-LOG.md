@@ -377,6 +377,70 @@ compared).
   is 10,244px at 390, under the 10,300px target (was 10,395). The verification record is `docs/NEO-BUILD-NOTES.md`
   section 9.
 
+## 6e. Operator requests: menu spacing, then the mobile view (2026-09-30)
+
+"The navigation bar options are too close to each other, fix the spacing between the options so it is easier for
+users to read and click. Then optimize mobile view." Neoclassical theme only. The glass build is untouched (`dist/`
+still `40fc4155...`, rebuilt and compared).
+
+- **Menu spacing (desktop header, from 1024px).** Measured before: 14-20px between labels from 1280px, where the
+  centred split menu had squeezed its three-link half to leave room for the scroll buttons, and 22-28px at
+  1024-1279px. At rest the logo was 5px from the first label at 1024px. Now:
+
+  | width | layout | gap between labels | other |
+  |---|---|---|---|
+  | 1024-1199px | logo left, the five links as one group | 26-34px | logo 92px, labels 16px, logo 28px or more from the first label |
+  | 1200-1365px | the same | 36px | both scroll buttons (call, appointment) together at the right end |
+  | 1366px+ | the centred split menu | 30px | logo spacing 28px, up from 22 |
+
+  On every page, in every band, the scroll buttons stay 24px or more from the nearest label, the logo 28px or more
+  from it, every link keeps a 44px-tall target, and nothing wraps or overflows. This holds with a Windows scrollbar
+  (15px, as in the operator's Chrome at 1280 x 585) and without one. With the scrollbar, at 1024-1040px, the logo
+  narrows (81px at 1024px) rather than the gap.
+- **The current-page mark.** The small rosette that marks the page you are on now sits centred above its label,
+  not before it. Before, it made the current link 16px wider, and on the five section pages that width came out of
+  the logo gap (10-16px left at 1024px) or the scrolled appointment button's gap (8px from 1366px on Eye Care
+  Services, Eyeglasses & Contacts and Insurance). An independent check caught this after the first version of the
+  spacing fix, which had been measured on the home page only.
+- **Mobile view.** An audit of ten page types at 390px (3x) found the layout clean. There was no overflow, no tap
+  target under 44px, the menu drawer was spacious, and no image heavier than a 3x phone needs. Two things were
+  changed:
+  1. The only text under 14px on a phone was the meta line: dates, review names and footer headings at 13px. It is
+     now 14px everywhere, and 0 text runs are under 14px on the audited pages.
+  2. The blog index (151 posts on one page, as on the live site) was 60,657px tall at 390px. On phones each excerpt
+     now shows three lines, and the full text stays in the page and on the post. The cards are tighter too. The
+     page is now 42,238px (-30%; 64,521 -> 42,847 at 360px).
+- **Found by a second independent check, and fixed:**
+  1. With the meta line at 14px, the footer heading "Important Links" wrapped at 345-366px wide. That range includes
+     360px, a common phone width, and the wrap dropped its column 24px below the other. Below 380px the heading now
+     has slightly tighter letter-spacing, and it stays on one line down to 342px. The published site already
+     wrapped below 345px. The footer headings also get the size-matched fallback font from item 2. When web fonts
+     are missing, they now wrap only below 354px; before, they wrapped up to 399px, and the published site up to
+     375px.
+  2. Before the site's font loads, or when a browser blocks web fonts, the menu showed Georgia. Its bold is 7%
+     wider, so from 1366px the scrolled appointment button covered "Insurance". The menu and the footer headings
+     now fall back to Georgia sized to match, and the menu labels keep their width to within 1%.
+  3. The keyboard focus ring touched the rosette above the current page's label. That link's ring now sits 2px
+     further out.
+  4. When the header shrinks on scroll, the logo drifted 7-10px inward at 1024-1365px. It now shrinks toward its
+     left edge.
+  5. Printing the blog index on narrow paper cut the excerpts to three lines. The clamp now applies on screens only.
+- **Looked at, not changed:**
+  - A larger browser default font (Chrome's "Large", 20px), or a machine translation, makes the desktop menu too
+    wide in both the published and the new build, but in different places:
+    - the new build shrinks the logo away at 1024-1128px and 1200-1240px;
+    - the published build lets labels and the appointment button overlap.
+    The robust fix is to switch the header layouts by text size (em) instead of pixels. That is an operator option.
+    Browser zoom, the more common setting, works.
+  - Unchanged from the published build:
+    - Text links standing alone on phones are 24-31px tall: above the 24px WCAG AA minimum, below Apple's 44px.
+    - A few headings and buttons end with a single word on a line.
+    - The blog index is still long on phones, and tablets (700-1023px) get no clamp.
+  - The phone home is long (10,249px) because of its content, not its spacing: only about 14% of it is empty space.
+    Shortening it would mean collapsing the practice's own text behind "read more", which is an operator decision.
+  - Several photos and logos look soft on 3x phones because the live site's files are small (e.g. 133px insurance
+    logos shown at 85px). Better originals from the practice are the fix.
+
 ## 7. Decisions taken for the build
 
 `docs/BUILD-DECISIONS.md` (orchestrator, 2026-09-28). The operator said "go ahead, pick the winner and build it", so

@@ -429,3 +429,277 @@ two of them at once. A second launch attaches to the first one's browser and clo
 sweeps exiting 13 with no output and a focus-parity DIFF; those runs were discarded and re-run alone. `ng9.mjs` and
 `home/ng18.mjs` read the removed photo and the replaced niche (`ng18.mjs` then exits 0 silently), so this round ran
 revision-aware copies, `tmp/orch/resume/ng9r.mjs` and `ng18r.mjs`.
+
+## 10. Menu spacing and the mobile view (operator, 2026-09-30)
+
+Request: "the navigation bar options are too close to each other, fix the spacing between the options so it is easier
+for users to read and click. Then optimize mobile view." Changed: `src/themes/neo/styles/site.css` (header bands,
+blog cards) and `src/themes/neo/styles/tokens.css` (`--n-meta`). Nothing else.
+
+### 10.1 Menu spacing (`tmp/orch/nav/nav.mjs`: label gaps, logo spacing, bar ends, scroll-button clearance, at rest and scrolled; control: `--nav-gap: 0` gives a 0px gap)
+
+| width | label gap before | after | scroll button to nearest label, before -> after | logo |
+|---|---|---|---|---|
+| 1024 | 22.5 | 26 | 16 -> 24 | at rest 5px from the first label -> 32px (logo 116 -> 92px) |
+| 1100 / 1150 / 1199 | 24.2 (measured) / 25.3 / 26.4 (from the old rule, 2.2vw) | 29.4 / 31.6 / 33.8 | 16 -> 24 | 92px |
+| 1200 / 1279 | 26.4 / 28.1 | 36 / 36 | appointment 16 -> 78; call (new here, beside it) 24 | 45px / 115px from the first label |
+| 1280 / 1365 | 14.2 (measured) / 17.0 (from the old rule, 3.3vw - 28px) | 36 / 36 | appointment 34 (1280, measured) -> 78; call 24 | 115px or more |
+| 1366 / 1440 / 1920 | 17.1 / 19.5 / 20 | 30 / 30 / 30 | appointment 58 / 51 / 50 -> 26 / 25 / 24; call about 200 | 22 -> 28px either side |
+
+Every link is 44px tall with no wrap and no page overflow at any width (before and after). Budget behind the bands:
+from the measured label widths (a 3-link half is 402-410px, all 5 are 667-680px) and the bar (942px at 1024, 1104 at
+1200, 1178 at 1280, 1240 from 1366). With 40px from the logo and a 72px end zone, the split menu fits at most 13-17px
+gaps below 1366 and about 31px from 1366; one group fits 49-85px from 1200 but only about 10px at 1024 with the 116px
+logo.
+
+### 10.2 Mobile audit (`tmp/orch/mobile/maudit.mjs`: 10 page types at 390 x 844, DPR 3, touch)
+
+- Clean before any change: no horizontal overflow, no tap target under 44px (NG11), the maps embed lazy, no image
+  larger than a 3x phone needs, 412-916 KB per page. The drawer (5 links, 52px rows, 19px) is spacious.
+- The only text under 14px was `--n-meta` at 13px (dates, review names, footer headings; 153 runs on the blog index).
+  It is now a flat 14px: 0 runs under 14px on the audited pages (the unguarded probe was proven able to fail).
+- The blog index (151 cards, all on one URL as on the live site): at 390 the page was 60,657px, cards a median 371px,
+  excerpts a median of 7 lines (max 10). Below 700 the excerpt is now clamped to 3 lines and the cards tightened: the
+  page is 42,238px (-30%), cards a median 264px, excerpts exactly 3 lines (`tmp/orch/mobile/cards.mjs`); 64,521 ->
+  42,847px at 360. 700 and up is unchanged.
+- Not changed:
+  - The phone home is long (10,249px) because of its content: only about 1,450px of it is empty space
+    (`tmp/orch/mobile/vbudget.mjs`).
+  - Soft images on 3x phones come from the source files (ratios 0.27-0.69).
+
+### 10.3 Verification (final `dist-neo` `aca0fda8…`, reproducible; glass `40fc4155…` identical)
+
+| gate | result |
+|---|---|
+| build, reproducible, glass guard | exit 0, 0 failures; two fresh builds and `dist-neo` IDENTICAL `aca0fda878e474e16a7d4c61b365fadd0f65037597675508659b15d9a577e87c` (668 files); glass IDENTICAL; controls fired |
+| static | sentence parity 0 lost of 13,966; tag balance 0; links 0 broken of 20,788; robots/markup 0; fab-diff unchanged; decontamination 0 / 0 / 0 |
+| browser suite | `bash tmp/orch/resume/verify-final.sh` on `aca0fda8…` (log `tmp/orch/resume/verify-final.log`, 2026-09-30 02:38-03:05): 23 steps, all exit 0, every control fired |
+| overflow | 0 of 350 pages at 320 / 390 / 768 / 1024 / 1440, 0 JS errors; control (390 -> 600) fired |
+| DoD, behaviour | JS errors 0 over 24 loads, drawer 12 / 12, reduced motion 0 hidden, inert form ok; reveals clean at 1440 and 390; hover/focus 14 MATCH of 15 (the portico's two-tone ring, as before) |
+| NG11 / NG19 / tel / RA-1 | 508 targets, 0 under 44px; 135 numbers, 0 wrapped; 9 / 9 tel buttons; RA-1 10 / 10; controls fired |
+| contrast | home 390 and 1440: 0 FAIL (212 / 225 runs, unchanged); palette 42 pairs, 0 failing |
+| home geometry | NG9 first screen passes at 390 x 844, 1024 x 768 and 1440 x 900; NG18 10,249px at 390 (+5px from the 14px meta line); hero tiles identical to 9.3; LCP the marble ground; corner stars as 9.2 R5; VH1 ink gap >= 73px |
+| menu spacing | `nav.mjs`: the 10.1 values at 1024-1920, links 44px, 0 overflow, control fired |
+| blog index | `cards.mjs`: 42,238px at 390 and 42,847px at 360, excerpts 3 lines, dates 14px |
+| mobile audit | `maudit.mjs` (10 templates, 390 @3x): 0 overflow, 0 text runs under 14px, 0 oversized images, 413-916 KB per page |
+
+`aca0fda8` was never published. Its independent refuter was cut off when session bbdfa8b3 ended (03:10), but its
+saved sweeps (`tmp/orch/refuter2/`) held the two defects in 10.4. Every 10.1 row above was measured on the home page,
+which has no current link.
+
+### 10.4 Round 2: the current-page rosette and the desktop scrollbar (resume session 36eac5ae)
+
+**Defects in `aca0fda8`**, confirmed by re-sweeping 7 pages x 212 widths x rest/scrolled
+(`tmp/orch/round2/navsweep2.mjs`, which reuses the refuter's `MEASURE_NAV`; the controls fire):
+
+- On a section page the current link carries a rosette, 9px plus a 7px margin, inline before the text. It made that
+  link 16px wider, and the other layout parts gave up the room:
+  - From 1366px, scrolled, on /eye-care-services/, /eyeglasses-contacts/ and /insurance/: the appointment button was
+    **8.3px** from the last label (target 24; published 34px).
+  - At 1024-1034px, at rest, on the 5 section pages: the logo was **16px** from the first label (target 28).
+- A real Windows scrollbar makes it worse. With 15px taken, the logo was **10px** from the first label at
+  1024-1211px on those pages (13.6px at 1200; the published build's minimum in that band is 22px, at 1280). Measured with the operator's own Chrome through the
+  extension: 1280 x 585, DPR 1.5, a classic 15px scrollbar, layout width 1265.
+
+**Instrument.** The suite's launcher (`tools/cdp.mjs`) passes `--hide-scrollbars`, so every earlier sweep had no
+scrollbar. `tmp/orch/round2/cdp-realsb.mjs` is the same launcher without that flag. Headless Chrome then draws a real
+15px scrollbar: clientWidth 1009 at 1024 and 1265 at 1280, exactly the operator's. The stock launcher, as control,
+shows 1024 and 1280.
+
+**Fix** (`src/themes/neo/styles/site.css` only):
+1. The rosette is `position: absolute`, centred above its label at `top: -2px`, and out of the flow. That clears the
+   text's line box and stops at the focus ring's inner edge.
+2. From 1024 to 1365 the nav gets `padding-left: 18px`, so the first label stays 28px from the logo (18px plus the
+   logo's own 10px). When a scrollbar narrows the bar, the logo narrows instead of the gap: `img { max-width: 100% }`
+   takes it to 81px at 1024.
+
+**Header states in the build** (`tmp/orch/round2/nav-states.mjs`):
+
+| state | pages |
+|---|---|
+| no current link | 180 |
+| section link: Eye Care Services / Eyeglasses & Contacts / Insurance | 118 / 44 / 3 |
+| current link | 5, one per section index page |
+
+All of them were swept, with and without the real scrollbar:
+- `/`, the 5 section index pages and `/eye-care-services/contact-lens-exams/`: 7 pages, 2,912 samples.
+- One page from each of the other two section kinds: 832 samples.
+
+**Minimum clearances** over 1024-2560px, rest and scrolled, from `nav2-new-real.json`, `nav2-new.json`,
+`nav2-reg-real.json` and `nav2-old-real.json`:
+
+| | new, 15px scrollbar | new, no scrollbar | `aca0fda8`, 15px scrollbar | published, 15px scrollbar |
+|---|---|---|---|---|
+| label gap | 26 / 36 / 30 | 26 / 36 / 30 | 26 / 36 / 30 | 22.5 at 1024, 14.2 at 1280, 17.1 at 1366 |
+| logo to first label | 28.0 (logo 81px at 1024) | 28.0 (the split menu from 1366, by design; 32.0 at 1024-1199) | 10.0 | 10.0 |
+| scroll button to label | 24.0 | 24.0 | 8.3 | 10.7 at 1280 |
+| issues (every sample) | 0 | 0 | 545 of 2,912 (the verdict fails, exit 1) | many |
+
+The rosette: in 2,080 samples it overlaps nothing, stays inside the header and is centred on its label.
+Captures reviewed:
+- `tmp/orch/round2/shots-ros/`: 1440 at rest and scrolled, against `aca0fda8` and the published build; 1024 with the
+  real scrollbar.
+- `tmp/orch/round2/shots3/`: keyboard focus, hover, and the operator's 1280 x 585 at rest and scrolled.
+
+The suite (`tmp/orch/resume/verify-final.sh`) gains two steps: `navsweep2` over the 7 pages, with the real
+scrollbar and without.
+### 10.5 Independent check of `c416771e` (workflow `wf_d378f175-d89`)
+
+Three attack lanes ran, each followed by a verifier that re-ran every finding with its own probe:
+- desktop header;
+- mobile, meta and blog;
+- a regression hunter comparing against the published build over every template.
+
+That makes 6 agents with 632 tool uses. The rules: only the project's headless launchers, with fresh profiles, the
+real-scrollbar launcher included. Results are in `tmp/orch/round2/refute/workflow-result.json`; the
+`refute/*` and `verify-*` folders hold the probes, data and captures. All 12 spot checks of the lanes' clean claims
+held. They included the header targets on 15 pages x 103 widths, fix 2a on all 9 header states, and the operator's
+1280 x 585 at DPR 1.5.
+
+| id | verdict (verifier) | what | action |
+|---|---|---|---|
+| F1 = REG-1 | new regression, minor | 14px "Important Links" wraps at 345-366px, so the left footer list sits 23.8px low | fixed (10.6) |
+| NAV-1 | new regression, minor | with web fonts missing, Georgia Bold is 7% wider and the scrolled appointment button covers "Insurance" from 1366 (published: the same at 1280-1327 on section pages) | fixed (10.6) |
+| NAV-3 | partial regression, minor | Chrome's "Large" default font (20px) or translated labels: both builds break, in different bands (new: logo 0px at 1024-1128 / 1200-1240) | recorded, operator option (em-based header bands) |
+| NAV-2 | note | under keyboard focus the ring's top bar touches the rosette | fixed (10.6) |
+| NAV-5 | note | the scrolled logo drifts 7-10px inward at 1024-1365 | fixed (10.6) |
+| REG-2 | note | the < 700 card rules also apply to narrow print | fixed (10.6) |
+| NAV-7 | note | at DPR 1 the rosette is an 8 x 7px speck above the label, which can read like an asterisk | recorded (design) |
+| NAV-6 | note | 1024-1199: the logo is 92px (published: 116px); with a scrollbar it narrows to 81px | by design |
+| NAV-4, NAV-9, F2, F3, REG-4 | pre-existing | logo focus ring leaves the header from 1200; fallback font scrolls the home 11px sideways; text links 24-31px tall on phones; single-word last lines; footer wrap below 345px | unchanged |
+| F4 | opportunity | blog index still long on phones; tablets unclamped | unchanged |
+| F5, F6, NAV-8 | fixed | text under 14px gone; blog scroll drift improved; both earlier header defects fixed on all 9 states | - |
+| REG-3 | refuted | card placeholder size | - |
+
+The blog-card probe (`cards.mjs`) once read 57,758px at 360. That is a transient of the probe's own forced read:
+forcing 151 skipped cards visible briefly lays some out at desktop font sizes.
+- It showed in 3 of 33 runs on `c416771e` and 2 of 12 on the published build, and settled within 1.5s every time
+  (`tmp/orch/round2/cards-diag.mjs`).
+- `cards.mjs` now reads until two reads agree.
+- A phone's viewport never changes, so visitors do not see it.
+### 10.6 Round 3: the fixes for 10.5, final `dist-neo` `90489f10…`
+
+All five fixes are in `src/themes/neo/styles/site.css` only.
+- **Build:** `dist-neo` `90489f10a121b2e46835640f5f702db3921383e9df716fc579a552a8ef6886ac`, 668 files. Two fresh
+  builds are identical. Glass `dist/` is still `40fc4155…`.
+- **Files changed:** against `c416771e` only `styles/site.css` differs. Against the published build only
+  `styles/site.css` and `styles/tokens.css` differ; all 350 HTML files are byte-identical.
+
+Each fix was checked on the new build and on `c416771e`, served on port 8854 as the control. Probes are in
+`tmp/orch/round2/r3/` and `refute/nav/ringgap-r3.mjs`.
+
+| fix | check | new | control `c416771e` |
+|---|---|---|---|
+| menu stand-in font (NAV-1): `@font-face "Source Serif 4 Menu Fallback"` = local Georgia Bold, `size-adjust 93%`, `ascent-override 111.8%`, `descent-override 36.6%`, `line-gap-override 0%`, added to `.mainnav`'s font stack; ratios measured by `fontmetrics.mjs`: Source Serif 4 600 / Georgia Bold = 0.930 on the labels, ascent 1.04 / descent 0.34 | `*.woff2` blocked (`navsweep2 --block-fonts`, real scrollbar, 7 pages, 2,912 samples) | 0 header issues; the only other issue is NAV-9's sideways scroll, the same 173 x 2 on both builds | 490 samples with the button over "Insurance" |
+| | label widths, blocked / webfont (`misc.mjs` C) | 0.995-1.007; the platform font is Georgia-Bold | 1.070-1.083 |
+| current link's focus ring `outline-offset: 4px` (NAV-2) | background rows between the ring and the rosette down the rosette's column, 5 pages x DPR 1 / 1.5 / 2 | 3 / 3-4 / 5 | 1 (touching) on 14 of 15 crops; on the 15th the column parse picked up another structure |
+| 1024-1365 `.site-header .site-logo img { transform-origin: 0 50% }` (NAV-5) | scrolled logo's left edge vs the bar's, real scrollbar, 8 widths | 0 at every width from 1024 to 1365 | 7.3-10.4px |
+| `.footer__h` `letter-spacing: .08em` below 380 (F1) | `footerfine.mjs`, 1px steps from 320 to 430 | wraps only at 320-341 (published 320-344) | 320-366 |
+| card rules `@media screen` (REG-2) | `/whats-new/` at 600px (`misc.mjs` A) | print: all 151 excerpts whole (138 run past 3 lines); screen: still 3 lines | print clamped |
+
+The webfont nav sweep ran on all 9 header states x 212 widths x rest/scrolled: 3,744 samples with the real scrollbar
+and 3,744 without, 0 issues, controls fired.
+
+**Suite on `90489f10`** (`tmp/orch/resume/verify-final.log`, 10:41-11:20): 25 steps, all exit 0. It includes the two
+new `navsweep2` steps, each 2,912 samples with 0 issues. `tmp/orch/round2/r3/suite-diff.mjs` compared every step
+with the `c416771e` run (`verify-final.c416771e.log`). All are IDENTICAL except four:
+- ng18r: 360 is 23px shorter, because the footer heading no longer wraps.
+- mobile audit: only `site.css` grew, 110 -> 112 KB; every page height and overflow is unchanged.
+- blog cards 360: the settled read, 42,824px.
+- lcp: the same element, a smaller size.
+
+The LCP size is not stable on either build. `lcp-diag.mjs` ran 5 fresh loads per build and width. The size
+alternates between 989,280 and 1,082,880 at 1440 (556,864 / 638,720 at 1024) on both builds, depending on whether
+the first paint lands just before or after the web-font swap. FCP and LCP are the same frame, and times overlap
+between builds. It is pre-existing.
+
+### 10.7 Independent check of round 3 (workflow `wf_46ab1370-37e`) and round 4
+
+**Footer, print and regression lane** (attack agent, then a verifier that re-ran each finding with its own probes;
+`tmp/orch/round2/refute3/footer/` and `verify-footer-print-regress/`):
+
+| finding | what | verifier | action |
+|---|---|---|---|
+| FP-1 | "Important Links" still wraps at 320-341px. The 380px rule is keyed to the viewport, so the heading wraps again with web fonts missing: 90489f10 at 320-373 and 380-399 (published: 320-375). It also wraps with a desktop scrollbar at 380-381 | confirmed, pre-existing, minor | round 4 below |
+| FP-2 | `.08em` also applies at 367-379px, where `.14em` would fit on phones; "reads clean, not cramped" | confirmed, note: the same `.08em` keeps one line with fonts blocked (374-379) and with a scrollbar (357-379) | recorded (trade-off) |
+| FP-3 | the footer link "Eyeglasses & Contacts" wraps at 320-381px in every build | not a defect: an ordinary wrap inside its own column, the same in all builds | unchanged |
+| FP-4, FP-5 | fix 4 confirmed: at 342-366 one line, lists level, nothing outside the footer moves. Fix 5 confirmed with real `Page.printToPDF` output: A5 / 320px / 600px / US Letter at 1.25 print all 151 excerpts whole (`c416771e` cut up to 144); A4 and 700px are byte-identical to `c416771e` | confirmed, fixed | - |
+
+The verifier's 4 spot checks of the lane's clean claims all held.
+
+Its regression pass compared NEW and `c416771e` over 308 comparisons on 29 pages, every template variant, 5
+viewports. It found no box or style difference outside the five intended changes; with fonts blocked, all 1,052
+style differences sit inside `.mainnav`, which is fix 1 working.
+
+**Round 4** (`src/themes/neo/styles/site.css`): the stand-in face is renamed "Source Serif 4 UI Fallback" and also
+used by `.footer__h`. Output: `tmp/orch/round2/neo-r4` (`CEC_DIST`), `76ec581c6d046f9359aeb9adb4b29133916f8a9b42b42f024a99a39ef20ac502`,
+reproducible (2 builds). Only `styles/site.css` differs from `90489f10`.
+- **Footer** (`r3/footer4.mjs`, 320-430 in 1px steps). The heading wraps, and the lists are misaligned, at:
+
+  | mode | round 4 | 90489f10 | published |
+  |---|---|---|---|
+  | web font, phones | 320-341 | 320-341 | 320-344 |
+  | fonts blocked, phones | 320-353 | 320-373 and 380-399 | 320-375 |
+  | web font, desktop scrollbar | 320-356 and 380-381 | 320-356 and 380-381 | 320-359 |
+  | fonts blocked, desktop scrollbar | 320-368 and 380-393 | 320-415 | 320-390 |
+
+  No page overflow in any mode. With fonts blocked the heading's platform font is Georgia-Bold. The last row is the
+  only one worse than published, and only at 391-393px.
+- **Menu unchanged by the rename:** the real-scrollbar sweep on 7 pages found 0 issues with the web font. With fonts
+  blocked it found 0 header issues; the only other issues are NAV-9's 346 sideways-scroll samples, as on `90489f10`
+  and `c416771e`.
+- **Identical to `90489f10` with the web font loaded** (the only state the suite measures), checked three ways:
+  - Full-page pixels (`r3/pixident-r4.mjs`, 6 pages x 390 / 768 / 1280 x 585 with a real scrollbar / 1440, 24 pairs):
+    every pair is identical or equal to its same-build noise. The three flagged pairs were resolved by
+    `r3/pixloc-r4.mjs`: two were a first-capture outlier and a footer capture state that also occur between
+    `90489f10` captures; the third is 1 value at delta 1.
+  - The footer heading (`r3/footerfont-r4.mjs`, 12 loads): painted with Source-Serif-4-14pt-SemiBold every time on
+    both builds. The two alternating footer capture states occur on both builds (2 of 6 and 3 of 6).
+  - The font files fetched are the same two woff2 on both builds.
+  So the suite results on `90489f10` (10.6) stand for `76ec581c`.
+
+**Header lane** (attack agent, `tmp/orch/round2/refute3/header/`). Its verifier was stopped before it ran, to free
+`dist-neo` for the final build. H3-1 was re-measured with the fixer's own probe (`r3/baseline-check.mjs`), with round 4 as
+the control.
+
+| finding | what | action |
+|---|---|---|
+| H3-1, new, minor | the stand-in's vertical overrides came from 100px-rounded metrics (1.04 / 0.34; the true values at 1000px are 1.036 / 0.335, `r3/vmetrics.mjs`). At 1262-1328px, which includes the operator's 1280, stand-in text sat 1 CSS px low, so the labels hopped 2dp at DPR 1.5 when the web font arrived | round 5: `ascent-override 111.4%`, `descent-override 36.02%` |
+| H3-3, note | the stand-in's family was set on `.mainnav`, but the face covers only 600-700 normal, so any future 400 or italic menu text would render as scaled Georgia Bold when fonts are missing | round 5: the family moved onto `.mainnav__link` |
+| H3-2, pre-existing | with fonts blocked, the home page scrolls 24-39px sideways at 1024-1494 until the reviews heading's pre-settle tracking settles (= NAV-9; the same in all builds) | unchanged |
+| H3-4 to H3-7, fixed | confirmed at depth: NAV-1 (0 header issues in 17,748 blocked-font samples; during a held font the clearance is 27.95 / 26.44 / 26.19 at 1366 / 1440 / 1920, against `c416771e`'s -2.42 / -3.97 / -4.22); the logo is no longer squeezed with fonts blocked (81.17px at 1024, `c416771e` 33.5px); NAV-2 (540 real-Tab samples, 3 / 3-4 / 5 rows); NAV-5 (drift 0 in every frame of the scroll transitions) | - |
+
+Its clean checks: the stand-in covers exactly the menu labels, including hover, focus and the current link. With the
+web font loaded the header is pixel-identical to `c416771e`. During a held font swap (woff2 held 2-2.5s) the text
+stays visible, and first paint lands at 312-516ms (`c416771e`: 660-708ms). Descenders stay 11-12px clear of the
+underline. The ring's geometry is clear of every neighbour.
+
+Not checked: Safari and Firefox, which support the overrides differently (Safari ignores `ascent-override`);
+systems without Georgia, where `local()` fails and the fallback is the same as before; real 150% OS scaling (DPR
+1.5 was emulated).
+
+**Round 5 = final.** `dist-neo`
+`f56e1e751a2c37fddfda6adb7dfd94bdb1c89b8dc3bbe8b2f3a05ebf45a2abed`, 668 files. Two fresh builds are identical, and
+glass `dist/` is still `40fc4155…`. Only `styles/site.css` differs from round 4, and only `site.css` and `tokens.css`
+from the published build.
+
+| check | result |
+|---|---|
+| H3-1 (`r3/baseline-check.mjs`): the labels' text boxes with fonts blocked vs with the web font, every width | final: 0 widths differ at DPR 1 (1024-1440) and 1.5 (1150-1440), max 0.000px, widths within 0.75%; control round 4: 67 widths (1262-1328) 1px off |
+| fonts blocked, menu (`navsweep2 --block-fonts`, real scrollbar, 7 pages) | 0 header issues; only NAV-9's 346 sideways-scroll samples |
+| footer (`r3/footer4.mjs`) | the same bands as round 4 in all four modes |
+| the same layout as round 4 with the web font (`r3/domident.mjs`) | 24 of 24 page x width pairs identical (every box of the header, the footer, main's children and the drawer; 390-1920); both builds render the menu and the footer headings in Source-Serif-4 SemiBold; control (0.5px tracking on one label) fired |
+| static | sentence parity 0 lost of 13,966; tag balance 0; links 0 broken of 20,788; robots and markup 0; fab-diff unchanged (II, III, VII, the live-site alt); decontamination 0 / 0 / 0; AI labels: portrait composite, 20 / 20 generated |
+
+Full-page pixel comparison was tried first (`r3/pixident-r4.mjs`) and proved too noisy under load. Captures of the
+same build differed by up to 16M values from lazy images and timing, so geometry (`domident.mjs`) was used instead.
+
+**Suite on the final `f56e1e75`** (`tmp/orch/resume/verify-final.log`, 13:08-13:42): 25 steps, all exit 0, every
+control fired. The two `navsweep2` steps found 0 issues in 2,912 samples each. Diffed against the `90489f10` run
+(`verify-final.90489f10.log`, `r3/suite-diff.mjs`), 22 steps are IDENTICAL. The rest:
+- lcp: 1024 took the other of its two known sizes (see 10.6);
+- mobile audit: the new CSS comments add +1 KB on three pages, with the same heights and 0 overflow;
+- the last nav step: the same result.
+
+Logs of the earlier runs are kept beside it: `verify-final.aca0fda8.log`, `verify-final.c416771e.log`,
+`verify-final.90489f10.log`.
