@@ -783,3 +783,13 @@ balance check, report 0 issues. The rest:
 | 5 | pre-existing | fonts blocked: the home page scrolls sideways at 1330-1490 from the reviews `.tag-row` (= NAV-9) | recorded |
 | 6 | design note | at 1600 @1.2 the logo sits 84.2px left of the page axis; the hero's pediment, numeral, pedestal and the footer logo are on the axis | the operator's call |
 | 7 | note | browsers without subgrid (before Chrome 117, Firefox 71, Safari 16) keep the old imbalance | accepted |
+
+**Published.**
+- main `a12d478` (secret scan 0 / 0 / 0 / 0, controls fired); gh-pages `4e3c43c`, which changes only
+  `neoclassical/styles/site.css`.
+- Live at 15:23: `site.css` md5 `eaa4596e641e` equals `dist-neo`.
+- Noindex: 698 / 700 on the first pass. Two glass pages answered HTTP 503 (GitHub Pages, transient); re-checked,
+  both 200 with exactly one `noindex,nofollow`.
+- Crawl `/neoclassical/`: 688 / 688 pages + 309 assets 200, 0 outside the prefix.
+- The operator's Chrome (1600 x 662 @1.2, a scrollbar), after its cached `site.css` was re-fetched: 322.8px free left
+  of the row and 323.0px right, gaps 30, the logo 84.2px left of the page centre.
