@@ -108,6 +108,10 @@
   --n-ease: cubic-bezier(.22, .61, .36, 1);
   --ease-out: cubic-bezier(.16, 1, .3, 1);
   --n-t-hover: .45s; --n-t-rise: 1.1s; --n-t-arch: 1.3s; --n-t-settle: 1.6s; --n-stagger: 120ms;
+  /* accordions open and close over this (operator 2026-09-30: "make all the accordion collapse and expand effect
+     slower"): the panel height, the answer's fade and the rosette's turn. Was .6s (fade) / .8s (rosette), and the
+     height did not animate at all */
+  --n-t-fold: 1s;
 }
 @media (max-width: 1023.98px) { :root { --bar-h: 72px; } }
 

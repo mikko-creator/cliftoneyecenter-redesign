@@ -404,6 +404,17 @@ still `40fc4155...`, rebuilt and compared).
   both sides, the same 30px gaps and 28px around the logo. The logo sits about 84px left of the page centre. When the
   header shrinks on scroll, the call and appointment buttons are now about 108px from the labels on both sides
   (before: 24px on the right). Browsers without CSS subgrid keep the previous layout.
+- **Slower accordions (operator follow-up, same day).** "Make all the accordion collapse and expand effect slower
+  for the whole site."
+  - The accordions now open *and* close by growing and shrinking over about one second: the home page's "Here to
+    help" questions, the payment accordion on Hours & Location and on the Clifton Eye Center location page, and the
+    "in this section" menu on 158 inner pages below 1024px.
+  - Before, the panel appeared and disappeared at once, with only a 0.6-second fade as it opened. The rosette's turn
+    and the answer's fade now take the same second.
+  - Visitors who ask their system for reduced motion still get instant accordions. Printing still expands every
+    item.
+  - The height animation needs Chrome or Edge 131 or later. Other browsers keep the instant open and close, with the
+    slower fade.
 - **The current-page mark.** The small rosette that marks the page you are on now sits centred above its label,
   not before it. Before, it made the current link 16px wider, and on the five section pages that width came out of
   the logo gap (10-16px left at 1024px) or the scrolled appointment button's gap (8px from 1366px on Eye Care

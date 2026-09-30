@@ -1161,7 +1161,8 @@ inside `@media (hover: hover) and (prefers-reduced-motion: no-preference)`; the 
 | plaque (aside, row, 700-1199 hero) and phone plate | lift -4px (plates: none), arrow +4px, rule `green-700`, fill `paper` | .45s |
 | service arch card | arch lift -6px, rule 8 to 12px, photo 1.03, name `green-800`, arrow +6px, `--n-e-lift` | .6s, photo .9s |
 | index card, post card (`:focus-within` on the card) | lift -6px, thumbnail -6px, title underline, arrow +6px | .45s |
-| accordion summary | underline on the question, text and rosette `green-800`; `[open]` turns the rosette 45deg | .45s, rosette .8s |
+| accordion summary | underline on the question, text and rosette `green-800`; `[open]` turns the rosette 45deg | .45s, rosette 1s (`--n-t-fold`; was .8s) |
+| accordion panel (operator revision 2026-09-30: "make all the accordion collapse and expand effect slower") | the panel's height opens AND closes over `--n-t-fold` (1s; the height used not to animate at all) through `::details-content` + `interpolate-size`, where supported (Chrome and Edge 131+); elsewhere it opens and closes at once as before; the answer's fade (`n-open`) was .6s, now 1s; the section rail animates the same way below 1024 (from 1024 site.js opens it on load, and that does not play); screens only, reduced motion instant | 1s |
 | designer plate | lift -4px, fine `green-950` rule appears, `--n-e-lift` | .45s |
 | linked logo chip | lift -4px, fine `green-700` rule | .45s |
 | social medallion | `green-300` fill, turn 45deg (glyph counter-turns) | .8s |

@@ -793,3 +793,35 @@ balance check, report 0 issues. The rest:
 - Crawl `/neoclassical/`: 688 / 688 pages + 309 assets 200, 0 outside the prefix.
 - The operator's Chrome (1600 x 662 @1.2, a scrollbar), after its cached `site.css` was re-fetched: 322.8px free left
   of the row and 323.0px right, gaps 30, the logo 84.2px left of the page centre.
+
+### 10.10 Slower accordions (operator follow-up, 2026-09-30)
+
+"Make all the accordion collapse and expand effect slower for the whole site."
+- **Before:** a `<details>` item's panel appeared and disappeared at once. The height never animated; only the
+  answer faded in (`n-open`, .6s) and the rosette turned (.8s). Closing had no effect at all.
+- **Where:** `details.qa__item` on 3 pages (home x 3, `/hours-location/`, `/location/clifton-eye-center/`) and
+  `details.rail[data-rail]` on 158 pages.
+- **Change:**
+  - `tokens.css` `--n-t-fold: 1s`.
+  - `motion.css`, inside `prefers-reduced-motion: no-preference`: `n-open` now takes `--n-t-fold`. Under
+    `@supports (interpolate-size: allow-keywords) and selector(::details-content)` and `@media screen`, the panel is
+    `::details-content { block-size: 0; overflow: clip; transition: block-size, content-visibility allow-discrete }`
+    and `[open]::details-content { block-size: auto }`, for `.qa__item` at every width and `.rail` below 1024 only.
+    From 1024, site.js opens the rail on every load, and that must not play.
+  - `site.css`: the rosette and the rail chevron turn over `--n-t-fold`.
+- **Build:** `dist-neo` `5156c4e9…`, reproducible. Glass is still `40fc4155…`. Only `styles/motion.css`, `site.css`
+  and `tokens.css` differ from the published `78f862d2`.
+
+**Checks** (`tmp/orch/round2/r7/`, NEW vs PUB `78f862d2` served on 8854):
+
+| check | new | published |
+|---|---|---|
+| `fold.mjs`: a real click, sampled every frame for 1.6s. Home Q&A at 1440 / 390, height settled at | opening 906 / 908ms, closing 901 / 892ms (1s ease-out, within 1px); fade 806 / 791ms; rosette 773 / 758ms | height 0ms both ways; fade 479 / 472ms; rosette 613 / 605ms |
+| rail at 390 | opening 895ms, closing 894ms, chevron 862ms | 0ms, chevron 369-381ms |
+| reduced motion | everything 0ms | 0ms |
+| the rail on a 1440 page load | no animation: the first open sample is already at its final 426px | the same |
+| `printfocus.mjs`: print media with every item opened as on `beforeprint` | the full height at once on all 3 pages, equal to published | - |
+| `ringclip.mjs`: keyboard focus ring on the 3 links inside the home answers, 1440 and 390 | ring colour on 100% of all four sides (the panel's `overflow: clip` cuts nothing) | the same |
+
+The first `ringclip` run read 0 on both builds. The probe had captured viewport coordinates without `scrollY`, so it
+was looking at the wrong region; the corrected run reads 1.0. That 0 reading shows the detector can fail.
