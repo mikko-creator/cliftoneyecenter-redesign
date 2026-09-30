@@ -724,3 +724,62 @@ Logs of the earlier runs are kept beside it: `verify-final.aca0fda8.log`, `verif
   until the file was re-fetched. After a publish, a reviewer who opened the preview in the last 10 minutes needs
   Ctrl+F5. Fingerprinting the CSS and JS names, as the images already are, would remove this; it is an option, not
   done.
+
+### 10.9 The balanced row (operator follow-up, 2026-09-30)
+
+"The navigation bar still is not spaced properly. There's too much space on the left side compared to the right
+side." The operator's screenshot is 1897 device px wide, i.e. 1581 CSS px at DPR 1.2 with a scrollbar.
+
+**Cause.** From 1366 the logo sat on the page's centre line: the bar grid was `1fr auto 1fr`, and the nav's grid
+was `1fr 136px 1fr`. Two links were on its left (315px with the 18px padding) and three on its right (484px), so
+the row hung about 168px to the right: 407px free on the left and 239px on the right at 1600. Every earlier check
+measured the gaps *between* items (label to label, logo, buttons) and never the free space outside the row. The QA
+prompts also called the asymmetry "the existing design".
+
+**Fix** (`src/themes/neo/styles/site.css`). Inside `@supports (grid-template-columns: subgrid)` and from 1366:
+- `.site-header__bar { grid-template-columns: minmax(0, 1fr) auto auto auto minmax(0, 1fr) }`;
+- the logo in column 3;
+- `.mainnav { grid-template-columns: subgrid }`, with the lists in columns 2 and 4.
+
+The row is now centred as one unit. The logo sits about 84px left of the page centre. Browsers without subgrid keep
+the axis layout. `dist-neo` is `78f862d2d…` (reproducible, 2 builds), glass is still `40fc4155…`, and only
+`styles/site.css` differs from the published `f56e1e75`.
+
+**Checks** (`tmp/orch/round2/r6/`; `navsweep2.mjs` gained a balance check: from 1366, |free left - free right| must
+be <= 1px):
+
+| check | new `78f862d2` | published `f56e1e75` (control) |
+|---|---|---|
+| 9 header states x 212 widths x rest/scrolled, real 15px scrollbar and none (3,744 samples each) | 0 issues, controls fired; from 1366 (1,260 samples): max \|left - right\| 0.02px, label gaps 30, logo 28, scroll buttons >= 108.4px from the labels | 20 of 20 samples off-centre, 168.29px; buttons 24.27px |
+| web fonts blocked (3 pages, 1340-2560) | balanced (0.02px), gaps 30, logo 28, buttons 108.5; the only other issue is NAV-9's pre-existing sideways scroll | - |
+| DOM boxes below 1366 (`domident-lt1366.mjs`, 4 pages x 390 / 768 / 1023 / 1024 / 1200 / 1280 / 1365) | 28 of 28 identical to published, control fired | - |
+| outside the header from 1366 (`domident-ge1366-nonheader.mjs`: topbar, main, footer, drawer; 4 pages x 1366 / 1600 / 1920 / 2560) | 16 of 16 identical; the control (footer heading +0.5px tracking) fired, after the first version's menu-label control was shown to sit outside the measured region | - |
+| captures at the operator's 1600 x 662 @1.2 with the scrollbar (`r6/shots/sheet-1600.png`) | home at rest and `/insurance/` scrolled: the row centred, both scroll buttons equally clear | the row hangs right, as in the operator's screenshot |
+
+**Suite on `78f862d2`** (`tmp/orch/resume/verify-final.log`, done 14:54): 25 steps, all exit 0. Diffed against the
+`f56e1e75` run (`verify-final.f56e1e75.log`), 21 steps are IDENTICAL; the two `navsweep2` steps, now with the
+balance check, report 0 issues. The rest:
+- nav spacing: the bar ends went from L238 / R70 to L154 / R154 at 1366, 1440 and 1920, with the same 30px gaps and
+  28 / 28 around the logo;
+- mobile audit: `site.css` +1 KB, the same heights, 0 overflow;
+- lcp: the known alternation.
+
+**Independent attack** (one agent with fresh profiles; `tmp/orch/round2/refute6/`): no new regression.
+- **Balance:** about 11,500 header samples covered all 9 header states, 1366-2560 plus 3840, rest and scrolled, with
+  and without the scrollbar, DPR 1 / 1.2 / 1.25 / 1.5 / 2, and web fonts on and off. The row stayed balanced to
+  0.016px, gaps 30, the logo 28, the buttons at least 108.4px from the labels, header 92px; 9 forced-defect controls
+  fired. By pixels (the ink margins) it is 152.5 / 152.5 at 1600 @1.2; published 236.7 / 68.3.
+- **The 1365/1366 switch:** 3,024 samples, 0 issues.
+- **No-subgrid fallback:** a copy with the `@supports` block stripped renders exactly as published.
+- **Nothing else moved:** everything outside the header and below 1366 matches published. Label focus rings clear
+  the diamonds by 6.46px, and nothing moves on hover or in the scroll transition.
+
+| finding | class | what | action |
+|---|---|---|---|
+| 1 | pre-existing, reduced | Chrome's "Very large" default font (24px): the scrolled buttons cover the end labels (published: worse, labels also over the logo and out of the bar). At "Large" (20px) the new build is clear from 1366 | recorded with NAV-3 (em-based header bands, an operator option) |
+| 2 | pre-existing | the logo's focus ring sticks 3.06px out of the 92px header, so the topbar covers its top edge at rest (= NAV-4) | recorded; fix idea `.site-header .site-logo:focus-visible { outline-offset: -3px }` |
+| 3 | note, new | if the web font misses the first paint, the logo slides 1.83px when it arrives (published: the outer labels move 1.6-2px instead); Chrome counts no shift under 3px | accepted |
+| 4 | note, improved | WCAG 1.4.12 text spacing and German labels: no overlaps (published: the logo over a label, the button over "Insurance") | - |
+| 5 | pre-existing | fonts blocked: the home page scrolls sideways at 1330-1490 from the reviews `.tag-row` (= NAV-9) | recorded |
+| 6 | design note | at 1600 @1.2 the logo sits 84.2px left of the page axis; the hero's pediment, numeral, pedestal and the footer logo are on the axis | the operator's call |
+| 7 | note | browsers without subgrid (before Chrome 117, Firefox 71, Safari 16) keep the old imbalance | accepted |

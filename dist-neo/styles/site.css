@@ -282,13 +282,30 @@ main:focus { outline: none; }
   .site-header__actions { gap: 10px; }
 }
 @media (min-width: 1366px) {
-  /* the call and appointment buttons sit in the free space at the wrap's two ends, keeping the axis: with the bar at
-     1240px the long (three-link) half holds 30px gaps, 18px from the logo column, and 24px clear of its end button */
+  /* the call and appointment buttons sit in the free space at the wrap's two ends; 30px gaps, 18px from the logo
+     column. This is the axis layout (logo at the page centre), kept only where subgrid is missing: the balanced row
+     below replaces it */
   .site-header__actions { left: 0; right: 0; }
   .mainnav { --nav-gap: 30px; grid-template-columns: 1fr 136px 1fr; }
   .mainnav__link { letter-spacing: 0; }
   .mainnav__list--l { padding-right: 18px; }
   .mainnav__list--r { padding-left: 18px; }
+}
+/* the balanced row (operator 2026-09-30: "too much space on the left side compared to the right side"): with the logo
+   on the page's axis, the three-link half is about 168px wider than the two-link half, so the whole menu hung to the
+   right (407px free on the left, 239px on the right at 1600). The row, two links + the logo + three links, is now
+   centred as one unit: the bar's five columns are free space, the left list, the logo, the right list, free space; the
+   nav joins them through subgrid, and the two free columns take equal shares. The gaps (30px), the logo's 28px on either
+   side and the scroll buttons at the bar's ends are unchanged; the logo sits about 84px left of the page centre.
+   Without subgrid support the axis layout above stays */
+@supports (grid-template-columns: subgrid) {
+  @media (min-width: 1366px) {
+    .site-header__bar { grid-template-columns: minmax(0, 1fr) auto auto auto minmax(0, 1fr); }
+    .site-header .site-logo { grid-column: 3; }
+    .mainnav { grid-template-columns: subgrid; }
+    .mainnav__list--l { grid-column: 2; }
+    .mainnav__list--r { grid-column: 4; }
+  }
 }
 @media (max-width: 1023.98px) {
   .site-header__bar { grid-template-columns: auto 1fr auto; }

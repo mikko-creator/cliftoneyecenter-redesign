@@ -391,12 +391,19 @@ still `40fc4155...`, rebuilt and compared).
   |---|---|---|---|
   | 1024-1199px | logo left, the five links as one group | 26-34px | logo 92px, labels 16px, logo 28px or more from the first label |
   | 1200-1365px | the same | 36px | both scroll buttons (call, appointment) together at the right end |
-  | 1366px+ | the centred split menu | 30px | logo spacing 28px, up from 22 |
+  | 1366px+ | two links, the logo, three links, the whole row centred | 30px | logo spacing 28px, up from 22; equal free space left and right of the row |
 
   On every page, in every band, the scroll buttons stay 24px or more from the nearest label, the logo 28px or more
   from it, every link keeps a 44px-tall target, and nothing wraps or overflows. This holds with a Windows scrollbar
   (15px, as in the operator's Chrome at 1280 x 585) and without one. With the scrollbar, at 1024-1040px, the logo
   narrows (81px at 1024px) rather than the gap.
+- **A balanced row (operator follow-up, same day).** "There's too much space on the left side compared to the right
+  side." From 1366px the logo sat on the page's centre line between two links on the left and three on the right. The
+  right half is about 168px wider, so the row hung to the right: at 1600px there was 407px of free space on the left
+  and 239px on the right. The row (two links, the logo, three links) is now centred as one unit, with equal space on
+  both sides, the same 30px gaps and 28px around the logo. The logo sits about 84px left of the page centre. When the
+  header shrinks on scroll, the call and appointment buttons are now about 108px from the labels on both sides
+  (before: 24px on the right). Browsers without CSS subgrid keep the previous layout.
 - **The current-page mark.** The small rosette that marks the page you are on now sits centred above its label,
   not before it. Before, it made the current link 16px wider, and on the five section pages that width came out of
   the logo gap (10-16px left at 1024px) or the scrolled appointment button's gap (8px from 1366px on Eye Care

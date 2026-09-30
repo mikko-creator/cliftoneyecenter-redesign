@@ -434,6 +434,15 @@ Not sticky, not a landmark.
 > - The current link's focus ring is offset 4px, so it clears the rosette.
 > - From 1024 to 1365 the scrolled logo scales from its left edge (`transform-origin: 0 50%`).
 >
+> **Balanced row (operator follow-up, 2026-09-30, "too much space on the left side compared to the right side"),
+> supersedes "on the axis" below:** from 1366 the row (two links, the logo, three links) is centred as one unit.
+> - The bar's grid is `minmax(0, 1fr) auto auto auto minmax(0, 1fr)`: free space, the left list, the logo, the right
+>   list, free space.
+> - `.mainnav` joins it through `grid-template-columns: subgrid`, the lists in columns 2 and 4, the logo in column 3.
+> - The free space left and right is equal. The logo sits about 84px left of the page centre, because the right list
+>   is about 168px wider.
+> - Browsers without subgrid (`@supports`) keep the axis layout.
+>
 > Record: `docs/CHANGE-LOG.md` 6e, `docs/NEO-BUILD-NOTES.md` 10.
 
 **Anatomy.** `header.site-header` is sticky, `marble-50`, with a 4px double `marble-300` rule on its bottom edge.
